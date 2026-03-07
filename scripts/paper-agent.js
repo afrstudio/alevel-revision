@@ -140,7 +140,67 @@ const BLUEPRINTS = {
         "Try to answer every question.",
         "Check your answers if you have time at the end.",
       ],
-      topicFilter: () => true,
+      topicFilter: (topic) => {
+        // Paper 1 covers Topics 1-4: Lifestyle/Health, Genes/Health, Voice of Genome, Biodiversity/Natural Resources
+        const paper1 = [
+          "cell", "membrane", "transport", "microscop", "organelle", "eukaryot", "prokaryot",
+          "biological molecule", "carbohydrate", "lipid", "protein", "enzyme", "nucleic acid",
+          "dna", "rna", "gene", "genetic", "cystic fibrosis", "monohybrid", "inheritance",
+          "cell division", "mitosis", "meiosis", "differentiat", "stem cell", "totipotent",
+          "biodiversity", "classification", "taxonomy", "evolution", "natural selection",
+          "conservation", "ecosystem", "species", "habitat", "sustainability",
+          "cardiovascular", "heart", "blood", "circulat", "gas exchange", "lung",
+          "diet", "health", "lifestyle", "water", "inorganic",
+        ];
+        return paper1.some(k => topic.toLowerCase().includes(k));
+      },
+      markTargets: [
+        { min: 1, max: 3, count: 8 },
+        { min: 4, max: 6, count: 6 },
+        { min: 7, max: 9, count: 2 },
+      ],
+    },
+    {
+      title: "Paper 2: Development, Plants and the Environment",
+      subject: "Biology",
+      code: "9BN0/02",
+      totalMarks: 80,
+      time: "1 hour 45 minutes",
+      board: "Edexcel",
+      boardStyle: "edexcel",
+      materials: "Scientific calculator, ruler",
+      calculatorWarning: null,
+      instructions: [
+        "Use <b>black</b> ink or ball-point pen.",
+        "If pencil is used for diagrams/sketches/graphs it must be dark (HB or B).",
+        "<b>Fill in the boxes</b> at the top of this page with your name, centre number and candidate number.",
+        "Answer <b>all</b> questions.",
+        "Answer the questions in the spaces provided – <i>there may be more space than you need.</i>",
+      ],
+      information: [
+        "The marks for <b>each</b> question are shown in brackets – <i>use this as a guide as to how much time to spend on each question.</i>",
+      ],
+      advice: [
+        "Read each question carefully before you start to answer it.",
+        "Try to answer every question.",
+        "Check your answers if you have time at the end.",
+      ],
+      topicFilter: (topic) => {
+        // Paper 2 covers Topics 5-8: On the Wild Side, Immunity/Infection/Forensics, Run for Your Life, Grey Matter
+        const paper2 = [
+          "photosynthesis", "respiration", "krebs", "electron transport", "oxidative",
+          "energy transfer", "ecosystem", "climate", "succession", "carbon cycle",
+          "immunity", "immune", "infection", "communicable", "vaccination", "antibod",
+          "antigen", "pathogen", "forensic", "decomposition",
+          "muscle", "contraction", "actin", "myosin", "sarcomere", "exercise", "fitness",
+          "homeostasis", "nervous", "synap", "neurone", "brain", "visual cortex",
+          "habituation", "learning", "memory", "neuroplasticity", "drug", "neurotransmitter",
+          "photoreceptor", "rod", "cone", "retina", "reflex",
+          "population", "predator", "prey", "competition",
+          "gene expression", "epigenetic", "transcription",
+        ];
+        return paper2.some(k => topic.toLowerCase().includes(k));
+      },
       markTargets: [
         { min: 1, max: 3, count: 8 },
         { min: 4, max: 6, count: 6 },
@@ -173,7 +233,71 @@ const BLUEPRINTS = {
       advice: [
         "Read each question carefully before you start your answer.",
       ],
-      topicFilter: () => true,
+      topicFilter: (topic) => {
+        // Paper 1: Modules 1-3, 5 (physical chemistry, periodic table, inorganic)
+        const paper1 = [
+          "atomic", "isotop", "electron config", "ionisation energy", "mass spectrometry",
+          "bonding", "ionic", "covalent", "intermolecular", "metallic", "vsepr",
+          "mole", "amount", "concentration", "formula", "stoichiometry", "titration",
+          "acid", "base", "redox", "oxidation",
+          "periodic", "group 2", "group 7", "halogen",
+          "enthalpy", "hess", "born-haber", "lattice", "calorimetry", "entropy", "gibbs",
+          "kinetic", "rate", "arrhenius", "collision", "catalys",
+          "equilibri", "le chatelier", "kc", "kp",
+          "electrode", "electrochemical", "fuel cell",
+          "buffer", "ph", "weak acid",
+          "transition metal", "complex", "ligand",
+        ];
+        return paper1.some(k => topic.toLowerCase().includes(k));
+      },
+      markTargets: [
+        { min: 1, max: 3, count: 7 },
+        { min: 4, max: 6, count: 6 },
+        { min: 7, max: 10, count: 2 },
+      ],
+    },
+    {
+      title: "Synthesis and analytical techniques",
+      subject: "Chemistry A",
+      code: "H432/02",
+      totalMarks: 100,
+      time: "2 hours 15 minutes",
+      board: "OCR",
+      boardStyle: "ocr",
+      materials: null,
+      mustHave: "the Data Sheet for Chemistry A",
+      canUse: ["a scientific or graphical calculator", "an HB pencil"],
+      instructions: [
+        "Use black ink. You can use an HB pencil, but only for graphs and diagrams.",
+        "Write your answer to each question in the space provided. If you need extra space use the lined pages at the end of this booklet. The question numbers must be clearly shown.",
+        "Answer <b>all</b> the questions.",
+        "Where appropriate, your answer should be supported with working. Marks might be given for using a correct method, even if your answer is wrong.",
+      ],
+      information: [
+        "The marks for each question are shown in brackets <b>[ ]</b>.",
+        "Quality of extended response will be assessed in questions marked with an asterisk (*).",
+      ],
+      advice: [
+        "Read each question carefully before you start your answer.",
+      ],
+      topicFilter: (topic) => {
+        // Paper 2: Modules 1-4, 6 (organic chemistry, synthesis, analytical techniques)
+        const paper2 = [
+          "alkane", "alkene", "alcohol", "haloalkane", "halogenoalkane",
+          "aromatic", "benzene", "friedel", "electrophilic substitution",
+          "carbonyl", "aldehyde", "ketone", "carboxylic", "ester", "acyl chloride",
+          "amine", "amide", "amino acid", "peptide", "protein",
+          "nitrile", "polymer", "condensation polymer", "polyester", "polyamide",
+          "diazonium", "azo", "phenol",
+          "isomerism", "optical", "chirality", "stereoisomer",
+          "organic synthesis", "retrosynthesis", "functional group",
+          "nmr", "infrared", "mass spec", "chromatography", "spectroscopy",
+          "mechanism", "nucleophilic", "elimination", "free radical",
+          "grignard", "directing effect",
+          "purification", "yield", "percentage",
+        ];
+        return paper2.some(k => topic.toLowerCase().includes(k));
+      },
       markTargets: [
         { min: 1, max: 3, count: 7 },
         { min: 4, max: 6, count: 6 },
@@ -794,7 +918,8 @@ function buildMarkSchemeHTML(bp, questions, totalMarks, setLabel) {
   const msPages = questions.map((q, i) => {
     const num = i + 1;
     const answer = renderLatex(q.answer || "");
-    const criteria = (q.marking_criteria || []).map(c => {
+    const rawCriteria = Array.isArray(q.marking_criteria) ? q.marking_criteria : (q.marking_criteria ? [q.marking_criteria] : []);
+    const criteria = rawCriteria.map(c => {
       let html = escapeHtml(c);
       html = html.replace(/\$\$(.*?)\$\$/gs, (_, l) =>
         `<span class="katex-display" data-latex="${escapeAttr(l)}"></span>`);

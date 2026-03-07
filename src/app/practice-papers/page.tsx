@@ -48,10 +48,11 @@ export default function PracticePapersPage() {
   const subjects = ["All", "Maths", "Biology", "Chemistry"];
   const filtered = filter === "All" ? papers : papers.filter((p) => p.subject === filter);
 
-  const grouped = filtered.reduce<Record<string, Paper[]>>((acc, p) => {
-    const key = p.subject;
-    if (!acc[key]) acc[key] = [];
-    acc[key].push(p);
+  // Group by subject → paper title
+  const grouped = filtered.reduce<Record<string, Record<string, Paper[]>>>((acc, p) => {
+    if (!acc[p.subject]) acc[p.subject] = {};
+    if (!acc[p.subject][p.title]) acc[p.subject][p.title] = [];
+    acc[p.subject][p.title].push(p);
     return acc;
   }, {});
 
@@ -88,14 +89,17 @@ export default function PracticePapersPage() {
         ))}
       </div>
 
-      {/* Paper packs grouped by subject */}
-      {Object.entries(grouped).map(([subject, subjectPapers]) => (
-        <section key={subject} className="space-y-3">
-          <h2 className={`text-base font-semibold ${subjectText[subject] || "text-zinc-900"}`}>
+      {/* Paper packs grouped by subject → paper type */}
+      {Object.entries(grouped).map(([subject, paperTypes]) => (
+        <section key={subject} className="space-y-4">
+          <h2 className={`text-lg font-semibold ${subjectText[subject] || "text-zinc-900"}`}>
             {subject}
           </h2>
-          <div className="space-y-3">
-            {subjectPapers.map((p) => (
+          {Object.entries(paperTypes).map(([title, titlePapers]) => (
+            <div key={title} className="space-y-3">
+              <h3 className="text-sm font-medium text-zinc-500 px-1">{title}</h3>
+              <div className="space-y-3">
+            {titlePapers.map((p) => (
               <div
                 key={p.filename}
                 className={`rounded-xl border ${subjectBorders[p.subject] || "border-zinc-200"} bg-white shadow-sm overflow-hidden`}
@@ -148,7 +152,9 @@ export default function PracticePapersPage() {
                 </div>
               </div>
             ))}
-          </div>
+              </div>
+            </div>
+          ))}
         </section>
       ))}
 
