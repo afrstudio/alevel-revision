@@ -1,0 +1,122 @@
+[
+  {
+    "filename": "Edexcel-Biology-Paper-1-The-Natural-Environment-and-Species-Survival-SetA.pdf",
+    "board": "Edexcel",
+    "subject": "Biology",
+    "title": "Paper 1: The Natural Environment and Species Survival",
+    "set": "Set A",
+    "marks": 80,
+    "time": "1 hour 45 minutes",
+    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Biology-Paper-1-The-Natural-Environment-and-Species-Survival-SetA.pdf"
+  },
+  {
+    "filename": "Edexcel-Biology-Paper-1-The-Natural-Environment-and-Species-Survival-SetB.pdf",
+    "board": "Edexcel",
+    "subject": "Biology",
+    "title": "Paper 1: The Natural Environment and Species Survival",
+    "set": "Set B",
+    "marks": 80,
+    "time": "1 hour 45 minutes",
+    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Biology-Paper-1-The-Natural-Environment-and-Species-Survival-SetB.pdf"
+  },
+  {
+    "filename": "Edexcel-Biology-Paper-1-The-Natural-Environment-and-Species-Survival-SetC.pdf",
+    "board": "Edexcel",
+    "subject": "Biology",
+    "title": "Paper 1: The Natural Environment and Species Survival",
+    "set": "Set C",
+    "marks": 80,
+    "time": "1 hour 45 minutes",
+    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Biology-Paper-1-The-Natural-Environment-and-Species-Survival-SetC.pdf"
+  },
+  {
+    "filename": "Edexcel-Chemistry-Paper-1-Advanced-Inorganic-and-Physical-Chemistry-SetA.pdf",
+    "board": "Edexcel",
+    "subject": "Chemistry",
+    "title": "Paper 1: Advanced Inorganic and Physical Chemistry",
+    "set": "Set A",
+    "marks": 90,
+    "time": "1 hour 45 minutes",
+    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Chemistry-Paper-1-Advanced-Inorganic-and-Physical-Chemistry-SetA.pdf"
+  },
+  {
+    "filename": "Edexcel-Chemistry-Paper-1-Advanced-Inorganic-and-Physical-Chemistry-SetB.pdf",
+    "board": "Edexcel",
+    "subject": "Chemistry",
+    "title": "Paper 1: Advanced Inorganic and Physical Chemistry",
+    "set": "Set B",
+    "marks": 90,
+    "time": "1 hour 45 minutes",
+    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Chemistry-Paper-1-Advanced-Inorganic-and-Physical-Chemistry-SetB.pdf"
+  },
+  {
+    "filename": "Edexcel-Chemistry-Paper-1-Advanced-Inorganic-and-Physical-Chemistry-SetC.pdf",
+    "board": "Edexcel",
+    "subject": "Chemistry",
+    "title": "Paper 1: Advanced Inorganic and Physical Chemistry",
+    "set": "Set C",
+    "marks": 90,
+    "time": "1 hour 45 minutes",
+    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Chemistry-Paper-1-Advanced-Inorganic-and-Physical-Chemistry-SetC.pdf"
+  },
+  {
+    "filename": "Edexcel-Maths-Paper-1-Pure-Mathematics-SetA.pdf",
+    "board": "Edexcel",
+    "subject": "Maths",
+    "title": "Paper 1: Pure Mathematics",
+    "set": "Set A",
+    "marks": 100,
+    "time": "2 hours",
+    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Maths-Paper-1-Pure-Mathematics-SetA.pdf"
+  },
+  {
+    "filename": "Edexcel-Maths-Paper-1-Pure-Mathematics-SetB.pdf",
+    "board": "Edexcel",
+    "subject": "Maths",
+    "title": "Paper 1: Pure Mathematics",
+    "set": "Set B",
+    "marks": 100,
+    "time": "2 hours",
+    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Maths-Paper-1-Pure-Mathematics-SetB.pdf"
+  },
+  {
+    "filename": "Edexcel-Maths-Paper-1-Pure-Mathematics-SetC.pdf",
+    "board": "Edexcel",
+    "subject": "Maths",
+    "title": "Paper 1: Pure Mathematics",
+    "set": "Set C",
+    "marks": 100,
+    "time": "2 hours",
+    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Maths-Paper-1-Pure-Mathematics-SetC.pdf"
+  },
+  {
+    "filename": "Edexcel-Maths-Paper-2-Statistics-and-Mechanics-SetA.pdf",
+    "board": "Edexcel",
+    "subject": "Maths",
+    "title": "Paper 2: Statistics and Mechanics",
+    "set": "Set A",
+    "marks": 100,
+    "time": "2 hours",
+    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Maths-Paper-2-Statistics-and-Mechanics-SetA.pdf"
+  },
+  {
+    "filename": "Edexcel-Maths-Paper-2-Statistics-and-Mechanics-SetB.pdf",
+    "board": "Edexcel",
+    "subject": "Maths",
+    "title": "Paper 2: Statistics and Mechanics",
+    "set": "Set B",
+    "marks": 100,
+    "time": "2 hours",
+    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Maths-Paper-2-Statistics-and-Mechanics-SetB.pdf"
+  },
+  {
+    "filename": "Edexcel-Maths-Paper-2-Statistics-and-Mechanics-SetC.pdf",
+    "board": "Edexcel",
+    "subject": "Maths",
+    "title": "Paper 2: Statistics and Mechanics",
+    "set": "Set C",
+    "marks": 100,
+    "time": "2 hours",
+    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Maths-Paper-2-Statistics-and-Mechanics-SetC.pdf"
+  }
+]

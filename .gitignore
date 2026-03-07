@@ -49,3 +49,4 @@ next-env.d.ts
 # dev scripts
 /analyze.js
 /test-ui.js
+generated-papers/
