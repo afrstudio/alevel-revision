@@ -23,7 +23,19 @@ export function getOriginalQuestions(subject: Subject): OriginalQuestion[] {
 }
 
 export function getFlashcards(subject: Subject): Flashcard[] {
-  return dataMap[subject].flashcards;
+  const data = dataMap[subject];
+  // Merge original_flashcards with generated flashcards, deduplicating by id
+  const all = [...data.flashcards];
+  const existingIds = new Set(all.map((f) => f.id));
+  if (data.original_flashcards) {
+    for (const fc of data.original_flashcards) {
+      if (!existingIds.has(fc.id)) {
+        all.push(fc);
+        existingIds.add(fc.id);
+      }
+    }
+  }
+  return all;
 }
 
 export function getTopics(subject: Subject): string[] {
@@ -49,4 +61,17 @@ export function getSubtopics(subject: Subject, topic: string): string[] {
     }
   });
   return Array.from(subtopics).sort();
+}
+
+// Content counts for the home page
+export function getContentCounts(): Record<Subject, { mcqs: number; questions: number; flashcards: number }> {
+  const result = {} as Record<Subject, { mcqs: number; questions: number; flashcards: number }>;
+  for (const subject of ["Maths", "Biology", "Chemistry"] as Subject[]) {
+    result[subject] = {
+      mcqs: getMCQs(subject).length,
+      questions: getOriginalQuestions(subject).length,
+      flashcards: getFlashcards(subject).length,
+    };
+  }
+  return result;
 }

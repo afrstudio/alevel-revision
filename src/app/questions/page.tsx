@@ -1,54 +1,52 @@
 "use client";
 
 import { useState } from "react";
-import { getOriginalQuestions } from "@/lib/data";
-import type { Subject, OriginalQuestion } from "@/types";
+import { useSubjectData } from "@/lib/use-data";
+import type { Subject } from "@/types";
 import QuestionPractice from "@/components/QuestionPractice";
+import SubjectPicker from "@/components/SubjectPicker";
 
-const subjects: Subject[] = ["Maths", "Biology", "Chemistry"];
-const colors: Record<Subject, string> = {
-  Maths: "border-blue-500/50 hover:border-blue-400",
-  Biology: "border-green-500/50 hover:border-green-400",
-  Chemistry: "border-purple-500/50 hover:border-purple-400",
-};
+const subjects = [
+  { name: "Maths" as Subject, count: "279 questions", color: "text-indigo-600", bg: "bg-indigo-50" },
+  { name: "Biology" as Subject, count: "342 questions", color: "text-emerald-600", bg: "bg-emerald-50" },
+  { name: "Chemistry" as Subject, count: "251 questions", color: "text-teal-600", bg: "bg-teal-50" },
+];
 
 export default function QuestionsPage() {
   const [selected, setSelected] = useState<Subject | null>(null);
+  const { data, loading } = useSubjectData(selected);
 
   if (!selected) {
+    return <SubjectPicker title="Written Questions" subjects={subjects} onSelect={setSelected} />;
+  }
+
+  if (loading || !data) {
     return (
-      <div className="space-y-4">
-        <h1 className="text-xl md:text-2xl font-bold">Written Questions</h1>
-        <p className="text-gray-400 text-sm">Choose a subject:</p>
-        <div className="grid grid-cols-1 gap-3">
-          {subjects.map((s) => (
-            <button
-              key={s}
-              onClick={() => setSelected(s)}
-              className={`bg-gray-900 border ${colors[s]} rounded-xl p-4 md:p-6 transition-colors text-left active:scale-[0.98]`}
-            >
-              <h2 className="text-base md:text-lg font-semibold">{s}</h2>
-              <p className="text-xs md:text-sm text-gray-400 mt-0.5">
-                {getOriginalQuestions(s).length} questions
-              </p>
-            </button>
-          ))}
+      <div className="fade-in">
+        <button
+          onClick={() => setSelected(null)}
+          className="text-xs text-zinc-400 hover:text-zinc-700 mb-3 flex items-center gap-1 min-h-[44px] transition-colors"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
+          Back
+        </button>
+        <div className="flex items-center justify-center py-20">
+          <div className="w-6 h-6 border-2 border-zinc-900 border-t-transparent rounded-full animate-spin" />
         </div>
       </div>
     );
   }
 
-  const questions: OriginalQuestion[] = getOriginalQuestions(selected);
-
   return (
-    <div>
+    <div className="fade-in">
       <button
         onClick={() => setSelected(null)}
-        className="text-sm text-gray-400 hover:text-white mb-3 flex items-center gap-1 min-h-[44px]"
+        className="text-xs text-zinc-400 hover:text-zinc-700 mb-3 flex items-center gap-1 min-h-[44px] transition-colors"
       >
-        ← Back to subjects
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
+        Back
       </button>
-      <QuestionPractice questions={questions} />
+      <QuestionPractice questions={data.original_questions} subject={selected} />
     </div>
   );
 }

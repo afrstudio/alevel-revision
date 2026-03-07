@@ -2,15 +2,23 @@
 "use client";
 
 import { useState, useRef, useCallback, useEffect } from "react";
+import { recordCameraAttempt } from "@/lib/progress";
 
 type Subject = "Maths" | "Biology" | "Chemistry";
 
 interface MarkingResult {
+  extracted_answer?: string;
   score: number;
   totalMarks?: number;
+  percentage?: number;
+  grade?: string;
   feedback: string;
+  correct_answer?: string;
+  model_answer?: string;
+  what_went_wrong?: string[];
   criteriaMatched?: string[];
   criteriaMissed?: string[];
+  improvements?: string[];
 }
 
 type Stage = "setup" | "camera" | "preview" | "loading" | "result";
@@ -31,172 +39,102 @@ export default function CameraMarker() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const stopCamera = useCallback(() => {
-    if (streamRef.current) {
-      streamRef.current.getTracks().forEach((track) => track.stop());
-      streamRef.current = null;
-    }
+    if (streamRef.current) { streamRef.current.getTracks().forEach((track) => track.stop()); streamRef.current = null; }
     setCameraActive(false);
   }, []);
 
   const startCamera = useCallback(async () => {
     setError(null);
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: "environment" },
-      });
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
       streamRef.current = stream;
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-      }
+      if (videoRef.current) videoRef.current.srcObject = stream;
       setCameraActive(true);
     } catch (err) {
       console.error("Camera access error:", err);
-      setError(
-        "Could not access live camera. Use the \"Take Photo\" button above instead."
-      );
+      setError("Could not access live camera. Use the \"Take Photo\" button above instead.");
     }
   }, []);
 
-  useEffect(() => {
-    return () => {
-      stopCamera();
-    };
-  }, [stopCamera]);
-
-  // Only start live camera when user explicitly opts in
-  useEffect(() => {
-    if (stage === "camera" && showLiveCamera) {
-      startCamera();
-    } else {
-      stopCamera();
-    }
-  }, [stage, showLiveCamera, startCamera, stopCamera]);
-
-  // Reset live camera toggle when leaving camera stage
-  useEffect(() => {
-    if (stage !== "camera") {
-      setShowLiveCamera(false);
-    }
-  }, [stage]);
+  useEffect(() => { return () => { stopCamera(); }; }, [stopCamera]);
+  useEffect(() => { if (stage === "camera" && showLiveCamera) startCamera(); else stopCamera(); }, [stage, showLiveCamera, startCamera, stopCamera]);
+  useEffect(() => { if (stage !== "camera") setShowLiveCamera(false); }, [stage]);
 
   const handleCapture = useCallback(() => {
     if (!videoRef.current || !canvasRef.current) return;
-
     const video = videoRef.current;
     const canvas = canvasRef.current;
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
-
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-
     ctx.drawImage(video, 0, 0);
-    const dataUrl = canvas.toDataURL("image/png");
-    setCapturedImage(dataUrl);
+    setCapturedImage(canvas.toDataURL("image/png"));
     stopCamera();
     setStage("preview");
   }, [stopCamera]);
 
-  const handleFileUpload = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const file = e.target.files?.[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setCapturedImage(reader.result as string);
-        stopCamera();
-        setStage("preview");
-      };
-      reader.readAsDataURL(file);
-    },
-    [stopCamera]
-  );
+  const handleFileUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onloadend = () => { setCapturedImage(reader.result as string); stopCamera(); setStage("preview"); };
+    reader.readAsDataURL(file);
+  }, [stopCamera]);
 
   const handleRetake = useCallback(() => {
-    setCapturedImage(null);
-    setError(null);
-    setResult(null);
-    setStage("camera");
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
+    setCapturedImage(null); setError(null); setResult(null); setStage("camera");
+    if (fileInputRef.current) fileInputRef.current.value = "";
   }, []);
 
   const handleMark = useCallback(async () => {
     if (!capturedImage || !subject) return;
-
-    setStage("loading");
-    setError(null);
-
+    setStage("loading"); setError(null);
     try {
       const res = await fetch("/api/mark", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          image: capturedImage,
-          subject,
-          questionContext,
-        }),
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ image: capturedImage, subject, questionContext }),
       });
-
-      if (!res.ok) {
-        throw new Error(`Server responded with ${res.status}`);
-      }
-
+      if (!res.ok) throw new Error(`Server responded with ${res.status}`);
       const data: MarkingResult = await res.json();
-      setResult(data);
-      setStage("result");
+      setResult(data); setStage("result");
+      if (subject) {
+        recordCameraAttempt({
+          subject: subject as Subject, questionContext, score: data.score, totalMarks: data.totalMarks || 0,
+          extractedAnswer: data.extracted_answer || "", feedback: data.feedback, improvements: data.improvements || [], timestamp: Date.now(),
+        });
+      }
     } catch (err) {
       console.error("Marking error:", err);
-      setError(
-        err instanceof Error
-          ? err.message
-          : "Something went wrong while marking. Please try again."
-      );
+      setError(err instanceof Error ? err.message : "Something went wrong while marking. Please try again.");
       setStage("preview");
     }
   }, [capturedImage, subject, questionContext]);
 
   const handleStartOver = useCallback(() => {
-    setCapturedImage(null);
-    setResult(null);
-    setError(null);
-    setSubject("");
-    setQuestionContext("");
-    setStage("setup");
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
+    setCapturedImage(null); setResult(null); setError(null); setSubject(""); setQuestionContext(""); setStage("setup");
+    if (fileInputRef.current) fileInputRef.current.value = "";
   }, []);
 
   return (
     <div className="w-full max-w-2xl mx-auto space-y-4 md:space-y-6">
-      {/* Stage: Setup - Subject + Question Context */}
+      {/* Stage: Setup */}
       {stage === "setup" && (
-        <div className="bg-gray-900 border border-gray-800 rounded-2xl p-4 md:p-6 space-y-5 md:space-y-6">
-          <h2 className="text-lg md:text-xl font-semibold text-white">
-            Mark Your Answer
-          </h2>
-          <p className="text-gray-400 text-sm">
-            Select a subject and optionally describe the question, then take a
-            photo of your handwritten answer.
-          </p>
+        <div className="fade-in bg-white border border-zinc-200 shadow-sm rounded-2xl p-4 md:p-5 space-y-5">
+          <div>
+            <h2 className="text-base font-semibold text-zinc-900">Mark Your Answer</h2>
+            <p className="text-[13px] text-zinc-500 mt-1">Select a subject and optionally describe the question, then take a photo of your handwritten answer.</p>
+          </div>
 
-          {/* Subject Selector */}
-          <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-300">
-              Subject <span className="text-red-400">*</span>
-            </label>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="space-y-2.5">
+            <label className="block text-sm font-medium text-zinc-900">Subject <span className="text-red-500">*</span></label>
+            <div className="flex gap-2.5">
               {(["Maths", "Biology", "Chemistry"] as Subject[]).map((s) => (
                 <button
                   key={s}
                   onClick={() => setSubject(s)}
-                  className={`min-h-[48px] py-3 px-4 rounded-xl text-sm font-medium transition-all active:scale-[0.98] ${
-                    subject === s
-                      ? "bg-blue-600 text-white ring-2 ring-blue-400"
-                      : "bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700"
+                  className={`flex-1 rounded-xl min-h-[48px] text-sm font-medium transition-all active:scale-[0.98] border ${
+                    subject === s ? "bg-zinc-900 border-zinc-900 text-white" : "bg-white border-zinc-200 text-zinc-500 hover:bg-zinc-50 hover:text-zinc-700"
                   }`}
                 >
                   {s}
@@ -205,333 +143,200 @@ export default function CameraMarker() {
             </div>
           </div>
 
-          {/* Question Context */}
-          <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-300">
-              Question Context{" "}
-              <span className="text-gray-500">(optional)</span>
-            </label>
+          <div className="space-y-2.5">
+            <label className="block text-sm font-medium text-zinc-900">Question Context <span className="text-zinc-400">(optional)</span></label>
             <textarea
               value={questionContext}
               onChange={(e) => setQuestionContext(e.target.value)}
               placeholder="e.g. Solve the quadratic equation 2x^2 + 3x - 5 = 0"
               rows={3}
-              className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+              className="w-full bg-zinc-50 border border-zinc-200 rounded-xl p-3.5 text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 focus:border-zinc-400 resize-none"
             />
           </div>
 
           <button
             onClick={() => setStage("camera")}
             disabled={!subject}
-            className="w-full min-h-[48px] py-3 px-4 rounded-xl font-medium transition-all active:scale-[0.98] bg-blue-600 text-white hover:bg-blue-500 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-blue-600"
+            className="bg-zinc-900 hover:bg-zinc-800 text-white rounded-xl font-medium text-sm min-h-[48px] w-full transition-all active:scale-[0.98] disabled:opacity-30 disabled:cursor-not-allowed"
           >
             Continue to Camera
           </button>
         </div>
       )}
 
-      {/* Stage: Camera / Upload */}
+      {/* Stage: Camera */}
       {stage === "camera" && (
-        <div className="bg-gray-900 border border-gray-800 rounded-2xl p-4 md:p-6 space-y-4">
-          <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-white">
-              Capture Your Answer
-            </h2>
-            <button
-              onClick={() => {
-                stopCamera();
-                setStage("setup");
-              }}
-              className="min-h-[48px] px-3 text-sm text-gray-400 hover:text-white transition-colors active:scale-[0.98]"
-            >
-              Back
-            </button>
-          </div>
+        <div className="fade-in bg-white border border-zinc-200 shadow-sm rounded-2xl p-4 space-y-4">
+          <button onClick={() => { stopCamera(); setStage("setup"); }} className="flex items-center gap-1 text-[11px] text-zinc-400 hover:text-zinc-700 transition-colors active:scale-[0.98]">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-3 h-3"><path fillRule="evenodd" d="M9.78 4.22a.75.75 0 0 1 0 1.06L7.06 8l2.72 2.72a.75.75 0 1 1-1.06 1.06L5.47 8.53a.75.75 0 0 1 0-1.06l3.25-3.25a.75.75 0 0 1 1.06 0Z" clipRule="evenodd" /></svg>
+            Back
+          </button>
+          <p className="text-[11px] text-zinc-400">{subject}{questionContext && ` \u2014 ${questionContext}`}</p>
 
-          <p className="text-gray-400 text-xs">
-            {subject}
-            {questionContext && ` \u2014 ${questionContext}`}
-          </p>
-
-          {/* PRIMARY: Take Photo button (triggers phone camera via capture="environment") */}
-          <div className="space-y-2">
-            <label className="block w-full cursor-pointer">
-              <div className="flex flex-col items-center justify-center gap-3 min-h-[120px] py-6 px-4 rounded-2xl font-medium text-center transition-all active:scale-[0.98] bg-blue-600 text-white hover:bg-blue-500">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-10 h-10"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z"
-                  />
-                </svg>
-                <span className="text-lg font-semibold">Take Photo</span>
-                <span className="text-sm text-blue-100 opacity-80">
-                  Opens your phone camera
-                </span>
-              </div>
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/*"
-                capture="environment"
-                onChange={handleFileUpload}
-                className="hidden"
-              />
-            </label>
-          </div>
-
-          {/* Upload from gallery */}
-          <div className="relative">
-            <div className="flex items-center gap-3">
-              <div className="flex-1 h-px bg-gray-800" />
-              <span className="text-xs text-gray-500">or</span>
-              <div className="flex-1 h-px bg-gray-800" />
+          {/* Take Photo */}
+          <label className="block w-full cursor-pointer">
+            <div className="flex flex-col items-center justify-center gap-2.5 bg-zinc-900 hover:bg-zinc-800 rounded-xl min-h-[56px] py-5 px-4 text-center transition-all active:scale-[0.98]">
+              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z" />
+              </svg>
+              <span className="text-base font-semibold text-white">Take Photo</span>
+              <span className="text-[12px] text-zinc-400">Opens your phone camera</span>
             </div>
-          </div>
-
-          <label className="block w-full min-h-[48px] py-3 px-4 rounded-xl font-medium text-center cursor-pointer transition-all active:scale-[0.98] bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700 border-dashed">
-            Upload from Gallery
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleFileUpload}
-              className="hidden"
-            />
+            <input ref={fileInputRef} type="file" accept="image/*" capture="environment" onChange={handleFileUpload} className="hidden" />
           </label>
 
-          {/* SECONDARY: Live camera option */}
+          <div className="flex items-center gap-3"><div className="flex-1 h-px border-t border-zinc-200" /><span className="text-[11px] text-zinc-400">or</span><div className="flex-1 h-px border-t border-zinc-200" /></div>
+
+          <label className="block w-full cursor-pointer">
+            <div className="bg-white border border-zinc-200 rounded-xl text-sm text-zinc-700 hover:bg-zinc-50 min-h-[48px] transition-all active:scale-[0.98] flex items-center justify-center font-medium">Upload from Gallery</div>
+            <input type="file" accept="image/*" onChange={handleFileUpload} className="hidden" />
+          </label>
+
           {!showLiveCamera && (
             <>
-              <div className="relative">
-                <div className="flex items-center gap-3">
-                  <div className="flex-1 h-px bg-gray-800" />
-                  <span className="text-xs text-gray-500">or</span>
-                  <div className="flex-1 h-px bg-gray-800" />
-                </div>
-              </div>
-
-              <button
-                onClick={() => setShowLiveCamera(true)}
-                className="w-full min-h-[48px] py-3 px-4 rounded-xl font-medium text-center transition-all active:scale-[0.98] bg-gray-800 text-gray-400 hover:bg-gray-700 border border-gray-700 text-sm"
-              >
-                Use Live Camera Preview
-              </button>
+              <div className="flex items-center gap-3"><div className="flex-1 h-px border-t border-zinc-200" /><span className="text-[11px] text-zinc-400">or</span><div className="flex-1 h-px border-t border-zinc-200" /></div>
+              <button onClick={() => setShowLiveCamera(true)} className="bg-white border border-zinc-200 rounded-xl text-sm text-zinc-700 hover:bg-zinc-50 min-h-[48px] transition-all active:scale-[0.98] w-full font-medium">Use Live Camera Preview</button>
             </>
           )}
 
-          {/* Live Camera (shown only when user opts in) */}
           {showLiveCamera && (
             <div className="space-y-3">
-              <div className="relative">
-                <div className="flex items-center gap-3">
-                  <div className="flex-1 h-px bg-gray-800" />
-                  <span className="text-xs text-gray-500">live camera</span>
-                  <div className="flex-1 h-px bg-gray-800" />
-                </div>
-              </div>
-
-              <div className="relative rounded-xl overflow-hidden bg-black aspect-[3/4] md:aspect-[4/3]">
-                <video
-                  ref={videoRef}
-                  autoPlay
-                  playsInline
-                  muted
-                  className="w-full h-full object-cover"
-                />
-                {/* Frame overlay */}
+              <div className="flex items-center gap-3"><div className="flex-1 h-px border-t border-zinc-200" /><span className="text-[11px] text-zinc-400">live camera</span><div className="flex-1 h-px border-t border-zinc-200" /></div>
+              <div className="relative rounded-xl overflow-hidden bg-zinc-100 aspect-[3/4] md:aspect-[4/3] border border-zinc-200">
+                <video ref={videoRef} autoPlay playsInline muted className="w-full h-full object-cover" />
                 <div className="absolute inset-0 pointer-events-none">
-                  <div className="absolute top-4 left-4 w-10 h-10 border-t-2 border-l-2 border-blue-400 rounded-tl-md" />
-                  <div className="absolute top-4 right-4 w-10 h-10 border-t-2 border-r-2 border-blue-400 rounded-tr-md" />
-                  <div className="absolute bottom-4 left-4 w-10 h-10 border-b-2 border-l-2 border-blue-400 rounded-bl-md" />
-                  <div className="absolute bottom-4 right-4 w-10 h-10 border-b-2 border-r-2 border-blue-400 rounded-br-md" />
+                  <div className="absolute top-4 left-4 w-10 h-10 border-t-2 border-l-2 border-indigo-500 rounded-tl-md" />
+                  <div className="absolute top-4 right-4 w-10 h-10 border-t-2 border-r-2 border-indigo-500 rounded-tr-md" />
+                  <div className="absolute bottom-4 left-4 w-10 h-10 border-b-2 border-l-2 border-indigo-500 rounded-bl-md" />
+                  <div className="absolute bottom-4 right-4 w-10 h-10 border-b-2 border-r-2 border-indigo-500 rounded-br-md" />
                 </div>
                 {!cameraActive && !error && (
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-8 h-8 border-2 border-blue-400 border-t-transparent rounded-full animate-spin" />
+                    <div className="w-8 h-8 border-2 border-zinc-900 border-t-transparent rounded-full animate-spin" />
                   </div>
                 )}
               </div>
-
               <canvas ref={canvasRef} className="hidden" />
-
-              <button
-                onClick={handleCapture}
-                disabled={!cameraActive}
-                className="w-full min-h-[48px] py-3 px-4 rounded-xl font-medium transition-all active:scale-[0.98] bg-blue-600 text-white hover:bg-blue-500 disabled:opacity-40 disabled:cursor-not-allowed"
-              >
-                Capture from Live View
-              </button>
+              <button onClick={handleCapture} disabled={!cameraActive} className="bg-zinc-900 hover:bg-zinc-800 text-white rounded-xl font-medium text-sm min-h-[48px] w-full transition-all active:scale-[0.98] disabled:opacity-30">Capture from Live View</button>
             </div>
           )}
 
-          {error && (
-            <div className="bg-red-900/30 border border-red-800 rounded-xl p-3 text-red-300 text-sm">
-              {error}
-            </div>
-          )}
+          {error && <div className="bg-red-50 border border-red-200 rounded-xl p-3 text-red-700 text-[13px]">{error}</div>}
         </div>
       )}
 
       {/* Stage: Preview */}
       {stage === "preview" && capturedImage && (
-        <div className="bg-gray-900 border border-gray-800 rounded-2xl p-4 md:p-6 space-y-4">
-          <h2 className="text-lg font-semibold text-white">Review Photo</h2>
-
-          <p className="text-gray-400 text-xs">
-            {subject}
-            {questionContext && ` \u2014 ${questionContext}`}
-          </p>
-
-          <div className="rounded-xl overflow-hidden border border-gray-800">
-            <img
-              src={capturedImage}
-              alt="Captured answer"
-              className="w-full object-contain max-h-[50vh] md:max-h-[60vh]"
-            />
+        <div className="fade-in bg-white border border-zinc-200 shadow-sm rounded-2xl p-4 space-y-4">
+          <div>
+            <h2 className="text-base font-semibold text-zinc-900">Review Photo</h2>
+            <p className="text-[11px] text-zinc-400 mt-1">{subject}{questionContext && ` \u2014 ${questionContext}`}</p>
           </div>
-
-          {error && (
-            <div className="bg-red-900/30 border border-red-800 rounded-xl p-3 text-red-300 text-sm">
-              {error}
-            </div>
-          )}
-
+          <div className="rounded-xl overflow-hidden border border-zinc-200"><img src={capturedImage} alt="Captured answer" className="w-full object-contain max-h-[50vh] md:max-h-[60vh]" /></div>
+          {error && <div className="bg-red-50 border border-red-200 rounded-xl p-3 text-red-700 text-[13px]">{error}</div>}
           <div className="flex gap-3">
-            <button
-              onClick={handleRetake}
-              className="flex-1 min-h-[48px] py-3 px-4 rounded-xl font-medium transition-all active:scale-[0.98] bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700"
-            >
-              Retake
-            </button>
-            <button
-              onClick={handleMark}
-              className="flex-1 min-h-[48px] py-3 px-4 rounded-xl font-medium transition-all active:scale-[0.98] bg-blue-600 text-white hover:bg-blue-500"
-            >
-              Mark Answer
-            </button>
+            <button onClick={handleRetake} className="flex-1 bg-white border border-zinc-200 rounded-xl text-sm text-zinc-700 hover:bg-zinc-50 min-h-[48px] transition-all active:scale-[0.98] font-medium">Retake</button>
+            <button onClick={handleMark} className="flex-1 bg-zinc-900 hover:bg-zinc-800 text-white rounded-xl font-medium text-sm min-h-[48px] transition-all active:scale-[0.98]">Mark</button>
           </div>
         </div>
       )}
 
       {/* Stage: Loading */}
       {stage === "loading" && (
-        <div className="bg-gray-900 border border-gray-800 rounded-2xl p-8 md:p-12 flex flex-col items-center justify-center space-y-4">
-          <div className="w-12 h-12 border-3 border-blue-400 border-t-transparent rounded-full animate-spin" />
-          <p className="text-gray-300 font-medium text-center">
-            Marking your answer...
-          </p>
-          <p className="text-gray-500 text-sm text-center">
-            This may take a few seconds
-          </p>
+        <div className="fade-in bg-white border border-zinc-200 shadow-sm rounded-2xl p-8 md:p-12 flex flex-col items-center justify-center space-y-4">
+          <div className="w-10 h-10 border-2 border-zinc-900 border-t-transparent rounded-full animate-spin" />
+          <p className="text-zinc-500 text-sm font-medium text-center">Marking your answer...</p>
+          <p className="text-zinc-400 text-[13px] text-center">This may take a few seconds</p>
         </div>
       )}
 
       {/* Stage: Result */}
       {stage === "result" && result && (
-        <div className="bg-gray-900 border border-gray-800 rounded-2xl p-4 md:p-6 space-y-5 md:space-y-6">
-          <h2 className="text-lg font-semibold text-white">Marking Result</h2>
-
-          {/* Score */}
-          <div className="flex items-center justify-center">
-            <div className="bg-gray-800 rounded-2xl px-8 py-6 text-center">
-              <p className="text-4xl font-bold text-white">
-                {result.score}
-                {result.totalMarks != null && (
-                  <span className="text-lg text-gray-400">
-                    /{result.totalMarks}
-                  </span>
-                )}
-              </p>
-              <p className="text-sm text-gray-400 mt-1">Score</p>
+        <div className="fade-in bg-white border border-zinc-200 shadow-sm rounded-2xl p-4 space-y-5">
+          <div className="flex items-center justify-center gap-6 py-4">
+            <div className="text-center">
+              <p className="text-3xl font-bold text-zinc-900">{result.score}{result.totalMarks != null && <span className="text-lg text-zinc-500 font-normal">/{result.totalMarks}</span>}</p>
+              <p className="text-[13px] text-zinc-400 mt-1">Score</p>
             </div>
+            {result.grade && (
+              <div className="text-center">
+                <p className={`text-3xl font-bold ${result.grade === "A*" || result.grade === "A" ? "text-emerald-600" : result.grade === "B" ? "text-indigo-600" : result.grade === "C" ? "text-amber-600" : "text-red-600"}`}>{result.grade}</p>
+                <p className="text-[13px] text-zinc-400 mt-1">{result.percentage != null ? `${result.percentage}%` : "Grade"}</p>
+              </div>
+            )}
           </div>
 
-          {/* Feedback */}
+          {result.extracted_answer && (
+            <div className="space-y-2">
+              <h3 className="text-[13px] font-medium text-zinc-500">Extracted Answer</h3>
+              <div className="bg-zinc-50 rounded-xl p-3.5 text-[13px] text-zinc-700 leading-relaxed whitespace-pre-wrap max-h-[30vh] overflow-y-auto">{result.extracted_answer}</div>
+            </div>
+          )}
+
           <div className="space-y-2">
-            <h3 className="text-sm font-medium text-gray-300">Feedback</h3>
-            <div className="bg-gray-800 rounded-xl p-4 text-gray-200 text-sm leading-relaxed whitespace-pre-wrap max-h-[50vh] overflow-y-auto">
-              {result.feedback}
-            </div>
+            <h3 className="text-[13px] font-medium text-zinc-500">Feedback</h3>
+            <div className="bg-zinc-50 rounded-xl p-3.5 text-[13px] text-zinc-700 leading-relaxed whitespace-pre-wrap max-h-[40vh] overflow-y-auto">{result.feedback}</div>
           </div>
 
-          {/* Criteria Matched */}
+          {result.what_went_wrong && result.what_went_wrong.length > 0 && (
+            <div className="space-y-2">
+              <h3 className="text-[13px] font-medium text-red-700">What Went Wrong</h3>
+              <ul className="space-y-1.5">{result.what_went_wrong.map((item, i) => (
+                <li key={i} className="flex items-start gap-2 bg-red-50 border border-red-200 rounded-lg px-3 py-2 text-[13px] text-red-700"><span className="mt-0.5 shrink-0">&#10007;</span><span>{item}</span></li>
+              ))}</ul>
+            </div>
+          )}
+
+          {result.correct_answer && (
+            <div className="space-y-2">
+              <h3 className="text-[13px] font-medium text-indigo-700">Correct Answer</h3>
+              <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-3.5 text-[13px] text-indigo-800 leading-relaxed whitespace-pre-wrap max-h-[30vh] overflow-y-auto">{result.correct_answer}</div>
+            </div>
+          )}
+
+          {result.model_answer && (
+            <div className="space-y-2">
+              <h3 className="text-[13px] font-medium text-zinc-700">Model Answer</h3>
+              <div className="bg-zinc-50 border border-zinc-200 rounded-xl p-3.5 text-[13px] text-zinc-800 leading-relaxed whitespace-pre-wrap max-h-[30vh] overflow-y-auto">{result.model_answer}</div>
+            </div>
+          )}
+
           {result.criteriaMatched && result.criteriaMatched.length > 0 && (
             <div className="space-y-2">
-              <h3 className="text-sm font-medium text-green-400">
-                Criteria Matched
-              </h3>
-              <ul className="space-y-1">
-                {result.criteriaMatched.map((c, i) => (
-                  <li
-                    key={i}
-                    className="flex items-start gap-2 text-sm text-gray-300 bg-green-900/20 border border-green-900/30 rounded-lg px-3 py-2"
-                  >
-                    <span className="text-green-400 mt-0.5 shrink-0">
-                      &#10003;
-                    </span>
-                    {c}
-                  </li>
-                ))}
-              </ul>
+              <h3 className="text-[13px] font-medium text-emerald-700">Criteria Matched</h3>
+              <ul className="space-y-1.5">{result.criteriaMatched.map((c, i) => (
+                <li key={i} className="flex items-start gap-2 bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-2 text-[13px] text-emerald-700"><span className="mt-0.5 shrink-0">&#10003;</span><span>{c}</span></li>
+              ))}</ul>
             </div>
           )}
 
-          {/* Criteria Missed */}
           {result.criteriaMissed && result.criteriaMissed.length > 0 && (
             <div className="space-y-2">
-              <h3 className="text-sm font-medium text-red-400">
-                Criteria Missed
-              </h3>
-              <ul className="space-y-1">
-                {result.criteriaMissed.map((c, i) => (
-                  <li
-                    key={i}
-                    className="flex items-start gap-2 text-sm text-gray-300 bg-red-900/20 border border-red-900/30 rounded-lg px-3 py-2"
-                  >
-                    <span className="text-red-400 mt-0.5 shrink-0">
-                      &#10007;
-                    </span>
-                    {c}
-                  </li>
-                ))}
-              </ul>
+              <h3 className="text-[13px] font-medium text-red-700">Criteria Missed</h3>
+              <ul className="space-y-1.5">{result.criteriaMissed.map((c, i) => (
+                <li key={i} className="flex items-start gap-2 bg-red-50 border border-red-200 rounded-lg px-3 py-2 text-[13px] text-red-700"><span className="mt-0.5 shrink-0">&#10007;</span><span>{c}</span></li>
+              ))}</ul>
             </div>
           )}
 
-          {/* Captured Image Thumbnail */}
+          {result.improvements && result.improvements.length > 0 && (
+            <div className="space-y-2">
+              <h3 className="text-[13px] font-medium text-amber-700">Improvements</h3>
+              <ul className="space-y-1.5">{result.improvements.map((imp, i) => (
+                <li key={i} className="flex items-start gap-2 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 text-[13px] text-amber-800"><span className="mt-0.5 shrink-0">&bull;</span><span>{imp}</span></li>
+              ))}</ul>
+            </div>
+          )}
+
           {capturedImage && (
             <details className="group">
-              <summary className="text-sm text-gray-500 cursor-pointer hover:text-gray-300 transition-colors min-h-[48px] flex items-center">
-                View submitted photo
-              </summary>
-              <div className="mt-2 rounded-xl overflow-hidden border border-gray-800">
-                <img
-                  src={capturedImage}
-                  alt="Submitted answer"
-                  className="w-full object-contain max-h-[40vh]"
-                />
-              </div>
+              <summary className="text-[13px] text-zinc-400 cursor-pointer hover:text-zinc-700 transition-colors min-h-[48px] flex items-center">View submitted photo</summary>
+              <div className="mt-2 rounded-xl overflow-hidden border border-zinc-200"><img src={capturedImage} alt="Submitted answer" className="w-full object-contain max-h-[40vh]" /></div>
             </details>
           )}
 
-          <button
-            onClick={handleStartOver}
-            className="w-full min-h-[48px] py-3 px-4 rounded-xl font-medium transition-all active:scale-[0.98] bg-blue-600 text-white hover:bg-blue-500"
-          >
-            Mark Another Answer
-          </button>
+          <button onClick={handleStartOver} className="bg-zinc-900 hover:bg-zinc-800 text-white rounded-xl font-medium text-sm min-h-[48px] w-full transition-all active:scale-[0.98]">Mark Another</button>
         </div>
       )}
     </div>

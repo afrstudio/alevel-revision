@@ -30,6 +30,7 @@ export interface OriginalQuestion {
   marking_criteria: string[];
   diagram: string | null;
   diagram_type: string | null;
+  diagram_svg?: string | null;
 }
 
 export interface Flashcard {
@@ -64,6 +65,10 @@ export interface MarkingResult {
   score: number;
   totalMarks: number;
   feedback: string;
+  extracted_answer?: string;
+  correct_answer?: string;
+  model_answer?: string;
+  improvements?: string[];
   criteriaMatched: string[];
   criteriaMissed: string[];
 }

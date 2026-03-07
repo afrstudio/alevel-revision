@@ -19,7 +19,7 @@
       "tier": null,
       "type": "flashcard",
       "card_type": "definition",
-      "front": "What is the precise AQA definition of the standard enthalpy change of reaction (ΔH<binary data, 1 bytes><binary data, 1 bytes><binary data, 1 bytes>)?",
+      "front": "What is the precise AQA definition of the standard enthalpy change of reaction (ΔH⦵)?",
       "back": "The enthalpy change when a reaction occurs in the molar quantities shown in the chemical equation, under standard conditions (100 kPa and a stated temperature, usually 298 K), with all reactants and products in their standard states."
     },
     {
@@ -159,7 +159,7 @@
       "tier": null,
       "type": "flashcard",
       "card_type": "key-fact",
-      "front": "What are the standard conditions (AQA definition) that must be specified when referring to standard enthalpy changes (ΔH<binary data, 1 bytes><binary data, 1 bytes><binary data, 1 bytes>)?",
+      "front": "What are the standard conditions (AQA definition) that must be specified when referring to standard enthalpy changes (ΔH⦵)?",
       "back": "Standard conditions are:\n*   **Pressure:** 100 kPa (kilopascals)\n*   **Temperature:** A stated temperature, usually 298 K (25 °C)\n*   **State:** All substances are in their standard states (their physical state under standard conditions, e.g., H₂O(l), O₂(g), C(s, graphite))."
     },
     {
@@ -394,7 +394,7 @@
       "type": "flashcard",
       "card_type": "calculation",
       "front": "Describe the method to calculate the pH of a weak acid, HA, given its concentration and Ka value.",
-      "back": "1. Write the dissociation equilibrium: HA(aq) ⇌ H⁺(aq) + A⁻(aq).\n2. Write the Ka expression: Ka = ([H⁺][A⁻]) / [HA].\n3. Make assumptions:\n    a) [H⁺] ≈ [A⁻] (from dissociation of HA).\n    b) [HA] at equilibrium ≈ [HA] initial (since weak acids dissociate very little).\n4. Substitute into Ka expression: Ka = [H⁺]² / [HA]initial.\n5. Rearrange to find [H⁺]: [H⁺] = √(Ka × [HA]initial).\n6. Calculate pH: pH = -log₁₀[H⁺]."
+      "back": "1. Write the dissociation equilibrium: HA(aq) ⇌ H⁺(aq) + A⁻(aq).\n2. Write the Ka expression: Ka = ([H⁺][A⁻]) / [HA].\n3. Make assumptions:\n    a) [H⁺] ≈ [A⁻] (from dissociation of HA).\n    b) [HA] at equilibrium ≈ [HA] initial (since weak acids dissociate very little).\n4. Substitute into Ka expression: Ka = [H⁺]² / [HA]initial.\n5. Rearrange to find [H⁺]: [H⁺] = $\\sqrt{Ka × [HA]initial}$.\n6. Calculate pH: pH = -log₁₀[H⁺]."
     },
     {
       "id": "A-Level-Chemistry-AQA-T12-FC6",
@@ -551,7 +551,7 @@
       "type": "flashcard",
       "card_type": "process",
       "front": "Outline the steps to calculate the pH of a buffer solution after adding a small amount of strong base (e.g., NaOH).",
-      "back": "1. Calculate initial moles of weak acid and conjugate base.\n2. Calculate moles of strong base added.\n3. Determine new moles: Weak acid decreases by moles of base, conjugate base increases by moles of base.\n4. Use the Henderson-Hasselbalch equation (pH = pKa + log([A⁻]/[HA])) or the Ka expression ([H⁺] = Ka × [HA]/[A⁻]) with the new mole values (volume cancels for the ratio)."
+      "back": "1. Calculate initial moles of weak acid and conjugate base.\n2. Calculate moles of strong base added.\n3. Determine new moles: Weak acid decreases by moles of base, conjugate base increases by moles of base.\n4. Use the Henderson-Hasselbalch equation (pH = pKa + $\\log([A⁻]/[HA])$) or the Ka expression ([H⁺] = Ka × [HA]/[A⁻]) with the new mole values (volume cancels for the ratio)."
     },
     {
       "id": "A-Level-Chemistry-AQA-T1-FC6",
@@ -2190,7 +2190,7 @@
       "type": "flashcard",
       "card_type": "process",
       "front": "Outline the general mechanism for electrophilic substitution in benzene.",
-      "back": "1. Generation of an electrophile (E⁺).\n2. Attack of E⁺ on the delocalised π-electron system of benzene, forming an unstable carbocation intermediate (sigma complex), breaking the aromaticity.\n3. Loss of H⁺ from the carbocation to restore the delocalised π-electron system and aromatic stability."
+      "back": "1. Generation of an electrophile (E⁺).\n2. Attack of E⁺ on the delocalised π-electron system of benzene, forming an unstable carbocation intermediate ($\\sigma$ complex), breaking the aromaticity.\n3. Loss of H⁺ from the carbocation to restore the delocalised π-electron system and aromatic stability."
     },
     {
       "id": "A-Level-Chemistry-AQA-T3-FC19",
@@ -2605,7 +2605,7 @@
       "type": "flashcard",
       "card_type": "comparison",
       "front": "Compare strong acids and weak acids in terms of dissociation, equilibrium, and Ka value.",
-      "back": "Strong Acid:\n- Completely dissociates in water.\n- No equilibrium (reaction goes to completion).\n- Ka is very large (approaches infinity, not usually quoted).\n\nWeak Acid:\n- Partially dissociates in water.\n- Establishes an equilibrium.\n- Ka is a small value (< 1)."
+      "back": "Strong Acid:\n- Completely dissociates in water.\n- No equilibrium (reaction goes to completion).\n- Ka is very large (approaches $\\infty$, not usually quoted).\n\nWeak Acid:\n- Partially dissociates in water.\n- Establishes an equilibrium.\n- Ka is a small value (< 1)."
     },
     {
       "id": "fc-A-Level-Chemistry-f6c2cdc7",
@@ -2830,7 +2830,7 @@
       "type": "flashcard",
       "card_type": "key-fact",
       "front": "In a TOF mass spectrometer, which ion reaches the detector first: a lighter ion or a heavier ion, assuming identical kinetic energy?",
-      "back": "Lighter ions (smaller m/z) reach the detector first because they have a higher velocity (as t = d√(m/2E))."
+      "back": "Lighter ions (smaller m/z) reach the detector first because they have a higher velocity (as t = d$\\sqrt{m/2E}$)."
     },
     {
       "id": "A-Level-Chemistry-AQA-T4-FC4",
@@ -2873,7 +2873,7 @@
       "type": "flashcard",
       "card_type": "calculation",
       "front": "State the equation for the time of flight (t) of an ion in a TOF mass spectrometer and identify each variable.",
-      "back": "t = d√(m/2E)\nWhere:\nt = time of flight (s)\nd = length of flight tube (m)\nm = mass of ion (kg)\nE = kinetic energy of ion (J)"
+      "back": "t = d$\\sqrt{m/2E}$\nWhere:\nt = time of flight (s)\nd = length of flight tube (m)\nm = mass of ion (kg)\nE = kinetic energy of ion (J)"
     },
     {
       "id": "A-Level-Chemistry-AQA-T4-FC6",
@@ -3337,7 +3337,7 @@
       "type": "flashcard",
       "card_type": "calculation",
       "front": "For the general reversible reaction aA(g) + bB(g) ⇌ cC(g) + dD(g), write the expression for Kp and state the units.",
-      "back": "Kp = (P_C^c * P_D^d) / (P_A^a * P_B^b)\nWhere P_X is the partial pressure of species X. The units are typically (Pa)^(c+d-a-b) or (atm)^(c+d-a-b)."
+      "back": "Kp = (P_$C^{c}$ * P_$D^{d}$) / (P_$A^{a}$ * P_$B^{b}$)\nWhere P_X is the partial pressure of species X. The units are typically (Pa$)^{c+d-a-b}$ or (atm$)^{c+d-a-b}$."
     },
     {
       "id": "A-Level-Chemistry-AQA-T5-FC6",
@@ -3373,7 +3373,7 @@
       "type": "flashcard",
       "card_type": "calculation",
       "front": "For the general reversible reaction aA(aq) + bB(aq) ⇌ cC(aq) + dD(aq), write the expression for Kc and state the units.",
-      "back": "Kc = ([C]^c * [D]^d) / ([A]^a * [B]^b)\nWhere [X] is the equilibrium concentration of species X in mol dm-3. The units are typically (mol dm-3)^(c+d-a-b)."
+      "back": "Kc = ([C]^c * [D]^d) / ([A]^a * [B]^b)\nWhere [X] is the equilibrium concentration of species X in mol dm-3. The units are typically (mol dm-3$)^{c+d-a-b}$."
     },
     {
       "id": "A-Level-Chemistry-AQA-T5-FC8",
@@ -4003,7 +4003,7 @@
       "type": "flashcard",
       "card_type": "key-fact",
       "front": "Identify two common substances that exhibit significant electron delocalisation and state the type of bonding/structure in each.",
-      "back": "1.  **Metals:** Exhibit metallic bonding, where a 'sea' of delocalised electrons moves freely throughout the lattice of positive metal ions.\n2.  **Graphite:** A giant covalent structure where each carbon atom is covalently bonded to three others in layers. The remaining valence electron from each carbon atom is delocalised across the layers, allowing electrical conductivity.\n(Also acceptable: Benzene, where pi electrons are delocalised across the ring structure)."
+      "back": "1.  **Metals:** Exhibit metallic bonding, where a 'sea' of delocalised electrons moves freely throughout the lattice of positive metal ions.\n2.  **Graphite:** A giant covalent structure where each carbon atom is covalently bonded to three others in layers. The remaining valence electron from each carbon atom is delocalised across the layers, allowing electrical conductivity.\n(Also acceptable: Benzene, where $\\pi$ electrons are delocalised across the ring structure)."
     },
     {
       "id": "A-Level-Chemistry-AQA-T8-FC8",
@@ -7275,7 +7275,7 @@
       "type": "flashcard",
       "card_type": "explanation",
       "front": "Explain why the bond enthalpy of a C=C bond is not simply double the bond enthalpy of a C-C bond (refer to Q8).",
-      "back": "1. A C=C bond consists of one sigma (σ) bond and one pi (π) bond.\n2. A C-C bond is a single sigma (σ) bond.\n3. The pi bond is generally weaker than the sigma bond, and the total energy of a double bond is not twice that of a single bond because the orbital overlap is different."
+      "back": "1. A C=C bond consists of one $\\sigma$ (σ) bond and one $\\pi$ (π) bond.\n2. A C-C bond is a single $\\sigma$ (σ) bond.\n3. The $\\pi$ bond is generally weaker than the $\\sigma$ bond, and the total energy of a double bond is not twice that of a single bond because the orbital overlap is different."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T21-FC19",
@@ -7385,7 +7385,7 @@
       "type": "flashcard",
       "card_type": "calculation",
       "front": "How do you calculate the pH of a weak monoprotic acid given its concentration and Ka?",
-      "back": "1. Write the dissociation equilibrium: HA ⇌ H⁺ + A⁻.\n2. Write the Ka expression: Ka = [H⁺][A⁻] / [HA].\n3. Assume [H⁺] = [A⁻] and [HA] ≈ [HA]initial (as dissociation is minimal).\n4. Rearrange to [H⁺] = √(Ka × [HA]initial).\n5. Calculate pH = -log₁₀[H⁺]."
+      "back": "1. Write the dissociation equilibrium: HA ⇌ H⁺ + A⁻.\n2. Write the Ka expression: Ka = [H⁺][A⁻] / [HA].\n3. Assume [H⁺] = [A⁻] and [HA] ≈ [HA]initial (as dissociation is minimal).\n4. Rearrange to [H⁺] = $\\sqrt{Ka × [HA]initial}$.\n5. Calculate pH = -log₁₀[H⁺]."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T22-FC5",
@@ -7833,7 +7833,7 @@
       "type": "flashcard",
       "card_type": "calculation",
       "front": "Outline the steps to calculate the pH of a weak acid solution given its Ka or pKa.",
-      "back": "1. If given pKa, calculate Ka using Ka = 10⁻ᵖᴷᵃ.\n2. Write the Ka expression: Ka = [H⁺][A⁻] / [HA].\n3. Assume [H⁺] = [A⁻] and [HA] ≈ [HA]initial (since dissociation is minimal).\n4. Rearrange to [H⁺] = √(Ka × [HA]initial).\n5. Calculate pH using pH = -log₁₀[H⁺]."
+      "back": "1. If given pKa, calculate Ka using Ka = 10⁻ᵖᴷᵃ.\n2. Write the Ka expression: Ka = [H⁺][A⁻] / [HA].\n3. Assume [H⁺] = [A⁻] and [HA] ≈ [HA]initial (since dissociation is minimal).\n4. Rearrange to [H⁺] = $\\sqrt{Ka × [HA]initial}$.\n5. Calculate pH using pH = -log₁₀[H⁺]."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T23-FC9",
@@ -7959,7 +7959,7 @@
       "type": "flashcard",
       "card_type": "calculation",
       "front": "Outline the steps to calculate the value of Kp for a gaseous equilibrium reaction.",
-      "back": "1. Determine the moles of each gas at equilibrium.\n2. Calculate the total moles of gas at equilibrium.\n3. Calculate the mole fraction for each gas (mole fraction = moles of gas / total moles).\n4. Calculate the partial pressure for each gas (partial pressure = mole fraction × total pressure).\n5. Write the Kp expression for the reaction (Kp = (P_products)^coefficients / (P_reactants)^coefficients).\n6. Substitute the partial pressures into the Kp expression and calculate the value."
+      "back": "1. Determine the moles of each gas at equilibrium.\n2. Calculate the total moles of gas at equilibrium.\n3. Calculate the mole fraction for each gas (mole fraction = moles of gas / total moles).\n4. Calculate the partial pressure for each gas (partial pressure = mole fraction × total pressure).\n5. Write the Kp expression for the reaction (Kp = (P_products$)^{c}$oefficients / (P_reactants$)^{c}$oefficients).\n6. Substitute the partial pressures into the Kp expression and calculate the value."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T23-FC16",
@@ -8268,7 +8268,7 @@
       "type": "flashcard",
       "card_type": "calculation",
       "front": "How do you write the expression for the equilibrium constant, Kp, for a general reversible reaction involving gases: aA(g) + bB(g) ⇌ cC(g) + dD(g)?",
-      "back": "Kp = (p(C)^c p(D)^d) / (p(A)^a p(B)^b)\nWhere p(X) denotes the partial pressure of gas X."
+      "back": "Kp = (p(C$)^{c}$ p(D$)^{d}$) / (p(A$)^{a}$ p(B$)^{b}$)\nWhere p(X) denotes the partial pressure of gas X."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T24-FC13",
@@ -8304,7 +8304,7 @@
       "type": "flashcard",
       "card_type": "calculation",
       "front": "How do you determine the units of Kc for a reaction, e.g., Mg(OH)₂(s) ⇌ Mg²⁺(aq) + 2OH⁻(aq)?",
-      "back": "Units are (mol dm⁻³)^(sum of product powers - sum of reactant powers).\nFor Mg(OH)₂(s) ⇌ Mg²⁺(aq) + 2OH⁻(aq), Kc = [Mg²⁺][OH⁻]².\nUnits = (mol dm⁻³)¹ * (mol dm⁻³)². \nUnits = mol dm⁻³ * mol² dm⁻⁶ = mol³ dm⁻⁹."
+      "back": "Units are (mol dm⁻³$)^{sum of product powers - sum of reactant powers}$.\nFor Mg(OH)₂(s) ⇌ Mg²⁺(aq) + 2OH⁻(aq), Kc = [Mg²⁺][OH⁻]².\nUnits = (mol dm⁻³)¹ * (mol dm⁻³)². \nUnits = mol dm⁻³ * mol² dm⁻⁶ = mol³ dm⁻⁹."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T24-FC15",
@@ -8322,7 +8322,7 @@
       "type": "flashcard",
       "card_type": "calculation",
       "front": "How do you determine the units of Kp for a reaction, e.g., 2SO₂(g) + O₂(g) ⇌ 2SO₃(g)?",
-      "back": "Units are (atm or Pa)^(sum of product powers - sum of reactant powers).\nFor 2SO₂(g) + O₂(g) ⇌ 2SO₃(g), Kp = p(SO₃)² / (p(SO₂)² p(O₂)).\nUnits = (atm)² / ((atm)² (atm)¹) = atm⁻¹. (Or Pa⁻¹ if using Pascals)."
+      "back": "Units are (atm or Pa$)^{sum of product powers - sum of reactant powers}$.\nFor 2SO₂(g) + O₂(g) ⇌ 2SO₃(g), Kp = p(SO₃)² / (p(SO₂)² p(O₂)).\nUnits = (atm)² / ((atm)² (atm)¹) = atm⁻¹. (Or Pa⁻¹ if using Pascals)."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T24-FC16",
@@ -8925,7 +8925,7 @@
       "type": "flashcard",
       "card_type": "exam-tip",
       "front": "In a titration experiment, what are 'concordant titres', and how are they used to calculate the mean titre?",
-      "back": "Concordant titres are titration results that are within a specified range of each other, typically ±0.10 cm³ (or ±0.05 cm³ depending on precision). The mean titre is calculated by averaging only the concordant titres, excluding any trial titre or inconsistent results."
+      "back": "Concordant titres are titration results that are within a specified range of each other, typically $\\pm$0.10 cm³ (or $\\pm$0.05 cm³ depending on precision). The mean titre is calculated by averaging only the concordant titres, excluding any trial titre or inconsistent results."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T26-FC9",
@@ -11015,7 +11015,7 @@
       "type": "flashcard",
       "card_type": "definition",
       "front": "State the Arrhenius equation and define each term (k, A, Ea, R, T).",
-      "back": "**Arrhenius Equation:** k = A e^(-Ea/RT)\n- **k:** rate constant\n- **A:** Arrhenius constant / pre-exponential factor (related to frequency of successful collisions)\n- **Ea:** activation energy (J mol⁻¹)\n- **R:** ideal gas constant (8.314 J K⁻¹ mol⁻¹)\n- **T:** absolute temperature (K)"
+      "back": "**Arrhenius Equation:** k = A $e^{-Ea/RT}$\n- **k:** rate constant\n- **A:** Arrhenius constant / pre-exponential factor (related to frequency of successful collisions)\n- **Ea:** activation energy (J mol⁻¹)\n- **R:** ideal gas constant (8.314 J K⁻¹ mol⁻¹)\n- **T:** absolute temperature (K)"
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T31-FC16",
@@ -11797,7 +11797,7 @@
       "type": "flashcard",
       "card_type": "process",
       "front": "Describe the steps to calculate the pH of a weak acid solution given its initial concentration and K_a.",
-      "back": "1. Write the acid dissociation equilibrium and K_a expression.\n2. Assume [H⁺] = [A⁻] and [HA] ≈ [HA]₀ (initial concentration of the weak acid).\n3. Rearrange K_a = [H⁺]² / [HA]₀ to solve for [H⁺]: [H⁺] = √(K_a × [HA]₀).\n4. Calculate pH = -log₁₀[H⁺]."
+      "back": "1. Write the acid dissociation equilibrium and K_a expression.\n2. Assume [H⁺] = [A⁻] and [HA] ≈ [HA]₀ (initial concentration of the weak acid).\n3. Rearrange K_a = [H⁺]² / [HA]₀ to solve for [H⁺]: [H⁺] = $\\sqrt{K_a × [HA]₀}$.\n4. Calculate pH = -log₁₀[H⁺]."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T54-FC14",
@@ -13203,7 +13203,7 @@
       "type": "flashcard",
       "card_type": "process",
       "front": "Outline the two main steps in the mechanism for electrophilic substitution in arenes (e.g., nitration).",
-      "back": "1. **Attack on electrophile:** A curly arrow from the π-bond of the arene ring attacks the electrophile (e.g., NO2⁺), forming a carbocation intermediate (sigma complex) where the positive charge is delocalised over the ring.\n2. **Loss of proton:** A curly arrow from the C-H bond (on the carbon atom bonded to the electrophile) reforms the aromatic ring, releasing H⁺."
+      "back": "1. **Attack on electrophile:** A curly arrow from the π-bond of the arene ring attacks the electrophile (e.g., NO2⁺), forming a carbocation intermediate ($\\sigma$ complex) where the positive charge is delocalised over the ring.\n2. **Loss of proton:** A curly arrow from the C-H bond (on the carbon atom bonded to the electrophile) reforms the aromatic ring, releasing H⁺."
     },
     {
       "id": "A-Level-Chemistry-OCR-A-T108-FC6",
@@ -14349,7 +14349,7 @@
         "D": "+125 kJ mol⁻¹"
       },
       "correct": "A",
-      "explanation": "A is correct because:\n1.  Calculate moles of reactants:\n    Moles of Mg = 2.00 g / 24.3 g mol⁻¹ = 0.08230 mol\n    Moles of CuSO₄ = (100/1000) dm³ × 0.500 mol dm⁻³ = 0.0500 mol\n2.  Identify limiting reactant: From the 1:1 stoichiometry, CuSO₄ is the limiting reactant (0.0500 mol). This means only 0.0500 mol of Mg will react.\n3.  Calculate heat change (q):\n    Mass of solution = 100 cm³ × 1.00 g cm⁻³ = 100 g\n    q = mcΔT = 100 g × 4.18 J g⁻¹ K⁻¹ × 15.0 K = 6270 J = 6.270 kJ\n4.  Calculate enthalpy change per mole of magnesium (reacted):\n    The reaction is exothermic (temperature increased), so ΔH is negative.\n    ΔH = -q / moles of limiting reactant (CuSO₄, which determines the moles of Mg that react) = -6.270 kJ / 0.0500 mol = -125.4 kJ mol⁻¹.\n    Rounded to three significant figures, this is -125 kJ mol⁻¹.\nB is wrong because this value (-76.2 kJ mol⁻¹) would be obtained if the moles of magnesium *added* (0.08230 mol) were incorrectly used, instead of the moles of magnesium *reacted* (0.0500 mol).\nC is wrong due to a significant calculation error, possibly multiplying by an incorrect factor.\nD is wrong because the enthalpy change is negative for an exothermic reaction, not positive."
+      "explanation": "A is correct because:\n1.  Calculate moles of reactants:\n    Moles of Mg = 2.00 g / 24.3 g mol⁻¹ = 0.08230 mol\n    Moles of CuSO₄ = ($\\frac{100}{1000}$) dm³ × 0.500 mol dm⁻³ = 0.0500 mol\n2.  Identify limiting reactant: From the 1:1 stoichiometry, CuSO₄ is the limiting reactant (0.0500 mol). This means only 0.0500 mol of Mg will react.\n3.  Calculate heat change (q):\n    Mass of solution = 100 cm³ × 1.00 g cm⁻³ = 100 g\n    q = mcΔT = 100 g × 4.18 J g⁻¹ K⁻¹ × 15.0 K = 6270 J = 6.270 kJ\n4.  Calculate enthalpy change per mole of magnesium (reacted):\n    The reaction is exothermic (temperature increased), so ΔH is negative.\n    ΔH = -q / moles of limiting reactant (CuSO₄, which determines the moles of Mg that react) = -6.270 kJ / 0.0500 mol = -125.4 kJ mol⁻¹.\n    Rounded to three significant figures, this is -125 kJ mol⁻¹.\nB is wrong because this value (-76.2 kJ mol⁻¹) would be obtained if the moles of magnesium *added* (0.08230 mol) were incorrectly used, instead of the moles of magnesium *reacted* (0.0500 mol).\nC is wrong due to a significant calculation error, possibly multiplying by an incorrect factor.\nD is wrong because the enthalpy change is negative for an exothermic reaction, not positive."
     },
     {
       "id": "A-Level-Chemistry-AQA-T11-1",
@@ -14493,7 +14493,7 @@
         "D": "5.76"
       },
       "correct": "A",
-      "explanation": "To calculate the pH of a weak monoprotic acid, we assume that the dissociation of the acid is the main source of H⁺ ions and that the concentration of the acid at equilibrium is approximately equal to its initial concentration. Therefore, [H⁺] = √(Ka × [HA]).\n[H⁺] = √(1.34 × 10⁻⁵ mol dm⁻³ × 0.100 mol dm⁻³) = √(1.34 × 10⁻⁶) = 1.1576 × 10⁻³ mol dm⁻³.\npH = -log[H⁺] = -log(1.1576 × 10⁻³) = 2.936... which rounds to 2.94 (to 2 decimal places).\nB is wrong because it represents the pH of a strong acid with a concentration of 0.100 mol dm⁻³ (pH = -log(0.100) = 1.00).\nC is wrong because it represents the pKa of propanoic acid (pKa = -log(1.34 × 10⁻⁵) = 4.87).\nD is wrong as it would result from an incorrect calculation or formula."
+      "explanation": "To calculate the pH of a weak monoprotic acid, we assume that the dissociation of the acid is the main source of H⁺ ions and that the concentration of the acid at equilibrium is approximately equal to its initial concentration. Therefore, [H⁺] = $\\sqrt{Ka × [HA]}$.\n[H⁺] = $\\sqrt{1.34 × 10⁻⁵ mol dm⁻³ × 0.100 mol dm⁻³}$ = $\\sqrt{1.34 × 10⁻⁶}$ = 1.1576 × 10⁻³ mol dm⁻³.\npH = -log[H⁺] = -$\\log(1.1576 × 10⁻³)$ = 2.936... which rounds to 2.94 (to 2 decimal places).\nB is wrong because it represents the pH of a strong acid with a concentration of 0.100 mol dm⁻³ (pH = -$\\log(0.100)$ = 1.00).\nC is wrong because it represents the pKa of propanoic acid (pKa = -$\\log(1.34 × 10⁻⁵)$ = 4.87).\nD is wrong as it would result from an incorrect calculation or formula."
     },
     {
       "id": "A-Level-Chemistry-AQA-T12-2",
@@ -14565,7 +14565,7 @@
         "D": "12.26"
       },
       "correct": "A",
-      "explanation": "In pure water, the concentration of hydrogen ions [H⁺] is equal to the concentration of hydroxide ions [OH⁻]. Therefore, Kw = [H⁺][OH⁻] = [H⁺]².\nSo, [H⁺] = √Kw = √(5.48 × 10⁻¹³) = 7.4027 × 10⁻⁷ mol dm⁻³.\npH = -log[H⁺] = -log(7.4027 × 10⁻⁷) = 6.130... which rounds to 6.13 (to 2 decimal places).\nB is wrong because pH 7.00 is the pH of pure water at 298 K (25 °C), where Kw is 1.0 × 10⁻¹⁴. Kw increases with temperature, meaning [H⁺] and [OH⁻] increase, and thus the pH of pure water decreases (becomes more acidic numerically, but remains neutral in terms of [H⁺]=[OH⁻]).\nC is wrong as it represents an incorrect calculation, possibly a factor of 10 error or an incorrect use of the square root.\nD is wrong as it is approximately 2 × pH, which is not how pH is calculated for pure water."
+      "explanation": "In pure water, the concentration of hydrogen ions [H⁺] is equal to the concentration of hydroxide ions [OH⁻]. Therefore, Kw = [H⁺][OH⁻] = [H⁺]².\nSo, [H⁺] = √Kw = $\\sqrt{5.48 × 10⁻¹³}$ = 7.4027 × 10⁻⁷ mol dm⁻³.\npH = -log[H⁺] = -$\\log(7.4027 × 10⁻⁷)$ = 6.130... which rounds to 6.13 (to 2 decimal places).\nB is wrong because pH 7.00 is the pH of pure water at 298 K (25 °C), where Kw is 1.0 × 10⁻¹⁴. Kw increases with temperature, meaning [H⁺] and [OH⁻] increase, and thus the pH of pure water decreases (becomes more acidic numerically, but remains neutral in terms of [H⁺]=[OH⁻]).\nC is wrong as it represents an incorrect calculation, possibly a factor of 10 error or an incorrect use of the square root.\nD is wrong as it is approximately 2 × pH, which is not how pH is calculated for pure water."
     },
     {
       "id": "A-Level-Chemistry-AQA-T12-5",
@@ -14589,7 +14589,7 @@
         "D": "3.78"
       },
       "correct": "A",
-      "explanation": "First, calculate the moles of ethanoic acid and sodium ethanoate:\nMoles of CH₃COOH = 0.200 mol dm⁻³ × (50.0/1000) dm³ = 0.0100 mol.\nMoles of CH₃COONa = 0.100 mol dm⁻³ × (50.0/1000) dm³ = 0.00500 mol.\nTotal volume of the solution = 50.0 cm³ + 50.0 cm³ = 100.0 cm³ = 0.100 dm³.\nConcentration of CH₃COOH = 0.0100 mol / 0.100 dm³ = 0.100 mol dm⁻³.\nConcentration of CH₃COONa (conjugate base) = 0.00500 mol / 0.100 dm³ = 0.0500 mol dm⁻³.\nUsing the Henderson-Hasselbalch equation: pH = pKa + log([conjugate base]/[acid]).\npKa = -log(Ka) = -log(1.74 × 10⁻⁵) = 4.759.\npH = 4.759 + log(0.0500 / 0.100) = 4.759 + log(0.500) = 4.759 - 0.301 = 4.458.\nRounding to two decimal places, pH = 4.46.\nB is wrong because it represents the pKa value. This would be the pH if the concentrations of the acid and its conjugate base were equal.\nC is wrong because it results from inverting the ratio of [conjugate base]/[acid] (i.e., log(2) instead of log(0.5)).\nD is wrong as it would result from a significant calculation error, possibly using [H+] = Ka * ([acid]/[salt]) and then -log, but incorrectly."
+      "explanation": "First, calculate the moles of ethanoic acid and sodium ethanoate:\nMoles of CH₃COOH = 0.200 mol dm⁻³ × (50.0/1000) dm³ = 0.0100 mol.\nMoles of CH₃COONa = 0.100 mol dm⁻³ × (50.0/1000) dm³ = 0.00500 mol.\nTotal volume of the solution = 50.0 cm³ + 50.0 cm³ = 100.0 cm³ = 0.100 dm³.\nConcentration of CH₃COOH = 0.0100 mol / 0.100 dm³ = 0.100 mol dm⁻³.\nConcentration of CH₃COONa (conjugate base) = 0.00500 mol / 0.100 dm³ = 0.0500 mol dm⁻³.\nUsing the Henderson-Hasselbalch equation: pH = pKa + $\\log([conjugate base]/[acid])$.\npKa = -$\\log(Ka)$ = -$\\log(1.74 × 10⁻⁵)$ = 4.759.\npH = 4.759 + $\\log(0.0500 / 0.100)$ = 4.759 + $\\log(0.500)$ = 4.759 - 0.301 = 4.458.\nRounding to two decimal places, pH = 4.46.\nB is wrong because it represents the pKa value. This would be the pH if the concentrations of the acid and its conjugate base were equal.\nC is wrong because it results from inverting the ratio of [conjugate base]/[acid] (i.e., $\\log(2)$ instead of $\\log(0.5)$).\nD is wrong as it would result from a significant calculation error, possibly using [H+] = Ka * ([acid]/[salt]) and then -log, but incorrectly."
     },
     {
       "id": "A-Level-Chemistry-AQA-T2-1",
@@ -15862,7 +15862,7 @@
         "D": "Kc = [NO2] / ([NO] [O2]), units mol-1 dm3"
       },
       "correct": "A",
-      "explanation": "A is correct. The expression for Kc is the product of the concentrations of products raised to their stoichiometric coefficients, divided by the product of the concentrations of reactants raised to their stoichiometric coefficients. So, Kc = [NO2]^2 / ([NO]^2 [O2]). To determine the units, we substitute 'mol dm-3' for each concentration term: (mol dm-3)^2 / ((mol dm-3)^2 * (mol dm-3)) = (mol dm-3)^2 / (mol dm-3)^3 = (mol dm-3)^-1 = mol-1 dm3. B is wrong because the products and reactants are inverted in the expression. C is wrong because the units are incorrect. D is wrong because the stoichiometric coefficients are not used correctly in the expression, and the units are also incorrect based on the incorrect expression."
+      "explanation": "A is correct. The expression for Kc is the product of the concentrations of products raised to their stoichiometric coefficients, divided by the product of the concentrations of reactants raised to their stoichiometric coefficients. So, Kc = [NO2]^2 / ([NO]^2 [O2]). To determine the units, we substitute 'mol dm-3' for each concentration term: (mol dm-3$)^{2}$ / ((mol dm-3$)^{2}$ * (mol dm-3)) = (mol dm-3$)^{2}$ / (mol dm-3$)^{3}$ = (mol dm-3)^-1 = mol-1 dm3. B is wrong because the products and reactants are inverted in the expression. C is wrong because the units are incorrect. D is wrong because the stoichiometric coefficients are not used correctly in the expression, and the units are also incorrect based on the incorrect expression."
     },
     {
       "id": "A-Level-Chemistry-AQA-T6-1",
@@ -15982,7 +15982,7 @@
         "D": "125 mol"
       },
       "correct": "B",
-      "explanation": "B is correct. Moles = Concentration × Volume (in dm³). First, convert 250 cm³ to dm³: 250/1000 = 0.250 dm³. Then, Moles = 0.500 mol dm⁻³ × 0.250 dm³ = 0.125 mol. A is wrong due to incorrect conversion of volume to dm³. C and D are wrong due to significant calculation errors in volume or multiplication."
+      "explanation": "B is correct. Moles = Concentration × Volume (in dm³). First, convert 250 cm³ to dm³: $\\frac{250}{1000}$ = 0.250 dm³. Then, Moles = 0.500 mol dm⁻³ × 0.250 dm³ = 0.125 mol. A is wrong due to incorrect conversion of volume to dm³. C and D are wrong due to significant calculation errors in volume or multiplication."
     },
     {
       "id": "A-Level-Chemistry-AQA-T6-6",
@@ -16022,7 +16022,7 @@
       "difficulty": "medium",
       "tier": null,
       "type": "mcq",
-      "question": "A student measures 25.00 cm³ of a solution using a burette. The uncertainty for each reading (initial and final) is ±0.05 cm³. What is the total percentage error in this measurement?",
+      "question": "A student measures 25.00 cm³ of a solution using a burette. The uncertainty for each reading (initial and final) is $\\pm$0.05 cm³. What is the total percentage error in this measurement?",
       "options": {
         "A": "0.05%",
         "B": "0.10%",
@@ -16030,7 +16030,7 @@
         "D": "0.40%"
       },
       "correct": "D",
-      "explanation": "D is correct. The total uncertainty for two readings (initial and final) is the sum of the individual uncertainties: ±0.05 cm³ + ±0.05 cm³ = ±0.10 cm³. Percentage error = (Total uncertainty / Measured value) × 100 = (0.10 cm³ / 25.00 cm³) × 100 = 0.40%. A is wrong as it uses the uncertainty of a single reading. B is wrong if the total uncertainty (0.10) was taken as the percentage or if the measured value was 100. C is wrong if only one reading uncertainty (0.05) was used in the calculation."
+      "explanation": "D is correct. The total uncertainty for two readings (initial and final) is the sum of the individual uncertainties: $\\pm$0.05 cm³ + $\\pm$0.05 cm³ = $\\pm$0.10 cm³. Percentage error = (Total uncertainty / Measured value) × 100 = (0.10 cm³ / 25.00 cm³) × 100 = 0.40%. A is wrong as it uses the uncertainty of a single reading. B is wrong if the total uncertainty (0.10) was taken as the percentage or if the measured value was 100. C is wrong if only one reading uncertainty (0.05) was used in the calculation."
     },
     {
       "id": "A-Level-Chemistry-AQA-T6-8",
@@ -16102,7 +16102,7 @@
         "D": "4.40 g"
       },
       "correct": "B",
-      "explanation": "B is correct. The balanced equation is CaCO3 + 2HCl → CaCl2 + H2O + CO2. First, calculate moles of reactants: Moles CaCO3 = 5.0 g / 100.1 g mol⁻¹ = 0.04995 mol. Moles HCl = 2.0 mol dm⁻³ × (50/1000) dm³ = 0.100 mol. The stoichiometric ratio is 1 mol CaCO3 : 2 mol HCl. For 0.04995 mol CaCO3, 2 × 0.04995 = 0.0999 mol of HCl is needed. Since 0.100 mol of HCl is available, CaCO3 is the limiting reactant. Moles of CO2 produced = Moles of CaCO3 reacted = 0.04995 mol. Mr of CO2 = 12.0 + (2 × 16.0) = 44.0. Mass of CO2 = 0.04995 mol × 44.0 g mol⁻¹ = 2.1978 g, which is 2.20 g to 3 significant figures. A is wrong if HCl was incorrectly identified as limiting (0.1 mol HCl would react with 0.05 mol CaCO3, producing 0.05 mol CO2 = 2.2g, but if the initial 5g CaCO3 was not considered, it leads to errors). C and D are errors based on incorrect limiting reactant or stoichiometry."
+      "explanation": "B is correct. The balanced equation is CaCO3 + 2HCl → CaCl2 + H2O + CO2. First, calculate moles of reactants: Moles CaCO3 = 5.0 g / 100.1 g mol⁻¹ = 0.04995 mol. Moles HCl = 2.0 mol dm⁻³ × ($\\frac{50}{1000}$) dm³ = 0.100 mol. The stoichiometric ratio is 1 mol CaCO3 : 2 mol HCl. For 0.04995 mol CaCO3, 2 × 0.04995 = 0.0999 mol of HCl is needed. Since 0.100 mol of HCl is available, CaCO3 is the limiting reactant. Moles of CO2 produced = Moles of CaCO3 reacted = 0.04995 mol. Mr of CO2 = 12.0 + (2 × 16.0) = 44.0. Mass of CO2 = 0.04995 mol × 44.0 g mol⁻¹ = 2.1978 g, which is 2.20 g to 3 significant figures. A is wrong if HCl was incorrectly identified as limiting (0.1 mol HCl would react with 0.05 mol CaCO3, producing 0.05 mol CO2 = 2.2g, but if the initial 5g CaCO3 was not considered, it leads to errors). C and D are errors based on incorrect limiting reactant or stoichiometry."
     },
     {
       "id": "A-Level-Chemistry-AQA-T6-11",
@@ -16118,15 +16118,15 @@
       "difficulty": "hard",
       "tier": null,
       "type": "mcq",
-      "question": "How many oxygen atoms are present in 1.60 g of ozone, O3? (Ar: O=16.0; L = 6.022 × 10^23 mol⁻¹)",
+      "question": "How many oxygen atoms are present in 1.60 g of ozone, O3? (Ar: O=16.0; L = 6.022 × 1$0^{23}$ mol⁻¹)",
       "options": {
-        "A": "1.00 × 10^22",
-        "B": "3.01 × 10^22",
-        "C": "6.02 × 10^22",
-        "D": "1.81 × 10^23"
+        "A": "1.00 × 1$0^{22}$",
+        "B": "3.01 × 1$0^{22}$",
+        "C": "6.02 × 1$0^{22}$",
+        "D": "1.81 × 1$0^{23}$"
       },
       "correct": "C",
-      "explanation": "C is correct. First, calculate the Mr of ozone (O3): Mr = 3 × 16.0 = 48.0. Moles of O3 = Mass / Mr = 1.60 g / 48.0 g mol⁻¹ = 0.03333... mol. Number of O3 molecules = Moles × Avogadro's constant = 0.03333... mol × 6.022 × 10^23 mol⁻¹ = 2.007 × 10^22 molecules. Since each O3 molecule contains 3 oxygen atoms, the total number of oxygen atoms = 2.007 × 10^22 × 3 = 6.021 × 10^22 atoms (approx. 6.02 × 10^22). A is wrong if moles of O were calculated directly without considering O3. B is wrong if the number of O3 molecules was calculated but not multiplied by 3 atoms per molecule. D is a significant calculation error."
+      "explanation": "C is correct. First, calculate the Mr of ozone (O3): Mr = 3 × 16.0 = 48.0. Moles of O3 = Mass / Mr = 1.60 g / 48.0 g mol⁻¹ = 0.03333... mol. Number of O3 molecules = Moles × Avogadro's constant = 0.03333... mol × 6.022 × 1$0^{23}$ mol⁻¹ = 2.007 × 1$0^{22}$ molecules. Since each O3 molecule contains 3 oxygen atoms, the total number of oxygen atoms = 2.007 × 1$0^{22}$ × 3 = 6.021 × 1$0^{22}$ atoms (approx. 6.02 × 1$0^{22}$). A is wrong if moles of O were calculated directly without considering O3. B is wrong if the number of O3 molecules was calculated but not multiplied by 3 atoms per molecule. D is a significant calculation error."
     },
     {
       "id": "A-Level-Chemistry-AQA-T6-12",
@@ -19619,7 +19619,7 @@
         "D": "4.00"
       },
       "correct": "B",
-      "explanation": "B is correct. For a weak acid, Ka = [H⁺]² / [HA]. Assuming [H⁺] is negligible compared to [HA]initial, [H⁺]² = Ka × [HA] = (1.0 × 10⁻⁵) × 0.20 = 2.0 × 10⁻⁶. Therefore, [H⁺] = √(2.0 × 10⁻⁶) = 1.414 × 10⁻³ mol dm⁻³. pH = -log[H⁺] = -log(1.414 × 10⁻³) = 2.85. The other options result from common calculation errors."
+      "explanation": "B is correct. For a weak acid, Ka = [H⁺]² / [HA]. Assuming [H⁺] is negligible compared to [HA]initial, [H⁺]² = Ka × [HA] = (1.0 × 10⁻⁵) × 0.20 = 2.0 × 10⁻⁶. Therefore, [H⁺] = $\\sqrt{2.0 × 10⁻⁶}$ = 1.414 × 10⁻³ mol dm⁻³. pH = -log[H⁺] = -$\\log(1.414 × 10⁻³)$ = 2.85. The other options result from common calculation errors."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T22-9",
@@ -19668,7 +19668,7 @@
         "D": "5.15"
       },
       "correct": "B",
-      "explanation": "B is correct. Using the Henderson-Hasselbalch equation: pH = pKa + log([conjugate base]/[weak acid]). First, calculate pKa = -log(Ka) = -log(1.3 × 10⁻⁵) = 4.886. Since the concentrations of propanoic acid and sodium propanoate are equal (0.10 mol dm⁻³ each), the ratio [conjugate base]/[weak acid] = 1.0. Therefore, log(1.0) = 0. So, pH = pKa + 0 = 4.886, which rounds to 4.89. The other options are results of incorrect calculations or different ratios."
+      "explanation": "B is correct. Using the Henderson-Hasselbalch equation: pH = pKa + $\\log([conjugate base]/[weak acid])$. First, calculate pKa = -$\\log(Ka)$ = -$\\log(1.3 × 10⁻⁵)$ = 4.886. Since the concentrations of propanoic acid and sodium propanoate are equal (0.10 mol dm⁻³ each), the ratio [conjugate base]/[weak acid] = 1.0. Therefore, $\\log(1.0)$ = 0. So, pH = pKa + 0 = 4.886, which rounds to 4.89. The other options are results of incorrect calculations or different ratios."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T22-11",
@@ -19741,7 +19741,7 @@
         "D": "3.00"
       },
       "correct": "C",
-      "explanation": "C is correct. Nitric acid (HNO₃) is a strong acid, meaning it completely dissociates in water. Therefore, [H⁺] = [HNO₃] = 0.0050 mol dm⁻³. pH = -log[H⁺] = -log(0.0050) = 2.30. The other options are results of incorrect logarithmic calculations."
+      "explanation": "C is correct. Nitric acid (HNO₃) is a strong acid, meaning it completely dissociates in water. Therefore, [H⁺] = [HNO₃] = 0.0050 mol dm⁻³. pH = -log[H⁺] = -$\\log(0.0050)$ = 2.30. The other options are results of incorrect logarithmic calculations."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T22-14",
@@ -19813,7 +19813,7 @@
         "D": "13.00"
       },
       "correct": "B",
-      "explanation": "B is correct because barium hydroxide is a strong base and dissociates completely. Ba(OH)₂(aq) → Ba²⁺(aq) + 2OH⁻(aq). Therefore, [OH⁻] = 2 × 0.0050 mol dm⁻³ = 0.010 mol dm⁻³. pOH = -log[OH⁻] = -log(0.010) = 2.00. pH = 14.00 - pOH = 14.00 - 2.00 = 12.00.\nA is wrong because it might be calculated assuming Ba(OH)2 is monobasic, leading to pOH = -log(0.005) = 2.30, pH = 11.70.\nC is wrong because it could result from errors in log calculation or subtraction from 14.\nD is wrong because it might be calculated from a higher initial concentration or incorrect assumption about the base strength."
+      "explanation": "B is correct because barium hydroxide is a strong base and dissociates completely. Ba(OH)₂(aq) → Ba²⁺(aq) + 2OH⁻(aq). Therefore, [OH⁻] = 2 × 0.0050 mol dm⁻³ = 0.010 mol dm⁻³. pOH = -log[OH⁻] = -$\\log(0.010)$ = 2.00. pH = 14.00 - pOH = 14.00 - 2.00 = 12.00.\nA is wrong because it might be calculated assuming Ba(OH)2 is monobasic, leading to pOH = -$\\log(0.005)$ = 2.30, pH = 11.70.\nC is wrong because it could result from errors in log calculation or subtraction from 14.\nD is wrong because it might be calculated from a higher initial concentration or incorrect assumption about the base strength."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T23-2",
@@ -19912,7 +19912,7 @@
         "D": "4.74"
       },
       "correct": "B",
-      "explanation": "B is correct. For a weak acid HA ⇌ H⁺ + A⁻, Ka = [H⁺][A⁻]/[HA]. Assuming [H⁺] = [A⁻] and [HA] ≈ [HA]initial, then Ka = [H⁺]²/[HA]initial. So, [H⁺] = √(Ka × [HA]initial) = √(1.8 × 10⁻⁵ × 0.100) = √(1.8 × 10⁻⁶) = 1.34 × 10⁻³ mol dm⁻³. pH = -log[H⁺] = -log(1.34 × 10⁻³) = 2.87.\nA is wrong as it would be the pH of a strong acid with a concentration of 0.1 mol dm⁻³.\nC is wrong due to a calculation error, possibly using a pKa value for a different acid or miscalculation of the square root.\nD is wrong as 4.74 is the pKa value, not the pH of the weak acid solution."
+      "explanation": "B is correct. For a weak acid HA ⇌ H⁺ + A⁻, Ka = [H⁺][A⁻]/[HA]. Assuming [H⁺] = [A⁻] and [HA] ≈ [HA]initial, then Ka = [H⁺]²/[HA]initial. So, [H⁺] = $\\sqrt{Ka × [HA]initial}$ = $\\sqrt{1.8 × 10⁻⁵ × 0.100}$ = $\\sqrt{1.8 × 10⁻⁶}$ = 1.34 × 10⁻³ mol dm⁻³. pH = -log[H⁺] = -$\\log(1.34 × 10⁻³)$ = 2.87.\nA is wrong as it would be the pH of a strong acid with a concentration of 0.1 mol dm⁻³.\nC is wrong due to a calculation error, possibly using a pKa value for a different acid or miscalculation of the square root.\nD is wrong as 4.74 is the pKa value, not the pH of the weak acid solution."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T23-6",
@@ -19960,7 +19960,7 @@
         "D": "13.26"
       },
       "correct": "A",
-      "explanation": "A is correct. For pure water, [H⁺] = [OH⁻]. Therefore, Kw = [H⁺]². So, [H⁺] = √Kw = √(5.47 × 10⁻¹⁴) = 2.338 × 10⁻⁷ mol dm⁻³. pH = -log[H⁺] = -log(2.338 × 10⁻⁷) = 6.63.\nB is wrong as 7.00 is the pH of pure water at 25 °C, where Kw = 1.0 × 10⁻¹⁴.\nC is wrong due to a calculation error or incorrect use of Kw.\nD is wrong as it is -log(Kw) or similar, not the pH."
+      "explanation": "A is correct. For pure water, [H⁺] = [OH⁻]. Therefore, Kw = [H⁺]². So, [H⁺] = √Kw = $\\sqrt{5.47 × 10⁻¹⁴}$ = 2.338 × 10⁻⁷ mol dm⁻³. pH = -log[H⁺] = -$\\log(2.338 × 10⁻⁷)$ = 6.63.\nB is wrong as 7.00 is the pH of pure water at 25 °C, where Kw = 1.0 × 10⁻¹⁴.\nC is wrong due to a calculation error or incorrect use of Kw.\nD is wrong as it is -$\\log(Kw)$ or similar, not the pH."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T23-8",
@@ -19986,7 +19986,7 @@
         "D": "donates electron density to the carboxyl group, strengthening the O-H bond and making it harder to dissociate."
       },
       "correct": "B",
-      "explanation": "B is correct. Chlorine is an electronegative atom. It exerts a negative inductive effect (-I effect), withdrawing electron density through the sigma bonds towards itself. This electron-withdrawing effect extends to the carboxyl group, pulling electron density away from the O-H bond, weakening it, and making it easier to release a proton. Crucially, it also delocalises the negative charge on the ethanoate ion (conjugate base), stabilising it and thus favouring dissociation.\nA is wrong as size and polarisability are less relevant to acid strength than electronegativity in this context.\nC is wrong as bond strength within the acid molecule is not the primary factor determining its strength; rather, it's the ease of H⁺ release and conjugate base stability.\nD is wrong because chlorine is electron-withdrawing, not electron-donating, and electron donation would strengthen the O-H bond, making the acid weaker."
+      "explanation": "B is correct. Chlorine is an electronegative atom. It exerts a negative inductive effect (-I effect), withdrawing electron density through the $\\sigma$ bonds towards itself. This electron-withdrawing effect extends to the carboxyl group, pulling electron density away from the O-H bond, weakening it, and making it easier to release a proton. Crucially, it also delocalises the negative charge on the ethanoate ion (conjugate base), stabilising it and thus favouring dissociation.\nA is wrong as size and polarisability are less relevant to acid strength than electronegativity in this context.\nC is wrong as bond strength within the acid molecule is not the primary factor determining its strength; rather, it's the ease of H⁺ release and conjugate base stability.\nD is wrong because chlorine is electron-withdrawing, not electron-donating, and electron donation would strengthen the O-H bond, making the acid weaker."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T23-9",
@@ -20035,7 +20035,7 @@
         "D": "5.46"
       },
       "correct": "A",
-      "explanation": "A is correct. This is a buffer calculation using the Henderson-Hasselbalch equation: pH = pKa + log([salt]/[acid]).\nFirst, calculate moles of acid and salt: Moles of CH₃COOH = 0.200 mol dm⁻³ × (25.0/1000) dm³ = 0.00500 mol. Moles of CH₃COONa = 0.100 mol dm⁻³ × (25.0/1000) dm³ = 0.00250 mol.\nTotal volume = 25.0 cm³ + 25.0 cm³ = 50.0 cm³ = 0.0500 dm³.\nConcentration of CH₃COOH = 0.00500 mol / 0.0500 dm³ = 0.100 mol dm⁻³.\nConcentration of CH₃COONa = 0.00250 mol / 0.0500 dm³ = 0.0500 mol dm⁻³.\npKa = -log(Ka) = -log(1.74 × 10⁻⁵) = 4.76.\npH = 4.76 + log(0.0500/0.100) = 4.76 + log(0.5) = 4.76 - 0.301 = 4.459 ≈ 4.46.\nB is wrong as 4.76 is the pKa value, which would be the pH if [acid] = [salt].\nC is wrong due to a calculation error, possibly in the log term.\nD is wrong due to a significant calculation error."
+      "explanation": "A is correct. This is a buffer calculation using the Henderson-Hasselbalch equation: pH = pKa + $\\log([salt]/[acid])$.\nFirst, calculate moles of acid and salt: Moles of CH₃COOH = 0.200 mol dm⁻³ × (25.0/1000) dm³ = 0.00500 mol. Moles of CH₃COONa = 0.100 mol dm⁻³ × (25.0/1000) dm³ = 0.00250 mol.\nTotal volume = 25.0 cm³ + 25.0 cm³ = 50.0 cm³ = 0.0500 dm³.\nConcentration of CH₃COOH = 0.00500 mol / 0.0500 dm³ = 0.100 mol dm⁻³.\nConcentration of CH₃COONa = 0.00250 mol / 0.0500 dm³ = 0.0500 mol dm⁻³.\npKa = -$\\log(Ka)$ = -$\\log(1.74 × 10⁻⁵)$ = 4.76.\npH = 4.76 + $\\log(0.0500/0.100)$ = 4.76 + $\\log(0.5)$ = 4.76 - 0.301 = 4.459 ≈ 4.46.\nB is wrong as 4.76 is the pKa value, which would be the pH if [acid] = [salt].\nC is wrong due to a calculation error, possibly in the log term.\nD is wrong due to a significant calculation error."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T23-11",
@@ -21076,7 +21076,7 @@
         "D": "0.250 mol dm⁻³"
       },
       "correct": "A",
-      "explanation": "A is correct because:\n1. Moles of NaOH = concentration × volume = 0.100 mol dm⁻³ × (25.0/1000) dm³ = 0.00250 mol.\n2. From the balanced equation, the mole ratio NaOH : H₂SO₄ is 2:1. So, moles of H₂SO₄ = 0.00250 mol / 2 = 0.00125 mol.\n3. Concentration of H₂SO₄ = moles / volume = 0.00125 mol / (20.0/1000) dm³ = 0.0625 mol dm⁻³. B is wrong as it's 20/25 * 0.1. C is wrong as it's the moles of NaOH divided by the volume of H₂SO₄, forgetting the mole ratio. D is wrong as it's twice the value of C."
+      "explanation": "A is correct because:\n1. Moles of NaOH = concentration × volume = 0.100 mol dm⁻³ × (25.0/1000) dm³ = 0.00250 mol.\n2. From the balanced equation, the mole ratio NaOH : H₂SO₄ is 2:1. So, moles of H₂SO₄ = 0.00250 mol / 2 = 0.00125 mol.\n3. Concentration of H₂SO₄ = moles / volume = 0.00125 mol / (20.0/1000) dm³ = 0.0625 mol dm⁻³. B is wrong as it's $\\frac{20}{25}$ * 0.1. C is wrong as it's the moles of NaOH divided by the volume of H₂SO₄, forgetting the mole ratio. D is wrong as it's twice the value of C."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T26-9",
@@ -21788,7 +21788,7 @@
         "D": "It forms a complex with the product."
       },
       "correct": "B",
-      "explanation": "B is correct. After the electrophile (e.g., CH₃CO⁺) attacks the benzene ring, a cyclohexadienyl cation intermediate is formed. The AlCl₄⁻ ion then acts as a base, removing a proton (H⁺) from this intermediate. This allows the delocalised pi system to reform, regenerating the aromatic ring and the AlCl₃ catalyst, and forming HCl. A is wrong because it removes, not donates, a proton. C is wrong because AlCl₄⁻ is an anion and not an electrophile. D is wrong because its primary role is catalyst regeneration, not product complexation."
+      "explanation": "B is correct. After the electrophile (e.g., CH₃CO⁺) attacks the benzene ring, a cyclohexadienyl cation intermediate is formed. The AlCl₄⁻ ion then acts as a base, removing a proton (H⁺) from this intermediate. This allows the delocalised $\\pi$ system to reform, regenerating the aromatic ring and the AlCl₃ catalyst, and forming HCl. A is wrong because it removes, not donates, a proton. C is wrong because AlCl₄⁻ is an anion and not an electrophile. D is wrong because its primary role is catalyst regeneration, not product complexation."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T29-7",
@@ -21961,10 +21961,10 @@
         "A": "The -OH group is electron-withdrawing, activating the ring.",
         "B": "The oxygen atom of the -OH group has a lone pair of electrons that delocalises into the benzene ring, increasing its electron density.",
         "C": "The -OH group is bulky, making it easier for electrophiles to attack certain positions.",
-        "D": "Phenol has a stronger delocalised pi system than benzene."
+        "D": "Phenol has a stronger delocalised $\\pi$ system than benzene."
       },
       "correct": "B",
-      "explanation": "B is correct. The hydroxyl (-OH) group in phenol is an activating group because the lone pair of electrons on the oxygen atom can be delocalised into the benzene ring. This increases the overall electron density of the ring, particularly at the 2-, 4-, and 6-positions, making it much more susceptible to attack by electrophiles. A is wrong because the -OH group is electron-donating and activating, not electron-withdrawing. C is wrong because bulkiness generally hinders attack, and it's electron density, not steric effects, that primarily increases reactivity here. D is wrong; the delocalised pi system itself is modified, not inherently 'stronger' in a way that explains increased reactivity without reference to electron density."
+      "explanation": "B is correct. The hydroxyl (-OH) group in phenol is an activating group because the lone pair of electrons on the oxygen atom can be delocalised into the benzene ring. This increases the overall electron density of the ring, particularly at the 2-, 4-, and 6-positions, making it much more susceptible to attack by electrophiles. A is wrong because the -OH group is electron-donating and activating, not electron-withdrawing. C is wrong because bulkiness generally hinders attack, and it's electron density, not steric effects, that primarily increases reactivity here. D is wrong; the delocalised $\\pi$ system itself is modified, not inherently 'stronger' in a way that explains increased reactivity without reference to electron density."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T29-14",
@@ -22428,7 +22428,7 @@
         "D": "4.0 g"
       },
       "correct": "B",
-      "explanation": "1 hour is 60 minutes. Since the half-life is 20 minutes, 3 half-lives will have passed (60/20 = 3).\nAfter 1st half-life: 8.0 g / 2 = 4.0 g\nAfter 2nd half-life: 4.0 g / 2 = 2.0 g\nAfter 3rd half-life: 2.0 g / 2 = 1.0 g\nTherefore, 1.0 g of compound A will remain. A is wrong because it's after 2 half-lives. C is wrong because it's after 4 half-lives. D is wrong because it's after 1 half-life."
+      "explanation": "1 hour is 60 minutes. Since the half-life is 20 minutes, 3 half-lives will have passed ($\\frac{60}{20}$ = 3).\nAfter 1st half-life: 8.0 g / 2 = 4.0 g\nAfter 2nd half-life: 4.0 g / 2 = 2.0 g\nAfter 3rd half-life: 2.0 g / 2 = 1.0 g\nTherefore, 1.0 g of compound A will remain. A is wrong because it's after 2 half-lives. C is wrong because it's after 4 half-lives. D is wrong because it's after 1 half-life."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T31-2",
@@ -22626,7 +22626,7 @@
         "D": "k remains constant because Eₐ and the pre-exponential factor A are constant."
       },
       "correct": "B",
-      "explanation": "The Arrhenius equation is k = A e^(-Eₐ/RT). As temperature (T) increases, the term -Eₐ/RT becomes less negative (or more positive), causing the exponential term e^(-Eₐ/RT) to increase exponentially. This exponential term represents the fraction of molecules with energy equal to or greater than the activation energy (Eₐ). Therefore, a higher temperature leads to a significantly larger fraction of molecules having sufficient energy to react, causing k to increase exponentially. A is wrong because activation energy is independent of temperature. C is wrong because the increase is exponential, not linear, and while collision frequency increases, it's the increase in energetic collisions that has the dominant effect. D is wrong because k is highly dependent on temperature."
+      "explanation": "The Arrhenius equation is k = A $e^{-Eₐ/RT}$. As temperature (T) increases, the term -Eₐ/RT becomes less negative (or more positive), causing the exponential term $e^{-Eₐ/RT}$ to increase exponentially. This exponential term represents the fraction of molecules with energy equal to or greater than the activation energy (Eₐ). Therefore, a higher temperature leads to a significantly larger fraction of molecules having sufficient energy to react, causing k to increase exponentially. A is wrong because activation energy is independent of temperature. C is wrong because the increase is exponential, not linear, and while collision frequency increases, it's the increase in energetic collisions that has the dominant effect. D is wrong because k is highly dependent on temperature."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T31-10",
@@ -22764,7 +22764,7 @@
       "difficulty": "medium",
       "tier": null,
       "type": "mcq",
-      "question": "In the Arrhenius equation, k = A e^(-Eₐ/RT), what does the pre-exponential factor 'A' (also known as the Arrhenius constant) primarily represent?",
+      "question": "In the Arrhenius equation, k = A $e^{-Eₐ/RT}$, what does the pre-exponential factor 'A' (also known as the Arrhenius constant) primarily represent?",
       "options": {
         "A": "The activation energy of the reaction.",
         "B": "The rate constant at infinite temperature.",
@@ -22772,7 +22772,7 @@
         "D": "The overall order of the reaction."
       },
       "correct": "B",
-      "explanation": "The Arrhenius equation is k = A e^(-Eₐ/RT). If the temperature (T) approaches infinity, then Eₐ/RT approaches 0, and e^(-Eₐ/RT) approaches e⁰ = 1. In this hypothetical scenario, k = A. Therefore, 'A' can be considered as the maximum possible rate constant when all collisions have sufficient energy (i.e., at infinite temperature), and it incorporates the frequency of collisions and the orientation factor. A is wrong as A is distinct from Eₐ. C is wrong; the exponential term e^(-Eₐ/RT) represents the fraction of molecules with sufficient energy, and the orientation factor is part of A, but A itself is not just the fraction of successful collisions. D is wrong as A is not related to the overall order of reaction."
+      "explanation": "The Arrhenius equation is k = A $e^{-Eₐ/RT}$. If the temperature (T) approaches $\\infty$, then Eₐ/RT approaches 0, and $e^{-Eₐ/RT}$ approaches e⁰ = 1. In this hypothetical scenario, k = A. Therefore, 'A' can be considered as the maximum possible rate constant when all collisions have sufficient energy (i.e., at infinite temperature), and it incorporates the frequency of collisions and the orientation factor. A is wrong as A is distinct from Eₐ. C is wrong; the exponential term $e^{-Eₐ/RT}$ represents the fraction of molecules with sufficient energy, and the orientation factor is part of A, but A itself is not just the fraction of successful collisions. D is wrong as A is not related to the overall order of reaction."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T53-1",
@@ -22868,7 +22868,7 @@
         "D": "0.00375 mol dm⁻³"
       },
       "correct": "A",
-      "explanation": "A is correct because for dilution, M₁V₁ = M₂V₂. Here, M₁ = 0.250 mol dm⁻³, V₁ = 15.0 cm³, V₂ = 100 cm³. So, 0.250 × 15.0 = M₂ × 100. M₂ = (0.250 × 15.0) / 100 = 3.75 / 100 = 0.0375 mol dm⁻³. B is incorrect as it might be a calculation error (e.g., 0.250/10). C is incorrect as it might be 0.250 * (100/15) which is inverse. D is incorrect due to a factor of 10 error."
+      "explanation": "A is correct because for dilution, M₁V₁ = M₂V₂. Here, M₁ = 0.250 mol dm⁻³, V₁ = 15.0 cm³, V₂ = 100 cm³. So, 0.250 × 15.0 = M₂ × 100. M₂ = (0.250 × 15.0) / 100 = 3.75 / 100 = 0.0375 mol dm⁻³. B is incorrect as it might be a calculation error (e.g., 0.250/10). C is incorrect as it might be 0.250 * ($\\frac{100}{15}$) which is inverse. D is incorrect due to a factor of 10 error."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T53-5",
@@ -23060,7 +23060,7 @@
         "D": "0.125 g"
       },
       "correct": "A",
-      "explanation": "A is correct. First, calculate moles: moles = concentration × volume = 0.125 mol dm⁻³ × (500/1000) dm³ = 0.125 × 0.500 = 0.0625 mol. Then, calculate mass: mass = moles × Mr = 0.0625 mol × 40.0 g mol⁻¹ = 2.50 g. B is incorrect as it's 0.125 * 1000 * 40 / 500. C is incorrect as it's the number of moles. D is incorrect as it's the concentration value."
+      "explanation": "A is correct. First, calculate moles: moles = concentration × volume = 0.125 mol dm⁻³ × ($\\frac{500}{1000}$) dm³ = 0.125 × 0.500 = 0.0625 mol. Then, calculate mass: mass = moles × Mr = 0.0625 mol × 40.0 g mol⁻¹ = 2.50 g. B is incorrect as it's 0.125 * 1000 * 40 / 500. C is incorrect as it's the number of moles. D is incorrect as it's the concentration value."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T53-13",
@@ -23276,7 +23276,7 @@
         "D": "2.00 × 10⁻⁴"
       },
       "correct": "B",
-      "explanation": "The hydrogen ion concentration can be calculated using the formula [H⁺] = 10⁻pH. So, [H⁺] = 10⁻³·²⁰ = 6.309... × 10⁻⁴ mol dm⁻³. Option A is incorrect as it calculates 10^3.20. Option C is incorrect as it represents pH 3. Option D is an unrelated value."
+      "explanation": "The hydrogen ion concentration can be calculated using the formula [H⁺] = 10⁻pH. So, [H⁺] = 10⁻³·²⁰ = 6.309... × 10⁻⁴ mol dm⁻³. Option A is incorrect as it calculates 1$0^{3}$.20. Option C is incorrect as it represents pH 3. Option D is an unrelated value."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T54-2",
@@ -23326,7 +23326,7 @@
         "D": "13.60"
       },
       "correct": "A",
-      "explanation": "For pure water, [H⁺] = [OH⁻], so K_w = [H⁺]². Therefore, [H⁺] = √(K_w) = √(2.5 × 10⁻¹⁴) = 1.5811 × 10⁻⁷ mol dm⁻³. The pH is then -log[H⁺] = -log(1.5811 × 10⁻⁷) = 6.80. Option B is the pH of water at 25°C. Option C and D are common calculation errors."
+      "explanation": "For pure water, [H⁺] = [OH⁻], so K_w = [H⁺]². Therefore, [H⁺] = $\\sqrt{K_w}$ = $\\sqrt{2.5 × 10⁻¹⁴}$ = 1.5811 × 10⁻⁷ mol dm⁻³. The pH is then -log[H⁺] = -$\\log(1.5811 × 10⁻⁷)$ = 6.80. Option B is the pH of water at 25°C. Option C and D are common calculation errors."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T54-4",
@@ -23400,7 +23400,7 @@
         "D": "2.80"
       },
       "correct": "A",
-      "explanation": "First, calculate [H⁺] from pH: [H⁺] = 10⁻²·⁸⁰ = 1.5849 × 10⁻³ mol dm⁻³. For a weak acid, Ka ≈ [H⁺]² / [HX]initial (assuming [H⁺] from water is negligible and dissociation is small). Ka = (1.5849 × 10⁻³)² / 0.150 = 2.512 × 10⁻⁶ / 0.150 = 1.6748 × 10⁻⁵ mol dm⁻³. Then, pKa = -log(Ka) = -log(1.6748 × 10⁻⁵) = 4.7759 ≈ 4.78. Option D is the pH, not pKa. Options B and C are results of calculation errors."
+      "explanation": "First, calculate [H⁺] from pH: [H⁺] = 10⁻²·⁸⁰ = 1.5849 × 10⁻³ mol dm⁻³. For a weak acid, Ka ≈ [H⁺]² / [HX]initial (assuming [H⁺] from water is negligible and dissociation is small). Ka = (1.5849 × 10⁻³)² / 0.150 = 2.512 × 10⁻⁶ / 0.150 = 1.6748 × 10⁻⁵ mol dm⁻³. Then, pKa = -$\\log(Ka)$ = -$\\log(1.6748 × 10⁻⁵)$ = 4.7759 ≈ 4.78. Option D is the pH, not pKa. Options B and C are results of calculation errors."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T54-7",
@@ -23424,7 +23424,7 @@
         "D": "10.39"
       },
       "correct": "A",
-      "explanation": "For a weak acid, [H⁺] = √(Ka × [HA]). [H⁺] = √(6.2 × 10⁻¹⁰ × 0.050) = √(3.1 × 10⁻¹¹) = 5.5677 × 10⁻⁶ mol dm⁻³. pH = -log[H⁺] = -log(5.5677 × 10⁻⁶) = 5.25. Option C is the pKa of HCN. Options B and D are common calculation errors."
+      "explanation": "For a weak acid, [H⁺] = $\\sqrt{Ka × [HA]}$. [H⁺] = $\\sqrt{6.2 × 10⁻¹⁰ × 0.050}$ = $\\sqrt{3.1 × 10⁻¹¹}$ = 5.5677 × 10⁻⁶ mol dm⁻³. pH = -log[H⁺] = -$\\log(5.5677 × 10⁻⁶)$ = 5.25. Option C is the pKa of HCN. Options B and D are common calculation errors."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T54-8",
@@ -23598,7 +23598,7 @@
         "D": "5.16"
       },
       "correct": "A",
-      "explanation": "First, calculate moles of acid and salt: Moles CH₃COOH = 0.025 dm³ × 0.100 mol dm⁻³ = 0.0025 mol. Moles CH₃COONa = 0.025 dm³ × 0.050 mol dm⁻³ = 0.00125 mol. Total volume = 0.050 dm³. Concentrations after mixing: [CH₃COOH] = 0.0025 mol / 0.050 dm³ = 0.050 mol dm⁻³. [CH₃COO⁻] = 0.00125 mol / 0.050 dm³ = 0.025 mol dm⁻³. Using the Henderson-Hasselbalch equation: pH = pKa + log([Salt]/[Acid]). pKa = -log(1.75 × 10⁻⁵) = 4.7569. pH = 4.7569 + log(0.025 / 0.050) = 4.7569 + log(0.5) = 4.7569 - 0.3010 = 4.4559 ≈ 4.46. Option B is the pKa, which would be the pH if [Acid] = [Salt]. Options C and D are incorrect calculations."
+      "explanation": "First, calculate moles of acid and salt: Moles CH₃COOH = 0.025 dm³ × 0.100 mol dm⁻³ = 0.0025 mol. Moles CH₃COONa = 0.025 dm³ × 0.050 mol dm⁻³ = 0.00125 mol. Total volume = 0.050 dm³. Concentrations after mixing: [CH₃COOH] = 0.0025 mol / 0.050 dm³ = 0.050 mol dm⁻³. [CH₃COO⁻] = 0.00125 mol / 0.050 dm³ = 0.025 mol dm⁻³. Using the Henderson-Hasselbalch equation: pH = pKa + $\\log([Salt]/[Acid])$. pKa = -$\\log(1.75 × 10⁻⁵)$ = 4.7569. pH = 4.7569 + $\\log(0.025 / 0.050)$ = 4.7569 + $\\log(0.5)$ = 4.7569 - 0.3010 = 4.4559 ≈ 4.46. Option B is the pKa, which would be the pH if [Acid] = [Salt]. Options C and D are incorrect calculations."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T54-16",
@@ -23696,7 +23696,7 @@
         "D": "3.40"
       },
       "correct": "B",
-      "explanation": "The pKa value is calculated using the formula pKa = -log(Ka). So, pKa = -log(4.0 × 10⁻⁵) = 4.3979... ≈ 4.40. Option C is just the exponent of 10. Options A and D are incorrect logarithmic calculations."
+      "explanation": "The pKa value is calculated using the formula pKa = -$\\log(Ka)$. So, pKa = -$\\log(4.0 × 10⁻⁵)$ = 4.3979... ≈ 4.40. Option C is just the exponent of 10. Options A and D are incorrect logarithmic calculations."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T54-20",
@@ -24010,7 +24010,7 @@
         "D": "2:10"
       },
       "correct": "B",
-      "explanation": "B is correct (1:5). The half-equations are: MnO₄⁻ + 8H⁺ + 5e⁻ -> Mn²⁺ + 4H₂O (reduction) and 2Cl⁻ -> Cl₂ + 2e⁻ (oxidation). To balance electrons, multiply the reduction half-equation by 2 and the oxidation half-equation by 5, giving 2MnO₄⁻ and 10Cl⁻. The ratio simplifies to 1:5. A (1:2) does not balance the electron transfer. C (2:5) uses an incorrect ratio. D (2:10) is equivalent to 1:5 but is not in its simplest form."
+      "explanation": "B is correct (1:5). The half-equations are: MnO₄⁻ + 8H⁺ + 5e⁻ $\\rightarrow$ Mn²⁺ + 4H₂O (reduction) and 2Cl⁻ $\\rightarrow$ Cl₂ + 2e⁻ (oxidation). To balance electrons, multiply the reduction half-equation by 2 and the oxidation half-equation by 5, giving 2MnO₄⁻ and 10Cl⁻. The ratio simplifies to 1:5. A (1:2) does not balance the electron transfer. C (2:5) uses an incorrect ratio. D (2:10) is equivalent to 1:5 but is not in its simplest form."
     },
     {
       "id": "A-Level-Chemistry-Edexcel-T55-13",
@@ -25646,7 +25646,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Calculate the hydrogen ion concentration, [H⁺], for a 0.150 mol dm⁻³ solution of methanoic acid (HCOOH) given that Ka = 1.80 × 10⁻⁴ mol dm⁻³.",
-      "back": "Using the simplified Ka expression for a weak acid: Ka = [H⁺]² / [HCOOH]\nRearranging to find [H⁺]²: [H⁺]² = Ka × [HCOOH]\nSubstituting values: [H⁺]² = (1.80 × 10⁻⁴) × 0.150 = 2.70 × 10⁻⁵\nTherefore, [H⁺] = √(2.70 × 10⁻⁵) = 5.196 × 10⁻³ mol dm⁻³",
+      "back": "Using the simplified Ka expression for a weak acid: Ka = [H⁺]² / [HCOOH]\nRearranging to find [H⁺]²: [H⁺]² = Ka × [HCOOH]\nSubstituting values: [H⁺]² = (1.80 × 10⁻⁴) × 0.150 = 2.70 × 10⁻⁵\nTherefore, [H⁺] = $\\sqrt{2.70 × 10⁻⁵}$ = 5.196 × 10⁻³ mol dm⁻³",
       "tags": [
         "pH calculation",
         "weak acid",
@@ -25790,7 +25790,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "An ⁸¹Br⁺ ion has a kinetic energy (KE) of 4.20 x 10⁻¹⁶ J and a mass (m) of 1.345068 x 10⁻²⁵ kg. Calculate its velocity (v). (Recall KE = ½mv²)",
-      "back": "Rearrange KE = ½mv² to v² = 2KE / m.\nv² = (2 x 4.20 x 10⁻¹⁶ J) / (1.345068 x 10⁻²⁵ kg) = 6.2450 x 10⁹ m²s⁻²\nv = √(6.2450 x 10⁹) = 7.8900 x 10⁴ m s⁻¹",
+      "back": "Rearrange KE = ½mv² to v² = 2KE / m.\nv² = (2 x 4.20 x 10⁻¹⁶ J) / (1.345068 x 10⁻²⁵ kg) = 6.2450 x 10⁹ m²s⁻²\nv = $\\sqrt{6.2450 x 10⁹}$ = 7.8900 x 10⁴ m s⁻¹",
       "tags": [
         "kinetic energy",
         "velocity",
@@ -27006,7 +27006,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Describe the curly arrow movement for the initial attack of an alkene on HBr during electrophilic addition.",
-      "back": "1. A curly arrow starts from the middle of the C=C double bond (representing the pi electrons) and points to the partially positive hydrogen atom (δ⁺ H) of HBr. This indicates the formation of a new C-H bond.",
+      "back": "1. A curly arrow starts from the middle of the C=C double bond (representing the $\\pi$ electrons) and points to the partially positive hydrogen atom (δ⁺ H) of HBr. This indicates the formation of a new C-H bond.",
       "tags": [
         "curly arrows",
         "electrophilic addition",
@@ -28642,7 +28642,7 @@
       "tier": null,
       "type": "original-flashcard",
       "card_type": "key-fact",
-      "front": "Explain the trend in atomic radius across Period 3 (part 1/2).",
+      "front": "Explain the trend in atomic radius across Period 3 (part $\\frac{1}{2}$).",
       "back": "Across Period 3, the number of protons (and thus the nuclear charge) increases.",
       "tags": [
         "Period 3",
@@ -28671,7 +28671,7 @@
       "tier": null,
       "type": "original-flashcard",
       "card_type": "key-fact",
-      "front": "Explain the trend in atomic radius across Period 3 (part 2/2).",
+      "front": "Explain the trend in atomic radius across Period 3 (part $\\frac{2}{2}$).",
       "back": "The number of electron shells (and therefore the shielding effect) remains similar/constant. This leads to a stronger attraction between the increased nuclear charge and the outer electrons, pulling them closer to the nucleus and reducing the atomic radius.",
       "tags": [
         "Period 3",
@@ -28915,7 +28915,7 @@
       "tier": null,
       "type": "original-flashcard",
       "card_type": "key-fact",
-      "front": "Explain why Sc³⁺ ions are colourless (part 1/2).",
+      "front": "Explain why Sc³⁺ ions are colourless (part $\\frac{1}{2}$).",
       "back": "Sc³⁺ ions have a d⁰ electron configuration, meaning they have no d electrons.",
       "tags": [
         "Sc3+",
@@ -28942,7 +28942,7 @@
       "tier": null,
       "type": "original-flashcard",
       "card_type": "key-fact",
-      "front": "Explain why Sc³⁺ ions are colourless (part 2/2).",
+      "front": "Explain why Sc³⁺ ions are colourless (part $\\frac{2}{2}$).",
       "back": "Since there are no d electrons, no d-d electron transitions can occur when visible light is shone on the ion. This means no visible light is absorbed, so the ion appears colourless.",
       "tags": [
         "Sc3+",
@@ -30308,12 +30308,12 @@
       "tier": null,
       "type": "original-flashcard",
       "card_type": "key-fact",
-      "front": "What type of intermolecular force is primarily responsible for the formation of alpha-helices and beta-pleated sheets in proteins?\nA) Ionic bonds\nB) Hydrogen bonds\nC) Disulfide bridges\nD) Van der Waals forces",
+      "front": "What type of intermolecular force is primarily responsible for the formation of $\\alpha$-helices and $\\beta$-pleated sheets in proteins?\nA) Ionic bonds\nB) Hydrogen bonds\nC) Disulfide bridges\nD) Van der Waals forces",
       "back": "B) Hydrogen bonds. These form between the C=O group of one peptide bond and the N-H group of another peptide bond within the polypeptide chain, stabilising the secondary structure.",
       "tags": [
         "protein",
-        "alpha-helix",
-        "beta-pleated sheet",
+        "$\\alpha$-helix",
+        "$\\beta$-pleated sheet",
         "hydrogen bond",
         "secondary structure",
         "peptide bond",
@@ -30342,7 +30342,7 @@
       "tier": null,
       "type": "original-flashcard",
       "card_type": "key-fact",
-      "front": "Describe the specific atoms involved in hydrogen bonding that stabilise the secondary structure of proteins (alpha-helices and beta-pleated sheets).",
+      "front": "Describe the specific atoms involved in hydrogen bonding that stabilise the secondary structure of proteins ($\\alpha$-helices and $\\beta$-pleated sheets).",
       "back": "Hydrogen bonds form between the partially positive hydrogen (δ⁺) of an N-H group in one peptide bond and the lone pair on the partially negative oxygen (δ⁻) of a C=O group in another peptide bond.",
       "tags": [
         "protein",
@@ -30681,7 +30681,7 @@
         "oxidation state",
         "sulfur",
         "sulfate",
-        "SO4^2-"
+        "SO$4^{2}$-"
       ],
       "source_question_index": 5
     },
@@ -30708,7 +30708,7 @@
         "oxidation state",
         "sulfur",
         "thiosulfate",
-        "S2O3^2-"
+        "S2O$3^{2}$-"
       ],
       "source_question_index": 5
     },
@@ -30735,7 +30735,7 @@
         "oxidation state",
         "chromium",
         "dichromate",
-        "Cr2O7^2-"
+        "Cr2O$7^{2}$-"
       ],
       "source_question_index": 6
     },
@@ -31494,7 +31494,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "When plotting temperature against time for a calorimetry experiment, what are the key requirements for setting up the axes and scale, and for plotting points?",
-      "back": "1.  **Axes:** Temperature on the y-axis (e.g., 15-35°C) and time on the x-axis (e.g., 0-12 minutes).\n2.  **Scale:** Use sensible scales that occupy more than half of the grid (e.g., minimum 20 small squares for each °C and minute).\n3.  **Plotting:** All points must be plotted correctly (± half a small square).",
+      "back": "1.  **Axes:** Temperature on the y-axis (e.g., 15-35°C) and time on the x-axis (e.g., 0-12 minutes).\n2.  **Scale:** Use sensible scales that occupy more than half of the grid (e.g., minimum 20 small squares for each °C and minute).\n3.  **Plotting:** All points must be plotted correctly ($\\pm$ half a small square).",
       "tags": [
         "graph",
         "plotting",
@@ -31610,7 +31610,7 @@
       "tier": null,
       "type": "original-flashcard",
       "card_type": "key-fact",
-      "front": "What is the absolute uncertainty in the temperature change (ΔT) if each individual temperature reading (initial and final) has an uncertainty of ±0.1 °C?",
+      "front": "What is the absolute uncertainty in the temperature change (ΔT) if each individual temperature reading (initial and final) has an uncertainty of $\\pm$0.1 °C?",
       "back": "To find the absolute uncertainty in a difference (ΔT), you add the absolute uncertainties of the individual measurements:\nAbsolute uncertainty in ΔT = Uncertainty (initial) + Uncertainty (final)\nAbsolute uncertainty in ΔT = 0.1 °C + 0.1 °C = 0.2 °C.",
       "tags": [
         "uncertainty",
@@ -31751,7 +31751,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Explain why increasing the magnitude of the temperature change (ΔT) reduces its *percentage* uncertainty.",
-      "back": "Percentage uncertainty is calculated as (Absolute uncertainty / Measured value) × 100.\nIf the absolute uncertainty of the thermometer (e.g., ±0.2 °C) remains constant, but the measured temperature change (ΔT) becomes larger, then the absolute uncertainty becomes a smaller proportion of the measured value. This results in a lower percentage uncertainty, indicating a more precise measurement relative to the overall change.",
+      "back": "Percentage uncertainty is calculated as (Absolute uncertainty / Measured value) × 100.\nIf the absolute uncertainty of the thermometer (e.g., $\\pm$0.2 °C) remains constant, but the measured temperature change (ΔT) becomes larger, then the absolute uncertainty becomes a smaller proportion of the measured value. This results in a lower percentage uncertainty, indicating a more precise measurement relative to the overall change.",
       "tags": [
         "percentage uncertainty",
         "ΔT",
@@ -31837,7 +31837,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "How many moles of water are formed when 50 cm³ of 1.0 mol dm⁻³ HF reacts with 50 cm³ of 1.0 mol dm⁻³ KOH?",
-      "back": "Moles of HF = Volume (dm³) × Concentration (mol dm⁻³)\nMoles of HF = (50/1000) dm³ × 1.0 mol dm⁻³ = 0.050 mol.\nMoles of KOH = (50/1000) dm³ × 1.0 mol dm⁻³ = 0.050 mol.\nFrom the balanced equation HF(aq) + KOH(aq) → KF(aq) + H₂O(l), the stoichiometric ratio is 1:1. Therefore, 0.050 mol of water are formed.",
+      "back": "Moles of HF = Volume (dm³) × Concentration (mol dm⁻³)\nMoles of HF = ($\\frac{50}{1000}$) dm³ × 1.0 mol dm⁻³ = 0.050 mol.\nMoles of KOH = ($\\frac{50}{1000}$) dm³ × 1.0 mol dm⁻³ = 0.050 mol.\nFrom the balanced equation HF(aq) + KOH(aq) → KF(aq) + H₂O(l), the stoichiometric ratio is 1:1. Therefore, 0.050 mol of water are formed.",
       "tags": [
         "moles",
         "stoichiometry",
@@ -32488,7 +32488,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "For the reaction H₂SO₄(aq) + 2KOH(aq) → K₂SO₄(aq) + 2H₂O(l), calculate the moles of reactants and determine the moles of water formed when 50 cm³ of 0.20 mol dm⁻³ H₂SO₄ reacts with 50 cm³ of 0.40 mol dm⁻³ KOH.",
-      "back": "Moles of H₂SO₄ = (50/1000) dm³ × 0.20 mol dm⁻³ = 0.010 mol.\nMoles of KOH = (50/1000) dm³ × 0.40 mol dm⁻³ = 0.020 mol.\nFrom the equation, 1 mole H₂SO₄ reacts with 2 moles KOH.\nThe ratio of moles provided (0.010 mol H₂SO₄ : 0.020 mol KOH) is exactly 1:2. Both reactants are completely consumed.\nMoles of water formed = 2 × moles of H₂SO₄ = 2 × 0.010 mol = 0.020 mol. (Or, moles of water formed = moles of KOH = 0.020 mol).",
+      "back": "Moles of H₂SO₄ = ($\\frac{50}{1000}$) dm³ × 0.20 mol dm⁻³ = 0.010 mol.\nMoles of KOH = ($\\frac{50}{1000}$) dm³ × 0.40 mol dm⁻³ = 0.020 mol.\nFrom the equation, 1 mole H₂SO₄ reacts with 2 moles KOH.\nThe ratio of moles provided (0.010 mol H₂SO₄ : 0.020 mol KOH) is exactly 1:2. Both reactants are completely consumed.\nMoles of water formed = 2 × moles of H₂SO₄ = 2 × 0.010 mol = 0.020 mol. (Or, moles of water formed = moles of KOH = 0.020 mol).",
       "tags": [
         "moles",
         "stoichiometry",
@@ -32946,7 +32946,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Calculate the [H⁺] concentration in a 0.15 mol dm⁻³ solution of butanoic acid (Kₐ = 1.5 × 10⁻⁵ mol dm⁻³).",
-      "back": "Using the expression Kₐ = [H⁺]² / [HA], rearrange to find [H⁺]:\n[H⁺]² = Kₐ × [HA]\n[H⁺] = √(Kₐ × [HA])\n[H⁺] = √(1.5 × 10⁻⁵ mol dm⁻³ × 0.15 mol dm⁻³)\n[H⁺] = √(2.25 × 10⁻⁶)\n[H⁺] = 1.5 × 10⁻³ mol dm⁻³",
+      "back": "Using the expression Kₐ = [H⁺]² / [HA], rearrange to find [H⁺]:\n[H⁺]² = Kₐ × [HA]\n[H⁺] = $\\sqrt{Kₐ × [HA]}$\n[H⁺] = $\\sqrt{1.5 × 10⁻⁵ mol dm⁻³ × 0.15 mol dm⁻³}$\n[H⁺] = $\\sqrt{2.25 × 10⁻⁶}$\n[H⁺] = 1.5 × 10⁻³ mol dm⁻³",
       "tags": [
         "H+ concentration",
         "weak acid",
@@ -33320,7 +33320,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Write down the Arrhenius equation for two temperatures and substitute the given values for k and T to begin calculating activation energy (Ea).",
-      "back": "The Arrhenius equation is: ln(k₂/k₁) = Ea/R (1/T₁ - 1/T₂).\nGiven: k₁ = 8.7 × 10⁻³ s⁻¹ at T₁ = 350 K; k₂ = 3.2 × 10⁻² s⁻¹ at T₂ = 380 K; R = 8.31 J K⁻¹ mol⁻¹.\nSubstitution: ln(3.2 × 10⁻² / 8.7 × 10⁻³) = Ea/8.31 (1/350 - 1/380).",
+      "back": "The Arrhenius equation is: $\\ln(k₂/k₁)$ = Ea/R (1/T₁ - 1/T₂).\nGiven: k₁ = 8.7 × 10⁻³ s⁻¹ at T₁ = 350 K; k₂ = 3.2 × 10⁻² s⁻¹ at T₂ = 380 K; R = 8.31 J K⁻¹ mol⁻¹.\nSubstitution: $\\ln(3.2 × 10⁻² / 8.7 × 10⁻³)$ = Ea/8.31 ($\\frac{1}{350}$ - $\\frac{1}{380}$).",
       "tags": [
         "Arrhenius equation",
         "activation energy",
@@ -33347,8 +33347,8 @@
       "tier": null,
       "type": "original-flashcard",
       "card_type": "key-fact",
-      "front": "Evaluate the natural logarithm term (LHS) and the temperature term (RHS bracket) from the Arrhenius equation: ln(3.2 × 10⁻² / 8.7 × 10⁻³) = Ea/8.31 (1/350 - 1/380).",
-      "back": "ln(3.2 × 10⁻² / 8.7 × 10⁻³) = ln(3.67816...) ≈ 1.302.\n(1/350 - 1/380) = (0.00285714 - 0.00263158) ≈ 0.00022556.\nSo, 1.302 = Ea/8.31 (0.00022556).",
+      "front": "Evaluate the natural logarithm term (LHS) and the temperature term (RHS bracket) from the Arrhenius equation: $\\ln(3.2 × 10⁻² / 8.7 × 10⁻³)$ = Ea/8.31 ($\\frac{1}{350}$ - $\\frac{1}{380}$).",
+      "back": "$\\ln(3.2 × 10⁻² / 8.7 × 10⁻³)$ = $\\ln(3.67816...)$ ≈ 1.302.\n($\\frac{1}{350}$ - $\\frac{1}{380}$) = (0.00285714 - 0.00263158) ≈ 0.00022556.\nSo, 1.302 = Ea/8.31 (0.00022556).",
       "tags": [
         "Arrhenius equation",
         "calculation",
@@ -33618,7 +33618,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "For the reaction N₂(g) + 3H₂(g) ⇌ 2NH₃(g), if 0.500 mol N₂ and 1.50 mol H₂ are initially charged in a 1.00 dm³ container, and 0.200 mol NH₃ forms at equilibrium, calculate the change in moles for N₂ and H₂.",
-      "back": "Initial moles: N₂ = 0.500 mol, H₂ = 1.50 mol, NH₃ = 0 mol.\nAt equilibrium, NH₃ formed = +0.200 mol.\nFrom stoichiometry (1 N₂ : 2 NH₃), N₂ reacted = (1/2) × 0.200 = 0.100 mol.\nFrom stoichiometry (3 H₂ : 2 NH₃), H₂ reacted = (3/2) × 0.200 = 0.300 mol.",
+      "back": "Initial moles: N₂ = 0.500 mol, H₂ = 1.50 mol, NH₃ = 0 mol.\nAt equilibrium, NH₃ formed = +0.200 mol.\nFrom stoichiometry (1 N₂ : 2 NH₃), N₂ reacted = ($\\frac{1}{2}$) × 0.200 = 0.100 mol.\nFrom stoichiometry (3 H₂ : 2 NH₃), H₂ reacted = ($\\frac{3}{2}$) × 0.200 = 0.300 mol.",
       "tags": [
         "Kc",
         "equilibrium",
@@ -34594,7 +34594,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "How do you calculate the initial moles of propanoic acid and propanoate ions in the buffer solution?",
-      "back": "Initial moles of CH₃CH₂COOH = (200/1000) dm³ × 0.300 mol dm⁻³ = 0.0600 mol.\nInitial moles of CH₃CH₂COO⁻ = (200/1000) dm³ × 0.175 mol dm⁻³ = 0.0350 mol.",
+      "back": "Initial moles of CH₃CH₂COOH = ($\\frac{200}{1000}$) dm³ × 0.300 mol dm⁻³ = 0.0600 mol.\nInitial moles of CH₃CH₂COO⁻ = ($\\frac{200}{1000}$) dm³ × 0.175 mol dm⁻³ = 0.0350 mol.",
       "tags": [
         "moles calculation",
         "buffer",
@@ -34674,7 +34674,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Given that Ka for propanoic acid is 1.34 × 10⁻⁵ mol dm⁻³, and the buffer now contains 0.0500 mol CH₃CH₂COOH and 0.0450 mol CH₃CH₂COO⁻, calculate the pH of the solution.",
-      "back": "Using the Ka expression: Ka = [H⁺][CH₃CH₂COO⁻] / [CH₃CH₂COOH].\nRearranging for [H⁺]: [H⁺] = Ka × [CH₃CH₂COOH] / [CH₃CH₂COO⁻].\nSince the total volume is the same for both components, we can use moles directly:\n[H⁺] = (1.34 × 10⁻⁵) × (0.0500 mol / 0.0450 mol) = 1.4888... × 10⁻⁵ mol dm⁻³.\npH = -log[H⁺] = -log(1.4888... × 10⁻⁵) = 4.827... ≈ 4.83 (to 2 dp).",
+      "back": "Using the Ka expression: Ka = [H⁺][CH₃CH₂COO⁻] / [CH₃CH₂COOH].\nRearranging for [H⁺]: [H⁺] = Ka × [CH₃CH₂COOH] / [CH₃CH₂COO⁻].\nSince the total volume is the same for both components, we can use moles directly:\n[H⁺] = (1.34 × 10⁻⁵) × (0.0500 mol / 0.0450 mol) = 1.4888... × 10⁻⁵ mol dm⁻³.\npH = -log[H⁺] = -$\\log(1.4888... × 10⁻⁵)$ = 4.827... ≈ 4.83 (to 2 dp).",
       "tags": [
         "Ka expression",
         "pH calculation",
@@ -34997,7 +34997,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "What are the units of the rate constant, `k`, for the reaction with the rate equation `rate = k[X][Y]²`?",
-      "back": "The overall order of the reaction is 1 (for X) + 2 (for Y) = 3.\nThe general units for k are `mol^(1-n) dm^(3(n-1)) s⁻¹`, where n is the overall order.\nFor n=3, the units are `mol^(1-3) dm^(3(3-1)) s⁻¹ = mol⁻² dm⁶ s⁻¹`.",
+      "back": "The overall order of the reaction is 1 (for X) + 2 (for Y) = 3.\nThe general units for k are `mo$l^{1-n}$ d$m^{3(n-1}$) s⁻¹`, where n is the overall order.\nFor n=3, the units are `mo$l^{1-3}$ d$m^{3(3-1}$) s⁻¹ = mol⁻² dm⁶ s⁻¹`.",
       "tags": [
         "rate constant units",
         "order of reaction",
@@ -36821,7 +36821,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Describe the first step in the nucleophilic addition mechanism of cyanide ion (CN⁻) to butanal, including curly arrows.",
-      "back": "1.  A curly arrow from the lone pair on the carbon of the cyanide ion (CN⁻) to the electrophilic carbonyl carbon of butanal.\n2.  A curly arrow from the C=O pi bond to the oxygen atom.\n\n*Diagram showing CN⁻ attacking C=O, with arrows as described:* \n![Cyanide addition to butanal first step](https://i.imgur.com/example_curly_arrows.png) (Imagine a diagram showing CN- with a lone pair on C attacking the carbonyl carbon, and the pi bond breaking to the oxygen, forming O-)",
+      "back": "1.  A curly arrow from the lone pair on the carbon of the cyanide ion (CN⁻) to the electrophilic carbonyl carbon of butanal.\n2.  A curly arrow from the C=O $\\pi$ bond to the oxygen atom.\n\n*Diagram showing CN⁻ attacking C=O, with arrows as described:* \n![Cyanide addition to butanal first step](https://i.imgur.com/example_curly_arrows.png) (Imagine a diagram showing CN- with a lone pair on C attacking the carbonyl carbon, and the $\\pi$ bond breaking to the oxygen, forming O-)",
       "tags": [
         "nucleophilic addition",
         "mechanism",
@@ -37531,7 +37531,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "How can butan-1-ol, butan-2-ol, and diethyl ether be distinguished using their mass spectra, specifically fragmentation patterns?",
-      "back": "All will have M⁺ at m/z 74, but different fragments:\n<ul><li><b>Butan-1-ol:</b> Prominent fragment at <b>m/z 31</b> (CH₂=OH⁺) from alpha cleavage. Also m/z 56 from loss of H₂O.</li><li><b>Butan-2-ol:</b> Prominent fragment at <b>m/z 45</b> (CH₃CH=OH⁺) from alpha cleavage (loss of ethyl). Also m/z 59 (loss of methyl) and m/z 56 from loss of H₂O.</li><li><b>Diethyl ether:</b> Prominent fragment at <b>m/z 59</b> (CH₃CH₂OCH₂⁺) from alpha cleavage (loss of methyl). Also m/z 45 (CH₃CH₂O⁺) from loss of ethyl.</li></ul>",
+      "back": "All will have M⁺ at m/z 74, but different fragments:\n<ul><li><b>Butan-1-ol:</b> Prominent fragment at <b>m/z 31</b> (CH₂=OH⁺) from $\\alpha$ cleavage. Also m/z 56 from loss of H₂O.</li><li><b>Butan-2-ol:</b> Prominent fragment at <b>m/z 45</b> (CH₃CH=OH⁺) from $\\alpha$ cleavage (loss of ethyl). Also m/z 59 (loss of methyl) and m/z 56 from loss of H₂O.</li><li><b>Diethyl ether:</b> Prominent fragment at <b>m/z 59</b> (CH₃CH₂OCH₂⁺) from $\\alpha$ cleavage (loss of methyl). Also m/z 45 (CH₃CH₂O⁺) from loss of ethyl.</li></ul>",
       "tags": [
         "mass spectrometry",
         "fragmentation",
@@ -37880,7 +37880,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Compound Z (C₅H₁₀O₂) shows these additional ¹H NMR signals: δ = 2.30 ppm (triplet, 2H), δ = 1.60 ppm (sextet, 2H), and δ = 0.90 ppm (triplet, 3H). What alkyl chain fragments do these signals suggest?",
-      "back": "1.  **δ = 2.30 ppm (triplet, 2H):** Characteristic of protons on a carbon alpha to a carbonyl group (-CH₂-C=O). The triplet splitting (n+1 rule) indicates two protons on the adjacent carbon.\n2.  **δ = 1.60 ppm (sextet, 2H):** Typical for protons on a saturated alkyl -CH₂- group. The sextet splitting indicates five protons on adjacent carbons.\n3.  **δ = 0.90 ppm (triplet, 3H):** Typical for a terminal methyl group (CH₃-) on an alkyl chain. The triplet splitting indicates two protons on the adjacent carbon.\nThese three signals combined are consistent with a propyl chain: CH₃-CH₂-CH₂-.",
+      "back": "1.  **δ = 2.30 ppm (triplet, 2H):** Characteristic of protons on a carbon $\\alpha$ to a carbonyl group (-CH₂-C=O). The triplet splitting (n+1 rule) indicates two protons on the adjacent carbon.\n2.  **δ = 1.60 ppm (sextet, 2H):** Typical for protons on a saturated alkyl -CH₂- group. The sextet splitting indicates five protons on adjacent carbons.\n3.  **δ = 0.90 ppm (triplet, 3H):** Typical for a terminal methyl group (CH₃-) on an alkyl chain. The triplet splitting indicates two protons on the adjacent carbon.\nThese three signals combined are consistent with a propyl chain: CH₃-CH₂-CH₂-.",
       "tags": [
         "NMR spectrum",
         "chemical shift",
@@ -37944,7 +37944,7 @@
         "oxidation state",
         "chromium",
         "dichromate",
-        "Cr2O7^2-",
+        "Cr2O$7^{2}$-",
         "ion",
         "calculation"
       ],
@@ -39195,7 +39195,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "For a weak monoprotic acid (HA), what is the general expression for its acid dissociation constant (Ka), and how is the hydrogen ion concentration ([H⁺]) calculated from it, assuming [H⁺] ≈ [A⁻] and [HA]equilibrium ≈ [HA]initial?",
-      "back": "The general expression for Ka is: Ka = [H⁺][A⁻] / [HA].\nAssuming [H⁺] ≈ [A⁻] and [HA]equilibrium ≈ [HA]initial, the expression simplifies to Ka = [H⁺]² / [HA]initial.\nTherefore, the hydrogen ion concentration can be calculated as: [H⁺] = √(Ka × [HA]initial).",
+      "back": "The general expression for Ka is: Ka = [H⁺][A⁻] / [HA].\nAssuming [H⁺] ≈ [A⁻] and [HA]equilibrium ≈ [HA]initial, the expression simplifies to Ka = [H⁺]² / [HA]initial.\nTherefore, the hydrogen ion concentration can be calculated as: [H⁺] = $\\sqrt{Ka × [HA]initial}$.",
       "tags": [
         "weak acid",
         "Ka",
@@ -39224,7 +39224,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Calculate the hydrogen ion concentration ([H⁺]) in a 0.080 mol dm⁻³ solution of methanoic acid (HCOOH), given that its acid dissociation constant (Ka) is 1.8 × 10⁻⁴ mol dm⁻³.",
-      "back": "Using the formula [H⁺] = √(Ka × [HCOOH]initial):\n[H⁺] = √(1.8 × 10⁻⁴ × 0.080)\n[H⁺] = √(1.44 × 10⁻⁵)\n[H⁺] = 0.0037947... mol dm⁻³ (approx. 0.0038 mol dm⁻³)",
+      "back": "Using the formula [H⁺] = $\\sqrt{Ka × [HCOOH]initial}$:\n[H⁺] = $\\sqrt{1.8 × 10⁻⁴ × 0.080}$\n[H⁺] = $\\sqrt{1.44 × 10⁻⁵}$\n[H⁺] = 0.0037947... mol dm⁻³ (approx. 0.0038 mol dm⁻³)",
       "tags": [
         "weak acid",
         "Ka",
@@ -39687,7 +39687,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "How do you determine the units for Kp in a general gaseous equilibrium reaction?",
-      "back": "The units for Kp are determined by (atm)^(Δn), where Δn = (total moles of gaseous products) - (total moles of gaseous reactants). If Δn is not zero, Kp will have units such as atm, atm⁻¹, atm², etc.",
+      "back": "The units for Kp are determined by (atm$)^{Δn}$, where Δn = (total moles of gaseous products) - (total moles of gaseous reactants). If Δn is not zero, Kp will have units such as atm, atm⁻¹, atm², etc.",
       "tags": [
         "Kp",
         "units",
@@ -45996,7 +45996,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Given 0.0180 mol of propanoic acid and 0.0180 mol of propanoate ions in a total volume of 70.0 cm³, and Ka = 1.34 × 10⁻⁵ mol dm⁻³ for propanoic acid, calculate the pH of the buffer solution.",
-      "back": "1. **Total volume** = 30.0 cm³ + 40.0 cm³ = 70.0 cm³ = 0.0700 dm³\n2. **[CH₃CH₂COOH]** = 0.0180 mol / 0.0700 dm³ = 0.2571 mol dm⁻³\n3. **[CH₃CH₂COO⁻]** = 0.0180 mol / 0.0700 dm³ = 0.2571 mol dm⁻³\n4. Since [acid] = [salt], the [H⁺] = Ka = 1.34 × 10⁻⁵ mol dm⁻³\n5. **pH** = -log[H⁺] = -log(1.34 × 10⁻⁵) = **4.87**\n*(Alternatively, using Henderson-Hasselbalch: pH = pKa + log([salt]/[acid]). Since [salt]=[acid], pH = pKa. pKa = -log(1.34 × 10⁻⁵) = 4.87)*",
+      "back": "1. **Total volume** = 30.0 cm³ + 40.0 cm³ = 70.0 cm³ = 0.0700 dm³\n2. **[CH₃CH₂COOH]** = 0.0180 mol / 0.0700 dm³ = 0.2571 mol dm⁻³\n3. **[CH₃CH₂COO⁻]** = 0.0180 mol / 0.0700 dm³ = 0.2571 mol dm⁻³\n4. Since [acid] = [salt], the [H⁺] = Ka = 1.34 × 10⁻⁵ mol dm⁻³\n5. **pH** = -log[H⁺] = -$\\log(1.34 × 10⁻⁵)$ = **4.87**\n*(Alternatively, using Henderson-Hasselbalch: pH = pKa + $\\log([salt]/[acid])$. Since [salt]=[acid], pH = pKa. pKa = -$\\log(1.34 × 10⁻⁵)$ = 4.87)*",
       "tags": [
         "buffer solution",
         "pH calculation",
@@ -46122,7 +46122,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Using Kₐ = 1.3 × 10⁻⁵ mol dm⁻³ and the calculated concentrations, calculate [H⁺] and the pH of the buffer solution.",
-      "back": "Using the rearranged Kₐ expression:\n[H⁺] = Kₐ × ([CH₃CH₂COOH] / [CH₃CH₂COO⁻])\n[H⁺] = (1.3 × 10⁻⁵) × (0.150 / 0.140)\n[H⁺] = (1.3 × 10⁻⁵) × 1.0714...\n[H⁺] = 1.3928 × 10⁻⁵ mol dm⁻³\n\nNow, calculate pH:\npH = -log[H⁺]\npH = -log(1.3928 × 10⁻⁵)\npH = 4.856 ≈ 4.86 (to 2 decimal places)",
+      "back": "Using the rearranged Kₐ expression:\n[H⁺] = Kₐ × ([CH₃CH₂COOH] / [CH₃CH₂COO⁻])\n[H⁺] = (1.3 × 10⁻⁵) × (0.150 / 0.140)\n[H⁺] = (1.3 × 10⁻⁵) × 1.0714...\n[H⁺] = 1.3928 × 10⁻⁵ mol dm⁻³\n\nNow, calculate pH:\npH = -log[H⁺]\npH = -$\\log(1.3928 × 10⁻⁵)$\npH = 4.856 ≈ 4.86 (to 2 decimal places)",
       "tags": [
         "pH calculation",
         "buffer pH",
@@ -46196,7 +46196,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Given methyl red's pKᵢₙ of 5.0, what type of titration is it suitable for, and why?",
-      "back": "Methyl red is suitable for a **strong acid-weak base titration**.\n\n**Justification:** An indicator's colour change range is typically pKᵢₙ ± 1, so for methyl red (pKᵢₙ = 5.0), the colour change occurs approximately between pH 4 and pH 6. The equivalence point of a strong acid-weak base titration occurs in the acidic region (typically pH 4-6), making methyl red's colour change range match the steep part of the titration curve at the equivalence point.",
+      "back": "Methyl red is suitable for a **strong acid-weak base titration**.\n\n**Justification:** An indicator's colour change range is typically pKᵢₙ $\\pm$ 1, so for methyl red (pKᵢₙ = 5.0), the colour change occurs approximately between pH 4 and pH 6. The equivalence point of a strong acid-weak base titration occurs in the acidic region (typically pH 4-6), making methyl red's colour change range match the steep part of the titration curve at the equivalence point.",
       "tags": [
         "methyl red",
         "pKᵢₙ",
@@ -46923,8 +46923,8 @@
       "tier": null,
       "type": "original-flashcard",
       "card_type": "key-fact",
-      "front": "How do you substitute the given values into the Arrhenius equation, ln(k₂/k₁) = -Eₐ/R (1/T₂ - 1/T₁), and begin to simplify it?",
-      "back": "Substitute the identified values into the equation:\nln(8.5 × 10⁻⁶ / 9.7 × 10⁻⁷) = -Eₐ / 8.31 (1/600 - 1/550)\n\nThen, calculate the numerical values for the natural logarithm term and the temperature difference term:\nln(8.7628866) = 2.1706\n(1/600 - 1/550) = (0.001666... - 0.001818...) = -0.0001515...",
+      "front": "How do you substitute the given values into the Arrhenius equation, $\\ln(k₂/k₁)$ = -Eₐ/R (1/T₂ - 1/T₁), and begin to simplify it?",
+      "back": "Substitute the identified values into the equation:\n$\\ln(8.5 × 10⁻⁶ / 9.7 × 10⁻⁷)$ = -Eₐ / 8.31 ($\\frac{1}{600}$ - $\\frac{1}{550}$)\n\nThen, calculate the numerical values for the natural logarithm term and the temperature difference term:\n$\\ln(8.7628866)$ = 2.1706\n($\\frac{1}{600}$ - $\\frac{1}{550}$) = (0.001666... - 0.001818...) = -0.0001515...",
       "tags": [
         "Arrhenius equation",
         "substitution",
@@ -49897,7 +49897,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "State the two-point form of the Arrhenius equation used to calculate activation energy (Eₐ) from two rate constants (k₁, k₂) at two different temperatures (T₁, T₂).",
-      "back": "The two-point form of the Arrhenius equation is: `ln(k₂/k₁) = -Eₐ/R (1/T₂ - 1/T₁)`",
+      "back": "The two-point form of the Arrhenius equation is: `$\\ln(k₂/k₁)$ = -Eₐ/R (1/T₂ - 1/T₁)`",
       "tags": [
         "Arrhenius equation",
         "activation energy",
@@ -49922,8 +49922,8 @@
       "tier": null,
       "type": "original-flashcard",
       "card_type": "key-fact",
-      "front": "Given: T₁ = 300 K, k₁ = 3.46 × 10⁻⁵ s⁻¹; T₂ = 320 K, k₂ = 1.50 × 10⁻⁴ s⁻¹; R = 8.31 J mol⁻¹ K⁻¹. Substitute these values into the Arrhenius equation `ln(k₂/k₁) = -Eₐ/R (1/T₂ - 1/T₁)` and calculate the intermediate values for `ln(k₂/k₁)` and `(1/T₂ - 1/T₁)`.",
-      "back": "1. `ln(k₂/k₁) = ln(1.50 × 10⁻⁴ / 3.46 × 10⁻⁵) = ln(4.335) ≈ 1.4667`\n2. `(1/T₂ - 1/T₁) = (1/320 K - 1/300 K) = (0.003125 - 0.003333) K⁻¹ = -0.000208 K⁻¹`\nSo, the equation becomes: `1.4667 = -Eₐ/8.31 (-0.000208)`",
+      "front": "Given: T₁ = 300 K, k₁ = 3.46 × 10⁻⁵ s⁻¹; T₂ = 320 K, k₂ = 1.50 × 10⁻⁴ s⁻¹; R = 8.31 J mol⁻¹ K⁻¹. Substitute these values into the Arrhenius equation `$\\ln(k₂/k₁)$ = -Eₐ/R (1/T₂ - 1/T₁)` and calculate the intermediate values for `$\\ln(k₂/k₁)$` and `(1/T₂ - 1/T₁)`.",
+      "back": "1. `$\\ln(k₂/k₁)$ = $\\ln(1.50 × 10⁻⁴ / 3.46 × 10⁻⁵)$ = $\\ln(4.335)$ ≈ 1.4667`\n2. `(1/T₂ - 1/T₁) = ($\\frac{1}{320}$ K - $\\frac{1}{300}$ K) = (0.003125 - 0.003333) K⁻¹ = -0.000208 K⁻¹`\nSo, the equation becomes: `1.4667 = -Eₐ/8.31 (-0.000208)`",
       "tags": [
         "Arrhenius calculation",
         "kinetics",
@@ -49976,7 +49976,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Explain why a small increase in temperature has a much greater effect on the rate of reaction than a small increase in reactant concentration, making reference to the Arrhenius equation.",
-      "back": "The Arrhenius equation is `k = A e^(-Ea/RT)`. Temperature (T) is in the exponent. A small increase in T causes the term `-Ea/RT` to become less negative, leading to an *exponentially* larger increase in the value of `e^(-Ea/RT)`. This means a significantly larger *fraction* of molecules now possess energy greater than or equal to the activation energy (Eₐ), leading to a much higher frequency of effective collisions and thus a faster reaction rate. In contrast, increasing reactant concentration only linearly increases the frequency of collisions, without changing the fraction of molecules with sufficient energy.",
+      "back": "The Arrhenius equation is `k = A $e^{-Ea/RT}$`. Temperature (T) is in the exponent. A small increase in T causes the term `-Ea/RT` to become less negative, leading to an *exponentially* larger increase in the value of `$e^{-Ea/RT}$`. This means a significantly larger *fraction* of molecules now possess energy greater than or equal to the activation energy (Eₐ), leading to a much higher frequency of effective collisions and thus a faster reaction rate. In contrast, increasing reactant concentration only linearly increases the frequency of collisions, without changing the fraction of molecules with sufficient energy.",
       "tags": [
         "temperature effect",
         "reaction rate",
@@ -52283,7 +52283,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "What are the key steps involved in performing an acid-base titration accurately in the lab?",
-      "back": "1.  **Rinse equipment correctly:** Burette with acid, pipette with alkali, conical flask with distilled water.\n2.  **Fill burette:** Fill with the acid/alkali, ensuring no air bubbles and reading from the bottom of the meniscus.\n3.  **Pipette accurately:** Use a volumetric pipette to transfer a precise volume of the other solution into a conical flask.\n4.  **Add indicator:** Choose an appropriate indicator (e.g., phenolphthalein for strong acid/strong base).\n5.  **Titrate:** Add solution from burette dropwise with swirling until the endpoint is reached (indicator changes colour).\n6.  **Record titre:** Read the burette volume accurately.\n7.  **Repeat:** Perform multiple titrations until concordant results (within ±0.1 cm³) are obtained and calculate an average titre.",
+      "back": "1.  **Rinse equipment correctly:** Burette with acid, pipette with alkali, conical flask with distilled water.\n2.  **Fill burette:** Fill with the acid/alkali, ensuring no air bubbles and reading from the bottom of the meniscus.\n3.  **Pipette accurately:** Use a volumetric pipette to transfer a precise volume of the other solution into a conical flask.\n4.  **Add indicator:** Choose an appropriate indicator (e.g., phenolphthalein for strong acid/strong base).\n5.  **Titrate:** Add solution from burette dropwise with swirling until the endpoint is reached (indicator changes colour).\n6.  **Record titre:** Read the burette volume accurately.\n7.  **Repeat:** Perform multiple titrations until concordant results (within $\\pm$0.1 cm³) are obtained and calculate an average titre.",
       "tags": [
         "titration",
         "practical",
@@ -53126,7 +53126,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "What is the pH of a strong acid solution with a hydrogen ion concentration, [H⁺], of 1.0 × 10⁻³ mol dm⁻³?",
-      "back": "pH = -log[H⁺] = -log(1.0 × 10⁻³) = 3.",
+      "back": "pH = -log[H⁺] = -$\\log(1.0 × 10⁻³)$ = 3.",
       "tags": [
         "pH",
         "strong acid",
@@ -54804,13 +54804,13 @@
       "tier": null,
       "type": "original-flashcard",
       "card_type": "key-fact",
-      "front": "What is the definition of standard enthalpy of combustion (ΔH<binary data, 1 bytes><binary data, 1 bytes><binary data, 1 bytes>c)?",
+      "front": "What is the definition of standard enthalpy of combustion (ΔH⦵c)?",
       "back": "The enthalpy change when one mole of a substance undergoes complete combustion in excess oxygen.",
       "tags": [
         "enthalpy",
         "combustion",
         "definition",
-        "ΔH<binary data, 1 bytes><binary data, 1 bytes><binary data, 1 bytes>c",
+        "ΔH⦵c",
         "standard conditions"
       ],
       "source_question_index": 1
@@ -54832,14 +54832,14 @@
       "tier": null,
       "type": "original-flashcard",
       "card_type": "key-fact",
-      "front": "What are the standard conditions associated with standard enthalpy of combustion (ΔH<binary data, 1 bytes><binary data, 1 bytes><binary data, 1 bytes>c)?",
+      "front": "What are the standard conditions associated with standard enthalpy of combustion (ΔH⦵c)?",
       "back": "Standard conditions are 100 kPa pressure, 298 K (25°C) temperature, and all reactants and products must be in their standard states.",
       "tags": [
         "enthalpy",
         "combustion",
         "standard conditions",
         "definition",
-        "ΔH<binary data, 1 bytes><binary data, 1 bytes><binary data, 1 bytes>c"
+        "ΔH⦵c"
       ],
       "source_question_index": 1
     },
@@ -56439,7 +56439,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "In a titration, 25.0 cm³ of V²⁺(aq) solution is titrated with 18.50 cm³ of 0.0200 mol dm⁻³ KMnO₄(aq).\nGiven the half-equations:\nOxidation: V²⁺(aq) + 2H₂O(l) → VO₂⁺(aq) + 4H⁺(aq) + 3e⁻\nReduction: MnO₄⁻(aq) + 8H⁺(aq) + 5e⁻ → Mn²⁺(aq) + 4H₂O(l)\nCalculate the concentration of the V²⁺(aq) solution.",
-      "back": "1.  **Moles of MnO₄⁻:** Moles = 0.0200 mol dm⁻³ × (18.50 / 1000) dm³ = 3.70 × 10⁻⁴ mol\n2.  **Overall equation (to find mole ratio):** To balance electrons (LCM of 3 and 5 is 15):\n    (V²⁺ + 2H₂O → VO₂⁺ + 4H⁺ + 3e⁻) × 5\n    (MnO₄⁻ + 8H⁺ + 5e⁻ → Mn²⁺ + 4H₂O) × 3\n    Resulting mole ratio V²⁺ : MnO₄⁻ = 5 : 3\n3.  **Moles of V²⁺:** Moles = (3.70 × 10⁻⁴ mol MnO₄⁻) × (5/3) = 6.166... × 10⁻⁴ mol V²⁺\n4.  **Concentration of V²⁺:** Concentration = (6.166... × 10⁻⁴ mol) / (25.0 / 1000) dm³ = 0.02466... mol dm⁻³\n5.  **Final answer:** 0.0247 mol dm⁻³ (to 3 significant figures)",
+      "back": "1.  **Moles of MnO₄⁻:** Moles = 0.0200 mol dm⁻³ × (18.50 / 1000) dm³ = 3.70 × 10⁻⁴ mol\n2.  **Overall equation (to find mole ratio):** To balance electrons (LCM of 3 and 5 is 15):\n    (V²⁺ + 2H₂O → VO₂⁺ + 4H⁺ + 3e⁻) × 5\n    (MnO₄⁻ + 8H⁺ + 5e⁻ → Mn²⁺ + 4H₂O) × 3\n    Resulting mole ratio V²⁺ : MnO₄⁻ = 5 : 3\n3.  **Moles of V²⁺:** Moles = (3.70 × 10⁻⁴ mol MnO₄⁻) × ($\\frac{5}{3}$) = 6.166... × 10⁻⁴ mol V²⁺\n4.  **Concentration of V²⁺:** Concentration = (6.166... × 10⁻⁴ mol) / (25.0 / 1000) dm³ = 0.02466... mol dm⁻³\n5.  **Final answer:** 0.0247 mol dm⁻³ (to 3 significant figures)",
       "tags": [
         "Titration",
         "Vanadium",
@@ -56665,7 +56665,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Identify the fragment ion responsible for the m/z = 74 peak in the mass spectrum of methyl propanoate (CH₃CH₂COOCH₃).",
-      "back": "The fragment ion responsible for m/z = 74 is CH₃CH₂COO⁺. This results from the loss of the OCH₃ group (molecular mass 31) from the molecular ion (102 - 31 = 71, not 74). More likely, it's the loss of a methyl group (CH₃) from the ester oxygen, or rearrangement. However, the most common fragmentation of esters is alpha cleavage. Loss of CH₃ from the O-CH₃ side gives CH₃CH₂COO⁺ (74).",
+      "back": "The fragment ion responsible for m/z = 74 is CH₃CH₂COO⁺. This results from the loss of the OCH₃ group (molecular mass 31) from the molecular ion (102 - 31 = 71, not 74). More likely, it's the loss of a methyl group (CH₃) from the ester oxygen, or rearrangement. However, the most common fragmentation of esters is $\\alpha$ cleavage. Loss of CH₃ from the O-CH₃ side gives CH₃CH₂COO⁺ (74).",
       "tags": [
         "mass spectrometry",
         "fragmentation",
@@ -57806,7 +57806,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Using 3.675 × 10⁻⁴ mol of MnO₄⁻ and the balanced ionic equation:\n2MnO₄⁻(aq) + 5C₂O₄²⁻(aq) + 16H⁺(aq) → 2Mn²⁺(aq) + 10CO₂(g) + 8H₂O(l)\nCalculate the number of moles of ethanedioate ions (C₂O₄²⁻) that reacted.",
-      "back": "From the balanced equation, the mole ratio of MnO₄⁻ : C₂O₄²⁻ is 2:5.\nMoles of C₂O₄²⁻ = Moles of MnO₄⁻ × (5/2)\nMoles of C₂O₄²⁻ = 3.675 × 10⁻⁴ mol × (5/2)\nMoles of C₂O₄²⁻ = 9.1875 × 10⁻⁴ mol",
+      "back": "From the balanced equation, the mole ratio of MnO₄⁻ : C₂O₄²⁻ is 2:5.\nMoles of C₂O₄²⁻ = Moles of MnO₄⁻ × ($\\frac{5}{2}$)\nMoles of C₂O₄²⁻ = 3.675 × 10⁻⁴ mol × ($\\frac{5}{2}$)\nMoles of C₂O₄²⁻ = 9.1875 × 10⁻⁴ mol",
       "tags": [
         "mole ratio",
         "stoichiometry",
@@ -59654,7 +59654,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Calculate the equilibrium constant, K_c, for the reaction CH₃COOH(l) + C₂H₅OH(l) ⇌ CH₃COOC₂H₅(l) + H₂O(l) at 100°C, given the equilibrium concentrations: [CH₃COOH]=7.50 mol dm⁻³, [C₂H₅OH]=12.5 mol dm⁻³, [CH₃COOC₂H₅]=2.50 mol dm⁻³, [H₂O]=2.50 mol dm⁻³.",
-      "back": "K_c = [CH₃COOC₂H₅][H₂O] / [CH₃COOH][C₂H₅OH]\nK_c = (2.50 × 2.50) / (7.50 × 12.5)\nK_c = 6.25 / 93.75\nK_c = 0.0667 (or 2/30 or 1/15)",
+      "back": "K_c = [CH₃COOC₂H₅][H₂O] / [CH₃COOH][C₂H₅OH]\nK_c = (2.50 × 2.50) / (7.50 × 12.5)\nK_c = 6.25 / 93.75\nK_c = 0.0667 (or $\\frac{2}{30}$ or $\\frac{1}{15}$)",
       "tags": [
         "Kc calculation",
         "equilibrium constant",
@@ -60461,7 +60461,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Outline the electrophilic attack, intermediate formation, and proton loss steps in the nitration of benzoic acid, showing curly arrows and charges.",
-      "back": "1. Electrophilic attack: A curly arrow from the π-system of the benzene ring (specifically a C-C bond adjacent to the COOH group, targeting the meta position) attacks the N atom of the NO2+ electrophile.\n2. Intermediate: A carbocation (sigma complex) is formed, with the positive charge delocalised over the ring, and the H and NO2 group attached at the point of attack. The COOH group is a meta-director.\n3. Proton loss: A curly arrow from the C-H bond at the point of attack releases H+, reforming the stable aromatic π-system. The H+ then reacts with HSO4- to regenerate the H2SO4 catalyst.",
+      "back": "1. Electrophilic attack: A curly arrow from the π-system of the benzene ring (specifically a C-C bond adjacent to the COOH group, targeting the meta position) attacks the N atom of the NO2+ electrophile.\n2. Intermediate: A carbocation ($\\sigma$ complex) is formed, with the positive charge delocalised over the ring, and the H and NO2 group attached at the point of attack. The COOH group is a meta-director.\n3. Proton loss: A curly arrow from the C-H bond at the point of attack releases H+, reforming the stable aromatic π-system. The H+ then reacts with HSO4- to regenerate the H2SO4 catalyst.",
       "tags": [
         "mechanism",
         "electrophilic substitution",
@@ -60470,7 +60470,7 @@
         "aromatic",
         "nitration",
         "intermediate",
-        "sigma complex"
+        "$\\sigma$ complex"
       ],
       "source_question_index": 1
     },
@@ -61788,7 +61788,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "How many distinct carbon environments are present in butanoic acid?",
-      "back": "Butanoic acid, CH3CH2CH2COOH, has 4 distinct carbon environments:\n1. CH3-\n2. -CH2- (alpha to CH3)\n3. -CH2- (alpha to COOH)\n4. -COOH\nTherefore, it shows 4 peaks in its carbon-13 NMR spectrum.",
+      "back": "Butanoic acid, CH3CH2CH2COOH, has 4 distinct carbon environments:\n1. CH3-\n2. -CH2- ($\\alpha$ to CH3)\n3. -CH2- ($\\alpha$ to COOH)\n4. -COOH\nTherefore, it shows 4 peaks in its carbon-13 NMR spectrum.",
       "tags": [
         "carbon-13 NMR",
         "carbon environments",
@@ -62123,7 +62123,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Calculate the pH of a 0.0075 mol dm⁻³ solution of barium hydroxide, Ba(OH)₂.",
-      "back": "1.  Calculate [OH⁻]: [OH⁻] = 2 × 0.0075 = 0.015 mol dm⁻³ (since Ba(OH)₂ is a diprotic base).\n2.  Calculate pOH: pOH = -log(0.015) = 1.82 (to 2 d.p.).\n3.  Calculate pH: pH = 14 - pOH = 14 - 1.82 = 12.18 (to 2 d.p.).",
+      "back": "1.  Calculate [OH⁻]: [OH⁻] = 2 × 0.0075 = 0.015 mol dm⁻³ (since Ba(OH)₂ is a diprotic base).\n2.  Calculate pOH: pOH = -$\\log(0.015)$ = 1.82 (to 2 d.p.).\n3.  Calculate pH: pH = 14 - pOH = 14 - 1.82 = 12.18 (to 2 d.p.).",
       "tags": [
         "pH calculation",
         "strong base",
@@ -62391,7 +62391,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Calculate the pH of a buffer solution formed by mixing 50 cm³ of 0.200 mol dm⁻³ HCOOH (Kₐ = 1.8 × 10⁻⁴) and 50 cm³ of 0.100 mol dm⁻³ HCOONa.",
-      "back": "1.  Moles HCOOH = 0.200 × (50/1000) = 0.0100 mol.\n2.  Moles HCOO⁻ = 0.100 × (50/1000) = 0.0050 mol.\n3.  Total volume = 50 + 50 = 100 cm³ = 0.100 dm³.\n4.  [HCOOH] = 0.0100 mol / 0.100 dm³ = 0.100 mol dm⁻³.\n5.  [HCOO⁻] = 0.0050 mol / 0.100 dm³ = 0.050 mol dm⁻³.\n6.  Using [H⁺] = Kₐ × [HCOOH]/[HCOO⁻]:\n    [H⁺] = (1.8 × 10⁻⁴) × (0.100 / 0.050) = (1.8 × 10⁻⁴) × 2 = 3.6 × 10⁻⁴ mol dm⁻³.\n7.  pH = -log(3.6 × 10⁻⁴) = 3.44 (to 2 d.p.).",
+      "back": "1.  Moles HCOOH = 0.200 × ($\\frac{50}{1000}$) = 0.0100 mol.\n2.  Moles HCOO⁻ = 0.100 × ($\\frac{50}{1000}$) = 0.0050 mol.\n3.  Total volume = 50 + 50 = 100 cm³ = 0.100 dm³.\n4.  [HCOOH] = 0.0100 mol / 0.100 dm³ = 0.100 mol dm⁻³.\n5.  [HCOO⁻] = 0.0050 mol / 0.100 dm³ = 0.050 mol dm⁻³.\n6.  Using [H⁺] = Kₐ × [HCOOH]/[HCOO⁻]:\n    [H⁺] = (1.8 × 10⁻⁴) × (0.100 / 0.050) = (1.8 × 10⁻⁴) × 2 = 3.6 × 10⁻⁴ mol dm⁻³.\n7.  pH = -$\\log(3.6 × 10⁻⁴)$ = 3.44 (to 2 d.p.).",
       "tags": [
         "pH calculation",
         "buffer",
@@ -62601,7 +62601,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Calculate the pH of the diluted HNO₃ solution from the previous question, given its concentration is 5.0 × 10⁻⁴ mol dm⁻³.",
-      "back": "Since HNO₃ is a strong acid, it fully dissociates, so [H⁺] = 5.0 × 10⁻⁴ mol dm⁻³.\npH = -log[H⁺] = -log(5.0 × 10⁻⁴) = 3.30 (to 2 decimal places).",
+      "back": "Since HNO₃ is a strong acid, it fully dissociates, so [H⁺] = 5.0 × 10⁻⁴ mol dm⁻³.\npH = -log[H⁺] = -$\\log(5.0 × 10⁻⁴)$ = 3.30 (to 2 decimal places).",
       "tags": [
         "pH",
         "strong acid",
@@ -63420,7 +63420,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Using the Nernst equation (E = Eº - (RT/nF)lnQ), explain why E = Eº under standard conditions.",
-      "back": "Under standard conditions, the concentration (or partial pressure) of all species involved in the half-reaction is 1.0 mol dm⁻³ (or 1 atm). This means the reaction quotient Q = 1. Since ln(1) = 0, the term -(RT/nF)lnQ becomes 0, and thus E = Eº.",
+      "back": "Under standard conditions, the concentration (or partial pressure) of all species involved in the half-reaction is 1.0 mol dm⁻³ (or 1 atm). This means the reaction quotient Q = 1. Since $\\ln(1)$ = 0, the term -(RT/nF)lnQ becomes 0, and thus E = Eº.",
       "tags": [
         "Nernst equation",
         "Eº",
@@ -63445,7 +63445,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Calculate the electrode potential (E) for the Cr³⁺/Cr half-cell when the concentration of Cr³⁺(aq) is 0.010 mol dm⁻³, given Eº = -0.74 V and using the simplified Nernst equation E = Eº + (0.059/n)log[Cr³⁺].",
-      "back": "The half-reaction is Cr³⁺(aq) + 3e⁻ ⇌ Cr(s), so n = 3.\nE = Eº + (0.059/n)log[Cr³⁺]\nE = -0.74 + (0.059/3)log(0.010)\nE = -0.74 + (0.01967) * (-2)",
+      "back": "The half-reaction is Cr³⁺(aq) + 3e⁻ ⇌ Cr(s), so n = 3.\nE = Eº + (0.059/n)log[Cr³⁺]\nE = -0.74 + (0.059/3)$\\log(0.010)$\nE = -0.74 + (0.01967) * (-2)",
       "tags": [
         "Nernst equation",
         "calculation",
@@ -65667,12 +65667,12 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Identify the fragment responsible for the m/z 57 peak in the mass spectrum of pentan-2-one (CH₃COCH₂CH₂CH₃).",
-      "back": "The m/z 57 peak corresponds to the propyl cation, CH₃CH₂CH₂⁺ (or C₃H₇⁺). This fragment is formed by alpha-cleavage, specifically the loss of the CH₃CO⁺ group (m/z 43) from the molecular ion.",
+      "back": "The m/z 57 peak corresponds to the propyl cation, CH₃CH₂CH₂⁺ (or C₃H₇⁺). This fragment is formed by $\\alpha$-cleavage, specifically the loss of the CH₃CO⁺ group (m/z 43) from the molecular ion.",
       "tags": [
         "fragmentation",
         "mass spectrum",
         "propyl cation",
-        "alpha cleavage",
+        "$\\alpha$ cleavage",
         "pentan-2-one"
       ],
       "source_question_index": 2
@@ -65953,13 +65953,13 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "If a C₅H₁₀O ketone was pentan-3-one (CH₃CH₂COCH₂CH₃) instead of pentan-2-one, what would be the expected base peak in its mass spectrum and why?",
-      "back": "For pentan-3-one (CH₃CH₂COCH₂CH₃), the base peak in its mass spectrum would be at m/z 57. This corresponds to the propionyl cation, CH₃CH₂CO⁺, formed by alpha cleavage (cleavage adjacent to the carbonyl group).",
+      "back": "For pentan-3-one (CH₃CH₂COCH₂CH₃), the base peak in its mass spectrum would be at m/z 57. This corresponds to the propionyl cation, CH₃CH₂CO⁺, formed by $\\alpha$ cleavage (cleavage adjacent to the carbonyl group).",
       "tags": [
         "fragmentation",
         "mass spectrum",
         "base peak",
         "pentan-3-one",
-        "alpha cleavage",
+        "$\\alpha$ cleavage",
         "ketone"
       ],
       "source_question_index": 6
@@ -67808,11 +67808,11 @@
       "tier": null,
       "type": "original-flashcard",
       "card_type": "key-fact",
-      "front": "Describe the nature of the pi (π) bonds present in an ethyne molecule.",
-      "back": "In ethyne (C₂H₂), each carbon atom forms an sp hybrid orbital with the other carbon and with one hydrogen atom. The two unhybridised p orbitals on each carbon overlap sideways to form two perpendicular π bonds between the carbon atoms, resulting in a triple bond (one sigma, two pi).",
+      "front": "Describe the nature of the $\\pi$ (π) bonds present in an ethyne molecule.",
+      "back": "In ethyne (C₂H₂), each carbon atom forms an sp hybrid orbital with the other carbon and with one hydrogen atom. The two unhybridised p orbitals on each carbon overlap sideways to form two perpendicular π bonds between the carbon atoms, resulting in a triple bond (one $\\sigma$, two $\\pi$).",
       "tags": [
         "ethyne",
-        "pi bonds",
+        "$\\pi$ bonds",
         "triple bond",
         "sp hybridisation"
       ],
@@ -67833,11 +67833,11 @@
       "tier": null,
       "type": "original-flashcard",
       "card_type": "key-fact",
-      "front": "Describe the nature of the pi (π) system in a benzene molecule.",
+      "front": "Describe the nature of the $\\pi$ (π) system in a benzene molecule.",
       "back": "In benzene (C₆H₆), each carbon atom is sp² hybridised. The unhybridised p orbitals on all six carbon atoms overlap sideways above and below the plane of the ring to form a continuous, delocalised π electron system (or cloud). This delocalisation contributes to benzene's stability.",
       "tags": [
         "benzene",
-        "delocalised pi system",
+        "delocalised $\\pi$ system",
         "aromaticity",
         "sp2 hybridisation"
       ],
@@ -69885,7 +69885,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Based on the air requirements, how does the flammability of methane compare to propane, considering the ratio of air needed for combustion?",
-      "back": "The ratio of air needed for propane to methane is 25/10 = 2.5. This means that for complete combustion, propane requires 2.5 times more air per mole than methane. Therefore, methane is more readily combustible in a given volume of air, as it requires less oxygen per molecule.",
+      "back": "The ratio of air needed for propane to methane is $\\frac{25}{10}$ = 2.5. This means that for complete combustion, propane requires 2.5 times more air per mole than methane. Therefore, methane is more readily combustible in a given volume of air, as it requires less oxygen per molecule.",
       "tags": [
         "flammability",
         "combustion comparison",
@@ -70376,7 +70376,7 @@
       "tier": null,
       "type": "original-flashcard",
       "card_type": "key-fact",
-      "front": "Calculate the percentage uncertainty in the temperature change if the initial temperature is 21.0 °C and the final temperature is 28.5 °C, with an uncertainty of ±0.5 °C for each reading.",
+      "front": "Calculate the percentage uncertainty in the temperature change if the initial temperature is 21.0 °C and the final temperature is 28.5 °C, with an uncertainty of $\\pm$0.5 °C for each reading.",
       "back": "1. Temperature change = 28.5 - 21.0 = 7.5 °C.\n2. Absolute uncertainty in temperature change = 0.5 °C + 0.5 °C = 1.0 °C.\n3. Percentage uncertainty = (Absolute uncertainty / Measured value) × 100%.\n4. Percentage uncertainty in temperature change = (1.0 °C / 7.5 °C) × 100% = 13.3%.",
       "tags": [
         "uncertainty",
@@ -70401,7 +70401,7 @@
       "tier": null,
       "type": "original-flashcard",
       "card_type": "key-fact",
-      "front": "In an experiment, the percentage uncertainty in temperature change is 13.3%, in mass is 0.4% (for 2.50 g ± 0.01 g), and in volume is 0.5% (for 100 cm³ ± 0.5 cm³). Which measurement contributes most to the overall percentage uncertainty?",
+      "front": "In an experiment, the percentage uncertainty in temperature change is 13.3%, in mass is 0.4% (for 2.50 g $\\pm$ 0.01 g), and in volume is 0.5% (for 100 cm³ $\\pm$ 0.5 cm³). Which measurement contributes most to the overall percentage uncertainty?",
       "back": "1. Percentage uncertainty in mass = (0.01 g / 2.50 g) × 100% = 0.4%.\n2. Percentage uncertainty in volume = (0.5 cm³ / 100 cm³) × 100% = 0.5%.\n3. Comparing 13.3% (temperature change), 0.4% (mass), and 0.5% (volume), the **temperature change measurement** contributes most to the percentage uncertainty.",
       "tags": [
         "uncertainty",
@@ -70761,7 +70761,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Calculate the mass of vitamin C in micrograms (µg) in an original 50 cm³ sample, given that 10.0 cm³ of the sample contains 8.20 × 10⁻⁶ mol of vitamin C, and its molar mass (C₆H₈O₆) is 176.0 g mol⁻¹.",
-      "back": "1.  **Mass of vitamin C in 10.0 cm³ portion:**\n    Mass = Moles × Molar mass\n    Mass = 8.20 × 10⁻⁶ mol × 176.0 g mol⁻¹ = 1.4432 × 10⁻³ g.\n2.  **Mass of vitamin C in the original 50 cm³ sample:**\n    The 10.0 cm³ portion was taken from a 50 cm³ sample, so the dilution factor is 50/10 = 5.\n    Mass in 50 cm³ sample = 1.4432 × 10⁻³ g × 5 = 7.216 × 10⁻³ g.\n3.  **Convert mass to micrograms (µg):**\n    1 g = 10⁶ µg\n    Mass in µg = 7.216 × 10⁻³ g × 10⁶ µg/g = 7216 µg.\n4.  **Significant figures:** To two significant figures, the mass is 7200 µg.",
+      "back": "1.  **Mass of vitamin C in 10.0 cm³ portion:**\n    Mass = Moles × Molar mass\n    Mass = 8.20 × 10⁻⁶ mol × 176.0 g mol⁻¹ = 1.4432 × 10⁻³ g.\n2.  **Mass of vitamin C in the original 50 cm³ sample:**\n    The 10.0 cm³ portion was taken from a 50 cm³ sample, so the dilution factor is $\\frac{50}{10}$ = 5.\n    Mass in 50 cm³ sample = 1.4432 × 10⁻³ g × 5 = 7.216 × 10⁻³ g.\n3.  **Convert mass to micrograms (µg):**\n    1 g = 10⁶ µg\n    Mass in µg = 7.216 × 10⁻³ g × 10⁶ µg/g = 7216 µg.\n4.  **Significant figures:** To two significant figures, the mass is 7200 µg.",
       "tags": [
         "mass",
         "vitamin C",
@@ -70838,7 +70838,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Why is it generally desirable to have a larger titre volume (e.g., above 10 cm³) in a titration?",
-      "back": "A larger titre volume (typically 20-25 cm³ or more) is desirable because it minimises the percentage error associated with the reading of the burette. The absolute uncertainty of a burette reading (e.g., ±0.05 cm³ or ±0.10 cm³ for two readings) becomes a smaller proportion of a larger measured volume, leading to more precise and reliable results.",
+      "back": "A larger titre volume (typically 20-25 cm³ or more) is desirable because it minimises the percentage error associated with the reading of the burette. The absolute uncertainty of a burette reading (e.g., $\\pm$0.05 cm³ or $\\pm$0.10 cm³ for two readings) becomes a smaller proportion of a larger measured volume, leading to more precise and reliable results.",
       "tags": [
         "titre volume",
         "percentage error",
@@ -71406,18 +71406,18 @@
         "Edexcel": "Topic 15: Transition Metals",
         "OCR-B": "Storyline 1: Elements of Life"
       },
-      "subtopic": "Azo Coupling, Sigma Complex",
+      "subtopic": "Azo Coupling, $\\sigma$ Complex",
       "difficulty": "hard",
       "tier": null,
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Following the initial attack in azo coupling, how is the new C-N bond formed and what intermediate is produced?",
-      "back": "An electron pair from the benzene ring (specifically from the carbon at the attacking position) forms a new bond with the electrophilic nitrogen of the diazonium ion. This leads to the formation of a sigma complex (or arenium ion), temporarily disrupting the aromaticity of the ring.",
+      "back": "An electron pair from the benzene ring (specifically from the carbon at the attacking position) forms a new bond with the electrophilic nitrogen of the diazonium ion. This leads to the formation of a $\\sigma$ complex (or arenium ion), temporarily disrupting the aromaticity of the ring.",
       "tags": [
         "azo coupling",
         "mechanism",
         "curly arrows",
-        "sigma complex",
+        "$\\sigma$ complex",
         "arenium ion"
       ],
       "source_question_index": 8
@@ -74448,7 +74448,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "How do you identify concordant titres in a titration experiment?",
-      "back": "Concordant titres are those that are within a specified range of each other, typically ±0.10 cm³ (or 0.05 cm³ for very precise work).",
+      "back": "Concordant titres are those that are within a specified range of each other, typically $\\pm$0.10 cm³ (or 0.05 cm³ for very precise work).",
       "tags": [
         "Titration",
         "Concordant",
@@ -74946,7 +74946,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "How do you calculate the hydrogen ion concentration, [H⁺], for a weak monoprotic acid given its Kₐ and initial concentration [HA]?",
-      "back": "For a weak monoprotic acid, assuming negligible dissociation and that [H⁺] = [A⁻], the expression is Kₐ = [H⁺]²/[HA]. Therefore, [H⁺] = √(Kₐ × [HA]).",
+      "back": "For a weak monoprotic acid, assuming negligible dissociation and that [H⁺] = [A⁻], the expression is Kₐ = [H⁺]²/[HA]. Therefore, [H⁺] = $\\sqrt{Kₐ × [HA]}$.",
       "tags": [
         "weak acid",
         "K_a",
@@ -74971,7 +74971,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Calculate the hydrogen ion concentration, [H⁺], for a 0.050 mol dm⁻³ propanoic acid solution with a Kₐ of 1.3 × 10⁻⁵ mol dm⁻³.",
-      "back": "Using [H⁺] = √(Kₐ × [HA]):\n[H⁺] = √(1.3 × 10⁻⁵ mol dm⁻³ × 0.050 mol dm⁻³)\n[H⁺] = √(6.5 × 10⁻⁷ mol² dm⁻⁶)\n[H⁺] = 8.06 × 10⁻⁴ mol dm⁻³ (to 3 significant figures).",
+      "back": "Using [H⁺] = $\\sqrt{Kₐ × [HA]}$:\n[H⁺] = $\\sqrt{1.3 × 10⁻⁵ mol dm⁻³ × 0.050 mol dm⁻³}$\n[H⁺] = $\\sqrt{6.5 × 10⁻⁷ mol² dm⁻⁶}$\n[H⁺] = 8.06 × 10⁻⁴ mol dm⁻³ (to 3 significant figures).",
       "tags": [
         "weak acid",
         "[H+]",
@@ -75122,7 +75122,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Following on, how much solid sodium ethanoate (Mr = 82.0 g mol⁻¹) is needed to prepare 250 cm³ of this buffer solution, if the required [CH₃COO⁻] is 0.05506 mol dm⁻³?",
-      "back": "1. Calculate moles of CH₃COO⁻ needed in 250 cm³:\n   Moles = Concentration × Volume (in dm³)\n   Moles = 0.05506 mol dm⁻³ × (250/1000) dm³ = 0.013765 mol.\n2. Calculate mass of CH₃COONa:\n   Mass = Moles × Mr\n   Mass = 0.013765 mol × 82.0 g mol⁻¹ = 1.12873 g.\n3. Give answer to 3 significant figures: **1.13 g**.",
+      "back": "1. Calculate moles of CH₃COO⁻ needed in 250 cm³:\n   Moles = Concentration × Volume (in dm³)\n   Moles = 0.05506 mol dm⁻³ × ($\\frac{250}{1000}$) dm³ = 0.013765 mol.\n2. Calculate mass of CH₃COONa:\n   Mass = Moles × Mr\n   Mass = 0.013765 mol × 82.0 g mol⁻¹ = 1.12873 g.\n3. Give answer to 3 significant figures: **1.13 g**.",
       "tags": [
         "buffer preparation",
         "mass calculation",
@@ -77480,7 +77480,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Combine the half-equations to write a balanced ionic equation for the reaction of chlorine gas with hot aqueous sodium hydroxide to form chlorate(V) ions, chloride ions, and water.",
-      "back": "1.  Oxidation: Cl₂ + 12OH⁻ → 2ClO₃⁻ + 6H₂O + 10e⁻\n2.  Reduction: Cl₂ + 2e⁻ → 2Cl⁻\nTo balance electrons, multiply the reduction half-equation by 5:\n5(Cl₂ + 2e⁻ → 2Cl⁻)  =>  5Cl₂ + 10e⁻ → 10Cl⁻\nAdd the two balanced half-equations:\n(Cl₂ + 12OH⁻ → 2ClO₃⁻ + 6H₂O + 10e⁻)\n+ (5Cl₂ + 10e⁻ → 10Cl⁻)\n-------------------------------------------\n6Cl₂ + 12OH⁻ → 2ClO₃⁻ + 10Cl⁻ + 6H₂O\nSimplify by dividing all coefficients by 2:\n**3Cl₂ + 6OH⁻ → ClO₃⁻ + 5Cl⁻ + 3H₂O**",
+      "back": "1.  Oxidation: Cl₂ + 12OH⁻ → 2ClO₃⁻ + 6H₂O + 10e⁻\n2.  Reduction: Cl₂ + 2e⁻ → 2Cl⁻\nTo balance electrons, multiply the reduction half-equation by 5:\n5(Cl₂ + 2e⁻ → 2Cl⁻)  $\\Rightarrow$  5Cl₂ + 10e⁻ → 10Cl⁻\nAdd the two balanced half-equations:\n(Cl₂ + 12OH⁻ → 2ClO₃⁻ + 6H₂O + 10e⁻)\n+ (5Cl₂ + 10e⁻ → 10Cl⁻)\n-------------------------------------------\n6Cl₂ + 12OH⁻ → 2ClO₃⁻ + 10Cl⁻ + 6H₂O\nSimplify by dividing all coefficients by 2:\n**3Cl₂ + 6OH⁻ → ClO₃⁻ + 5Cl⁻ + 3H₂O**",
       "tags": [
         "ionic equation",
         "chlorine",
@@ -78269,7 +78269,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Calculate the moles of hydrogen bromide (HBr) used in the reaction.",
-      "back": "Moles of HBr = Concentration × Volume = 0.040 mol dm⁻³ × (250/1000) dm³ = 0.010 mol.",
+      "back": "Moles of HBr = Concentration × Volume = 0.040 mol dm⁻³ × ($\\frac{250}{1000}$) dm³ = 0.010 mol.",
       "tags": [
         "stoichiometry",
         "HBr",
@@ -78864,7 +78864,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "How do you calculate the hydroxide ion concentration, [OH⁻], for a weak base given its concentration and K_b?",
-      "back": "For a weak base CH₃NH₂ ⇌ CH₃NH₃⁺ + OH⁻, the hydroxide ion concentration can be calculated using the formula: \n[OH⁻] = √(K_b × [CH₃NH₂])\n\nGiven [CH₃NH₂] = 0.050 mol dm⁻³ and K_b = 4.4 × 10⁻⁴ mol dm⁻³:\n[OH⁻] = √(4.4 × 10⁻⁴ × 0.050) = √(2.2 × 10⁻⁵) = 4.69 × 10⁻³ mol dm⁻³ (to 3 sf).",
+      "back": "For a weak base CH₃NH₂ ⇌ CH₃NH₃⁺ + OH⁻, the hydroxide ion concentration can be calculated using the formula: \n[OH⁻] = $\\sqrt{K_b × [CH₃NH₂]}$\n\nGiven [CH₃NH₂] = 0.050 mol dm⁻³ and K_b = 4.4 × 10⁻⁴ mol dm⁻³:\n[OH⁻] = $\\sqrt{4.4 × 10⁻⁴ × 0.050}$ = $\\sqrt{2.2 × 10⁻⁵}$ = 4.69 × 10⁻³ mol dm⁻³ (to 3 sf).",
       "tags": [
         "pH calculation",
         "weak base",
@@ -80044,7 +80044,7 @@
       "type": "original-flashcard",
       "card_type": "key-fact",
       "front": "Outline the first two steps of the nucleophilic addition-elimination mechanism for the reaction of propanoyl chloride with methylamine, including curly arrows, lone pairs, and intermediate species.",
-      "back": "1.  **Nucleophilic attack**: The lone pair on the nitrogen of methylamine attacks the electron-deficient (δ+) carbon of the C=O group. Simultaneously, the pi bond of the C=O breaks, and its electrons move onto the oxygen atom, forming an O⁻.\n2.  **Tetrahedral intermediate formation**: A tetrahedral intermediate is formed, featuring a negatively charged oxygen (O⁻) and a positively charged nitrogen (N⁺) (as it has formed an extra bond). (Ensure curly arrows from N lone pair to C, and from C=O pi bond to O are shown, along with the correct charges on the intermediate).",
+      "back": "1.  **Nucleophilic attack**: The lone pair on the nitrogen of methylamine attacks the electron-deficient (δ+) carbon of the C=O group. Simultaneously, the $\\pi$ bond of the C=O breaks, and its electrons move onto the oxygen atom, forming an O⁻.\n2.  **Tetrahedral intermediate formation**: A tetrahedral intermediate is formed, featuring a negatively charged oxygen (O⁻) and a positively charged nitrogen (N⁺) (as it has formed an extra bond). (Ensure curly arrows from N lone pair to C, and from C=O $\\pi$ bond to O are shown, along with the correct charges on the intermediate).",
       "tags": [
         "mechanism",
         "nucleophilic attack",
@@ -81181,11 +81181,11 @@
       "difficulty": "hard",
       "tier": null,
       "type": "original-question",
-      "question_text": "The rate constant for the decomposition of compound Z was measured at two different temperatures:\nAt 350 K, k = 8.7 × 10⁻³ s⁻¹\nAt 380 K, k = 3.2 × 10⁻² s⁻¹\nUsing the Arrhenius equation: ln(k₂/k₁) = Ea/R (1/T₁ - 1/T₂)\nCalculate the activation energy, Ea, for this reaction in kJ mol⁻¹.\nThe gas constant, R = 8.31 J K⁻¹ mol⁻¹.\nEa = __________ kJ mol⁻¹",
+      "question_text": "The rate constant for the decomposition of compound Z was measured at two different temperatures:\nAt 350 K, k = 8.7 × 10⁻³ s⁻¹\nAt 380 K, k = 3.2 × 10⁻² s⁻¹\nUsing the Arrhenius equation: $\\ln(k₂/k₁)$ = Ea/R (1/T₁ - 1/T₂)\nCalculate the activation energy, Ea, for this reaction in kJ mol⁻¹.\nThe gas constant, R = 8.31 J K⁻¹ mol⁻¹.\nEa = __________ kJ mol⁻¹",
       "marks": 5,
-      "answer": "M1: ln(3.2 × 10⁻² / 8.7 × 10⁻³) = Ea/8.31 (1/350 - 1/380)\nM2: ln(3.678) = Ea/8.31 (0.002857 - 0.0026316)\nM3: 1.302 = Ea/8.31 (0.0002254)\nM4: Ea = (1.302 × 8.31) / 0.0002254 = 48037 J mol⁻¹\nM5: Ea = 48.0 kJ mol⁻¹ (Allow 48.0 - 48.1 kJ mol⁻¹)",
+      "answer": "M1: $\\ln(3.2 × 10⁻² / 8.7 × 10⁻³)$ = Ea/8.31 ($\\frac{1}{350}$ - $\\frac{1}{380}$)\nM2: $\\ln(3.678)$ = Ea/8.31 (0.002857 - 0.0026316)\nM3: 1.302 = Ea/8.31 (0.0002254)\nM4: Ea = (1.302 × 8.31) / 0.0002254 = 48037 J mol⁻¹\nM5: Ea = 48.0 kJ mol⁻¹ (Allow 48.0 - 48.1 kJ mol⁻¹)",
       "marking_criteria": [
-        "M1: Correct substitution into Arrhenius equation: ln(3.2 × 10⁻²/8.7 × 10⁻³) = Ea/8.31 (1/350 - 1/380)",
+        "M1: Correct substitution into Arrhenius equation: $\\ln(3.2 × 10⁻²/8.7 × 10⁻³)$ = Ea/8.31 ($\\frac{1}{350}$ - $\\frac{1}{380}$)",
         "M2: Evaluation of LHS: 1.302",
         "M3: Evaluation of (1/T₁ - 1/T₂): 0.0002254 (or 2.254 × 10⁻⁴)",
         "M4: Calculation of Ea in J mol⁻¹: (1.302 × 8.31) / 0.0002254 = 48037 (J mol⁻¹)",
@@ -81277,7 +81277,7 @@
       "type": "original-question",
       "question_text": "Consider the reversible reaction:\nN₂(g) + 3H₂(g) ⇌ 2NH₃(g)\nA 1.00 dm³ sealed container was initially charged with 0.500 mol of N₂ and 1.50 mol of H₂. The mixture was allowed to reach equilibrium at a constant temperature.\nAt equilibrium, it was found that 0.200 mol of NH₃ had formed.\nCalculate the value of the equilibrium constant, Kc, for this reaction at this temperature.\nKc = __________",
       "marks": 5,
-      "answer": "M1: Initial moles: N₂=0.500, H₂=1.50, NH₃=0\nChange in moles: NH₃ formed = +0.200 mol. So H₂ reacted = (3/2) × 0.200 = 0.300 mol. N₂ reacted = (1/2) × 0.200 = 0.100 mol.\nM2: Equilibrium moles: N₂ = 0.500 - 0.100 = 0.400 mol. H₂ = 1.50 - 0.300 = 1.20 mol. NH₃ = 0.200 mol.\nM3: Equilibrium concentrations (Volume = 1.00 dm³): [N₂]=0.400, [H₂]=1.20, [NH₃]=0.200 mol dm⁻³.\nM4: Kc expression: Kc = [NH₃]² / ([N₂][H₂]³)\nM5: Kc = (0.200)² / (0.400 × (1.20)³) = 0.0400 / (0.400 × 1.728) = 0.0400 / 0.6912 = 0.05786 ≈ 0.0579 (mol⁻² dm⁶)",
+      "answer": "M1: Initial moles: N₂=0.500, H₂=1.50, NH₃=0\nChange in moles: NH₃ formed = +0.200 mol. So H₂ reacted = ($\\frac{3}{2}$) × 0.200 = 0.300 mol. N₂ reacted = ($\\frac{1}{2}$) × 0.200 = 0.100 mol.\nM2: Equilibrium moles: N₂ = 0.500 - 0.100 = 0.400 mol. H₂ = 1.50 - 0.300 = 1.20 mol. NH₃ = 0.200 mol.\nM3: Equilibrium concentrations (Volume = 1.00 dm³): [N₂]=0.400, [H₂]=1.20, [NH₃]=0.200 mol dm⁻³.\nM4: Kc expression: Kc = [NH₃]² / ([N₂][H₂]³)\nM5: Kc = (0.200)² / (0.400 × (1.20)³) = 0.0400 / (0.400 × 1.728) = 0.0400 / 0.6912 = 0.05786 ≈ 0.0579 (mol⁻² dm⁶)",
       "marking_criteria": [
         "M1: Calculation of change in moles for N₂ and H₂ (ΔN₂ = -0.100 mol, ΔH₂ = -0.300 mol)",
         "M2: Calculation of equilibrium moles (N₂=0.400 mol, H₂=1.20 mol, NH₃=0.200 mol)",
@@ -81558,7 +81558,7 @@
       "type": "original-question",
       "question_text": "A buffer solution is prepared by mixing 200 cm³ of 0.300 mol dm⁻³ propanoic acid (CH₃CH₂COOH) with 200 cm³ of 0.175 mol dm⁻³ sodium propanoate (CH₃CH₂COONa).\nFor propanoic acid, Ka = 1.34 × 10⁻⁵ mol dm⁻³ at 25 °C.\nA 10.0 cm³ sample of 1.00 mol dm⁻³ sodium hydroxide solution is then added to this buffer.\nCalculate the pH of the solution formed after the addition of sodium hydroxide.\nGive your answer to two decimal places.",
       "marks": 5,
-      "answer": "M1: Initial moles CH₃CH₂COOH = (200/1000) × 0.300 = 0.0600 mol\nInitial moles CH₃CH₂COO⁻ = (200/1000) × 0.175 = 0.0350 mol\nM2: Moles NaOH added = (10.0/1000) × 1.00 = 0.0100 mol\nM3: Moles CH₃CH₂COOH after addition = 0.0600 - 0.0100 = 0.0500 mol\nMoles CH₃CH₂COO⁻ after addition = 0.0350 + 0.0100 = 0.0450 mol\nM4: [H⁺] = Ka × [CH₃CH₂COOH] / [CH₃CH₂COO⁻]\n[H⁺] = (1.34 × 10⁻⁵) × (0.0500 / 0.0450) = 1.4888... × 10⁻⁵ mol dm⁻³\n(Alternatively, using concentrations after calculating total volume = 410 cm³ = 0.410 dm³)\n([CH₃CH₂COOH] = 0.0500/0.410 = 0.12195; [CH₃CH₂COO⁻] = 0.0450/0.410 = 0.10976)\n[H⁺] = (1.34 × 10⁻⁵) × (0.12195 / 0.10976) = 1.4888... × 10⁻⁵ mol dm⁻³\nM5: pH = -log(1.4888 × 10⁻⁵) = 4.827... = 4.83 (to 2 dp)",
+      "answer": "M1: Initial moles CH₃CH₂COOH = ($\\frac{200}{1000}$) × 0.300 = 0.0600 mol\nInitial moles CH₃CH₂COO⁻ = ($\\frac{200}{1000}$) × 0.175 = 0.0350 mol\nM2: Moles NaOH added = (10.0/1000) × 1.00 = 0.0100 mol\nM3: Moles CH₃CH₂COOH after addition = 0.0600 - 0.0100 = 0.0500 mol\nMoles CH₃CH₂COO⁻ after addition = 0.0350 + 0.0100 = 0.0450 mol\nM4: [H⁺] = Ka × [CH₃CH₂COOH] / [CH₃CH₂COO⁻]\n[H⁺] = (1.34 × 10⁻⁵) × (0.0500 / 0.0450) = 1.4888... × 10⁻⁵ mol dm⁻³\n(Alternatively, using concentrations after calculating total volume = 410 cm³ = 0.410 dm³)\n([CH₃CH₂COOH] = 0.0500/0.410 = 0.12195; [CH₃CH₂COO⁻] = 0.0450/0.410 = 0.10976)\n[H⁺] = (1.34 × 10⁻⁵) × (0.12195 / 0.10976) = 1.4888... × 10⁻⁵ mol dm⁻³\nM5: pH = -$\\log(1.4888 × 10⁻⁵)$ = 4.827... = 4.83 (to 2 dp)",
       "marking_criteria": [
         "M1: Moles of CH₃CH₂COOH (0.0600 mol) and CH₃CH₂COO⁻ (0.0350 mol) (1 mark)",
         "M2: Moles of NaOH added (0.0100 mol) (1 mark)",
@@ -81889,10 +81889,10 @@
       "marks": 4,
       "answer": "pH = 2.42",
       "marking_criteria": [
-        "M1: Ka = [H⁺]² / [HCOOH] OR [H⁺] = √(Ka × [HCOOH]) (correct expression for Ka or [H⁺] with assumption that [H⁺]eq = [H⁺]dissociated and [HCOOH]eq ≈ [HCOOH]initial) (1 mark)",
-        "M2: [H⁺] = √(1.8 × 10⁻⁴ × 0.080) (correct substitution of values) (1 mark)",
+        "M1: Ka = [H⁺]² / [HCOOH] OR [H⁺] = $\\sqrt{Ka × [HCOOH]}$ (correct expression for Ka or [H⁺] with assumption that [H⁺]eq = [H⁺]dissociated and [HCOOH]eq ≈ [HCOOH]initial) (1 mark)",
+        "M2: [H⁺] = $\\sqrt{1.8 × 10⁻⁴ × 0.080}$ (correct substitution of values) (1 mark)",
         "M3: [H⁺] = 0.003795 mol dm⁻³ (allow 0.0038 mol dm⁻³) (1 mark)",
-        "M4: pH = -log(0.003795) = 2.42 (correct calculation of pH to 2 dp) (1 mark)"
+        "M4: pH = -$\\log(0.003795)$ = 2.42 (correct calculation of pH to 2 dp) (1 mark)"
       ],
       "diagram": null
     },
@@ -82131,10 +82131,10 @@
       "type": "original-question",
       "question_text": "Butanal reacts with hydrogen cyanide in the presence of a small amount of potassium cyanide to form a hydroxynitrile.\nComplete the mechanism for the reaction of butanal with the cyanide ion (CN⁻) to form the intermediate. Include all relevant curly arrows, lone pairs, and partial charges.\nThen, draw the structure of the final hydroxynitrile product.",
       "marks": 4,
-      "answer": "Mechanism for intermediate formation:\n1. Curly arrow from lone pair on C of CN⁻ to the carbonyl carbon of butanal.\n2. Curly arrow from the C=O pi bond to the oxygen atom, forming O⁻.\nIntermediate structure: CH₃CH₂CH₂-C(O⁻)(CN)(H)\nFinal hydroxynitrile product structure: CH₃CH₂CH₂-CH(OH)(CN) (2-hydroxypentanenitrile)",
+      "answer": "Mechanism for intermediate formation:\n1. Curly arrow from lone pair on C of CN⁻ to the carbonyl carbon of butanal.\n2. Curly arrow from the C=O $\\pi$ bond to the oxygen atom, forming O⁻.\nIntermediate structure: CH₃CH₂CH₂-C(O⁻)(CN)(H)\nFinal hydroxynitrile product structure: CH₃CH₂CH₂-CH(OH)(CN) (2-hydroxypentanenitrile)",
       "marking_criteria": [
         "M1: Correct curly arrow from lone pair on CN⁻ to carbonyl carbon.",
-        "M2: Correct curly arrow from C=O pi bond to oxygen atom.",
+        "M2: Correct curly arrow from C=O $\\pi$ bond to oxygen atom.",
         "M3: Correct structure of tetrahedral intermediate (with O⁻ and correct connectivity).",
         "M4: Correct structure of the final hydroxynitrile product (2-hydroxypentanenitrile)."
       ],
@@ -82307,12 +82307,12 @@
       "type": "original-question",
       "question_text": "Three structural isomers, each with the molecular formula C₄H₁₀O, are butan-1-ol, butan-2-ol, and diethyl ether.\nExplain how and why these three isomers can be distinguished by comparing each of their:\n*   boiling points\n*   infrared spectra\n*   mass spectra (specifically fragmentation patterns).\nUse data from Tables A, B and C in the Data Booklet in your answer where appropriate.",
       "marks": 6,
-      "answer": "This is a levels of response question.\nLevel 3 (5-6 marks): All three techniques (boiling points, IR, mass spectra) are discussed. The explanations for how and why each technique distinguishes the isomers are generally correct, comprehensive, and clear, with accurate use of chemical terminology. Specific data/trends/fragments are correctly referred to.\nLevel 2 (3-4 marks): Two techniques are discussed with generally correct and reasonably comprehensive explanations, or all three are mentioned but with some inaccuracies, incompleteness, or lack of specific detail. There may be some repetition or minor technical errors.\nLevel 1 (1-2 marks): One technique is discussed correctly, or two are mentioned with limited or vague correct detail. Explanations are often isolated statements and may contain significant technical errors.\n\n**Distinguishing by Boiling Points:**\n*   **How:** Measure the boiling point of each liquid.\n*   **Why:** Butan-1-ol and butan-2-ol are alcohols, meaning they contain a hydroxyl (-OH) group. This allows them to form strong hydrogen bonds between their molecules. Diethyl ether (CH₃CH₂OCH₂CH₃) lacks an -OH group and therefore cannot form hydrogen bonds; it only exhibits permanent dipole-dipole interactions and London forces. Hydrogen bonds are significantly stronger intermolecular forces than dipole-dipole forces or London forces. Consequently, more energy is required to overcome these forces during boiling, leading to much higher boiling points for butan-1-ol (117 °C) and butan-2-ol (100 °C) compared to diethyl ether (34.6 °C). The slight difference between butan-1-ol (primary) and butan-2-ol (secondary) is due to differences in packing efficiency and steric hindrance affecting hydrogen bonding.\n\n**Distinguishing by Infrared (IR) Spectra:**\n*   **How:** Obtain the IR spectrum for each compound and compare the characteristic absorption bands.\n*   **Why:** Both butan-1-ol and butan-2-ol (alcohols) will show a characteristic broad absorption band in the region of 3200-3600 cm⁻¹ due to the O-H stretching vibration. This band will be absent in the spectrum of diethyl ether, as it does not contain an O-H bond. All three compounds will show C-H stretches (around 2850-3000 cm⁻¹) and C-O stretches (around 1000-1300 cm⁻¹), but the presence or absence of the broad O-H peak is the key distinguishing feature.\n\n**Distinguishing by Mass Spectra (Fragmentation Patterns):**\n*   **How:** Analyse the fragment ions (m/z values) produced in the mass spectrum of each compound.\n*   **Why:** All three isomers will have a molecular ion peak (M⁺) at m/z 74. However, their fragmentation patterns will differ significantly:\n    *   **Butan-1-ol (CH₃CH₂CH₂CH₂OH):** A common fragmentation pathway is alpha cleavage, which involves the breaking of the C-C bond adjacent to the C-O bond. This leads to a prominent fragment at m/z 31 (CH₂=OH⁺ or CH₂OH⁺). Loss of water (H₂O) also occurs, giving a peak at m/z (74-18) = 56.\n    *   **Butan-2-ol (CH₃CH₂CH(OH)CH₃):** Alpha cleavage here can occur on either side of the C-OH group. Loss of a methyl group (CH₃) gives m/z (74-15) = 59. Loss of an ethyl group (CH₃CH₂) gives m/z (74-29) = 45 (CH₃CH=OH⁺). The m/z 45 peak is often very significant. Loss of water (H₂O) also occurs, giving a peak at m/z 56.\n    *   **Diethyl ether (CH₃CH₂OCH₂CH₃):** Alpha cleavage occurs next to the oxygen. Loss of a methyl group (CH₃) gives a fragment at m/z (74-15) = 59 (CH₃CH₂OCH₂⁺). Loss of an ethyl group (CH₃CH₂) gives m/z (74-29) = 45 (CH₃CH₂O⁺). The fragment at m/z 59 is often very prominent. The absence of m/z 31 (from primary alcohol) and distinct patterns allow differentiation.",
+      "answer": "This is a levels of response question.\nLevel 3 (5-6 marks): All three techniques (boiling points, IR, mass spectra) are discussed. The explanations for how and why each technique distinguishes the isomers are generally correct, comprehensive, and clear, with accurate use of chemical terminology. Specific data/trends/fragments are correctly referred to.\nLevel 2 (3-4 marks): Two techniques are discussed with generally correct and reasonably comprehensive explanations, or all three are mentioned but with some inaccuracies, incompleteness, or lack of specific detail. There may be some repetition or minor technical errors.\nLevel 1 (1-2 marks): One technique is discussed correctly, or two are mentioned with limited or vague correct detail. Explanations are often isolated statements and may contain significant technical errors.\n\n**Distinguishing by Boiling Points:**\n*   **How:** Measure the boiling point of each liquid.\n*   **Why:** Butan-1-ol and butan-2-ol are alcohols, meaning they contain a hydroxyl (-OH) group. This allows them to form strong hydrogen bonds between their molecules. Diethyl ether (CH₃CH₂OCH₂CH₃) lacks an -OH group and therefore cannot form hydrogen bonds; it only exhibits permanent dipole-dipole interactions and London forces. Hydrogen bonds are significantly stronger intermolecular forces than dipole-dipole forces or London forces. Consequently, more energy is required to overcome these forces during boiling, leading to much higher boiling points for butan-1-ol (117 °C) and butan-2-ol (100 °C) compared to diethyl ether (34.6 °C). The slight difference between butan-1-ol (primary) and butan-2-ol (secondary) is due to differences in packing efficiency and steric hindrance affecting hydrogen bonding.\n\n**Distinguishing by Infrared (IR) Spectra:**\n*   **How:** Obtain the IR spectrum for each compound and compare the characteristic absorption bands.\n*   **Why:** Both butan-1-ol and butan-2-ol (alcohols) will show a characteristic broad absorption band in the region of 3200-3600 cm⁻¹ due to the O-H stretching vibration. This band will be absent in the spectrum of diethyl ether, as it does not contain an O-H bond. All three compounds will show C-H stretches (around 2850-3000 cm⁻¹) and C-O stretches (around 1000-1300 cm⁻¹), but the presence or absence of the broad O-H peak is the key distinguishing feature.\n\n**Distinguishing by Mass Spectra (Fragmentation Patterns):**\n*   **How:** Analyse the fragment ions (m/z values) produced in the mass spectrum of each compound.\n*   **Why:** All three isomers will have a molecular ion peak (M⁺) at m/z 74. However, their fragmentation patterns will differ significantly:\n    *   **Butan-1-ol (CH₃CH₂CH₂CH₂OH):** A common fragmentation pathway is $\\alpha$ cleavage, which involves the breaking of the C-C bond adjacent to the C-O bond. This leads to a prominent fragment at m/z 31 (CH₂=OH⁺ or CH₂OH⁺). Loss of water (H₂O) also occurs, giving a peak at m/z (74-18) = 56.\n    *   **Butan-2-ol (CH₃CH₂CH(OH)CH₃):** $\\alpha$ cleavage here can occur on either side of the C-OH group. Loss of a methyl group (CH₃) gives m/z (74-15) = 59. Loss of an ethyl group (CH₃CH₂) gives m/z (74-29) = 45 (CH₃CH=OH⁺). The m/z 45 peak is often very significant. Loss of water (H₂O) also occurs, giving a peak at m/z 56.\n    *   **Diethyl ether (CH₃CH₂OCH₂CH₃):** $\\alpha$ cleavage occurs next to the oxygen. Loss of a methyl group (CH₃) gives a fragment at m/z (74-15) = 59 (CH₃CH₂OCH₂⁺). Loss of an ethyl group (CH₃CH₂) gives m/z (74-29) = 45 (CH₃CH₂O⁺). The fragment at m/z 59 is often very prominent. The absence of m/z 31 (from primary alcohol) and distinct patterns allow differentiation.",
       "marking_criteria": [
         "M1: (Boiling Point) Compares intermolecular forces: alcohols have H-bonds, ether has dipole-dipole/London forces.",
         "M2: (Boiling Point) Explains that H-bonds are stronger, requiring more energy to overcome, thus alcohols have higher boiling points than ether.",
         "M3: (IR Spectra) Identifies the broad O-H absorption (3200-3600 cm⁻¹) in alcohols and its absence in the ether.",
-        "M4: (Mass Spectra) Explains characteristic fragmentation for at least two compounds, with specific m/z values (e.g., m/z 31 for primary alcohol, m/z 45/59 for secondary alcohol/ether, m/z 56 for loss of H₂O).",
+        "M4: (Mass Spectra) Explains characteristic fragmentation for at least two compounds, with specific m/z values (e.g., m/z 31 for primary alcohol, m/z $\\frac{45}{59}$ for secondary alcohol/ether, m/z 56 for loss of H₂O).",
         "M5: Clear and accurate comparison of all three compounds across the techniques.",
         "M6: Logical structure, good use of chemical terminology, and explicit linking of observations to structural features."
       ],
@@ -82407,7 +82407,7 @@
       "type": "original-question",
       "question_text": "Compound Z has the molecular formula C₅H₁₀O₂. Its infrared (IR) and proton nuclear magnetic resonance (¹H NMR) spectra are provided below. Use the information from both spectra to deduce the full structure of Compound Z. Explain your reasoning for each piece of spectral data.",
       "marks": 6,
-      "answer": "From the IR spectrum:\n- The strong absorption at 1735 cm⁻¹ indicates the presence of a C=O carbonyl group, characteristic of an ester (or carboxylic acid).\n- The absence of a broad absorption band above 3000 cm⁻¹ (e.g., around 3300 cm⁻¹ for -OH alcohol or 2500-3300 cm⁻¹ for -OH acid) rules out an alcohol or carboxylic acid. This confirms an ester.\n- Prominent peaks between 1000-1300 cm⁻¹ are consistent with C-O stretches in an ester.\n\nFrom the ¹H NMR spectrum:\n- **Signal 1: δ = 3.70 ppm, singlet, 3H.** This chemical shift is typical for protons on a carbon directly attached to an oxygen atom in an ester (e.g., -COOCH₃). The singlet splitting pattern indicates there are no protons on the adjacent carbon. This suggests a -COOCH₃ group.\n- **Signal 2: δ = 2.30 ppm, triplet, 2H.** This chemical shift is characteristic of protons on a carbon alpha to a carbonyl group (e.g., -CH₂-C=O). The triplet splitting pattern (n+1 rule) indicates there are two protons on the adjacent carbon. This suggests a -CH₂CH₂-C=O fragment.\n- **Signal 3: δ = 1.60 ppm, sextet, 2H.** This chemical shift is typical for protons on a saturated alkyl chain. The sextet splitting pattern indicates five protons on adjacent carbons. This suggests a -CH₂- group bonded to a carbon with two protons and a carbon with three protons (e.g., -CH₂CH₂CH₃).\n- **Signal 4: δ = 0.90 ppm, triplet, 3H.** This chemical shift is typical for a terminal methyl group on an alkyl chain. The triplet splitting pattern indicates two protons on the adjacent carbon. This confirms the CH₃-CH₂- end of an alkyl chain.\n\nDeduction of Structure:\nCombining the information:\n- The -COOCH₃ group accounts for C₁H₃O₂.\n- The remaining C₄H₇ must form the alkyl part attached to the carbonyl carbon.\n- The NMR signals 2, 3, and 4 (CH₂CO-, CH₂CH₂-, CH₃CH₂-) are consistent with a straight-chain propyl group: CH₃CH₂CH₂-.\n- Therefore, the full structure of Compound Z is methyl butanoate (CH₃CH₂CH₂COOCH₃). This structure fits the molecular formula C₅H₁₀O₂ and all spectral data.",
+      "answer": "From the IR spectrum:\n- The strong absorption at 1735 cm⁻¹ indicates the presence of a C=O carbonyl group, characteristic of an ester (or carboxylic acid).\n- The absence of a broad absorption band above 3000 cm⁻¹ (e.g., around 3300 cm⁻¹ for -OH alcohol or 2500-3300 cm⁻¹ for -OH acid) rules out an alcohol or carboxylic acid. This confirms an ester.\n- Prominent peaks between 1000-1300 cm⁻¹ are consistent with C-O stretches in an ester.\n\nFrom the ¹H NMR spectrum:\n- **Signal 1: δ = 3.70 ppm, singlet, 3H.** This chemical shift is typical for protons on a carbon directly attached to an oxygen atom in an ester (e.g., -COOCH₃). The singlet splitting pattern indicates there are no protons on the adjacent carbon. This suggests a -COOCH₃ group.\n- **Signal 2: δ = 2.30 ppm, triplet, 2H.** This chemical shift is characteristic of protons on a carbon $\\alpha$ to a carbonyl group (e.g., -CH₂-C=O). The triplet splitting pattern (n+1 rule) indicates there are two protons on the adjacent carbon. This suggests a -CH₂CH₂-C=O fragment.\n- **Signal 3: δ = 1.60 ppm, sextet, 2H.** This chemical shift is typical for protons on a saturated alkyl chain. The sextet splitting pattern indicates five protons on adjacent carbons. This suggests a -CH₂- group bonded to a carbon with two protons and a carbon with three protons (e.g., -CH₂CH₂CH₃).\n- **Signal 4: δ = 0.90 ppm, triplet, 3H.** This chemical shift is typical for a terminal methyl group on an alkyl chain. The triplet splitting pattern indicates two protons on the adjacent carbon. This confirms the CH₃-CH₂- end of an alkyl chain.\n\nDeduction of Structure:\nCombining the information:\n- The -COOCH₃ group accounts for C₁H₃O₂.\n- The remaining C₄H₇ must form the alkyl part attached to the carbonyl carbon.\n- The NMR signals 2, 3, and 4 (CH₂CO-, CH₂CH₂-, CH₃CH₂-) are consistent with a straight-chain propyl group: CH₃CH₂CH₂-.\n- Therefore, the full structure of Compound Z is methyl butanoate (CH₃CH₂CH₂COOCH₃). This structure fits the molecular formula C₅H₁₀O₂ and all spectral data.",
       "marking_criteria": [
         "**Level 3 (5-6 marks):** All stages are covered and each stage is generally correct and virtually complete. Answer is communicated coherently and shows a logical progression from IR interpretation to NMR interpretation and then to the final structure deduction. Covers at least 1 point for IR, 3 for ¹H NMR, and 2 for final structure deduction.",
         "**Level 2 (3-4 marks):** All stages are covered but stage(s) may be incomplete or may contain inaccuracies OR two stages are covered and are generally correct and virtually complete. Covers at least 1 point for IR, and 2 for ¹H NMR, and 1 for final structure deduction. Answer is communicated with reasonable clarity but may contain some repetition or irrelevant points.",
@@ -82978,7 +82978,7 @@
       "type": "original-question",
       "question_text": "A buffer solution is prepared by mixing 30.0 cm³ of 0.600 mol dm⁻³ propanoic acid (CH₃CH₂COOH) with 40.0 cm³ of 0.450 mol dm⁻³ sodium propanoate (CH₃CH₂COONa).\nThe acid dissociation constant, Ka, for propanoic acid is 1.34 × 10⁻⁵ mol dm⁻³ at 25 °C.\n(a) Calculate the pH of this buffer solution.\n(b) Explain how this buffer solution resists a significant change in pH when a small amount of strong alkali is added.\nState symbols are not required in your explanation.",
       "marks": 5,
-      "answer": "(a) 1. Moles of propanoic acid (CH₃CH₂COOH) = (30.0/1000) dm³ × 0.600 mol dm⁻³ = 0.0180 mol\n2. Moles of sodium propanoate (CH₃CH₂COONa) = (40.0/1000) dm³ × 0.450 mol dm⁻³ = 0.0180 mol\n3. Total volume = 30.0 cm³ + 40.0 cm³ = 70.0 cm³ = 0.0700 dm³\n4. [CH₃CH₂COOH] = 0.0180 mol / 0.0700 dm³ = 0.2571 mol dm⁻³\n5. [CH₃CH₂COO⁻] = 0.0180 mol / 0.0700 dm³ = 0.2571 mol dm⁻³\n6. Since [acid] = [salt], [H⁺] = Ka = 1.34 × 10⁻⁵ mol dm⁻³\n7. pH = -log[H⁺] = -log(1.34 × 10⁻⁵) = 4.87\n(b) When a small amount of strong alkali (OH⁻) is added, it reacts with the propanoic acid (CH₃CH₂COOH) present in the buffer:\nCH₃CH₂COOH + OH⁻ → CH₃CH₂COO⁻ + H₂O\nThis reaction removes most of the added hydroxide ions, preventing a significant increase in pH. The equilibrium CH₃CH₂COOH ⇌ H⁺ + CH₃CH₂COO⁻ shifts to the right to replenish H⁺, maintaining the pH.",
+      "answer": "(a) 1. Moles of propanoic acid (CH₃CH₂COOH) = (30.0/1000) dm³ × 0.600 mol dm⁻³ = 0.0180 mol\n2. Moles of sodium propanoate (CH₃CH₂COONa) = (40.0/1000) dm³ × 0.450 mol dm⁻³ = 0.0180 mol\n3. Total volume = 30.0 cm³ + 40.0 cm³ = 70.0 cm³ = 0.0700 dm³\n4. [CH₃CH₂COOH] = 0.0180 mol / 0.0700 dm³ = 0.2571 mol dm⁻³\n5. [CH₃CH₂COO⁻] = 0.0180 mol / 0.0700 dm³ = 0.2571 mol dm⁻³\n6. Since [acid] = [salt], [H⁺] = Ka = 1.34 × 10⁻⁵ mol dm⁻³\n7. pH = -log[H⁺] = -$\\log(1.34 × 10⁻⁵)$ = 4.87\n(b) When a small amount of strong alkali (OH⁻) is added, it reacts with the propanoic acid (CH₃CH₂COOH) present in the buffer:\nCH₃CH₂COOH + OH⁻ → CH₃CH₂COO⁻ + H₂O\nThis reaction removes most of the added hydroxide ions, preventing a significant increase in pH. The equilibrium CH₃CH₂COOH ⇌ H⁺ + CH₃CH₂COO⁻ shifts to the right to replenish H⁺, maintaining the pH.",
       "marking_criteria": [
         {
           "a": [
@@ -83012,13 +83012,13 @@
       "type": "original-question",
       "question_text": "A buffer solution is prepared by mixing 75.0 cm³ of 0.250 mol dm⁻³ propanoic acid (CH₃CH₂COOH) with 50.0 cm³ of 0.350 mol dm⁻³ sodium propanoate (CH₃CH₂COONa).\nThe acid dissociation constant, Kₐ, for propanoic acid is 1.3 × 10⁻⁵ mol dm⁻³ at 298 K.\nCalculate the pH of this buffer solution at 298 K.",
       "marks": 4,
-      "answer": "Total volume = 75.0 + 50.0 = 125.0 cm³ = 0.125 dm³\nMoles of propanoic acid (CH₃CH₂COOH) = 0.250 mol dm⁻³ × (75.0/1000) dm³ = 0.01875 mol\nMoles of propanoate ion (CH₃CH₂COO⁻) = 0.350 mol dm⁻³ × (50.0/1000) dm³ = 0.0175 mol\n[CH₃CH₂COOH] = 0.01875 mol / 0.125 dm³ = 0.150 mol dm⁻³\n[CH₃CH₂COO⁻] = 0.0175 mol / 0.125 dm³ = 0.140 mol dm⁻³\nKₐ = [H⁺][CH₃CH₂COO⁻] / [CH₃CH₂COOH]\n[H⁺] = Kₐ × ([CH₃CH₂COOH] / [CH₃CH₂COO⁻])\n[H⁺] = (1.3 × 10⁻⁵) × (0.150 / 0.140)\n[H⁺] = (1.3 × 10⁻⁵) × 1.0714...\n[H⁺] = 1.3928 × 10⁻⁵ mol dm⁻³\npH = -log(1.3928 × 10⁻⁵) = 4.856 = 4.86 (2 dp)",
+      "answer": "Total volume = 75.0 + 50.0 = 125.0 cm³ = 0.125 dm³\nMoles of propanoic acid (CH₃CH₂COOH) = 0.250 mol dm⁻³ × (75.0/1000) dm³ = 0.01875 mol\nMoles of propanoate ion (CH₃CH₂COO⁻) = 0.350 mol dm⁻³ × (50.0/1000) dm³ = 0.0175 mol\n[CH₃CH₂COOH] = 0.01875 mol / 0.125 dm³ = 0.150 mol dm⁻³\n[CH₃CH₂COO⁻] = 0.0175 mol / 0.125 dm³ = 0.140 mol dm⁻³\nKₐ = [H⁺][CH₃CH₂COO⁻] / [CH₃CH₂COOH]\n[H⁺] = Kₐ × ([CH₃CH₂COOH] / [CH₃CH₂COO⁻])\n[H⁺] = (1.3 × 10⁻⁵) × (0.150 / 0.140)\n[H⁺] = (1.3 × 10⁻⁵) × 1.0714...\n[H⁺] = 1.3928 × 10⁻⁵ mol dm⁻³\npH = -$\\log(1.3928 × 10⁻⁵)$ = 4.856 = 4.86 (2 dp)",
       "marking_criteria": [
         " (M1) Calculation of moles of propanoic acid (0.01875 mol)",
         " (M2) Calculation of moles of propanoate ion (0.0175 mol)",
         " (M3) Correct substitution of Kₐ and concentrations/moles into the Kₐ expression to find [H⁺] (e.g., [H⁺] = (1.3 × 10⁻⁵) × (0.150 / 0.140) or equivalent using moles)",
         " (M4) Calculation of pH (4.86 or 4.85 to 4.87, depending on rounding) (Allow M3 and M4 if just moles are used in the ratio)",
-        " (Allow use of Henderson-Hasselbalch equation and pKₐ = -log(1.3 × 10⁻⁵) = 4.886)"
+        " (Allow use of Henderson-Hasselbalch equation and pKₐ = -$\\log(1.3 × 10⁻⁵)$ = 4.886)"
       ],
       "diagram": null
     },
@@ -83215,15 +83215,15 @@
       "difficulty": "hard",
       "tier": null,
       "type": "original-question",
-      "question_text": "The decomposition of hydrogen iodide, 2HI(g) → H₂(g) + I₂(g), is a second-order reaction. The rate constant for this reaction was measured at two different temperatures.\n\nTemperature / K | Rate constant (k) / dm³ mol⁻¹ s⁻¹\n---|---\n550 | 9.7 × 10⁻⁷\n600 | 8.5 × 10⁻⁶\n\nCalculate the activation energy, Eₐ, for this reaction. You should not attempt to use any graphical method to answer this question. Include units and give your answer to an appropriate number of significant figures.\n\nThe Arrhenius equation relating two rate constants, k₁ and k₂, at two different temperatures, T₁ and T₂, can be expressed as:\nln(k₂/k₁) = -Eₐ/R (1/T₂ - 1/T₁)\n[R = 8.31 J mol⁻¹ K⁻¹]",
+      "question_text": "The decomposition of hydrogen iodide, 2HI(g) → H₂(g) + I₂(g), is a second-order reaction. The rate constant for this reaction was measured at two different temperatures.\n\nTemperature / K | Rate constant (k) / dm³ mol⁻¹ s⁻¹\n---|---\n550 | 9.7 × 10⁻⁷\n600 | 8.5 × 10⁻⁶\n\nCalculate the activation energy, Eₐ, for this reaction. You should not attempt to use any graphical method to answer this question. Include units and give your answer to an appropriate number of significant figures.\n\nThe Arrhenius equation relating two rate constants, k₁ and k₂, at two different temperatures, T₁ and T₂, can be expressed as:\n$\\ln(k₂/k₁)$ = -Eₐ/R (1/T₂ - 1/T₁)\n[R = 8.31 J mol⁻¹ K⁻¹]",
       "marks": 5,
-      "answer": "Given: T₁ = 550 K, k₁ = 9.7 × 10⁻⁷ dm³ mol⁻¹ s⁻¹; T₂ = 600 K, k₂ = 8.5 × 10⁻⁶ dm³ mol⁻¹ s⁻¹; R = 8.31 J mol⁻¹ K⁻¹.\n\nln(8.5 × 10⁻⁶ / 9.7 × 10⁻⁷) = -Eₐ / 8.31 (1/600 - 1/550)\nln(8.7628866) = -Eₐ / 8.31 (0.0016666... - 0.0018181...)\n2.1706 = -Eₐ / 8.31 (-0.0001515...)\n2.1706 = Eₐ / 8.31 (0.0001515...)\nEₐ = (2.1706 × 8.31) / (0.0001515...)\nEₐ = 119100 J mol⁻¹\nAnswer (to 2/3 SF): +119 kJ mol⁻¹ or +120 kJ mol⁻¹",
+      "answer": "Given: T₁ = 550 K, k₁ = 9.7 × 10⁻⁷ dm³ mol⁻¹ s⁻¹; T₂ = 600 K, k₂ = 8.5 × 10⁻⁶ dm³ mol⁻¹ s⁻¹; R = 8.31 J mol⁻¹ K⁻¹.\n\n$\\ln(8.5 × 10⁻⁶ / 9.7 × 10⁻⁷)$ = -Eₐ / 8.31 ($\\frac{1}{600}$ - $\\frac{1}{550}$)\n$\\ln(8.7628866)$ = -Eₐ / 8.31 (0.0016666... - 0.0018181...)\n2.1706 = -Eₐ / 8.31 (-0.0001515...)\n2.1706 = Eₐ / 8.31 (0.0001515...)\nEₐ = (2.1706 × 8.31) / (0.0001515...)\nEₐ = 119100 J mol⁻¹\nAnswer (to $\\frac{2}{3}$ SF): +119 kJ mol⁻¹ or +120 kJ mol⁻¹",
       "marking_criteria": [
         "Substitution of numbers into the Arrhenius equation (1)",
-        "Correct evaluation of ln(k₂/k₁) and (1/T₂ - 1/T₁) values (1)",
+        "Correct evaluation of $\\ln(k₂/k₁)$ and (1/T₂ - 1/T₁) values (1)",
         "Rearrangement of the expression to solve for Eₐ (1)",
         "Numerical value of Eₐ (1)",
-        "Answer given to 2/3 significant figures and corresponding units (kJ mol⁻¹) with correct sign (1)"
+        "Answer given to $\\frac{2}{3}$ significant figures and corresponding units (kJ mol⁻¹) with correct sign (1)"
       ],
       "diagram": "Table showing rate constants at two different temperatures, and the Arrhenius equation."
     },
@@ -83670,7 +83670,7 @@
         "M1: Moles of NaOH used (0.150 mol dm⁻³ × (22.35/1000) dm³ = 0.0033525 mol)",
         "M2: Moles of H₂SO₄ in 25.0 cm³ (from 2NaOH : 1H₂SO₄ ratio, 0.0033525 mol / 2 = 0.00167625 mol)",
         "M3: Concentration of H₂SO₄ (0.00167625 mol / (25.0/1000) dm³ = 0.06705 mol dm⁻³)",
-        "M4: Moles of H₂SO₄ in 250 cm³ of solution (0.06705 mol dm⁻³ × (250/1000) dm³ = 0.0167625 mol)",
+        "M4: Moles of H₂SO₄ in 250 cm³ of solution (0.06705 mol dm⁻³ × ($\\frac{250}{1000}$) dm³ = 0.0167625 mol)",
         "M5: Mass of H₂SO₄ in 250 cm³ (0.0167625 mol × 98.1 g/mol = 1.6441... g = 1.64 g (3 SF))",
         "Correct final answer for concentration to 3 SF and mass to 3 SF with no working scores 5 marks. Allow ECF throughout."
       ],
@@ -83695,7 +83695,7 @@
       "answer": "0.440 dm³",
       "marking_criteria": [
         "M1: Moles of KClO₃ (1.50 g / 122.6 g/mol = 0.012235... mol)",
-        "M2: Moles of O₂ (0.012235... mol × 3/2 = 0.018353... mol) AND Volume of O₂ (0.018353... mol × 24.0 dm³/mol = 0.44048... dm³ = 0.440 dm³ (3 SF))",
+        "M2: Moles of O₂ (0.012235... mol × $\\frac{3}{2}$ = 0.018353... mol) AND Volume of O₂ (0.018353... mol × 24.0 dm³/mol = 0.44048... dm³ = 0.440 dm³ (3 SF))",
         "Allow 2 marks for correct answer to 3 SF without working."
       ],
       "diagram": null
@@ -83943,13 +83943,13 @@
       "type": "original-question",
       "question_text": "The decomposition of dinitrogen pentoxide, 2N₂O₅(g) → 4NO₂(g) + O₂(g), is a first-order reaction. A kinetics experiment was performed to determine the activation energy (Eₐ) for this reaction.\n\nAt 300 K, the rate constant (k) was found to be 3.46 × 10⁻⁵ s⁻¹.\nAt 320 K, the rate constant (k) increased to 1.50 × 10⁻⁴ s⁻¹.\n\n(a) Calculate the activation energy, Eₐ, for this reaction in kJ mol⁻¹. Use the gas constant R = 8.31 J mol⁻¹ K⁻¹.\n\n(b) Explain why a small increase in temperature has a much greater effect on the rate of reaction than a small increase in the concentration of reactants, making reference to the Arrhenius equation.",
       "marks": 6,
-      "answer": "(a) \nUsing the Arrhenius equation in two-point form: ln(k₂/k₁) = -Eₐ/R (1/T₂ - 1/T₁)\nGiven: T₁ = 300 K, k₁ = 3.46 × 10⁻⁵ s⁻¹\nT₂ = 320 K, k₂ = 1.50 × 10⁻⁴ s⁻¹\nR = 8.31 J mol⁻¹ K⁻¹\n\nln(1.50 × 10⁻⁴ / 3.46 × 10⁻⁵) = -Eₐ/8.31 (1/320 - 1/300)\nln(4.335) = -Eₐ/8.31 (0.003125 - 0.003333)\n1.4667 = -Eₐ/8.31 (-0.000208)\n1.4667 = Eₐ/8.31 (0.000208)\nEₐ = (1.4667 × 8.31) / 0.000208\nEₐ = 12.197 / 0.000208\nEₐ = 58630 J mol⁻¹\nEₐ = 58.6 kJ mol⁻¹ (to 3 significant figures)\n\n(b) The Arrhenius equation is k = A e^(-Ea/RT). A small increase in temperature, T, has an exponential effect on the rate constant (k) due to its position in the exponent of the term e^(-Ea/RT). As T increases, the value of -Ea/RT becomes less negative, which causes the exponential term to increase significantly. This means a much larger fraction of molecules possess energy greater than or equal to the activation energy, leading to a substantial increase in the frequency of effective collisions and thus the reaction rate. In contrast, increasing reactant concentration only linearly increases the frequency of collisions, without affecting the fraction of molecules with sufficient energy.",
+      "answer": "(a) \nUsing the Arrhenius equation in two-point form: $\\ln(k₂/k₁)$ = -Eₐ/R (1/T₂ - 1/T₁)\nGiven: T₁ = 300 K, k₁ = 3.46 × 10⁻⁵ s⁻¹\nT₂ = 320 K, k₂ = 1.50 × 10⁻⁴ s⁻¹\nR = 8.31 J mol⁻¹ K⁻¹\n\n$\\ln(1.50 × 10⁻⁴ / 3.46 × 10⁻⁵)$ = -Eₐ/8.31 ($\\frac{1}{320}$ - $\\frac{1}{300}$)\n$\\ln(4.335)$ = -Eₐ/8.31 (0.003125 - 0.003333)\n1.4667 = -Eₐ/8.31 (-0.000208)\n1.4667 = Eₐ/8.31 (0.000208)\nEₐ = (1.4667 × 8.31) / 0.000208\nEₐ = 12.197 / 0.000208\nEₐ = 58630 J mol⁻¹\nEₐ = 58.6 kJ mol⁻¹ (to 3 significant figures)\n\n(b) The Arrhenius equation is k = A $e^{-Ea/RT}$. A small increase in temperature, T, has an exponential effect on the rate constant (k) due to its position in the exponent of the term $e^{-Ea/RT}$. As T increases, the value of -Ea/RT becomes less negative, which causes the exponential term to increase significantly. This means a much larger fraction of molecules possess energy greater than or equal to the activation energy, leading to a substantial increase in the frequency of effective collisions and thus the reaction rate. In contrast, increasing reactant concentration only linearly increases the frequency of collisions, without affecting the fraction of molecules with sufficient energy.",
       "marking_criteria": [
-        "Mark point 1 (a): Correct use of the Arrhenius equation (e.g., ln(k₂/k₁) = -Eₐ/R (1/T₂ - 1/T₁)) or two separate Arrhenius calculations.",
+        "Mark point 1 (a): Correct use of the Arrhenius equation (e.g., $\\ln(k₂/k₁)$ = -Eₐ/R (1/T₂ - 1/T₁)) or two separate Arrhenius calculations.",
         "Mark point 2 (a): Correct substitution of all values (k₁, k₂, T₁, T₂, R).",
         "Mark point 3 (a): Correct calculation of Eₐ in Joules (e.g., 58630 J mol⁻¹ or 58.6 kJ mol⁻¹). Allow range 58600 - 58700 J mol⁻¹.",
         "Mark point 4 (a): Correct conversion to kJ mol⁻¹ with appropriate significant figures (e.g., 58.6 kJ mol⁻¹).",
-        "Mark point 5 (b): Refers to the exponential term e^(-Ea/RT) in the Arrhenius equation.",
+        "Mark point 5 (b): Refers to the exponential term $e^{-Ea/RT}$ in the Arrhenius equation.",
         "Mark point 6 (b): Explains that an increase in T causes a disproportionately large increase in this exponential term (or causes -Ea/RT to become less negative, increasing the exponent's value) leading to a significantly larger fraction of molecules having energy ≥ Eₐ / increased frequency of effective collisions."
       ],
       "diagram": null
@@ -84023,7 +84023,7 @@
       "type": "original-question",
       "question_text": "A chemical engineer is investigating the industrial synthesis of ammonia from nitrogen and hydrogen. The reaction is represented by the equilibrium:\nN2(g) + 3H2(g) ⇌ 2NH3(g)  ΔH = -92 kJ mol⁻¹\nInitially, 2.0 mol of nitrogen gas and 6.0 mol of hydrogen gas are mixed in a reaction vessel. The mixture is allowed to reach equilibrium at a constant temperature and a total pressure of 20 atm. At equilibrium, it is found that 1.2 mol of ammonia has been formed. Calculate the value of Kp for this equilibrium at this temperature. Show all your working and give your answer to an appropriate number of significant figures.",
       "marks": 5,
-      "answer": "Initial moles:\nn(N2) = 2.0 mol, n(H2) = 6.0 mol, n(NH3) = 0 mol\nChange in moles:\nn(NH3) formed = 1.2 mol\nn(N2) reacted = 1.2/2 = 0.6 mol\nn(H2) reacted = (3/2) * 1.2 = 1.8 mol\nEquilibrium moles:\nn(N2) = 2.0 - 0.6 = 1.4 mol\nn(H2) = 6.0 - 1.8 = 4.2 mol\nn(NH3) = 1.2 mol\nTotal moles at equilibrium = 1.4 + 4.2 + 1.2 = 6.8 mol\nPartial pressures:\np(N2) = (1.4 / 6.8) * 20 = 4.1176 atm\np(H2) = (4.2 / 6.8) * 20 = 12.3529 atm\np(NH3) = (1.2 / 6.8) * 20 = 3.5294 atm\nKp expression: Kp = p(NH3)² / (p(N2) × p(H2)³)\nKp = (3.5294)² / (4.1176 × (12.3529)³) = 12.4566 / (4.1176 × 1883.65) = 12.4566 / 7755.7 = 0.001606\nKp = 0.00161 atm⁻² (to 3 significant figures)",
+      "answer": "Initial moles:\nn(N2) = 2.0 mol, n(H2) = 6.0 mol, n(NH3) = 0 mol\nChange in moles:\nn(NH3) formed = 1.2 mol\nn(N2) reacted = 1.2/2 = 0.6 mol\nn(H2) reacted = ($\\frac{3}{2}$) * 1.2 = 1.8 mol\nEquilibrium moles:\nn(N2) = 2.0 - 0.6 = 1.4 mol\nn(H2) = 6.0 - 1.8 = 4.2 mol\nn(NH3) = 1.2 mol\nTotal moles at equilibrium = 1.4 + 4.2 + 1.2 = 6.8 mol\nPartial pressures:\np(N2) = (1.4 / 6.8) * 20 = 4.1176 atm\np(H2) = (4.2 / 6.8) * 20 = 12.3529 atm\np(NH3) = (1.2 / 6.8) * 20 = 3.5294 atm\nKp expression: Kp = p(NH3)² / (p(N2) × p(H2)³)\nKp = (3.5294)² / (4.1176 × (12.3529)³) = 12.4566 / (4.1176 × 1883.65) = 12.4566 / 7755.7 = 0.001606\nKp = 0.00161 atm⁻² (to 3 significant figures)",
       "marking_criteria": [
         "M1: Calculation of equilibrium moles for N2 and H2 (N2 = 1.4 mol, H2 = 4.2 mol) ✓",
         "M2: Calculation of total moles at equilibrium (6.8 mol) ✓",
@@ -84155,7 +84155,7 @@
       "type": "original-question",
       "question_text": "(a) Explain, using a relevant equilibrium, how a mixture of a weak acid and its conjugate base can act as a buffer solution.\n(b) A buffer solution is prepared by mixing 20.0 cm³ of 0.250 mol dm⁻³ butanoic acid (CH₃CH₂CH₂COOH) with 25.0 cm³ of 0.100 mol dm⁻³ sodium butanoate (CH₃CH₂CH₂COONa).\nCalculate the pH of this buffer solution at 25 °C. The Kₐ for butanoic acid is 1.51 × 10⁻⁵ mol dm⁻³ at 25 °C. Give your answer to two decimal places.",
       "marks": 6,
-      "answer": "(a) Equilibrium: HA(aq) ⇌ H⁺(aq) + A⁻(aq). Added H⁺ reacts with A⁻ (conjugate base) shifting equilibrium left. Added OH⁻ reacts with H⁺ (from HA dissociation) shifting equilibrium right. Both processes minimise pH change.\n(b) Moles of butanoic acid = 0.250 × (20.0/1000) = 0.00500 mol.\nMoles of sodium butanoate = 0.100 × (25.0/1000) = 0.00250 mol.\npKₐ = -log(1.51 × 10⁻⁵) = 4.8207.\npH = pKₐ + log([A⁻]/[HA]) = 4.8207 + log(0.00250 / 0.00500) = 4.8207 - 0.3010 = 4.5197.\npH = 4.52 (2 dp).",
+      "answer": "(a) Equilibrium: HA(aq) ⇌ H⁺(aq) + A⁻(aq). Added H⁺ reacts with A⁻ (conjugate base) shifting equilibrium left. Added OH⁻ reacts with H⁺ (from HA dissociation) shifting equilibrium right. Both processes minimise pH change.\n(b) Moles of butanoic acid = 0.250 × (20.0/1000) = 0.00500 mol.\nMoles of sodium butanoate = 0.100 × (25.0/1000) = 0.00250 mol.\npKₐ = -$\\log(1.51 × 10⁻⁵)$ = 4.8207.\npH = pKₐ + $\\log([A⁻]/[HA])$ = 4.8207 + $\\log(0.00250 / 0.00500)$ = 4.8207 - 0.3010 = 4.5197.\npH = 4.52 (2 dp).",
       "marking_criteria": [
         "(a)",
         "M1: Correct equilibrium shown (HA ⇌ H⁺ + A⁻ or specific butanoic acid example) ✓",
@@ -84163,7 +84163,7 @@
         "(b)",
         "M1: n(CH₃CH₂CH₂COOH) = 0.250 × 0.0200 = 0.00500 (mol) ✓",
         "M2: n(CH₃CH₂CH₂COONa) = 0.100 × 0.0250 = 0.00250 (mol) ✓",
-        "M3: Correct substitution into Kₐ expression ([H⁺] = Kₐ × [HA]/[A⁻]) OR Henderson-Hasselbalch equation (pH = pKₐ + log([A⁻]/[HA])) using calculated moles/concentrations ✓",
+        "M3: Correct substitution into Kₐ expression ([H⁺] = Kₐ × [HA]/[A⁻]) OR Henderson-Hasselbalch equation (pH = pKₐ + $\\log([A⁻]/[HA])$) using calculated moles/concentrations ✓",
         "A1: pH = 4.52 (2 dp) ✓",
         "ALLOW ECF throughout for calculation.",
         "ALLOW pKₐ = 4.82 for M3 if used correctly."
@@ -84640,7 +84640,7 @@
       "answer": "a) Moles of MnO₄⁻ = 0.0150 mol dm⁻³ × (24.50 / 1000) dm³ = 3.675 × 10⁻⁴ mol\nb) Moles of C₂O₄²⁻ = (3.675 × 10⁻⁴ mol MnO₄⁻) × (5 mol C₂O₄²⁻ / 2 mol MnO₄⁻) = 9.1875 × 10⁻⁴ mol\n   Concentration of C₂O₄²⁻ = (9.1875 × 10⁻⁴ mol) / (20.0 / 1000) dm³ = 0.0459375 mol dm⁻³ ≈ 0.0459 mol dm⁻³ (3 s.f.)",
       "marking_criteria": [
         "A1: 3.675 × 10⁻⁴ mol (allow 3.68 × 10⁻⁴ mol)",
-        "M1: Correct mole ratio (e.g., moles C₂O₄²⁻ = moles MnO₄⁻ × 5/2)",
+        "M1: Correct mole ratio (e.g., moles C₂O₄²⁻ = moles MnO₄⁻ × $\\frac{5}{2}$)",
         "M1: Correct calculation of moles C₂O₄²⁻",
         "A1: 0.0459 mol dm⁻³ (or 0.046 mol dm⁻³ if rounded earlier, 3 s.f. required)"
       ],
@@ -85668,10 +85668,10 @@
       "type": "original-question",
       "question_text": "A student performed a titration to determine the concentration of a sodium hydroxide solution using a standard solution of hydrochloric acid (0.100 mol dm⁻³). The following results were recorded.\n\n| Trial | 1st burette reading / cm³ | 2nd burette reading / cm³ | Volume of HCl used / cm³ |\n|-------|---------------------------|---------------------------|--------------------------|\n| Rough | 0.50                      | 25.80                     | 25.30                    |\n| 1     | 2.10                      | 27.20                     | 25.10                    |\n| 2     | 27.20                     | 52.35                     | 25.15                    |\n| 3     | 0.00                      | 25.05                     | 25.05                    |\n\nCalculate the mean titre that the student should use for their calculations. Justify your choice of readings.",
       "marks": 3,
-      "answer": "Concordant titres are 25.10 cm³ (Trial 1), 25.15 cm³ (Trial 2), and 25.05 cm³ (Trial 3). These are within 0.10 cm³ of each other (or within 0.05 cm³ of each other, or within range of ±0.1 cm³). The rough titre is discarded because it is not accurate enough.\nMean titre = (25.10 + 25.15 + 25.05) / 3 = 25.10 cm³.",
+      "answer": "Concordant titres are 25.10 cm³ (Trial 1), 25.15 cm³ (Trial 2), and 25.05 cm³ (Trial 3). These are within 0.10 cm³ of each other (or within 0.05 cm³ of each other, or within range of $\\pm$0.1 cm³). The rough titre is discarded because it is not accurate enough.\nMean titre = (25.10 + 25.15 + 25.05) / 3 = 25.10 cm³.",
       "marking_criteria": [
         "Identifies concordant titres (Trial 1, 2, 3) AND discards rough titre. ✓",
-        "Justifies choice (e.g., titres are within 0.10 cm³ of each other / within range of ±0.1 cm³ / concordant). ✓",
+        "Justifies choice (e.g., titres are within 0.10 cm³ of each other / within range of $\\pm$0.1 cm³ / concordant). ✓",
         "Calculates correct mean titre (25.10 cm³). ✓"
       ],
       "diagram": "Table of titration readings as described in the question."
@@ -85740,9 +85740,9 @@
       "type": "original-question",
       "question_text": "A 0.050 mol dm⁻³ solution of propanoic acid, CH₃CH₂COOH, has a Kₐ value of 1.3 × 10⁻⁵ mol dm⁻³ at 298 K. Calculate the pH of this solution.",
       "marks": 3,
-      "answer": "[H⁺] = √(Kₐ × [HA]);\n[H⁺] = √(1.3 × 10⁻⁵ × 0.050) = 8.06 × 10⁻⁴ mol dm⁻³;\npH = -log(8.06 × 10⁻⁴) = 3.09",
+      "answer": "[H⁺] = $\\sqrt{Kₐ × [HA]}$;\n[H⁺] = $\\sqrt{1.3 × 10⁻⁵ × 0.050}$ = 8.06 × 10⁻⁴ mol dm⁻³;\npH = -$\\log(8.06 × 10⁻⁴)$ = 3.09",
       "marking_criteria": [
-        "M1: Correct expression for [H⁺] (e.g., Kₐ = [H⁺]²/[HA] or [H⁺] = √(Kₐ × [HA]))",
+        "M1: Correct expression for [H⁺] (e.g., Kₐ = [H⁺]²/[HA] or [H⁺] = $\\sqrt{Kₐ × [HA]}$)",
         "A1: Correct calculation of [H⁺] = 8.06 × 10⁻⁴ (allow 8.0 × 10⁻⁴ to 8.1 × 10⁻⁴) mol dm⁻³",
         "A1: Correct calculation of pH = 3.09 (allow 3.09-3.10)"
       ],
@@ -85788,7 +85788,7 @@
       "type": "original-question",
       "question_text": "A student needs to prepare a buffer solution with a pH of 4.50 for a biological experiment. They have a 0.100 mol dm⁻³ solution of ethanoic acid (CH₃COOH, Ka = 1.74 × 10⁻⁵ mol dm⁻³) and solid sodium ethanoate (CH₃COONa, Mr = 82.0 g mol⁻¹).\n\n(a) Calculate the mass of sodium ethanoate that needs to be dissolved in 250 cm³ of 0.100 mol dm⁻³ ethanoic acid to prepare the buffer solution with a pH of 4.50.\nGive your answer to an appropriate number of significant figures. (4 marks)\n\n(b) Explain, using relevant equations, how this buffer solution resists a significant change in pH when a small amount of strong alkali is added. (3 marks)",
       "marks": 7,
-      "answer": "(a) pH = 4.50, so [H⁺] = 10⁻⁴.⁵⁰ = 3.16 × 10⁻⁵ mol dm⁻³\nKa = [H⁺][CH₃COO⁻] / [CH₃COOH]\n1.74 × 10⁻⁵ = (3.16 × 10⁻⁵) × [CH₃COO⁻] / 0.100\n[CH₃COO⁻] = (1.74 × 10⁻⁵ × 0.100) / (3.16 × 10⁻⁵) = 0.05506 mol dm⁻³\nMoles of CH₃COO⁻ needed in 250 cm³ = 0.05506 × (250/1000) = 0.013765 mol\nMass of CH₃COONa = moles × Mr = 0.013765 × 82.0 = 1.12873 g\nMass = 1.13 g (3 s.f.)\n\n(b) The ethanoic acid is in equilibrium with ethanoate ions and H⁺ ions:\nCH₃COOH(aq) ⇌ CH₃COO⁻(aq) + H⁺(aq)\nWhen a small amount of strong alkali (e.g., OH⁻) is added, the OH⁻ ions react with the ethanoic acid present in the buffer:\nCH₃COOH(aq) + OH⁻(aq) → CH₃COO⁻(aq) + H₂O(l)\nThis removes the added OH⁻ ions, preventing a large increase in pH.",
+      "answer": "(a) pH = 4.50, so [H⁺] = 10⁻⁴.⁵⁰ = 3.16 × 10⁻⁵ mol dm⁻³\nKa = [H⁺][CH₃COO⁻] / [CH₃COOH]\n1.74 × 10⁻⁵ = (3.16 × 10⁻⁵) × [CH₃COO⁻] / 0.100\n[CH₃COO⁻] = (1.74 × 10⁻⁵ × 0.100) / (3.16 × 10⁻⁵) = 0.05506 mol dm⁻³\nMoles of CH₃COO⁻ needed in 250 cm³ = 0.05506 × ($\\frac{250}{1000}$) = 0.013765 mol\nMass of CH₃COONa = moles × Mr = 0.013765 × 82.0 = 1.12873 g\nMass = 1.13 g (3 s.f.)\n\n(b) The ethanoic acid is in equilibrium with ethanoate ions and H⁺ ions:\nCH₃COOH(aq) ⇌ CH₃COO⁻(aq) + H⁺(aq)\nWhen a small amount of strong alkali (e.g., OH⁻) is added, the OH⁻ ions react with the ethanoic acid present in the buffer:\nCH₃COOH(aq) + OH⁻(aq) → CH₃COO⁻(aq) + H₂O(l)\nThis removes the added OH⁻ ions, preventing a large increase in pH.",
       "marking_criteria": [
         "(a) M1: Calculation of [H⁺] from pH: [H⁺] = 10⁻⁴.⁵⁰ = 3.16 × 10⁻⁵ mol dm⁻³ ✓",
         "(a) M2: Correct rearrangement of Ka expression to find [CH₃COO⁻] / [salt]: [CH₃COO⁻] = Ka × [acid] / [H⁺] (or equivalent substitution) ✓",
@@ -86156,7 +86156,7 @@
       "marking_criteria": [
         "Moles of NaOH used in titration = 0.100 x (18.75/1000) = 0.001875 mol ✓",
         "Moles of excess HCl in 25.0 cm³ aliquot = 0.001875 mol ✓",
-        "Total moles of excess HCl in 250 cm³ = 0.001875 x (250/25) = 0.01875 mol ✓",
+        "Total moles of excess HCl in 250 cm³ = 0.001875 x ($\\frac{250}{25}$) = 0.01875 mol ✓",
         "Moles of HCl reacted with CaCO₃ = (1.00 x 0.025) - 0.01875 = 0.00625 mol ✓",
         "Moles of CaCO₃ = 0.00625 / 2 = 0.003125 mol AND Mass of CaCO₃ = 0.003125 x 100.1 = 0.3128 g AND Percentage by mass = (0.3128 / 1.250) x 100 = 25.0% (correct to 3 sig figs) ✓"
       ],
@@ -86797,7 +86797,7 @@
       "marks": 2,
       "answer": "11.67",
       "marking_criteria": [
-        "M1: [OH⁻] = √(K_b × [CH₃NH₂]) = √(4.4 × 10⁻⁴ × 0.050) = 4.69 × 10⁻³ (mol dm⁻³)",
+        "M1: [OH⁻] = $\\sqrt{K_b × [CH₃NH₂]}$ = $\\sqrt{4.4 × 10⁻⁴ × 0.050}$ = 4.69 × 10⁻³ (mol dm⁻³)",
         "M2: pH = 14 - (-log₁₀[OH⁻]) = 14 - (-log₁₀(4.69 × 10⁻³)) = 14 - 2.33 = 11.67 (allow ECF, 2dp)"
       ],
       "diagram": null
@@ -87148,7 +87148,7 @@
       "answer": "Labelling axes correctly (Peak Area on Y-axis, Ethanol Concentration on X-axis) and using at least 50% of the graph area for the plot. (1 mark)\nAll points plotted accurately within half a square. (1 mark)\nSensible straight line of best fit drawn, passing through the origin. (1 mark)",
       "marking_criteria": [
         "M1: Correctly labelled axes with units and suitable scale covering >50% of graph paper.",
-        "M2: All points plotted accurately (± half a small square).",
+        "M2: All points plotted accurately ($\\pm$ half a small square).",
         "M3: Straight line of best fit drawn, passing through the origin (or very close to it)."
       ],
       "diagram": "Empty graph paper with grid lines, approximately 10x10 cm."
@@ -87169,7 +87169,7 @@
       "type": "original-question",
       "question_text": "A calibration curve for the analysis of paracetamol in an analgesic tablet by UV-Vis spectroscopy showed a linear relationship where a concentration of 25.0 mg dm⁻³ resulted in an absorbance of 0.350. A 0.250 g sample of an analgesic tablet was crushed, dissolved, and made up to a 250 cm³ solution. This solution was then diluted by a factor of 10 (10 cm³ of solution made up to 100 cm³). The diluted solution gave an absorbance reading of 0.420.\n\nCalculate the percentage by mass of paracetamol in the analgesic tablet. (Mᵣ of paracetamol = 151.2)",
       "marks": 3,
-      "answer": "Concentration corresponding to absorbance of 0.420: (0.420 / 0.350) * 25.0 mg dm⁻³ = 30.0 mg dm⁻³ (M1)\nConcentration in 250 cm³ solution (before dilution): 30.0 mg dm⁻³ * 10 = 300 mg dm⁻³\nMass of paracetamol in 250 cm³ solution: 300 mg dm⁻³ * (250/1000) dm³ = 75 mg = 0.075 g (M2)\nPercentage by mass: (0.075 g / 0.250 g) * 100 = 30.0 % (M3)",
+      "answer": "Concentration corresponding to absorbance of 0.420: (0.420 / 0.350) * 25.0 mg dm⁻³ = 30.0 mg dm⁻³ (M1)\nConcentration in 250 cm³ solution (before dilution): 30.0 mg dm⁻³ * 10 = 300 mg dm⁻³\nMass of paracetamol in 250 cm³ solution: 300 mg dm⁻³ * ($\\frac{250}{1000}$) dm³ = 75 mg = 0.075 g (M2)\nPercentage by mass: (0.075 g / 0.250 g) * 100 = 30.0 % (M3)",
       "marking_criteria": [
         "M1: Correct calculation of concentration in the diluted solution (30.0 mg dm⁻³).",
         "M2: Correct calculation of mass of paracetamol in the original 250 cm³ solution (0.075 g).",

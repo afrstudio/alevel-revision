@@ -13,12 +13,10 @@ export const metadata: Metadata = {
   description: "A-Level Maths, Biology & Chemistry revision app",
   appleWebApp: {
     capable: true,
-    statusBarStyle: "black-translucent",
+    statusBarStyle: "default",
     title: "A-Level Rev",
   },
-  formatDetection: {
-    telephone: false,
-  },
+  formatDetection: { telephone: false },
 };
 
 export const viewport: Viewport = {
@@ -26,7 +24,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: "#030712",
+  themeColor: "#fafafa",
 };
 
 export default function RootLayout({
@@ -35,10 +33,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} font-sans antialiased bg-gray-950 text-gray-100`}>
+    <html lang="en" className={inter.variable}>
+      <body className="font-sans antialiased min-h-screen bg-zinc-50 pb-24">
         <Navbar />
-        <main className="px-4 pt-4 pb-24 md:pb-6 max-w-3xl mx-auto">
+        <main className="px-5 py-5 max-w-md mx-auto sm:max-w-xl md:max-w-3xl lg:max-w-5xl">
           {children}
         </main>
       </body>
