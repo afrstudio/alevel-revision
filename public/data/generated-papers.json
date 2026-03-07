@@ -1,122 +1,146 @@
 [
   {
-    "filename": "Edexcel-Biology-Paper-1-The-Natural-Environment-and-Species-Survival-SetA.pdf",
-    "board": "Edexcel",
-    "subject": "Biology",
-    "title": "Paper 1: The Natural Environment and Species Survival",
-    "set": "Set A",
-    "marks": 80,
-    "time": "1 hour 45 minutes",
-    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Biology-Paper-1-The-Natural-Environment-and-Species-Survival-SetA.pdf"
-  },
-  {
-    "filename": "Edexcel-Biology-Paper-1-The-Natural-Environment-and-Species-Survival-SetB.pdf",
-    "board": "Edexcel",
-    "subject": "Biology",
-    "title": "Paper 1: The Natural Environment and Species Survival",
-    "set": "Set B",
-    "marks": 80,
-    "time": "1 hour 45 minutes",
-    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Biology-Paper-1-The-Natural-Environment-and-Species-Survival-SetB.pdf"
-  },
-  {
-    "filename": "Edexcel-Biology-Paper-1-The-Natural-Environment-and-Species-Survival-SetC.pdf",
-    "board": "Edexcel",
-    "subject": "Biology",
-    "title": "Paper 1: The Natural Environment and Species Survival",
-    "set": "Set C",
-    "marks": 80,
-    "time": "1 hour 45 minutes",
-    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Biology-Paper-1-The-Natural-Environment-and-Species-Survival-SetC.pdf"
-  },
-  {
-    "filename": "Edexcel-Chemistry-Paper-1-Advanced-Inorganic-and-Physical-Chemistry-SetA.pdf",
-    "board": "Edexcel",
-    "subject": "Chemistry",
-    "title": "Paper 1: Advanced Inorganic and Physical Chemistry",
-    "set": "Set A",
-    "marks": 90,
-    "time": "1 hour 45 minutes",
-    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Chemistry-Paper-1-Advanced-Inorganic-and-Physical-Chemistry-SetA.pdf"
-  },
-  {
-    "filename": "Edexcel-Chemistry-Paper-1-Advanced-Inorganic-and-Physical-Chemistry-SetB.pdf",
-    "board": "Edexcel",
-    "subject": "Chemistry",
-    "title": "Paper 1: Advanced Inorganic and Physical Chemistry",
-    "set": "Set B",
-    "marks": 90,
-    "time": "1 hour 45 minutes",
-    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Chemistry-Paper-1-Advanced-Inorganic-and-Physical-Chemistry-SetB.pdf"
-  },
-  {
-    "filename": "Edexcel-Chemistry-Paper-1-Advanced-Inorganic-and-Physical-Chemistry-SetC.pdf",
-    "board": "Edexcel",
-    "subject": "Chemistry",
-    "title": "Paper 1: Advanced Inorganic and Physical Chemistry",
-    "set": "Set C",
-    "marks": 90,
-    "time": "1 hour 45 minutes",
-    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Chemistry-Paper-1-Advanced-Inorganic-and-Physical-Chemistry-SetC.pdf"
-  },
-  {
-    "filename": "Edexcel-Maths-Paper-1-Pure-Mathematics-SetA.pdf",
+    "filename": "Edexcel-Maths-Paper-1-Pure-Mathematics-1-SetA-QP.pdf",
+    "msFilename": "Edexcel-Maths-Paper-1-Pure-Mathematics-1-SetA-MS.pdf",
     "board": "Edexcel",
     "subject": "Maths",
-    "title": "Paper 1: Pure Mathematics",
+    "title": "Paper 1: Pure Mathematics 1",
     "set": "Set A",
-    "marks": 100,
+    "marks": 104,
     "time": "2 hours",
-    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Maths-Paper-1-Pure-Mathematics-SetA.pdf"
+    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Maths-Paper-1-Pure-Mathematics-1-SetA-QP.pdf",
+    "msUrl": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Maths-Paper-1-Pure-Mathematics-1-SetA-MS.pdf"
   },
   {
-    "filename": "Edexcel-Maths-Paper-1-Pure-Mathematics-SetB.pdf",
+    "filename": "Edexcel-Maths-Paper-1-Pure-Mathematics-1-SetB-QP.pdf",
+    "msFilename": "Edexcel-Maths-Paper-1-Pure-Mathematics-1-SetB-MS.pdf",
     "board": "Edexcel",
     "subject": "Maths",
-    "title": "Paper 1: Pure Mathematics",
+    "title": "Paper 1: Pure Mathematics 1",
     "set": "Set B",
-    "marks": 100,
+    "marks": 98,
     "time": "2 hours",
-    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Maths-Paper-1-Pure-Mathematics-SetB.pdf"
+    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Maths-Paper-1-Pure-Mathematics-1-SetB-QP.pdf",
+    "msUrl": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Maths-Paper-1-Pure-Mathematics-1-SetB-MS.pdf"
   },
   {
-    "filename": "Edexcel-Maths-Paper-1-Pure-Mathematics-SetC.pdf",
+    "filename": "Edexcel-Maths-Paper-1-Pure-Mathematics-1-SetC-QP.pdf",
+    "msFilename": "Edexcel-Maths-Paper-1-Pure-Mathematics-1-SetC-MS.pdf",
     "board": "Edexcel",
     "subject": "Maths",
-    "title": "Paper 1: Pure Mathematics",
+    "title": "Paper 1: Pure Mathematics 1",
     "set": "Set C",
-    "marks": 100,
+    "marks": 102,
     "time": "2 hours",
-    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Maths-Paper-1-Pure-Mathematics-SetC.pdf"
+    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Maths-Paper-1-Pure-Mathematics-1-SetC-QP.pdf",
+    "msUrl": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Maths-Paper-1-Pure-Mathematics-1-SetC-MS.pdf"
   },
   {
-    "filename": "Edexcel-Maths-Paper-2-Statistics-and-Mechanics-SetA.pdf",
+    "filename": "Edexcel-Maths-Paper-2-Statistics-and-Mechanics-SetA-QP.pdf",
+    "msFilename": "Edexcel-Maths-Paper-2-Statistics-and-Mechanics-SetA-MS.pdf",
     "board": "Edexcel",
     "subject": "Maths",
     "title": "Paper 2: Statistics and Mechanics",
     "set": "Set A",
-    "marks": 100,
+    "marks": 108,
     "time": "2 hours",
-    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Maths-Paper-2-Statistics-and-Mechanics-SetA.pdf"
+    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Maths-Paper-2-Statistics-and-Mechanics-SetA-QP.pdf",
+    "msUrl": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Maths-Paper-2-Statistics-and-Mechanics-SetA-MS.pdf"
   },
   {
-    "filename": "Edexcel-Maths-Paper-2-Statistics-and-Mechanics-SetB.pdf",
+    "filename": "Edexcel-Maths-Paper-2-Statistics-and-Mechanics-SetB-QP.pdf",
+    "msFilename": "Edexcel-Maths-Paper-2-Statistics-and-Mechanics-SetB-MS.pdf",
     "board": "Edexcel",
     "subject": "Maths",
     "title": "Paper 2: Statistics and Mechanics",
     "set": "Set B",
     "marks": 100,
     "time": "2 hours",
-    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Maths-Paper-2-Statistics-and-Mechanics-SetB.pdf"
+    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Maths-Paper-2-Statistics-and-Mechanics-SetB-QP.pdf",
+    "msUrl": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Maths-Paper-2-Statistics-and-Mechanics-SetB-MS.pdf"
   },
   {
-    "filename": "Edexcel-Maths-Paper-2-Statistics-and-Mechanics-SetC.pdf",
+    "filename": "Edexcel-Maths-Paper-2-Statistics-and-Mechanics-SetC-QP.pdf",
+    "msFilename": "Edexcel-Maths-Paper-2-Statistics-and-Mechanics-SetC-MS.pdf",
     "board": "Edexcel",
     "subject": "Maths",
     "title": "Paper 2: Statistics and Mechanics",
     "set": "Set C",
-    "marks": 100,
+    "marks": 97,
     "time": "2 hours",
-    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Maths-Paper-2-Statistics-and-Mechanics-SetC.pdf"
+    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Maths-Paper-2-Statistics-and-Mechanics-SetC-QP.pdf",
+    "msUrl": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Maths-Paper-2-Statistics-and-Mechanics-SetC-MS.pdf"
+  },
+  {
+    "filename": "Edexcel-Biology-Paper-1-The-Natural-Environment-and-Species-Survival-SetA-QP.pdf",
+    "msFilename": "Edexcel-Biology-Paper-1-The-Natural-Environment-and-Species-Survival-SetA-MS.pdf",
+    "board": "Edexcel",
+    "subject": "Biology",
+    "title": "Paper 1: The Natural Environment and Species Survival",
+    "set": "Set A",
+    "marks": 78,
+    "time": "1 hour 45 minutes",
+    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Biology-Paper-1-The-Natural-Environment-and-Species-Survival-SetA-QP.pdf",
+    "msUrl": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Biology-Paper-1-The-Natural-Environment-and-Species-Survival-SetA-MS.pdf"
+  },
+  {
+    "filename": "Edexcel-Biology-Paper-1-The-Natural-Environment-and-Species-Survival-SetB-QP.pdf",
+    "msFilename": "Edexcel-Biology-Paper-1-The-Natural-Environment-and-Species-Survival-SetB-MS.pdf",
+    "board": "Edexcel",
+    "subject": "Biology",
+    "title": "Paper 1: The Natural Environment and Species Survival",
+    "set": "Set B",
+    "marks": 79,
+    "time": "1 hour 45 minutes",
+    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Biology-Paper-1-The-Natural-Environment-and-Species-Survival-SetB-QP.pdf",
+    "msUrl": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Biology-Paper-1-The-Natural-Environment-and-Species-Survival-SetB-MS.pdf"
+  },
+  {
+    "filename": "Edexcel-Biology-Paper-1-The-Natural-Environment-and-Species-Survival-SetC-QP.pdf",
+    "msFilename": "Edexcel-Biology-Paper-1-The-Natural-Environment-and-Species-Survival-SetC-MS.pdf",
+    "board": "Edexcel",
+    "subject": "Biology",
+    "title": "Paper 1: The Natural Environment and Species Survival",
+    "set": "Set C",
+    "marks": 78,
+    "time": "1 hour 45 minutes",
+    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Biology-Paper-1-The-Natural-Environment-and-Species-Survival-SetC-QP.pdf",
+    "msUrl": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/Edexcel-Biology-Paper-1-The-Natural-Environment-and-Species-Survival-SetC-MS.pdf"
+  },
+  {
+    "filename": "OCR-Chemistry-Periodic-table-elements-and-physical-chemistry-SetA-QP.pdf",
+    "msFilename": "OCR-Chemistry-Periodic-table-elements-and-physical-chemistry-SetA-MS.pdf",
+    "board": "OCR",
+    "subject": "Chemistry",
+    "title": "Periodic table, elements and physical chemistry",
+    "set": "Set A",
+    "marks": 99,
+    "time": "2 hours 15 minutes",
+    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/OCR-Chemistry-Periodic-table-elements-and-physical-chemistry-SetA-QP.pdf",
+    "msUrl": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/OCR-Chemistry-Periodic-table-elements-and-physical-chemistry-SetA-MS.pdf"
+  },
+  {
+    "filename": "OCR-Chemistry-Periodic-table-elements-and-physical-chemistry-SetB-QP.pdf",
+    "msFilename": "OCR-Chemistry-Periodic-table-elements-and-physical-chemistry-SetB-MS.pdf",
+    "board": "OCR",
+    "subject": "Chemistry",
+    "title": "Periodic table, elements and physical chemistry",
+    "set": "Set B",
+    "marks": 97,
+    "time": "2 hours 15 minutes",
+    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/OCR-Chemistry-Periodic-table-elements-and-physical-chemistry-SetB-QP.pdf",
+    "msUrl": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/OCR-Chemistry-Periodic-table-elements-and-physical-chemistry-SetB-MS.pdf"
+  },
+  {
+    "filename": "OCR-Chemistry-Periodic-table-elements-and-physical-chemistry-SetC-QP.pdf",
+    "msFilename": "OCR-Chemistry-Periodic-table-elements-and-physical-chemistry-SetC-MS.pdf",
+    "board": "OCR",
+    "subject": "Chemistry",
+    "title": "Periodic table, elements and physical chemistry",
+    "set": "Set C",
+    "marks": 100,
+    "time": "2 hours 15 minutes",
+    "url": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/OCR-Chemistry-Periodic-table-elements-and-physical-chemistry-SetC-QP.pdf",
+    "msUrl": "https://loekgdvqcybzmtgphcra.supabase.co/storage/v1/object/public/papers/generated/OCR-Chemistry-Periodic-table-elements-and-physical-chemistry-SetC-MS.pdf"
   }
 ]
