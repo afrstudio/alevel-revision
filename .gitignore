@@ -43,7 +43,7 @@ next-env.d.ts
 # screenshots
 /screenshots
 
-# large static assets (deployed separately)
+# large static assets (served from Supabase Storage)
 /public/papers
 
 # dev scripts
