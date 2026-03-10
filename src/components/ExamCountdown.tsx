@@ -1,11 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
 
+// Maths: Edexcel (9MA0) | Biology: Edexcel (9BN0) | Chemistry: OCR (H432)
 const exams = [
   {
     subject: "Chemistry",
     paper: "Paper 1",
-    subtitle: "Advanced Inorganic & Physical Chemistry",
+    subtitle: "Periodic Table, Elements & Physical Chemistry",
+    board: "OCR",
     date: new Date("2026-06-02T09:00:00"),
     color: "bg-teal-500",
     badgeColor: "text-teal-700 bg-teal-50",
@@ -14,6 +16,7 @@ const exams = [
     subject: "Maths",
     paper: "Paper 1",
     subtitle: "Pure Mathematics 1",
+    board: "Edexcel",
     date: new Date("2026-06-03T13:30:00"),
     color: "bg-indigo-500",
     badgeColor: "text-indigo-700 bg-indigo-50",
@@ -22,6 +25,7 @@ const exams = [
     subject: "Biology",
     paper: "Paper 1",
     subtitle: "Natural Environment & Species Survival",
+    board: "Edexcel",
     date: new Date("2026-06-04T13:30:00"),
     color: "bg-emerald-500",
     badgeColor: "text-emerald-700 bg-emerald-50",
@@ -29,7 +33,8 @@ const exams = [
   {
     subject: "Chemistry",
     paper: "Paper 2",
-    subtitle: "Advanced Organic & Physical Chemistry",
+    subtitle: "Synthesis & Analytical Techniques",
+    board: "OCR",
     date: new Date("2026-06-09T09:00:00"),
     color: "bg-teal-500",
     badgeColor: "text-teal-700 bg-teal-50",
@@ -38,6 +43,7 @@ const exams = [
     subject: "Maths",
     paper: "Paper 2",
     subtitle: "Pure Mathematics 2",
+    board: "Edexcel",
     date: new Date("2026-06-11T13:30:00"),
     color: "bg-indigo-500",
     badgeColor: "text-indigo-700 bg-indigo-50",
@@ -46,6 +52,7 @@ const exams = [
     subject: "Biology",
     paper: "Paper 2",
     subtitle: "Energy, Exercise & Co-ordination",
+    board: "Edexcel",
     date: new Date("2026-06-12T09:00:00"),
     color: "bg-emerald-500",
     badgeColor: "text-emerald-700 bg-emerald-50",
@@ -53,7 +60,8 @@ const exams = [
   {
     subject: "Chemistry",
     paper: "Paper 3",
-    subtitle: "General & Practical Principles in Chemistry",
+    subtitle: "Unified Chemistry",
+    board: "OCR",
     date: new Date("2026-06-15T09:00:00"),
     color: "bg-teal-500",
     badgeColor: "text-teal-700 bg-teal-50",
@@ -62,6 +70,7 @@ const exams = [
     subject: "Biology",
     paper: "Paper 3",
     subtitle: "General & Practical Applications in Biology",
+    board: "Edexcel",
     date: new Date("2026-06-16T09:00:00"),
     color: "bg-emerald-500",
     badgeColor: "text-emerald-700 bg-emerald-50",
@@ -70,6 +79,7 @@ const exams = [
     subject: "Maths",
     paper: "Paper 3",
     subtitle: "Statistics & Mechanics",
+    board: "Edexcel",
     date: new Date("2026-06-18T13:30:00"),
     color: "bg-indigo-500",
     badgeColor: "text-indigo-700 bg-indigo-50",
@@ -112,7 +122,7 @@ export default function ExamCountdown() {
     <section className="space-y-3">
       <div className="px-1">
         <h2 className="text-lg font-semibold text-zinc-900">Exam Countdown</h2>
-        <p className="text-xs text-zinc-500 mt-0.5">Edexcel A-Level 2026</p>
+        <p className="text-xs text-zinc-500 mt-0.5">Edexcel Maths &amp; Biology &middot; OCR Chemistry &middot; 2026</p>
       </div>
 
       {/* Next exam hero card */}
@@ -136,7 +146,8 @@ export default function ExamCountdown() {
               {next.date.toLocaleTimeString("en-GB", {
                 hour: "2-digit",
                 minute: "2-digit",
-              })}
+              })}{" "}
+              &middot; {next.board}
             </p>
           </div>
           <div className="text-right shrink-0">
@@ -162,7 +173,8 @@ export default function ExamCountdown() {
                       weekday: "short",
                       day: "numeric",
                       month: "short",
-                    })}
+                    })}{" "}
+                    &middot; {exam.board}
                   </p>
                 </div>
                 <span
