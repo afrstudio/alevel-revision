@@ -7,6 +7,7 @@ import {
   getCameraMistakePatterns, getWeeklyReport, getActivityHistory,
   type DailyStats, type WeakTopic,
 } from "@/lib/progress";
+import { getProgressGreeting } from "@/lib/banter";
 
 function StatCard({ label, value, sub }: { label: string; value: string | number; sub?: string }) {
   return (
@@ -96,7 +97,7 @@ export default function ProgressPage() {
       <div>
         <div className="inline-block px-3 py-1 bg-zinc-200/50 text-zinc-600 rounded-md text-xs font-semibold tracking-wide uppercase mb-2">Dashboard</div>
         <h1 className="text-2xl font-semibold tracking-tight text-zinc-900">Yabi&apos;s Progress</h1>
-        <p className="text-zinc-500 text-sm mt-0.5">Keep going, you&apos;ve got this</p>
+        <p className="text-zinc-500 text-sm mt-0.5">{getProgressGreeting(stats.accuracy)}</p>
       </div>
 
       {/* Tab toggle */}
@@ -117,7 +118,7 @@ export default function ProgressPage() {
           {totalActivity === 0 ? (
             <div className="bg-white border border-zinc-200 rounded-2xl p-8 text-center shadow-sm">
               <p className="text-zinc-500 text-[15px]">No activity yet</p>
-              <p className="text-zinc-400 text-[13px] mt-1">Start practising to see your progress here, Yabi</p>
+              <p className="text-zinc-400 text-[13px] mt-1">You haven&apos;t done anything yet Yabi... get to work</p>
               <Link href="/mcqs" className="inline-block mt-4 px-5 py-2.5 bg-zinc-900 text-white rounded-xl text-sm font-medium hover:bg-zinc-800 transition-colors">Start MCQs</Link>
             </div>
           ) : (

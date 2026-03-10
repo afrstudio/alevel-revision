@@ -7,6 +7,7 @@ import { recordMCQAttempt, getAnsweredMCQIds } from "@/lib/progress";
 import RichText from "@/components/RichText";
 import { stripLatex } from "@/lib/strip-latex";
 import ExamTimer, { TimerToggle } from "@/components/ExamTimer";
+import { getCorrectMessage, getWrongMessage } from "@/lib/banter";
 
 interface MCQPracticeProps {
   mcqs: MCQ[];
@@ -60,6 +61,9 @@ export default function MCQPractice({ mcqs, subject }: MCQPracticeProps) {
   const [questionsAnswered, setQuestionsAnswered] = useState<number>(0);
   const [correctCount, setCorrectCount] = useState<number>(0);
   const [timerEnabled, setTimerEnabled] = useState(false);
+  const [correctStreak, setCorrectStreak] = useState(0);
+  const [wrongStreak, setWrongStreak] = useState(0);
+  const [feedbackMsg, setFeedbackMsg] = useState("");
 
   const boards = useMemo(() => {
     const set = new Set<string>();
@@ -91,7 +95,18 @@ export default function MCQPractice({ mcqs, subject }: MCQPracticeProps) {
     setSelectedOption(key);
     setQuestionsAnswered((prev) => prev + 1);
     const isCorrect = currentQuestion ? key === currentQuestion.correct : false;
-    if (isCorrect) setCorrectCount((prev) => prev + 1);
+    if (isCorrect) {
+      setCorrectCount((prev) => prev + 1);
+      const newStreak = correctStreak + 1;
+      setCorrectStreak(newStreak);
+      setWrongStreak(0);
+      setFeedbackMsg(getCorrectMessage(newStreak));
+    } else {
+      const newStreak = wrongStreak + 1;
+      setWrongStreak(newStreak);
+      setCorrectStreak(0);
+      setFeedbackMsg(getWrongMessage(newStreak));
+    }
     if (currentQuestion) {
       recordMCQAttempt({
         questionId: currentQuestion.id, subject, subtopic: currentQuestion.subtopic,
@@ -99,7 +114,7 @@ export default function MCQPractice({ mcqs, subject }: MCQPracticeProps) {
         correctAnswer: currentQuestion.correct, timestamp: Date.now(),
       });
     }
-  }, [selectedOption, currentQuestion, subject]);
+  }, [selectedOption, currentQuestion, subject, correctStreak, wrongStreak]);
 
   const handleNext = useCallback(() => {
     if (filteredMcqs.length <= 1) { setSelectedOption(null); return; }
@@ -115,6 +130,8 @@ export default function MCQPractice({ mcqs, subject }: MCQPracticeProps) {
     setCurrentIndex(0);
     setQuestionsAnswered(0);
     setCorrectCount(0);
+    setCorrectStreak(0);
+    setWrongStreak(0);
   };
 
   const shuffledOptions = useMemo(() => {
@@ -276,12 +293,12 @@ export default function MCQPractice({ mcqs, subject }: MCQPracticeProps) {
               {selectedOption === currentQuestion.correct ? (
                 <div className="flex items-center gap-1.5 text-emerald-600 text-sm font-medium">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                  Correct!
+                  {feedbackMsg}
                 </div>
               ) : (
                 <div className="flex items-center gap-1.5 text-red-600 text-sm font-medium">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-                  Incorrect
+                  {feedbackMsg}
                 </div>
               )}
               {remappedExplanation && (
