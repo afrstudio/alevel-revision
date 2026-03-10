@@ -6,6 +6,7 @@ import type { Subject } from "@/types";
 import { recordQuestionAttempt } from "@/lib/progress";
 import RichText from "@/components/RichText";
 import { stripLatex } from "@/lib/strip-latex";
+import ExamTimer, { TimerToggle } from "@/components/ExamTimer";
 
 interface GeneratedQuestion {
   id: string;
@@ -44,6 +45,7 @@ export default function QuestionPractice({ questions, subject }: QuestionPractic
   const [generatedQ, setGeneratedQ] = useState<GeneratedQuestion | null>(null);
   const [generating, setGenerating] = useState(false);
   const [genError, setGenError] = useState<string | null>(null);
+  const [timerEnabled, setTimerEnabled] = useState(false);
 
   const boards = useMemo(() => {
     const set = new Set<string>();
@@ -67,6 +69,15 @@ export default function QuestionPractice({ questions, subject }: QuestionPractic
   }, [questions, difficultyFilter, topicFilter, boardFilter]);
 
   const currentQuestion = filteredQuestions[currentIndex] ?? null;
+
+  // 1.5 minutes per mark for written questions
+  const activeQ = generatedQ || currentQuestion;
+  const timerDuration = activeQ ? activeQ.marks * 90 : 90;
+  const timerResetKey = activeQ?.id || generatedQ?.id || `${currentIndex}`;
+
+  const handleTimeUp = useCallback(() => {
+    setShowMarkScheme(true);
+  }, []);
 
   const handleNextQuestion = useCallback(() => {
     if (generatedQ) {
@@ -183,6 +194,7 @@ export default function QuestionPractice({ questions, subject }: QuestionPractic
           <p className="text-[11px] text-zinc-400">
             {filteredQuestions.length} question{filteredQuestions.length !== 1 ? "s" : ""} available
           </p>
+          <TimerToggle enabled={timerEnabled} onToggle={setTimerEnabled} />
           <button
             onClick={handleGenerate}
             disabled={generating}
@@ -207,6 +219,16 @@ export default function QuestionPractice({ questions, subject }: QuestionPractic
           <p className="text-[12px] text-red-600 bg-red-50 border border-red-100 rounded-lg px-3 py-2">{genError}</p>
         )}
       </div>
+
+      {/* Exam Timer */}
+      {(generatedQ || currentQuestion) && (
+        <ExamTimer
+          duration={timerDuration}
+          onTimeUp={handleTimeUp}
+          resetKey={timerResetKey}
+          enabled={timerEnabled}
+        />
+      )}
 
       {/* Generated Question Card */}
       {generatedQ && (

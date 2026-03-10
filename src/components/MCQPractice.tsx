@@ -6,6 +6,7 @@ import type { Subject } from "@/types";
 import { recordMCQAttempt, getAnsweredMCQIds } from "@/lib/progress";
 import RichText from "@/components/RichText";
 import { stripLatex } from "@/lib/strip-latex";
+import ExamTimer, { TimerToggle } from "@/components/ExamTimer";
 
 interface MCQPracticeProps {
   mcqs: MCQ[];
@@ -58,6 +59,7 @@ export default function MCQPractice({ mcqs, subject }: MCQPracticeProps) {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [questionsAnswered, setQuestionsAnswered] = useState<number>(0);
   const [correctCount, setCorrectCount] = useState<number>(0);
+  const [timerEnabled, setTimerEnabled] = useState(false);
 
   const boards = useMemo(() => {
     const set = new Set<string>();
@@ -196,7 +198,7 @@ export default function MCQPractice({ mcqs, subject }: MCQPracticeProps) {
         </div>
       </div>
 
-      {/* Progress */}
+      {/* Progress + Timer Toggle */}
       <div className="flex items-center justify-between">
         <span className="text-[11px] text-zinc-400 tracking-wide">
           Question {filteredMcqs.length > 0 ? questionsAnswered + 1 : 0} of {filteredMcqs.length}
@@ -204,10 +206,23 @@ export default function MCQPractice({ mcqs, subject }: MCQPracticeProps) {
             <span className="ml-1.5 text-indigo-500" title="You've attempted this before">(seen)</span>
           )}
         </span>
-        {questionsAnswered > 0 && (
-          <span className="text-[11px] text-zinc-400 tracking-wide">{correctCount}/{questionsAnswered} correct</span>
-        )}
+        <div className="flex items-center gap-2">
+          {questionsAnswered > 0 && (
+            <span className="text-[11px] text-zinc-400 tracking-wide">{correctCount}/{questionsAnswered} correct</span>
+          )}
+          <TimerToggle enabled={timerEnabled} onToggle={setTimerEnabled} />
+        </div>
       </div>
+
+      {/* Exam Timer - 90 seconds per MCQ */}
+      {currentQuestion && (
+        <ExamTimer
+          duration={90}
+          onTimeUp={() => {}}
+          resetKey={currentQuestion.id}
+          enabled={timerEnabled}
+        />
+      )}
 
       {/* Question Card */}
       {currentQuestion ? (
