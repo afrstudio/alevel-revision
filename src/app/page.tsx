@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ExamCountdown from "@/components/ExamCountdown";
 
 const counts = {
   Maths: { mcqs: 462, questions: 279, flashcards: 1718 },
@@ -68,12 +69,15 @@ export default function Home() {
           {formatNumber(totalItems)} items across 3 subjects
         </div>
         <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-zinc-900">
-          A-Level Revision
+          Hi Yabi
         </h1>
         <p className="text-base max-w-md text-zinc-500">
-          Your daily revision tasks are ready.
+          Your exams are coming up — let&apos;s get to work.
         </p>
       </section>
+
+      {/* Exam Countdown */}
+      <ExamCountdown />
 
       {/* Quick Actions - 2-col grid */}
       <section className="grid grid-cols-2 gap-4">
@@ -149,7 +153,7 @@ export default function Home() {
       {/* Subjects - Horizontal Scroll */}
       <section className="space-y-4">
         <div className="flex items-center justify-between px-1">
-          <h2 className="text-lg font-semibold text-zinc-900">Your Subjects</h2>
+          <h2 className="text-lg font-semibold text-zinc-900">Yabi&apos;s Subjects</h2>
         </div>
         <div className="flex overflow-x-auto hide-scrollbar space-x-4 pb-4 snap-x snap-mandatory -mx-5 px-5 sm:mx-0 sm:px-0">
           {subjectConfig.map((s) => {

@@ -9,12 +9,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "A-Level Revision",
-  description: "A-Level Maths, Biology & Chemistry revision app",
+  title: "Yabi's Revision",
+  description: "Yabi's A-Level Maths, Biology & Chemistry revision app",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "A-Level Rev",
+    title: "Yabi's Rev",
   },
   formatDetection: { telephone: false },
 };
