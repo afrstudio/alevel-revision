@@ -17,7 +17,7 @@ export default function CameraPage() {
         </div>
         <h1 className="text-2xl font-semibold tracking-tight text-zinc-900">Scan your working out</h1>
         <p className="text-sm text-zinc-500 max-w-sm">
-          Get instant line-by-line feedback on your maths and science answers.
+          Get instant line-by-line feedback on your answers, Yabi.
         </p>
       </div>
       <CameraMarker />

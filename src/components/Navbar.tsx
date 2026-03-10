@@ -30,9 +30,9 @@ export default function Navbar() {
       <header className="hidden md:flex sticky top-0 z-40 items-center justify-between w-full px-6 py-3.5 bg-white/80 backdrop-blur-md border-b border-zinc-100">
         <div className="flex items-center space-x-2">
           <div className="w-8 h-8 bg-zinc-900 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-sm">A*</span>
+            <span className="text-white font-bold text-sm">Y</span>
           </div>
-          <span className="font-semibold text-zinc-900 tracking-tight">Revision Pro</span>
+          <span className="font-semibold text-zinc-900 tracking-tight">Yabi&apos;s Revision</span>
         </div>
         <div className="flex items-center gap-1">
           {[...navLinks, { ...cameraLink, label: "Camera" }].map((link) => (

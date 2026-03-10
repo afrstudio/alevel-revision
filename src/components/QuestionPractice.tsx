@@ -7,6 +7,21 @@ import { recordQuestionAttempt } from "@/lib/progress";
 import RichText from "@/components/RichText";
 import { stripLatex } from "@/lib/strip-latex";
 
+interface GeneratedQuestion {
+  id: string;
+  question_text: string;
+  marks: number;
+  answer: string;
+  marking_criteria: string[];
+  subtopic: string;
+  difficulty: string;
+  boards: string[];
+  diagram: string | null;
+  diagram_svg: string | null;
+  diagram_type: string | null;
+  generated: boolean;
+}
+
 interface QuestionPracticeProps {
   questions: OriginalQuestion[];
   subject: Subject;
@@ -26,6 +41,9 @@ export default function QuestionPractice({ questions, subject }: QuestionPractic
   const [studentAnswer, setStudentAnswer] = useState("");
   const [showMarkScheme, setShowMarkScheme] = useState(false);
   const [checkedCriteria, setCheckedCriteria] = useState<Set<number>>(new Set());
+  const [generatedQ, setGeneratedQ] = useState<GeneratedQuestion | null>(null);
+  const [generating, setGenerating] = useState(false);
+  const [genError, setGenError] = useState<string | null>(null);
 
   const boards = useMemo(() => {
     const set = new Set<string>();
@@ -51,6 +69,13 @@ export default function QuestionPractice({ questions, subject }: QuestionPractic
   const currentQuestion = filteredQuestions[currentIndex] ?? null;
 
   const handleNextQuestion = useCallback(() => {
+    if (generatedQ) {
+      setGeneratedQ(null);
+      setStudentAnswer("");
+      setShowMarkScheme(false);
+      setCheckedCriteria(new Set());
+      return;
+    }
     if (filteredQuestions.length <= 1) return;
     let nextIndex: number;
     do { nextIndex = Math.floor(Math.random() * filteredQuestions.length); } while (nextIndex === currentIndex);
@@ -58,7 +83,33 @@ export default function QuestionPractice({ questions, subject }: QuestionPractic
     setStudentAnswer("");
     setShowMarkScheme(false);
     setCheckedCriteria(new Set());
-  }, [filteredQuestions.length, currentIndex]);
+  }, [filteredQuestions.length, currentIndex, generatedQ]);
+
+  const handleGenerate = useCallback(async () => {
+    setGenerating(true);
+    setGenError(null);
+    try {
+      const res = await fetch("/api/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          subject,
+          topic: topicFilter !== "all" ? topicFilter : undefined,
+          board: boardFilter !== "all" ? boardFilter : undefined,
+        }),
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      setGeneratedQ(data as GeneratedQuestion);
+      setStudentAnswer("");
+      setShowMarkScheme(false);
+      setCheckedCriteria(new Set());
+    } catch (err) {
+      setGenError(err instanceof Error ? err.message : "Failed to generate");
+    } finally {
+      setGenerating(false);
+    }
+  }, [subject, topicFilter, boardFilter]);
 
   const handleFilterChange = useCallback(() => {
     setCurrentIndex(0);
@@ -128,13 +179,126 @@ export default function QuestionPractice({ questions, subject }: QuestionPractic
           </select>
         </div>
 
-        <p className="text-[11px] text-zinc-400">
-          {filteredQuestions.length} question{filteredQuestions.length !== 1 ? "s" : ""} available
-        </p>
+        <div className="flex items-center justify-between">
+          <p className="text-[11px] text-zinc-400">
+            {filteredQuestions.length} question{filteredQuestions.length !== 1 ? "s" : ""} available
+          </p>
+          <button
+            onClick={handleGenerate}
+            disabled={generating}
+            className="flex items-center gap-1.5 px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 text-white rounded-xl text-[12px] font-semibold transition-all active:scale-95 min-h-[36px]"
+          >
+            {generating ? (
+              <>
+                <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                Generating...
+              </>
+            ) : (
+              <>
+                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" />
+                </svg>
+                Generate Hard Question
+              </>
+            )}
+          </button>
+        </div>
+        {genError && (
+          <p className="text-[12px] text-red-600 bg-red-50 border border-red-100 rounded-lg px-3 py-2">{genError}</p>
+        )}
       </div>
 
+      {/* Generated Question Card */}
+      {generatedQ && (
+        <div className="bg-white border-2 border-indigo-200 shadow-sm rounded-2xl p-4 md:p-5 space-y-4">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="text-indigo-700 bg-indigo-50 rounded-lg px-2 py-0.5 text-[11px] font-semibold flex items-center gap-1">
+              <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+              </svg>
+              AI Generated
+            </span>
+            <span className={difficultyConfig.hard.pill}>Hard</span>
+            <span className="text-indigo-600 bg-indigo-50 rounded-lg px-2 py-0.5 text-[11px] font-semibold">
+              {generatedQ.marks} mark{generatedQ.marks !== 1 ? "s" : ""}
+            </span>
+            <span className="text-[11px] text-zinc-400 ml-auto">{generatedQ.subtopic}</span>
+          </div>
+
+          <RichText className="text-[15px] text-zinc-900 leading-relaxed">{generatedQ.question_text}</RichText>
+
+          <textarea
+            value={studentAnswer}
+            onChange={(e) => setStudentAnswer(e.target.value)}
+            rows={4}
+            placeholder="Write your answer here, Yabi..."
+            className="w-full bg-zinc-50 border border-zinc-200 rounded-xl p-3.5 text-sm text-zinc-900 placeholder-zinc-400 resize-none focus:outline-none focus:ring-2 focus:ring-zinc-900/10 focus:border-zinc-400"
+          />
+
+          <div className="flex flex-col gap-2.5">
+            <button
+              onClick={() => setShowMarkScheme(!showMarkScheme)}
+              className="border border-zinc-200 bg-white rounded-xl text-[14px] text-zinc-700 hover:bg-zinc-50 hover:text-zinc-900 min-h-[52px] w-full transition-all active:scale-95 font-medium"
+            >
+              {showMarkScheme ? "Hide Mark Scheme" : "Show Mark Scheme"}
+            </button>
+            <div className="flex gap-2.5">
+              <button
+                onClick={handleGenerate}
+                disabled={generating}
+                className="flex-1 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 text-white rounded-xl text-[14px] font-semibold min-h-[52px] transition-all active:scale-95"
+              >
+                {generating ? "Generating..." : "Another Hard One"}
+              </button>
+              <button
+                onClick={handleNextQuestion}
+                className="flex-1 bg-zinc-900 hover:bg-zinc-800 text-white rounded-xl text-[14px] font-semibold min-h-[52px] transition-all active:scale-95"
+              >
+                Back to Bank
+              </button>
+            </div>
+          </div>
+
+          {showMarkScheme && (
+            <div className="space-y-4 pt-2 fade-in">
+              <div className="space-y-2">
+                <p className="text-[11px] font-semibold text-zinc-500 uppercase tracking-wider">Model Answer</p>
+                <RichText className="bg-zinc-50 border border-zinc-100 rounded-xl p-3.5 text-[13px] text-zinc-700 leading-relaxed" as="div">
+                  {generatedQ.answer}
+                </RichText>
+              </div>
+              {generatedQ.marking_criteria.length > 0 && (
+                <div className="space-y-2.5">
+                  <p className="text-[11px] font-semibold text-zinc-500 uppercase tracking-wider">Marking Criteria</p>
+                  <ul className="space-y-1.5">
+                    {generatedQ.marking_criteria.map((criterion, i) => (
+                      <li key={i}>
+                        <label className="flex items-start gap-3 cursor-pointer group py-1">
+                          <input
+                            type="checkbox"
+                            checked={checkedCriteria.has(i)}
+                            onChange={() => toggleCriterion(i)}
+                            className="mt-0.5 h-5 w-5 rounded-lg border-zinc-300 bg-white accent-emerald-600 focus:ring-emerald-600/20 cursor-pointer"
+                          />
+                          <span className={`text-[13px] leading-relaxed transition-all duration-200 ${
+                            checkedCriteria.has(i) ? "text-emerald-600 line-through" : "text-zinc-700 group-hover:text-zinc-900"
+                          }`}>
+                            {criterion}
+                          </span>
+                        </label>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="text-[11px] text-zinc-400 pt-1">{checkedCriteria.size} / {generatedQ.marking_criteria.length} criteria met</p>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+
       {/* Question Card */}
-      {currentQuestion ? (
+      {!generatedQ && currentQuestion ? (
         <div className="bg-white border border-zinc-200 shadow-sm rounded-2xl p-4 md:p-5 space-y-4">
           <div className="flex items-center gap-2 flex-wrap">
             <span className={difficultyConfig[currentQuestion.difficulty]?.pill}>{difficultyConfig[currentQuestion.difficulty]?.label}</span>
@@ -168,7 +332,7 @@ export default function QuestionPractice({ questions, subject }: QuestionPractic
             value={studentAnswer}
             onChange={(e) => setStudentAnswer(e.target.value)}
             rows={4}
-            placeholder="Write your answer here..."
+            placeholder="Write your answer here, Yabi..."
             className="w-full bg-zinc-50 border border-zinc-200 rounded-xl p-3.5 text-sm text-zinc-900 placeholder-zinc-400 resize-none focus:outline-none focus:ring-2 focus:ring-zinc-900/10 focus:border-zinc-400"
           />
 
@@ -233,7 +397,7 @@ export default function QuestionPractice({ questions, subject }: QuestionPractic
             </div>
           )}
         </div>
-      ) : (
+      ) : !generatedQ && (
         <div className="bg-white border border-zinc-200 shadow-sm rounded-2xl p-4 md:px-6 md:py-12 text-center">
           <p className="text-zinc-500 text-[15px]">No questions match the selected filters.</p>
         </div>
