@@ -11,14 +11,15 @@ import { stripLatex } from "@/lib/strip-latex";
 interface FlashcardPracticeProps {
   flashcards: Flashcard[];
   subject: Subject;
+  initialTopic?: string;
 }
 
 const difficultyColor = { easy: "text-green-600", medium: "text-amber-600", hard: "text-red-600" } as const;
 const difficultyDot = { easy: "bg-green-600", medium: "bg-amber-600", hard: "bg-red-600" } as const;
 
-export default function FlashcardPractice({ flashcards, subject }: FlashcardPracticeProps) {
+export default function FlashcardPractice({ flashcards, subject, initialTopic }: FlashcardPracticeProps) {
   const [difficultyFilter, setDifficultyFilter] = useState<"all" | "easy" | "medium" | "hard">("all");
-  const [topicFilter, setTopicFilter] = useState<string>("all");
+  const [topicFilter, setTopicFilter] = useState<string>(initialTopic || "all");
   const [boardFilter, setBoardFilter] = useState<string>("all");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
@@ -70,8 +71,9 @@ export default function FlashcardPractice({ flashcards, subject }: FlashcardPrac
     setCurrentIndex((prev) => (prev - 1 + activeCards.length) % activeCards.length);
   }, [activeCards.length]);
 
-  const handleAssessment = useCallback((knewIt: boolean) => {
+  const handleAssessment = useCallback((grade: 1 | 3 | 4) => {
     if (!currentCard) return;
+    const knewIt = grade >= 3;
     if (!reviewedSet.has(currentCard.id)) {
       setReviewed((prev) => prev + 1);
       if (knewIt) setKnown((prev) => prev + 1);
@@ -79,7 +81,6 @@ export default function FlashcardPractice({ flashcards, subject }: FlashcardPrac
     }
     recordFlashcardReview({ cardId: currentCard.id, subject, subtopic: currentCard.subtopic, knewIt, timestamp: Date.now() });
     const existing = sm2Data[currentCard.id] || createNewCard();
-    const grade = knewIt ? 4 : 1;
     const updated = gradeCard(existing, grade);
     updateSM2Data(currentCard.id, updated);
     setSm2Data((prev) => ({ ...prev, [currentCard.id]: updated }));
@@ -221,16 +222,22 @@ export default function FlashcardPractice({ flashcards, subject }: FlashcardPrac
           </div>
 
           {/* Assessment */}
-          <div className="flex gap-2.5">
+          <div className="flex gap-2">
             <button
-              onClick={(e) => { e.stopPropagation(); handleAssessment(true); }}
-              className="bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-xl min-h-[52px] text-[14px] font-semibold flex-1 hover:bg-emerald-100 active:scale-95 transition-all"
+              onClick={(e) => { e.stopPropagation(); handleAssessment(4); }}
+              className="bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-xl min-h-[52px] text-[13px] font-semibold flex-1 hover:bg-emerald-100 active:scale-95 transition-all"
             >
               Knew it
             </button>
             <button
-              onClick={(e) => { e.stopPropagation(); handleAssessment(false); }}
-              className="bg-red-50 border border-red-200 text-red-700 rounded-xl min-h-[52px] text-[14px] font-semibold flex-1 hover:bg-red-100 active:scale-95 transition-all"
+              onClick={(e) => { e.stopPropagation(); handleAssessment(3); }}
+              className="bg-amber-50 border border-amber-200 text-amber-700 rounded-xl min-h-[52px] text-[13px] font-semibold flex-1 hover:bg-amber-100 active:scale-95 transition-all"
+            >
+              Still learning
+            </button>
+            <button
+              onClick={(e) => { e.stopPropagation(); handleAssessment(1); }}
+              className="bg-red-50 border border-red-200 text-red-700 rounded-xl min-h-[52px] text-[13px] font-semibold flex-1 hover:bg-red-100 active:scale-95 transition-all"
             >
               Review
             </button>

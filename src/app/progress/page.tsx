@@ -48,21 +48,29 @@ function WeakTopicsList({ topics }: { topics: WeakTopic[] }) {
   if (topics.length === 0) return null;
   return (
     <div className="bg-white border border-zinc-200 rounded-2xl p-4 shadow-sm">
-      <h3 className="text-[13px] font-semibold text-zinc-900 mb-3">Weak Topics</h3>
+      <h3 className="text-[13px] font-semibold text-zinc-900 mb-2">Weak Topics</h3>
+      <p className="text-[11px] text-zinc-400 mb-3">Tap a topic to practise it</p>
       <div className="space-y-2">
         {topics.slice(0, 8).map((t, i) => (
-          <div key={i} className="flex items-center gap-3">
+          <Link
+            key={i}
+            href={`/mcqs?subject=${encodeURIComponent(t.subject)}&topic=${encodeURIComponent(t.topic)}&mode=weak`}
+            className="flex items-center gap-3 group hover:bg-zinc-50 rounded-lg px-1 py-1 -mx-1 transition-colors"
+          >
             <div className="flex-1 min-w-0">
               <div className="flex items-center justify-between mb-1">
-                <span className="text-[12px] text-zinc-700 truncate">{t.topic}</span>
+                <span className="text-[12px] text-zinc-700 truncate group-hover:text-zinc-900 transition-colors">{t.topic}</span>
                 <span className={`text-[11px] font-medium ${t.accuracy < 50 ? "text-red-600" : t.accuracy < 70 ? "text-amber-600" : "text-emerald-600"}`}>{t.accuracy}%</span>
               </div>
               <div className="h-1.5 bg-zinc-100 rounded-full overflow-hidden">
                 <div className={`h-full rounded-full transition-all ${t.accuracy < 50 ? "bg-red-500" : t.accuracy < 70 ? "bg-amber-500" : "bg-emerald-500"}`} style={{ width: `${t.accuracy}%` }} />
               </div>
             </div>
-            <span className="text-[10px] text-zinc-400 shrink-0">{t.totalAttempts} Qs</span>
-          </div>
+            <div className="flex items-center gap-1.5 shrink-0">
+              <span className="text-[10px] text-zinc-400">{t.totalAttempts} Qs</span>
+              <svg className="w-3.5 h-3.5 text-zinc-300 group-hover:text-zinc-500 transition-colors" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+            </div>
+          </Link>
         ))}
       </div>
     </div>
@@ -132,6 +140,17 @@ export default function ProgressPage() {
               <ActivityBar days={activity} />
               <WeakTopicsList topics={weakTopics} />
 
+              {/* Quick action: practise all weak areas */}
+              {weakTopics.length > 0 && weakTopics[0].accuracy < 70 && (
+                <Link
+                  href={`/mcqs?subject=${encodeURIComponent(weakTopics[0].subject)}&topic=${encodeURIComponent(weakTopics[0].topic)}&mode=weak`}
+                  className="flex items-center justify-center gap-2 w-full min-h-[48px] bg-zinc-900 hover:bg-zinc-800 text-white rounded-xl font-semibold text-[13px] transition-all duration-150 active:scale-95"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+                  Practise your weakest topic: {weakTopics[0].topic} ({weakTopics[0].accuracy}%)
+                </Link>
+              )}
+
               {repeatedMistakes.length > 0 && (
                 <div className="bg-white border border-zinc-200 rounded-2xl p-4 shadow-sm">
                   <h3 className="text-[13px] font-semibold text-zinc-900 mb-2">Repeated Mistakes</h3>
@@ -185,10 +204,13 @@ export default function ProgressPage() {
               <p className="text-[12px] text-zinc-500 mb-3">Topics that need the most work</p>
               <div className="space-y-1.5">
                 {weeklyReport.weakTopics.map((t, i) => (
-                  <div key={i} className="flex items-center justify-between bg-zinc-50 rounded-lg px-3 py-2">
-                    <span className="text-[12px] text-zinc-700">{t.topic}</span>
-                    <span className={`text-[11px] font-semibold ${t.accuracy < 50 ? "text-red-600" : "text-amber-600"}`}>{t.accuracy}%</span>
-                  </div>
+                  <Link key={i} href={`/mcqs?subject=${encodeURIComponent(t.subject)}&topic=${encodeURIComponent(t.topic)}&mode=weak`} className="flex items-center justify-between bg-zinc-50 rounded-lg px-3 py-2 hover:bg-zinc-100 transition-colors group">
+                    <span className="text-[12px] text-zinc-700 group-hover:text-zinc-900">{t.topic}</span>
+                    <div className="flex items-center gap-1.5">
+                      <span className={`text-[11px] font-semibold ${t.accuracy < 50 ? "text-red-600" : "text-amber-600"}`}>{t.accuracy}%</span>
+                      <svg className="w-3.5 h-3.5 text-zinc-300 group-hover:text-zinc-500" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+                    </div>
+                  </Link>
                 ))}
               </div>
             </div>

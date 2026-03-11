@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Link from "next/link";
 import manifest from "@/data/papers-manifest.json";
 
 type Manifest = Record<string, Record<string, Record<string, Record<string, { pages: string[]; pageCount: number }>>>>;
@@ -73,6 +74,17 @@ export default function PastPapersPage() {
           <button onClick={() => setCurrentPage(Math.max(0, currentPage - 1))} disabled={currentPage === 0} className="px-4 py-2.5 rounded-xl text-[13px] font-medium bg-white border border-zinc-200 text-zinc-600 disabled:opacity-30 active:scale-95 transition-all min-h-[48px]">Previous Page</button>
           <button onClick={() => setCurrentPage(Math.min(pages.length - 1, currentPage + 1))} disabled={currentPage === pages.length - 1} className="px-4 py-2.5 rounded-xl text-[13px] font-medium bg-zinc-900 text-white disabled:opacity-30 active:scale-95 transition-all min-h-[48px]">Next Page</button>
         </div>
+
+        {/* Mark with Camera */}
+        <Link
+          href={`/camera?context=${encodeURIComponent(`${subject} - ${board} - ${paper} - ${formatSession(session)} - Page ${currentPage + 1}`)}&subject=${encodeURIComponent(subject || "")}`}
+          className="flex items-center justify-center gap-2 w-full min-h-[52px] bg-zinc-900 hover:bg-zinc-800 text-white rounded-xl font-semibold text-[14px] transition-all duration-150 active:scale-95"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0z" />
+          </svg>
+          Attempt this question, then mark with AI Camera
+        </Link>
 
         <div className="flex gap-1.5 overflow-x-auto pb-2 hide-scrollbar">
           {pages.map((_, i) => (

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import ExamCountdown from "@/components/ExamCountdown";
 import { getStudyTip } from "@/lib/banter";
+import { getRecommendations } from "@/lib/progress";
 
 const counts = {
   Maths: { mcqs: 462, questions: 279, flashcards: 1718 },
@@ -40,10 +41,12 @@ function formatNumber(n: number): string {
 export default function Home() {
   const [greeting, setGreeting] = useState("Hi");
   const [tip, setTip] = useState("");
+  const [recommendations, setRecommendations] = useState<ReturnType<typeof getRecommendations>>([]);
 
   useEffect(() => {
     setGreeting(getGreeting());
     setTip(getStudyTip());
+    setRecommendations(getRecommendations());
   }, []);
 
   const totalItems = Object.values(counts).reduce(
@@ -65,6 +68,42 @@ export default function Home() {
 
       {/* Exam Countdown */}
       <ExamCountdown />
+
+      {/* Recommended for you */}
+      {recommendations.length > 0 && (
+        <section className="space-y-3">
+          <h2 className="text-[11px] font-semibold text-zinc-400 uppercase tracking-widest px-0.5">Recommended for you</h2>
+          <div className="space-y-2">
+            {recommendations.map((rec, i) => {
+              const href = rec.mode === "mcqs"
+                ? `/mcqs?subject=${encodeURIComponent(rec.subject)}&topic=${encodeURIComponent(rec.topic)}`
+                : `/flashcards?subject=${encodeURIComponent(rec.subject)}&topic=${encodeURIComponent(rec.topic)}`;
+              const accentColor = rec.accuracy < 40 ? "border-l-red-500" : rec.accuracy < 60 ? "border-l-amber-500" : "border-l-yellow-400";
+              return (
+                <Link key={i} href={href} className="block group">
+                  <div className={`bg-white border border-zinc-200/80 rounded-xl p-3.5 border-l-[3px] ${accentColor} hover:bg-zinc-50/50 transition-colors`}>
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="min-w-0">
+                        <p className="text-[13px] font-semibold text-zinc-900 truncate">{rec.topic}</p>
+                        <p className="text-[11px] text-zinc-400 mt-0.5">{rec.subject} {rec.mode === "mcqs" ? "MCQs" : "Flashcards"} &middot; {rec.reason}</p>
+                      </div>
+                      <div className="flex items-center gap-2 shrink-0">
+                        <div className="w-16 h-1.5 bg-zinc-100 rounded-full overflow-hidden">
+                          <div
+                            className={`h-full rounded-full ${rec.accuracy < 40 ? "bg-red-500" : rec.accuracy < 60 ? "bg-amber-500" : "bg-yellow-400"}`}
+                            style={{ width: `${rec.accuracy}%` }}
+                          />
+                        </div>
+                        <span className="text-[11px] font-medium text-zinc-500 tabular-nums w-8 text-right">{rec.accuracy}%</span>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      )}
 
       {/* Study Modes */}
       <section className="space-y-3">

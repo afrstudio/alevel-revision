@@ -23,10 +23,17 @@ interface MarkingResult {
 
 type Stage = "setup" | "camera" | "preview" | "loading" | "result";
 
-export default function CameraMarker() {
-  const [stage, setStage] = useState<Stage>("setup");
-  const [subject, setSubject] = useState<Subject | "">("");
-  const [questionContext, setQuestionContext] = useState("");
+interface CameraMarkerProps {
+  initialSubject?: string;
+  initialContext?: string;
+}
+
+export default function CameraMarker({ initialSubject = "", initialContext = "" }: CameraMarkerProps) {
+  const validSubjects: Subject[] = ["Maths", "Biology", "Chemistry"];
+  const matchedSubject = validSubjects.find((s) => s === initialSubject) || "";
+  const [stage, setStage] = useState<Stage>(matchedSubject && initialContext ? "camera" : "setup");
+  const [subject, setSubject] = useState<Subject | "">(matchedSubject);
+  const [questionContext, setQuestionContext] = useState(initialContext);
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
   const [result, setResult] = useState<MarkingResult | null>(null);
   const [error, setError] = useState<string | null>(null);

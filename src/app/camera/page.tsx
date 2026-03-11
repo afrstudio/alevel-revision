@@ -1,6 +1,14 @@
+"use client";
+
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import CameraMarker from "@/components/CameraMarker";
 
-export default function CameraPage() {
+function CameraPageInner() {
+  const searchParams = useSearchParams();
+  const initialContext = searchParams.get("context") || "";
+  const initialSubject = searchParams.get("subject") || "";
+
   return (
     <div className="fade-in space-y-6">
       <div className="flex flex-col items-center text-center space-y-3 pt-4">
@@ -20,7 +28,15 @@ export default function CameraPage() {
           Snap your working out and let&apos;s see if you actually know what you&apos;re doing.
         </p>
       </div>
-      <CameraMarker />
+      <CameraMarker initialSubject={initialSubject} initialContext={initialContext} />
     </div>
+  );
+}
+
+export default function CameraPage() {
+  return (
+    <Suspense>
+      <CameraPageInner />
+    </Suspense>
   );
 }

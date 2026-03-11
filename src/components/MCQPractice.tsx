@@ -3,7 +3,8 @@
 import { useState, useMemo, useCallback, useEffect } from "react";
 import type { MCQ } from "@/types/index";
 import type { Subject } from "@/types";
-import { recordMCQAttempt, getAnsweredMCQIds } from "@/lib/progress";
+import Link from "next/link";
+import { recordMCQAttempt, getAnsweredMCQIds, getPreviouslyWrongMCQIds, getWeakTopics } from "@/lib/progress";
 import RichText from "@/components/RichText";
 import { stripLatex } from "@/lib/strip-latex";
 import ExamTimer, { TimerToggle } from "@/components/ExamTimer";
@@ -12,6 +13,8 @@ import { getCorrectMessage, getWrongMessage } from "@/lib/banter";
 interface MCQPracticeProps {
   mcqs: MCQ[];
   subject: Subject;
+  initialTopic?: string;
+  adaptiveMode?: boolean;
 }
 
 const difficultyConfig: Record<string, { label: string; classes: string; activeClasses: string }> = {
@@ -52,9 +55,9 @@ function seededShuffle<T>(arr: T[], seed: string): T[] {
   return result;
 }
 
-export default function MCQPractice({ mcqs, subject }: MCQPracticeProps) {
+export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode }: MCQPracticeProps) {
   const [difficultyFilter, setDifficultyFilter] = useState<string>("all");
-  const [topicFilter, setTopicFilter] = useState<string>("all");
+  const [topicFilter, setTopicFilter] = useState<string>(initialTopic || "all");
   const [boardFilter, setBoardFilter] = useState<string>("all");
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -86,9 +89,30 @@ export default function MCQPractice({ mcqs, subject }: MCQPracticeProps) {
     return Array.from(set).sort();
   }, [mcqs, difficultyFilter]);
 
-  const currentQuestion: MCQ | null = filteredMcqs.length > 0 ? filteredMcqs[currentIndex % filteredMcqs.length] : null;
-  const hasAnswered = selectedOption !== null;
   const answeredBefore = useMemo(() => getAnsweredMCQIds(subject), [subject]);
+  const previouslyWrong = useMemo(() => getPreviouslyWrongMCQIds(subject), [subject]);
+
+  // In adaptive mode, prioritize previously-wrong questions and weak topic questions
+  const orderedMcqs = useMemo(() => {
+    if (!adaptiveMode) return filteredMcqs;
+    const weakTopicNames = new Set(getWeakTopics(subject).map((t) => t.topic));
+    return [...filteredMcqs].sort((a, b) => {
+      const aWrong = previouslyWrong.get(a.id) || 0;
+      const bWrong = previouslyWrong.get(b.id) || 0;
+      const aWeak = weakTopicNames.has(a.subtopic) ? 1 : 0;
+      const bWeak = weakTopicNames.has(b.subtopic) ? 1 : 0;
+      // Sort by: wrong count desc, then weak topic, then unseen first
+      if (bWrong !== aWrong) return bWrong - aWrong;
+      if (bWeak !== aWeak) return bWeak - aWeak;
+      const aSeen = answeredBefore.has(a.id) ? 1 : 0;
+      const bSeen = answeredBefore.has(b.id) ? 1 : 0;
+      return aSeen - bSeen;
+    });
+  }, [filteredMcqs, adaptiveMode, previouslyWrong, answeredBefore, subject]);
+
+  const activePool = adaptiveMode ? orderedMcqs : filteredMcqs;
+  const currentQuestion: MCQ | null = activePool.length > 0 ? activePool[currentIndex % activePool.length] : null;
+  const hasAnswered = selectedOption !== null;
 
   const handleOptionClick = useCallback((key: string) => {
     if (selectedOption !== null) return;
@@ -117,12 +141,17 @@ export default function MCQPractice({ mcqs, subject }: MCQPracticeProps) {
   }, [selectedOption, currentQuestion, subject, correctStreak, wrongStreak]);
 
   const handleNext = useCallback(() => {
-    if (filteredMcqs.length <= 1) { setSelectedOption(null); return; }
-    let next = getRandomIndex(filteredMcqs.length);
-    while (next === currentIndex % filteredMcqs.length) next = getRandomIndex(filteredMcqs.length);
-    setCurrentIndex(next);
+    if (activePool.length <= 1) { setSelectedOption(null); return; }
+    if (adaptiveMode) {
+      // In adaptive mode, go sequentially through prioritized list
+      setCurrentIndex((prev) => (prev + 1) % activePool.length);
+    } else {
+      let next = getRandomIndex(activePool.length);
+      while (next === currentIndex % activePool.length) next = getRandomIndex(activePool.length);
+      setCurrentIndex(next);
+    }
     setSelectedOption(null);
-  }, [filteredMcqs.length, currentIndex]);
+  }, [activePool.length, currentIndex, adaptiveMode]);
 
   const handleFilterChange = (setter: (val: string) => void, value: string) => {
     setter(value);
@@ -175,6 +204,13 @@ export default function MCQPractice({ mcqs, subject }: MCQPracticeProps) {
 
   return (
     <div className="w-full max-w-3xl mx-auto space-y-4 fade-in">
+      {/* Adaptive mode banner */}
+      {adaptiveMode && (
+        <div className="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 flex items-center gap-2">
+          <svg className="w-4 h-4 text-amber-600 shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+          <p className="text-[13px] text-amber-700 font-medium">Adaptive mode — prioritising questions you&apos;ve struggled with</p>
+        </div>
+      )}
       {/* Filter Controls */}
       <div className="space-y-3">
         <div className="flex flex-wrap gap-2">
@@ -218,7 +254,7 @@ export default function MCQPractice({ mcqs, subject }: MCQPracticeProps) {
       {/* Progress + Timer Toggle */}
       <div className="flex items-center justify-between">
         <span className="text-[11px] text-zinc-400 tracking-wide">
-          Question {filteredMcqs.length > 0 ? questionsAnswered + 1 : 0} of {filteredMcqs.length}
+          Question {activePool.length > 0 ? questionsAnswered + 1 : 0} of {activePool.length}
           {currentQuestion && answeredBefore.has(currentQuestion.id) && (
             <span className="ml-1.5 text-indigo-500" title="You've attempted this before">(seen)</span>
           )}
@@ -249,6 +285,11 @@ export default function MCQPractice({ mcqs, subject }: MCQPracticeProps) {
               {currentQuestion.difficulty.charAt(0).toUpperCase() + currentQuestion.difficulty.slice(1)}
             </span>
             <span className="bg-zinc-100 text-zinc-500 text-[11px] px-2 py-0.5 rounded-lg">{currentQuestion.subtopic}</span>
+            {previouslyWrong.has(currentQuestion.id) && (
+              <span className="text-[11px] px-2 py-0.5 rounded-lg font-medium bg-amber-50 text-amber-600 border border-amber-200">
+                Wrong before ({previouslyWrong.get(currentQuestion.id)}x)
+              </span>
+            )}
           </div>
 
           <RichText className="text-[15px] text-zinc-900 leading-relaxed">{currentQuestion.question}</RichText>
@@ -304,6 +345,18 @@ export default function MCQPractice({ mcqs, subject }: MCQPracticeProps) {
               {remappedExplanation && (
                 <div className="bg-zinc-50 border border-zinc-100 rounded-xl p-3.5">
                   <RichText className="text-[13px] text-zinc-500 leading-relaxed">{remappedExplanation}</RichText>
+                </div>
+              )}
+              {/* Study links after wrong answer */}
+              {selectedOption !== currentQuestion.correct && (
+                <div className="flex gap-2">
+                  <Link
+                    href={`/flashcards?subject=${encodeURIComponent(subject)}&topic=${encodeURIComponent(currentQuestion.subtopic)}`}
+                    className="flex-1 flex items-center justify-center gap-1.5 min-h-[44px] bg-indigo-50 border border-indigo-200 text-indigo-700 rounded-xl text-[13px] font-medium hover:bg-indigo-100 active:scale-95 transition-all"
+                  >
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+                    Study {currentQuestion.subtopic}
+                  </Link>
                 </div>
               )}
               <button

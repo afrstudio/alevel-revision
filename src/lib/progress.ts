@@ -406,3 +406,62 @@ export function getAnsweredMCQIds(subject: Subject): Set<string> {
   }
   return ids;
 }
+
+// Get MCQ IDs that were previously answered wrong (for "you got this wrong before" badges)
+export function getPreviouslyWrongMCQIds(subject: Subject): Map<string, number> {
+  const data = loadProgress();
+  const wrongMap = new Map<string, number>();
+  for (const a of data.mcqAttempts) {
+    if (a.subject === subject && !a.correct) {
+      wrongMap.set(a.questionId, (wrongMap.get(a.questionId) || 0) + 1);
+    }
+  }
+  return wrongMap;
+}
+
+// Get top recommended topics to study based on weak areas
+export function getRecommendations(): { topic: string; subject: Subject; accuracy: number; mode: "mcqs" | "flashcards"; reason: string }[] {
+  const data = loadProgress();
+  const recommendations: { topic: string; subject: Subject; accuracy: number; mode: "mcqs" | "flashcards"; reason: string }[] = [];
+
+  // Find weak MCQ topics (accuracy < 70%, 3+ attempts)
+  const weakTopics = getWeakTopics();
+  for (const wt of weakTopics.slice(0, 4)) {
+    if (wt.accuracy < 70) {
+      recommendations.push({
+        topic: wt.topic,
+        subject: wt.subject,
+        accuracy: wt.accuracy,
+        mode: "mcqs",
+        reason: `${wt.accuracy}% accuracy across ${wt.totalAttempts} questions`,
+      });
+    }
+  }
+
+  // Find flashcard topics with low retention (many "Review" presses)
+  const fcTopicMap = new Map<string, { subject: Subject; total: number; known: number }>();
+  for (const r of data.flashcardReviews) {
+    const key = `${r.subject}::${r.subtopic}`;
+    const existing = fcTopicMap.get(key) || { subject: r.subject, total: 0, known: 0 };
+    existing.total += 1;
+    if (r.knewIt) existing.known += 1;
+    fcTopicMap.set(key, existing);
+  }
+
+  for (const [key, val] of fcTopicMap) {
+    if (val.total < 5) continue;
+    const retention = Math.round((val.known / val.total) * 100);
+    if (retention < 60) {
+      recommendations.push({
+        topic: key.split("::")[1],
+        subject: val.subject,
+        accuracy: retention,
+        mode: "flashcards",
+        reason: `${retention}% retention across ${val.total} reviews`,
+      });
+    }
+  }
+
+  // Sort by accuracy ascending (worst first), limit to 5
+  return recommendations.sort((a, b) => a.accuracy - b.accuracy).slice(0, 5);
+}
