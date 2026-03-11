@@ -173,6 +173,8 @@ export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode 
     setCorrectCount(0);
     setCorrectStreak(0);
     setWrongStreak(0);
+    setShowSummary(false);
+    setSessionTopicStats(new Map());
   };
 
   const shuffledOptions = useMemo(() => {

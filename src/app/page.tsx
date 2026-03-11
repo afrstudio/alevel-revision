@@ -70,7 +70,7 @@ export default function Home() {
       <ExamCountdown />
 
       {/* Recommended for you */}
-      {recommendations.length > 0 && (
+      {recommendations.length > 0 ? (
         <section className="space-y-3">
           <h2 className="text-[11px] font-semibold text-zinc-400 uppercase tracking-widest px-0.5">Recommended for you</h2>
           <div className="space-y-2">
@@ -101,6 +101,21 @@ export default function Home() {
                 </Link>
               );
             })}
+          </div>
+        </section>
+      ) : (
+        <section className="space-y-3">
+          <h2 className="text-[11px] font-semibold text-zinc-400 uppercase tracking-widest px-0.5">Get started</h2>
+          <div className="bg-white border border-zinc-200/80 rounded-xl p-4 space-y-3">
+            <p className="text-[13px] text-zinc-600">Start practising to get personalised recommendations based on your weak areas.</p>
+            <div className="flex gap-2">
+              <Link href="/mcqs" className="flex-1 text-center py-2.5 bg-zinc-900 text-white text-[13px] font-medium rounded-xl hover:bg-zinc-800 active:scale-95 transition-all">
+                Start MCQs
+              </Link>
+              <Link href="/flashcards" className="flex-1 text-center py-2.5 bg-zinc-100 text-zinc-700 text-[13px] font-medium rounded-xl hover:bg-zinc-200 active:scale-95 transition-all">
+                Flashcards
+              </Link>
+            </div>
           </div>
         </section>
       )}
