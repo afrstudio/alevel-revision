@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import manifest from "@/data/papers-manifest.json";
+import { recordPaperView, getPaperViewMap, type PaperView } from "@/lib/progress";
 
 type Manifest = Record<string, Record<string, Record<string, Record<string, { pages: string[]; pageCount: number }>>>>;
 const papers = manifest as Manifest;
@@ -19,6 +20,9 @@ export default function PastPapersPage() {
   const [paper, setPaper] = useState<string | null>(null);
   const [session, setSession] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(0);
+
+  const [viewedPapers, setViewedPapers] = useState<Map<string, PaperView>>(new Map());
+  useEffect(() => { setViewedPapers(getPaperViewMap()); }, []);
 
   const subjects = Object.keys(papers);
   const boards = useMemo(() => { if (!subject || !papers[subject]) return []; return Object.keys(papers[subject]); }, [subject]);
@@ -46,6 +50,20 @@ export default function PastPapersPage() {
   const breadcrumb = [subject, board, paper, session].filter(Boolean);
 
   const formatSession = (s: string) => s.replace(/-qp$/i, "").replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+
+  // Track paper views
+  useEffect(() => {
+    if (subject && board && paper && session && pages.length > 0) {
+      recordPaperView({
+        subject: subject as "Maths" | "Biology" | "Chemistry",
+        board, paper, session,
+        lastPage: currentPage,
+        totalPages: pages.length,
+        timestamp: Date.now(),
+      });
+      setViewedPapers(getPaperViewMap());
+    }
+  }, [subject, board, paper, session, currentPage, pages.length]);
 
   // Viewing a paper
   if (session && pages.length > 0) {
@@ -162,10 +180,27 @@ export default function PastPapersPage() {
         <div className="space-y-2">
           {sessions.map((s) => {
             const info = papers[subject][board][paper][s];
+            const viewKey = `${subject}|${board}|${paper}|${s}`;
+            const previousView = viewedPapers.get(viewKey);
             return (
-              <button key={s} onClick={() => { setSession(s); setCurrentPage(0); }} className="w-full flex items-center justify-between bg-white rounded-2xl p-3.5 border border-zinc-200 text-left active:scale-[0.98] transition-all shadow-sm hover:border-zinc-300">
-                <div><h3 className="text-[14px] font-semibold text-zinc-900">{formatSession(s)}</h3><p className="text-[12px] text-zinc-500 mt-0.5">{info.pageCount} pages</p></div>
-                <svg className="w-4 h-4 text-zinc-300" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+              <button key={s} onClick={() => { setSession(s); setCurrentPage(previousView ? previousView.lastPage : 0); }} className="w-full flex items-center justify-between bg-white rounded-2xl p-3.5 border border-zinc-200 text-left active:scale-[0.98] transition-all shadow-sm hover:border-zinc-300">
+                <div>
+                  <h3 className="text-[14px] font-semibold text-zinc-900">{formatSession(s)}</h3>
+                  <p className="text-[12px] text-zinc-500 mt-0.5">
+                    {info.pageCount} pages
+                    {previousView && (
+                      <span className="ml-1.5 text-indigo-500 font-medium">
+                        &middot; Viewed page {previousView.lastPage + 1}/{previousView.totalPages}
+                      </span>
+                    )}
+                  </p>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  {previousView && (
+                    <span className="text-[10px] font-medium text-indigo-600 bg-indigo-50 border border-indigo-200 rounded-lg px-1.5 py-0.5">Resume</span>
+                  )}
+                  <svg className="w-4 h-4 text-zinc-300" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+                </div>
               </button>
             );
           })}

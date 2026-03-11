@@ -3,6 +3,7 @@
 import { useState, useMemo, useCallback } from "react";
 import type { OriginalQuestion } from "@/types/index";
 import type { Subject } from "@/types";
+import Link from "next/link";
 import { recordQuestionAttempt } from "@/lib/progress";
 import RichText from "@/components/RichText";
 import { stripLatex } from "@/lib/strip-latex";
@@ -26,6 +27,7 @@ interface GeneratedQuestion {
 interface QuestionPracticeProps {
   questions: OriginalQuestion[];
   subject: Subject;
+  initialTopic?: string;
 }
 
 const difficultyConfig: Record<string, { label: string; pill: string }> = {
@@ -34,9 +36,9 @@ const difficultyConfig: Record<string, { label: string; pill: string }> = {
   hard: { label: "Hard", pill: "text-red-600 bg-red-50 rounded-lg px-2 py-0.5 text-[11px] font-medium" },
 };
 
-export default function QuestionPractice({ questions, subject }: QuestionPracticeProps) {
+export default function QuestionPractice({ questions, subject, initialTopic }: QuestionPracticeProps) {
   const [difficultyFilter, setDifficultyFilter] = useState<string>("all");
-  const [topicFilter, setTopicFilter] = useState<string>("all");
+  const [topicFilter, setTopicFilter] = useState<string>(initialTopic || "all");
   const [boardFilter, setBoardFilter] = useState<string>("all");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [studentAnswer, setStudentAnswer] = useState("");
@@ -416,6 +418,24 @@ export default function QuestionPractice({ questions, subject }: QuestionPractic
                   <p className="text-[11px] text-zinc-400 pt-1">{checkedCriteria.size} / {currentQuestion.marking_criteria.length} criteria met</p>
                 </div>
               )}
+
+              {/* Related study links */}
+              <div className="flex gap-2 pt-2">
+                <Link
+                  href={`/flashcards?subject=${encodeURIComponent(subject)}&topic=${encodeURIComponent(currentQuestion.subtopic)}`}
+                  className="flex-1 flex items-center justify-center gap-1.5 min-h-[44px] bg-indigo-50 border border-indigo-200 text-indigo-700 rounded-xl text-[13px] font-medium hover:bg-indigo-100 active:scale-95 transition-all"
+                >
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+                  Revise {currentQuestion.subtopic}
+                </Link>
+                <Link
+                  href={`/mcqs?subject=${encodeURIComponent(subject)}&topic=${encodeURIComponent(currentQuestion.subtopic)}`}
+                  className="flex-1 flex items-center justify-center gap-1.5 min-h-[44px] bg-zinc-50 border border-zinc-200 text-zinc-700 rounded-xl text-[13px] font-medium hover:bg-zinc-100 active:scale-95 transition-all"
+                >
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" /></svg>
+                  MCQs on this topic
+                </Link>
+              </div>
             </div>
           )}
         </div>

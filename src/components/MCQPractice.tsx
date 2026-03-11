@@ -67,6 +67,8 @@ export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode 
   const [correctStreak, setCorrectStreak] = useState(0);
   const [wrongStreak, setWrongStreak] = useState(0);
   const [feedbackMsg, setFeedbackMsg] = useState("");
+  const [showSummary, setShowSummary] = useState(false);
+  const [sessionTopicStats, setSessionTopicStats] = useState<Map<string, { correct: number; total: number }>>(new Map());
 
   const boards = useMemo(() => {
     const set = new Set<string>();
@@ -136,6 +138,16 @@ export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode 
         questionId: currentQuestion.id, subject, subtopic: currentQuestion.subtopic,
         difficulty: currentQuestion.difficulty, correct: isCorrect, selectedAnswer: key,
         correctAnswer: currentQuestion.correct, timestamp: Date.now(),
+      });
+      // Track per-topic stats for session summary
+      setSessionTopicStats((prev) => {
+        const next = new Map(prev);
+        const existing = next.get(currentQuestion.subtopic) || { correct: 0, total: 0 };
+        next.set(currentQuestion.subtopic, {
+          correct: existing.correct + (isCorrect ? 1 : 0),
+          total: existing.total + 1,
+        });
+        return next;
       });
     }
   }, [selectedOption, currentQuestion, subject, correctStreak, wrongStreak]);
@@ -275,6 +287,77 @@ export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode 
           resetKey={currentQuestion.id}
           enabled={timerEnabled}
         />
+      )}
+
+      {/* Session summary button */}
+      {questionsAnswered >= 5 && !showSummary && (
+        <button
+          onClick={() => setShowSummary(true)}
+          className="w-full min-h-[44px] bg-zinc-100 hover:bg-zinc-200 text-zinc-600 rounded-xl text-[13px] font-medium transition-all active:scale-95"
+        >
+          View session summary ({questionsAnswered} questions, {Math.round((correctCount / questionsAnswered) * 100)}% accuracy)
+        </button>
+      )}
+
+      {/* Session Summary Modal */}
+      {showSummary && (
+        <div className="bg-white border border-zinc-200 shadow-sm rounded-2xl p-4 md:p-5 space-y-4 fade-in">
+          <div className="flex items-center justify-between">
+            <h3 className="text-[15px] font-semibold text-zinc-900">Session Summary</h3>
+            <button onClick={() => setShowSummary(false)} className="text-zinc-400 hover:text-zinc-600 p-1">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+          </div>
+
+          <div className="grid grid-cols-3 gap-2">
+            <div className="bg-zinc-50 rounded-xl p-3 text-center">
+              <p className="text-xl font-bold text-zinc-900">{questionsAnswered}</p>
+              <p className="text-[11px] text-zinc-500">Answered</p>
+            </div>
+            <div className="bg-emerald-50 rounded-xl p-3 text-center">
+              <p className="text-xl font-bold text-emerald-600">{correctCount}</p>
+              <p className="text-[11px] text-emerald-600">Correct</p>
+            </div>
+            <div className="bg-zinc-50 rounded-xl p-3 text-center">
+              <p className="text-xl font-bold text-zinc-900">{Math.round((correctCount / questionsAnswered) * 100)}%</p>
+              <p className="text-[11px] text-zinc-500">Accuracy</p>
+            </div>
+          </div>
+
+          {sessionTopicStats.size > 0 && (
+            <div className="space-y-2">
+              <p className="text-[11px] font-semibold text-zinc-500 uppercase tracking-wider">By topic</p>
+              {Array.from(sessionTopicStats.entries())
+                .sort(([, a], [, b]) => (a.correct / a.total) - (b.correct / b.total))
+                .map(([topic, stats]) => {
+                  const acc = Math.round((stats.correct / stats.total) * 100);
+                  return (
+                    <div key={topic} className="flex items-center gap-3">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[12px] text-zinc-700 truncate">{topic}</span>
+                          <span className={`text-[11px] font-medium ${acc < 50 ? "text-red-600" : acc < 75 ? "text-amber-600" : "text-emerald-600"}`}>
+                            {stats.correct}/{stats.total} ({acc}%)
+                          </span>
+                        </div>
+                        <div className="h-1.5 bg-zinc-100 rounded-full overflow-hidden">
+                          <div className={`h-full rounded-full ${acc < 50 ? "bg-red-500" : acc < 75 ? "bg-amber-500" : "bg-emerald-500"}`} style={{ width: `${acc}%` }} />
+                        </div>
+                      </div>
+                      {acc < 70 && (
+                        <Link
+                          href={`/flashcards?subject=${encodeURIComponent(subject)}&topic=${encodeURIComponent(topic)}`}
+                          className="text-[11px] text-indigo-600 font-medium hover:text-indigo-800 shrink-0"
+                        >
+                          Study
+                        </Link>
+                      )}
+                    </div>
+                  );
+                })}
+            </div>
+          )}
+        </div>
       )}
 
       {/* Question Card */}

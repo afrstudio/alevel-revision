@@ -43,6 +43,16 @@ export interface CameraAttempt {
   timestamp: number;
 }
 
+export interface PaperView {
+  subject: Subject;
+  board: string;
+  paper: string;
+  session: string;
+  lastPage: number;
+  totalPages: number;
+  timestamp: number;
+}
+
 export interface WeakTopic {
   topic: string;
   subject: Subject;
@@ -66,6 +76,7 @@ export interface ProgressData {
   flashcardReviews: FlashcardReview[];
   questionAttempts: QuestionAttempt[];
   cameraAttempts: CameraAttempt[];
+  paperViews: PaperView[];
   sm2Data: Record<string, SM2Card>;
   dailyStats: Record<string, DailyStats>;
   streakDays: number;
@@ -113,6 +124,7 @@ function createEmpty(): ProgressData {
     flashcardReviews: [],
     questionAttempts: [],
     cameraAttempts: [],
+    paperViews: [],
     sm2Data: {},
     dailyStats: {},
     streakDays: 0,
@@ -464,4 +476,37 @@ export function getRecommendations(): { topic: string; subject: Subject; accurac
 
   // Sort by accuracy ascending (worst first), limit to 5
   return recommendations.sort((a, b) => a.accuracy - b.accuracy).slice(0, 5);
+}
+
+// Record a paper being viewed (upserts by subject+board+paper+session)
+export function recordPaperView(view: PaperView): void {
+  const data = loadProgress();
+  if (!data.paperViews) data.paperViews = [];
+  const key = `${view.subject}|${view.board}|${view.paper}|${view.session}`;
+  const idx = data.paperViews.findIndex(
+    (p) => `${p.subject}|${p.board}|${p.paper}|${p.session}` === key,
+  );
+  if (idx >= 0) {
+    data.paperViews[idx] = { ...data.paperViews[idx], lastPage: view.lastPage, timestamp: view.timestamp };
+  } else {
+    data.paperViews.push(view);
+  }
+  saveProgress(data);
+}
+
+// Get resume points for papers (most recent view per paper)
+export function getPaperViews(): PaperView[] {
+  const data = loadProgress();
+  return (data.paperViews || []).sort((a, b) => b.timestamp - a.timestamp);
+}
+
+// Check if a specific paper has been viewed before
+export function getPaperViewMap(): Map<string, PaperView> {
+  const views = getPaperViews();
+  const map = new Map<string, PaperView>();
+  for (const v of views) {
+    const key = `${v.subject}|${v.board}|${v.paper}|${v.session}`;
+    if (!map.has(key)) map.set(key, v);
+  }
+  return map;
 }

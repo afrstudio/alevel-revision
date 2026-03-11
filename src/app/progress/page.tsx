@@ -50,27 +50,42 @@ function WeakTopicsList({ topics }: { topics: WeakTopic[] }) {
     <div className="bg-white border border-zinc-200 rounded-2xl p-4 shadow-sm">
       <h3 className="text-[13px] font-semibold text-zinc-900 mb-2">Weak Topics</h3>
       <p className="text-[11px] text-zinc-400 mb-3">Tap a topic to practise it</p>
-      <div className="space-y-2">
+      <div className="space-y-3">
         {topics.slice(0, 8).map((t, i) => (
-          <Link
-            key={i}
-            href={`/mcqs?subject=${encodeURIComponent(t.subject)}&topic=${encodeURIComponent(t.topic)}&mode=weak`}
-            className="flex items-center gap-3 group hover:bg-zinc-50 rounded-lg px-1 py-1 -mx-1 transition-colors"
-          >
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center justify-between mb-1">
-                <span className="text-[12px] text-zinc-700 truncate group-hover:text-zinc-900 transition-colors">{t.topic}</span>
-                <span className={`text-[11px] font-medium ${t.accuracy < 50 ? "text-red-600" : t.accuracy < 70 ? "text-amber-600" : "text-emerald-600"}`}>{t.accuracy}%</span>
+          <div key={i} className="space-y-1.5">
+            <div className="flex items-center gap-3">
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-[12px] text-zinc-700 font-medium truncate">{t.topic}</span>
+                  <span className={`text-[11px] font-medium ${t.accuracy < 50 ? "text-red-600" : t.accuracy < 70 ? "text-amber-600" : "text-emerald-600"}`}>{t.accuracy}%</span>
+                </div>
+                <div className="h-1.5 bg-zinc-100 rounded-full overflow-hidden">
+                  <div className={`h-full rounded-full transition-all ${t.accuracy < 50 ? "bg-red-500" : t.accuracy < 70 ? "bg-amber-500" : "bg-emerald-500"}`} style={{ width: `${t.accuracy}%` }} />
+                </div>
               </div>
-              <div className="h-1.5 bg-zinc-100 rounded-full overflow-hidden">
-                <div className={`h-full rounded-full transition-all ${t.accuracy < 50 ? "bg-red-500" : t.accuracy < 70 ? "bg-amber-500" : "bg-emerald-500"}`} style={{ width: `${t.accuracy}%` }} />
-              </div>
+              <span className="text-[10px] text-zinc-400 shrink-0">{t.totalAttempts} Qs</span>
             </div>
-            <div className="flex items-center gap-1.5 shrink-0">
-              <span className="text-[10px] text-zinc-400">{t.totalAttempts} Qs</span>
-              <svg className="w-3.5 h-3.5 text-zinc-300 group-hover:text-zinc-500 transition-colors" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+            <div className="flex gap-1.5">
+              <Link
+                href={`/mcqs?subject=${encodeURIComponent(t.subject)}&topic=${encodeURIComponent(t.topic)}&mode=weak`}
+                className="flex-1 text-center py-1.5 text-[11px] font-medium text-zinc-600 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 rounded-lg transition-colors"
+              >
+                MCQs
+              </Link>
+              <Link
+                href={`/flashcards?subject=${encodeURIComponent(t.subject)}&topic=${encodeURIComponent(t.topic)}`}
+                className="flex-1 text-center py-1.5 text-[11px] font-medium text-indigo-600 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 rounded-lg transition-colors"
+              >
+                Flashcards
+              </Link>
+              <Link
+                href={`/questions?subject=${encodeURIComponent(t.subject)}&topic=${encodeURIComponent(t.topic)}`}
+                className="flex-1 text-center py-1.5 text-[11px] font-medium text-zinc-600 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 rounded-lg transition-colors"
+              >
+                Questions
+              </Link>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </div>
