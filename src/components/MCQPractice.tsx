@@ -292,7 +292,7 @@ export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode 
       )}
 
       {/* Session summary button */}
-      {questionsAnswered >= 5 && !showSummary && (
+      {questionsAnswered >= 3 && !showSummary && (
         <button
           onClick={() => setShowSummary(true)}
           className="w-full min-h-[44px] bg-zinc-100 hover:bg-zinc-200 text-zinc-600 rounded-xl text-[13px] font-medium transition-all active:scale-95"
@@ -359,6 +359,23 @@ export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode 
                 })}
             </div>
           )}
+
+          {/* Retry weak topics CTA */}
+          {(() => {
+            const weakTopics = Array.from(sessionTopicStats.entries())
+              .filter(([, s]) => Math.round((s.correct / s.total) * 100) < 70)
+              .map(([t]) => t);
+            if (weakTopics.length === 0) return null;
+            const firstWeak = weakTopics[0];
+            return (
+              <Link
+                href={`/mcqs?subject=${encodeURIComponent(subject)}&topic=${encodeURIComponent(firstWeak)}&mode=weak`}
+                className="block w-full text-center min-h-[48px] py-3 bg-zinc-900 hover:bg-zinc-800 text-white rounded-xl text-[13px] font-medium transition-all active:scale-95"
+              >
+                Retry your weakest topic: {firstWeak}
+              </Link>
+            );
+          })()}
         </div>
       )}
 

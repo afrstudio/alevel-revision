@@ -172,10 +172,13 @@ export default function ProgressPage() {
                   <p className="text-[12px] text-zinc-500 mb-3">{repeatedMistakes.length} question{repeatedMistakes.length !== 1 ? "s" : ""} you keep getting wrong</p>
                   <div className="space-y-2">
                     {repeatedMistakes.slice(0, 5).map((m, i) => (
-                      <div key={i} className="flex items-center justify-between bg-red-50 border border-red-100 rounded-lg px-3 py-2">
+                      <Link key={i} href={`/mcqs?subject=${encodeURIComponent(m.subject)}&topic=${encodeURIComponent(m.subtopic)}&mode=weak`} className="flex items-center justify-between bg-red-50 border border-red-100 rounded-lg px-3 py-2 hover:bg-red-100 transition-colors group">
                         <div className="min-w-0"><span className="text-[12px] text-red-700 font-medium">{m.subject}</span><span className="text-[11px] text-red-500 ml-2">{m.subtopic}</span></div>
-                        <span className="text-[11px] text-red-600 font-semibold shrink-0">{m.wrongCount}x wrong</span>
-                      </div>
+                        <div className="flex items-center gap-1.5 shrink-0">
+                          <span className="text-[11px] text-red-600 font-semibold">{m.wrongCount}x wrong</span>
+                          <svg className="w-3.5 h-3.5 text-red-300 group-hover:text-red-500" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+                        </div>
+                      </Link>
                     ))}
                   </div>
                 </div>

@@ -150,7 +150,7 @@ export default function Home() {
             const c = counts[s.name as keyof typeof counts];
             const total = c.mcqs + c.questions + c.flashcards;
             return (
-              <div key={s.name} className={`card-hover bg-white border border-zinc-200/80 rounded-2xl p-4 border-l-[3px] ${s.borderColor}`}>
+              <Link key={s.name} href={`/mcqs?subject=${encodeURIComponent(s.name)}`} className={`block card-hover bg-white border border-zinc-200/80 rounded-2xl p-4 border-l-[3px] ${s.borderColor} hover:bg-zinc-50/50 transition-colors`}>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3 min-w-0">
                     <div className={`w-10 h-10 rounded-xl ${s.color} flex items-center justify-center shadow-sm shrink-0`}>
@@ -176,7 +176,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>
