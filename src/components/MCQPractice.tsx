@@ -9,6 +9,7 @@ import RichText from "@/components/RichText";
 import { stripLatex } from "@/lib/strip-latex";
 import ExamTimer, { TimerToggle } from "@/components/ExamTimer";
 import { getCorrectMessage, getWrongMessage } from "@/lib/banter";
+import { findBestTopicMatch } from "@/lib/topic-normalize";
 
 interface MCQPracticeProps {
   mcqs: MCQ[];
@@ -57,7 +58,13 @@ function seededShuffle<T>(arr: T[], seed: string): T[] {
 
 export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode }: MCQPracticeProps) {
   const [difficultyFilter, setDifficultyFilter] = useState<string>("all");
-  const [topicFilter, setTopicFilter] = useState<string>(initialTopic || "all");
+  const [topicFilter, setTopicFilter] = useState<string>(() => {
+    if (!initialTopic) return "all";
+    const allTopics = Array.from(new Set(mcqs.map((m) => m.subtopic)));
+    if (allTopics.includes(initialTopic)) return initialTopic;
+    const match = findBestTopicMatch(initialTopic, allTopics);
+    return match || "all";
+  });
   const [boardFilter, setBoardFilter] = useState<string>("all");
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -69,6 +76,8 @@ export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode 
   const [feedbackMsg, setFeedbackMsg] = useState("");
   const [showSummary, setShowSummary] = useState(false);
   const [sessionTopicStats, setSessionTopicStats] = useState<Map<string, { correct: number; total: number }>>(new Map());
+  const [aiExplanation, setAiExplanation] = useState<string | null>(null);
+  const [aiExplainLoading, setAiExplainLoading] = useState(false);
 
   const boards = useMemo(() => {
     const set = new Set<string>();
@@ -163,7 +172,36 @@ export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode 
       setCurrentIndex(next);
     }
     setSelectedOption(null);
+    setAiExplanation(null);
+    setAiExplainLoading(false);
   }, [activePool.length, currentIndex, adaptiveMode]);
+
+  const handleExplainWhy = useCallback(async () => {
+    if (!currentQuestion || aiExplainLoading || aiExplanation) return;
+    setAiExplainLoading(true);
+    try {
+      const selectedText = selectedOption ? currentQuestion.options[selectedOption] || selectedOption : "";
+      const correctText = currentQuestion.options[currentQuestion.correct] || currentQuestion.correct;
+      const res = await fetch("/api/explain", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          subject,
+          question: stripLatex(currentQuestion.question),
+          selectedAnswer: stripLatex(selectedText),
+          correctAnswer: stripLatex(correctText),
+          topic: currentQuestion.subtopic,
+          existingExplanation: currentQuestion.explanation ? stripLatex(currentQuestion.explanation).slice(0, 500) : "",
+        }),
+      });
+      const data = await res.json();
+      setAiExplanation(data.explanation || "Could not generate explanation.");
+    } catch {
+      setAiExplanation("Could not connect to AI. Review the explanation above.");
+    } finally {
+      setAiExplainLoading(false);
+    }
+  }, [currentQuestion, selectedOption, subject, aiExplainLoading, aiExplanation]);
 
   const handleFilterChange = (setter: (val: string) => void, value: string) => {
     setter(value);
@@ -175,6 +213,8 @@ export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode 
     setWrongStreak(0);
     setShowSummary(false);
     setSessionTopicStats(new Map());
+    setAiExplanation(null);
+    setAiExplainLoading(false);
   };
 
   const shuffledOptions = useMemo(() => {
@@ -449,16 +489,46 @@ export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode 
                   <RichText className="text-[13px] text-zinc-500 leading-relaxed">{remappedExplanation}</RichText>
                 </div>
               )}
-              {/* Study links after wrong answer */}
+              {/* AI Explain + Study links after wrong answer */}
               {selectedOption !== currentQuestion.correct && (
-                <div className="flex gap-2">
-                  <Link
-                    href={`/flashcards?subject=${encodeURIComponent(subject)}&topic=${encodeURIComponent(currentQuestion.subtopic)}`}
-                    className="flex-1 flex items-center justify-center gap-1.5 min-h-[44px] bg-indigo-50 border border-indigo-200 text-indigo-700 rounded-xl text-[13px] font-medium hover:bg-indigo-100 active:scale-95 transition-all"
-                  >
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
-                    Study {currentQuestion.subtopic}
-                  </Link>
+                <div className="space-y-2">
+                  {!aiExplanation && (
+                    <button
+                      onClick={handleExplainWhy}
+                      disabled={aiExplainLoading}
+                      className="w-full flex items-center justify-center gap-2 min-h-[44px] bg-zinc-900 hover:bg-zinc-800 text-white rounded-xl text-[13px] font-medium transition-all active:scale-95 disabled:opacity-60"
+                    >
+                      {aiExplainLoading ? (
+                        <>
+                          <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                          Thinking...
+                        </>
+                      ) : (
+                        <>
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" /></svg>
+                          Explain this to me
+                        </>
+                      )}
+                    </button>
+                  )}
+                  {aiExplanation && (
+                    <div className="bg-zinc-50 border border-zinc-200 rounded-xl p-4 space-y-2 fade-in">
+                      <div className="flex items-center gap-1.5 mb-1">
+                        <svg className="w-3.5 h-3.5 text-zinc-500" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" /></svg>
+                        <span className="text-[11px] font-semibold text-zinc-500 uppercase tracking-wider">AI Tutor</span>
+                      </div>
+                      <RichText className="text-[13px] text-zinc-700 leading-relaxed">{aiExplanation}</RichText>
+                    </div>
+                  )}
+                  <div className="flex gap-2">
+                    <Link
+                      href={`/flashcards?subject=${encodeURIComponent(subject)}&topic=${encodeURIComponent(currentQuestion.subtopic)}`}
+                      className="flex-1 flex items-center justify-center gap-1.5 min-h-[44px] bg-indigo-50 border border-indigo-200 text-indigo-700 rounded-xl text-[13px] font-medium hover:bg-indigo-100 active:scale-95 transition-all"
+                    >
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+                      Study {currentQuestion.subtopic}
+                    </Link>
+                  </div>
                 </div>
               )}
               <button

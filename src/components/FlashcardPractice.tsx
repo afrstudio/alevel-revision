@@ -8,6 +8,40 @@ import { recordFlashcardReview, updateSM2Data, getSM2Data } from "@/lib/progress
 import { gradeCard, createNewCard, getDueCards, type SM2Card } from "@/lib/sm2";
 import RichText from "@/components/RichText";
 import { stripLatex } from "@/lib/strip-latex";
+import { findBestTopicMatch } from "@/lib/topic-normalize";
+
+function useAiExplain(subject: string) {
+  const [explanation, setExplanation] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const explain = useCallback(async (question: string, answer: string, topic: string) => {
+    if (loading || explanation) return;
+    setLoading(true);
+    try {
+      const res = await fetch("/api/explain", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          subject,
+          question: stripLatex(question),
+          correctAnswer: stripLatex(answer),
+          selectedAnswer: "I didn't know the answer",
+          topic,
+        }),
+      });
+      const data = await res.json();
+      setExplanation(data.explanation || "Could not generate explanation.");
+    } catch {
+      setExplanation("Could not connect to AI right now.");
+    } finally {
+      setLoading(false);
+    }
+  }, [subject, loading, explanation]);
+
+  const reset = useCallback(() => { setExplanation(null); setLoading(false); }, []);
+
+  return { explanation, loading, explain, reset };
+}
 
 interface FlashcardPracticeProps {
   flashcards: Flashcard[];
@@ -20,7 +54,15 @@ const difficultyDot = { easy: "bg-green-600", medium: "bg-amber-600", hard: "bg-
 
 export default function FlashcardPractice({ flashcards, subject, initialTopic }: FlashcardPracticeProps) {
   const [difficultyFilter, setDifficultyFilter] = useState<"all" | "easy" | "medium" | "hard">("all");
-  const [topicFilter, setTopicFilter] = useState<string>(initialTopic || "all");
+  const [topicFilter, setTopicFilter] = useState<string>(() => {
+    if (!initialTopic) return "all";
+    // Check if exact match exists first
+    const allTopics = Array.from(new Set(flashcards.map((fc) => fc.subtopic)));
+    if (allTopics.includes(initialTopic)) return initialTopic;
+    // Fuzzy match
+    const match = findBestTopicMatch(initialTopic, allTopics);
+    return match || "all";
+  });
   const [boardFilter, setBoardFilter] = useState<string>("all");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
@@ -31,6 +73,7 @@ export default function FlashcardPractice({ flashcards, subject, initialTopic }:
   const [sm2Data, setSm2Data] = useState<Record<string, SM2Card>>(() => getSM2Data());
   const [showSummary, setShowSummary] = useState(false);
   const [sessionTopicStats, setSessionTopicStats] = useState<Map<string, { known: number; total: number }>>(new Map());
+  const aiExplain = useAiExplain(subject);
 
   const boards = useMemo(() => {
     const set = new Set<string>();
@@ -64,15 +107,17 @@ export default function FlashcardPractice({ flashcards, subject, initialTopic }:
 
   const goNext = useCallback(() => {
     setIsFlipped(false);
+    aiExplain.reset();
     if (activeCards.length <= 1) return;
     setCurrentIndex((prev) => (prev + 1) % activeCards.length);
-  }, [activeCards.length]);
+  }, [activeCards.length, aiExplain]);
 
   const goPrev = useCallback(() => {
     setIsFlipped(false);
+    aiExplain.reset();
     if (activeCards.length <= 1) return;
     setCurrentIndex((prev) => (prev - 1 + activeCards.length) % activeCards.length);
-  }, [activeCards.length]);
+  }, [activeCards.length, aiExplain]);
 
   const handleAssessment = useCallback((grade: 1 | 3 | 4) => {
     if (!currentCard) return;
@@ -158,12 +203,24 @@ export default function FlashcardPractice({ flashcards, subject, initialTopic }:
       {/* Spaced Repetition Toggle + Score */}
       <div className="flex items-center justify-between px-1">
         <button
-          onClick={() => { setSpacedMode((p) => !p); setCurrentIndex(0); setIsFlipped(false); }}
+          onClick={() => { setSpacedMode((p) => !p); setCurrentIndex(0); setIsFlipped(false); aiExplain.reset(); }}
           className={`text-[12px] font-medium px-3 py-1.5 rounded-lg transition-all ${
-            spacedMode ? "bg-indigo-50 text-indigo-700 ring-1 ring-indigo-200" : "bg-zinc-100 text-zinc-500 hover:bg-zinc-200"
+            spacedMode
+              ? dueCards.length > 0
+                ? "bg-zinc-900 text-white"
+                : "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200"
+              : "bg-zinc-100 text-zinc-500 hover:bg-zinc-200"
           }`}
         >
-          {spacedMode ? `Smart Review (${dueCards.length} due)` : "Smart Review"}
+          {spacedMode
+            ? dueCards.length > 0
+              ? `${dueCards.length} card${dueCards.length !== 1 ? "s" : ""} due`
+              : "All caught up"
+            : (() => {
+                const totalDue = getDueCards(filtered, sm2Data).length;
+                return totalDue > 0 ? `Smart Review (${totalDue} due)` : "Smart Review";
+              })()
+          }
         </button>
         <span className="text-xs text-zinc-500">Known: {known} / {reviewed}</span>
       </div>
@@ -252,6 +309,40 @@ export default function FlashcardPractice({ flashcards, subject, initialTopic }:
               Review
             </button>
           </div>
+
+          {/* AI Explain — shows when card is flipped */}
+          {isFlipped && currentCard && (
+            <div className="space-y-2">
+              {!aiExplain.explanation && (
+                <button
+                  onClick={(e) => { e.stopPropagation(); aiExplain.explain(currentCard.front, currentCard.back, currentCard.subtopic); }}
+                  disabled={aiExplain.loading}
+                  className="w-full flex items-center justify-center gap-2 min-h-[44px] bg-zinc-900 hover:bg-zinc-800 text-white rounded-xl text-[13px] font-medium transition-all active:scale-95 disabled:opacity-60"
+                >
+                  {aiExplain.loading ? (
+                    <>
+                      <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      Thinking...
+                    </>
+                  ) : (
+                    <>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" /></svg>
+                      Explain this to me
+                    </>
+                  )}
+                </button>
+              )}
+              {aiExplain.explanation && (
+                <div className="bg-white border border-zinc-200 rounded-xl p-4 space-y-2 fade-in">
+                  <div className="flex items-center gap-1.5 mb-1">
+                    <svg className="w-3.5 h-3.5 text-zinc-500" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" /></svg>
+                    <span className="text-[11px] font-semibold text-zinc-500 uppercase tracking-wider">AI Tutor</span>
+                  </div>
+                  <RichText className="text-[13px] text-zinc-700 leading-relaxed">{aiExplain.explanation}</RichText>
+                </div>
+              )}
+            </div>
+          )}
         </>
       )}
 

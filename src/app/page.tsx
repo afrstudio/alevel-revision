@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import ExamCountdown from "@/components/ExamCountdown";
 import { getStudyTip } from "@/lib/banter";
-import { getRecommendations } from "@/lib/progress";
+import { getRecommendations, getDueCardCount, getNextReviewTime } from "@/lib/progress";
 
 const counts = {
   Maths: { mcqs: 462, questions: 279, flashcards: 1718 },
@@ -38,15 +38,29 @@ function formatNumber(n: number): string {
   return n.toLocaleString();
 }
 
+function formatTimeUntil(timestamp: number): string {
+  const diff = timestamp - Date.now();
+  if (diff <= 0) return "now";
+  const hours = Math.floor(diff / (1000 * 60 * 60));
+  if (hours < 1) return "in less than an hour";
+  if (hours < 24) return `in ${hours} hour${hours !== 1 ? "s" : ""}`;
+  const days = Math.floor(hours / 24);
+  return `in ${days} day${days !== 1 ? "s" : ""}`;
+}
+
 export default function Home() {
   const [greeting, setGreeting] = useState("Hi");
   const [tip, setTip] = useState("");
   const [recommendations, setRecommendations] = useState<ReturnType<typeof getRecommendations>>([]);
+  const [dueCards, setDueCards] = useState(0);
+  const [nextReview, setNextReview] = useState<number | null>(null);
 
   useEffect(() => {
     setGreeting(getGreeting());
     setTip(getStudyTip());
     setRecommendations(getRecommendations());
+    setDueCards(getDueCardCount());
+    setNextReview(getNextReviewTime());
   }, []);
 
   const totalItems = Object.values(counts).reduce(
@@ -68,6 +82,35 @@ export default function Home() {
 
       {/* Exam Countdown */}
       <ExamCountdown />
+
+      {/* Spaced Repetition Due Cards */}
+      {dueCards > 0 && (
+        <Link href="/flashcards" className="block group">
+          <div className="bg-zinc-900 rounded-2xl p-4 flex items-center justify-between hover:bg-zinc-800 transition-colors">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
+                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+              </div>
+              <div>
+                <p className="text-[14px] font-semibold text-white">{dueCards} flashcard{dueCards !== 1 ? "s" : ""} due for review</p>
+                <p className="text-[12px] text-zinc-400">Keep your memory fresh — review now</p>
+              </div>
+            </div>
+            <svg className="w-5 h-5 text-zinc-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+          </div>
+        </Link>
+      )}
+      {dueCards === 0 && nextReview && (
+        <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-3.5 flex items-center gap-3">
+          <div className="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center shrink-0">
+            <svg className="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          </div>
+          <div>
+            <p className="text-[13px] font-semibold text-emerald-900">All caught up</p>
+            <p className="text-[12px] text-emerald-600">Next review {formatTimeUntil(nextReview)}</p>
+          </div>
+        </div>
+      )}
 
       {/* Recommended for you */}
       {recommendations.length > 0 ? (

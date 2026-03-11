@@ -231,6 +231,22 @@ export function getSM2Data(): Record<string, SM2Card> {
   return loadProgress().sm2Data;
 }
 
+export function getDueCardCount(): number {
+  const sm2Data = loadProgress().sm2Data;
+  const now = Date.now();
+  return Object.values(sm2Data).filter((c) => c.nextReview <= now).length;
+}
+
+export function getNextReviewTime(): number | null {
+  const sm2Data = loadProgress().sm2Data;
+  const now = Date.now();
+  const future = Object.values(sm2Data)
+    .map((c) => c.nextReview)
+    .filter((t) => t > now)
+    .sort((a, b) => a - b);
+  return future.length > 0 ? future[0] : null;
+}
+
 export function getBoardFilter(): string {
   return loadProgress().boardFilter;
 }

@@ -8,6 +8,7 @@ import { recordQuestionAttempt } from "@/lib/progress";
 import RichText from "@/components/RichText";
 import { stripLatex } from "@/lib/strip-latex";
 import ExamTimer, { TimerToggle } from "@/components/ExamTimer";
+import { findBestTopicMatch } from "@/lib/topic-normalize";
 
 interface GeneratedQuestion {
   id: string;
@@ -38,7 +39,13 @@ const difficultyConfig: Record<string, { label: string; pill: string }> = {
 
 export default function QuestionPractice({ questions, subject, initialTopic }: QuestionPracticeProps) {
   const [difficultyFilter, setDifficultyFilter] = useState<string>("all");
-  const [topicFilter, setTopicFilter] = useState<string>(initialTopic || "all");
+  const [topicFilter, setTopicFilter] = useState<string>(() => {
+    if (!initialTopic) return "all";
+    const allTopics = Array.from(new Set(questions.map((q) => q.subtopic)));
+    if (allTopics.includes(initialTopic)) return initialTopic;
+    const match = findBestTopicMatch(initialTopic, allTopics);
+    return match || "all";
+  });
   const [boardFilter, setBoardFilter] = useState<string>("all");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [studentAnswer, setStudentAnswer] = useState("");
