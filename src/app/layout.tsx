@@ -5,12 +5,12 @@ import Navbar from "@/components/Navbar";
 import { ProgressSync } from "@/components/ProgressSync";
 
 export const metadata: Metadata = {
-  title: "Yabi's Revision",
+  title: "Yabi Revise",
   description: "Yabi's A-Level Maths, Biology & Chemistry revision app",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Yabi's Rev",
+    title: "Yabi Revise",
   },
   formatDetection: { telephone: false },
 };

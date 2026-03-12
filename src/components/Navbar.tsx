@@ -32,7 +32,7 @@ export default function Navbar() {
           <div className="w-8 h-8 bg-zinc-900 rounded-lg flex items-center justify-center">
             <span className="text-white font-bold text-sm">Y</span>
           </div>
-          <span className="font-semibold text-zinc-900 tracking-tight">Yabi&apos;s Revision</span>
+          <span className="font-semibold text-zinc-900 tracking-tight">Yabi Revise</span>
         </div>
         <div className="flex items-center gap-1">
           {[...navLinks, { ...cameraLink, label: "Camera" }].map((link) => (
