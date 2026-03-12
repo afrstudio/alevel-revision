@@ -518,16 +518,16 @@ export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode 
                     const prereqs = getPrerequisites(subject, currentQuestion.subtopic);
                     if (prereqs.length === 0) return null;
                     return (
-                      <div className="bg-amber-50/80 border border-amber-200/60 rounded-xl p-3 space-y-1.5 fade-in">
-                        <p className="text-[11px] font-semibold text-amber-700 uppercase tracking-wider">Master these first</p>
+                      <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-3 space-y-1.5 fade-in">
+                        <p className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">Master these first</p>
                         {prereqs.slice(0, 3).map((prereq) => (
                           <Link
                             key={prereq}
                             href={`/mcqs?subject=${encodeURIComponent(subject)}&topic=${encodeURIComponent(prereq)}`}
-                            className="flex items-center justify-between gap-2 px-2.5 py-1.5 bg-white/60 rounded-lg text-[12px] text-amber-800 hover:bg-white transition-colors"
+                            className="flex items-center justify-between gap-2 px-2.5 py-2 bg-white/10 border border-white/20 rounded-lg text-[12px] text-white hover:bg-white/20 transition-colors"
                           >
                             <span>{prereq}</span>
-                            <svg className="w-3 h-3 text-amber-500 shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+                            <svg className="w-3 h-3 text-white/50 shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
                           </Link>
                         ))}
                       </div>
@@ -535,7 +535,7 @@ export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode 
                   })()}
                   <Link
                     href={`/flashcards?subject=${encodeURIComponent(subject)}&topic=${encodeURIComponent(currentQuestion.subtopic)}`}
-                    className="flex items-center justify-center gap-1.5 min-h-[44px] bg-blue-50 border border-blue-200 text-blue-700 rounded-xl text-[13px] font-medium hover:bg-blue-100 active:scale-95 transition-all"
+                    className="flex items-center justify-center gap-1.5 min-h-[44px] bg-zinc-100 text-zinc-600 rounded-xl text-[13px] font-medium hover:bg-zinc-200 active:scale-95 transition-all"
                   >
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
                     Study {currentQuestion.subtopic}
