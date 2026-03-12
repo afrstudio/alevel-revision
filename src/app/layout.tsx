@@ -1,12 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
+import { ProgressSync } from "@/components/ProgressSync";
 
 export const metadata: Metadata = {
   title: "Yabi's Revision",
@@ -33,9 +29,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={GeistSans.variable}>
       <body className="font-sans antialiased min-h-screen bg-zinc-50 pb-24">
         <Navbar />
+        <ProgressSync />
         <main className="px-5 py-5 max-w-md mx-auto sm:max-w-xl md:max-w-3xl lg:max-w-5xl">
           {children}
         </main>

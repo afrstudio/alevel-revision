@@ -214,10 +214,10 @@ export default function CameraMarker({ initialSubject = "", initialContext = "" 
               <div className="relative rounded-xl overflow-hidden bg-zinc-100 aspect-[3/4] md:aspect-[4/3] border border-zinc-200">
                 <video ref={videoRef} autoPlay playsInline muted className="w-full h-full object-cover" />
                 <div className="absolute inset-0 pointer-events-none">
-                  <div className="absolute top-4 left-4 w-10 h-10 border-t-2 border-l-2 border-indigo-500 rounded-tl-md" />
-                  <div className="absolute top-4 right-4 w-10 h-10 border-t-2 border-r-2 border-indigo-500 rounded-tr-md" />
-                  <div className="absolute bottom-4 left-4 w-10 h-10 border-b-2 border-l-2 border-indigo-500 rounded-bl-md" />
-                  <div className="absolute bottom-4 right-4 w-10 h-10 border-b-2 border-r-2 border-indigo-500 rounded-br-md" />
+                  <div className="absolute top-4 left-4 w-10 h-10 border-t-2 border-l-2 border-blue-500 rounded-tl-md" />
+                  <div className="absolute top-4 right-4 w-10 h-10 border-t-2 border-r-2 border-blue-500 rounded-tr-md" />
+                  <div className="absolute bottom-4 left-4 w-10 h-10 border-b-2 border-l-2 border-blue-500 rounded-bl-md" />
+                  <div className="absolute bottom-4 right-4 w-10 h-10 border-b-2 border-r-2 border-blue-500 rounded-br-md" />
                 </div>
                 {!cameraActive && !error && (
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -269,7 +269,7 @@ export default function CameraMarker({ initialSubject = "", initialContext = "" 
             </div>
             {result.grade && (
               <div className="text-center">
-                <p className={`text-3xl font-bold ${result.grade === "A*" || result.grade === "A" ? "text-emerald-600" : result.grade === "B" ? "text-indigo-600" : result.grade === "C" ? "text-amber-600" : "text-red-600"}`}>{result.grade}</p>
+                <p className={`text-3xl font-bold ${result.grade === "A*" || result.grade === "A" ? "text-emerald-600" : result.grade === "B" ? "text-blue-600" : result.grade === "C" ? "text-amber-600" : "text-red-600"}`}>{result.grade}</p>
                 <p className="text-[13px] text-zinc-400 mt-1">{result.percentage != null ? `${result.percentage}%` : "Grade"}</p>
               </div>
             )}
@@ -298,8 +298,8 @@ export default function CameraMarker({ initialSubject = "", initialContext = "" 
 
           {result.correct_answer && (
             <div className="space-y-2">
-              <h3 className="text-[13px] font-medium text-indigo-700">Correct Answer</h3>
-              <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-3.5 text-[13px] text-indigo-800 leading-relaxed whitespace-pre-wrap max-h-[30vh] overflow-y-auto">{result.correct_answer}</div>
+              <h3 className="text-[13px] font-medium text-blue-700">Correct Answer</h3>
+              <div className="bg-blue-50 border border-blue-200 rounded-xl p-3.5 text-[13px] text-blue-800 leading-relaxed whitespace-pre-wrap max-h-[30vh] overflow-y-auto">{result.correct_answer}</div>
             </div>
           )}
 

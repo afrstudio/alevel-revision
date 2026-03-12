@@ -10,6 +10,7 @@ import { stripLatex } from "@/lib/strip-latex";
 import ExamTimer, { TimerToggle } from "@/components/ExamTimer";
 import { getCorrectMessage, getWrongMessage } from "@/lib/banter";
 import { findBestTopicMatch } from "@/lib/topic-normalize";
+import { getPrerequisites } from "@/lib/topic-dependencies";
 
 interface MCQPracticeProps {
   mcqs: MCQ[];
@@ -310,7 +311,7 @@ export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode 
         <span className="text-[11px] text-zinc-400 tracking-wide">
           Question {activePool.length > 0 ? questionsAnswered + 1 : 0} of {activePool.length}
           {currentQuestion && answeredBefore.has(currentQuestion.id) && (
-            <span className="ml-1.5 text-indigo-500" title="You've attempted this before">(seen)</span>
+            <span className="ml-1.5 text-blue-500" title="You've attempted this before">(seen)</span>
           )}
         </span>
         <div className="flex items-center gap-2">
@@ -389,7 +390,7 @@ export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode 
                       {acc < 70 && (
                         <Link
                           href={`/flashcards?subject=${encodeURIComponent(subject)}&topic=${encodeURIComponent(topic)}`}
-                          className="text-[11px] text-indigo-600 font-medium hover:text-indigo-800 shrink-0"
+                          className="text-[11px] text-blue-600 font-medium hover:text-blue-800 shrink-0"
                         >
                           Study
                         </Link>
@@ -520,15 +521,33 @@ export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode 
                       <RichText className="text-[13px] text-zinc-700 leading-relaxed">{aiExplanation}</RichText>
                     </div>
                   )}
-                  <div className="flex gap-2">
-                    <Link
-                      href={`/flashcards?subject=${encodeURIComponent(subject)}&topic=${encodeURIComponent(currentQuestion.subtopic)}`}
-                      className="flex-1 flex items-center justify-center gap-1.5 min-h-[44px] bg-indigo-50 border border-indigo-200 text-indigo-700 rounded-xl text-[13px] font-medium hover:bg-indigo-100 active:scale-95 transition-all"
-                    >
-                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
-                      Study {currentQuestion.subtopic}
-                    </Link>
-                  </div>
+                  {/* Prerequisite suggestions when wrong */}
+                  {(() => {
+                    const prereqs = getPrerequisites(subject, currentQuestion.subtopic);
+                    if (prereqs.length === 0) return null;
+                    return (
+                      <div className="bg-amber-50/80 border border-amber-200/60 rounded-xl p-3 space-y-1.5 fade-in">
+                        <p className="text-[11px] font-semibold text-amber-700 uppercase tracking-wider">Master these first</p>
+                        {prereqs.slice(0, 3).map((prereq) => (
+                          <Link
+                            key={prereq}
+                            href={`/mcqs?subject=${encodeURIComponent(subject)}&topic=${encodeURIComponent(prereq)}`}
+                            className="flex items-center justify-between gap-2 px-2.5 py-1.5 bg-white/60 rounded-lg text-[12px] text-amber-800 hover:bg-white transition-colors"
+                          >
+                            <span>{prereq}</span>
+                            <svg className="w-3 h-3 text-amber-500 shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+                          </Link>
+                        ))}
+                      </div>
+                    );
+                  })()}
+                  <Link
+                    href={`/flashcards?subject=${encodeURIComponent(subject)}&topic=${encodeURIComponent(currentQuestion.subtopic)}`}
+                    className="flex items-center justify-center gap-1.5 min-h-[44px] bg-blue-50 border border-blue-200 text-blue-700 rounded-xl text-[13px] font-medium hover:bg-blue-100 active:scale-95 transition-all"
+                  >
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+                    Study {currentQuestion.subtopic}
+                  </Link>
                 </div>
               )}
               <button

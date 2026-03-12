@@ -8,7 +8,7 @@ import QuestionPractice from "@/components/QuestionPractice";
 import SubjectPicker from "@/components/SubjectPicker";
 
 const subjects = [
-  { name: "Maths" as Subject, count: "279 questions", color: "text-indigo-600", bg: "bg-indigo-50" },
+  { name: "Maths" as Subject, count: "279 questions", color: "text-blue-600", bg: "bg-blue-50" },
   { name: "Biology" as Subject, count: "342 questions", color: "text-emerald-600", bg: "bg-emerald-50" },
   { name: "Chemistry" as Subject, count: "251 questions", color: "text-teal-600", bg: "bg-teal-50" },
 ];

@@ -9,7 +9,7 @@ type Manifest = Record<string, Record<string, Record<string, Record<string, { pa
 const papers = manifest as Manifest;
 
 const subjectColors: Record<string, { bg: string; text: string; border: string }> = {
-  Maths: { bg: "bg-indigo-50", text: "text-indigo-600", border: "border-indigo-200" },
+  Maths: { bg: "bg-blue-50", text: "text-blue-600", border: "border-blue-200" },
   Biology: { bg: "bg-emerald-50", text: "text-emerald-600", border: "border-emerald-200" },
   Chemistry: { bg: "bg-teal-50", text: "text-teal-600", border: "border-teal-200" },
 };
@@ -189,7 +189,7 @@ export default function PastPapersPage() {
                   <p className="text-[12px] text-zinc-500 mt-0.5">
                     {info.pageCount} pages
                     {previousView && (
-                      <span className="ml-1.5 text-indigo-500 font-medium">
+                      <span className="ml-1.5 text-blue-500 font-medium">
                         &middot; Viewed page {previousView.lastPage + 1}/{previousView.totalPages}
                       </span>
                     )}
@@ -197,7 +197,7 @@ export default function PastPapersPage() {
                 </div>
                 <div className="flex items-center gap-1.5">
                   {previousView && (
-                    <span className="text-[10px] font-medium text-indigo-600 bg-indigo-50 border border-indigo-200 rounded-lg px-1.5 py-0.5">Resume</span>
+                    <span className="text-[10px] font-medium text-blue-600 bg-blue-50 border border-blue-200 rounded-lg px-1.5 py-0.5">Resume</span>
                   )}
                   <svg className="w-4 h-4 text-zinc-300" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
                 </div>

@@ -75,7 +75,7 @@ export default function Navbar() {
             <Link
               href="/camera"
               className={`absolute -top-8 flex items-center justify-center w-14 h-14 text-white transition-transform bg-zinc-900 rounded-full shadow-md hover:bg-zinc-800 active:scale-95 ring-4 ring-zinc-50 ${
-                isActive("/camera") ? "bg-indigo-600 hover:bg-indigo-700 ring-indigo-50" : ""
+                isActive("/camera") ? "bg-blue-600 hover:bg-blue-700 ring-blue-50" : ""
               }`}
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">

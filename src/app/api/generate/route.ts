@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 interface GeminiResponse {
   candidates?: Array<{
     content?: {
-      parts?: Array<{ text?: string }>;
+      parts?: Array<{ text?: string; thought?: boolean }>;
     };
   }>;
   error?: { message?: string };
@@ -20,7 +20,7 @@ async function callGemini(
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       contents: [{ role: "user", parts: [{ text: prompt }] }],
-      generationConfig: { temperature: 0.8, maxOutputTokens: 2000 },
+      generationConfig: { temperature: 0.8, maxOutputTokens: 8192 },
     }),
   });
 
@@ -32,8 +32,13 @@ async function callGemini(
   const data: GeminiResponse = await response.json();
   if (data.error) throw new Error(`Gemini: ${data.error.message}`);
 
+  // Gemini 2.5 Flash may return thinking parts — filter them out
   const parts = data.candidates?.[0]?.content?.parts || [];
-  const text = parts.map((p) => p.text || "").join("\n").trim();
+  const text = parts
+    .filter((p) => !p.thought)
+    .map((p) => p.text || "")
+    .join("\n")
+    .trim();
   if (!text) throw new Error("Gemini returned empty response");
   return text;
 }

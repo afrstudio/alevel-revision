@@ -17,19 +17,19 @@ interface Paper {
 }
 
 const subjectColors: Record<string, string> = {
-  Maths: "bg-indigo-500",
+  Maths: "bg-blue-500",
   Biology: "bg-emerald-500",
   Chemistry: "bg-teal-500",
 };
 
 const subjectBorders: Record<string, string> = {
-  Maths: "border-indigo-200",
+  Maths: "border-blue-200",
   Biology: "border-emerald-200",
   Chemistry: "border-teal-200",
 };
 
 const subjectText: Record<string, string> = {
-  Maths: "text-indigo-600",
+  Maths: "text-blue-600",
   Biology: "text-emerald-600",
   Chemistry: "text-teal-600",
 };

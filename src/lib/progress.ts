@@ -1,6 +1,8 @@
-// Progress tracking engine - localStorage backed
+// Progress tracking engine - localStorage backed + Supabase sync
 import type { Subject } from "@/types";
 import type { SM2Card } from "./sm2";
+import { getUnmasteredPrerequisites } from "./topic-dependencies";
+import { debouncedPush, syncOnLoad } from "./progress-sync";
 
 // --- Types ---
 
@@ -116,6 +118,20 @@ function saveProgress(data: ProgressData): void {
       // Give up silently
     }
   }
+  // Background sync to Supabase
+  debouncedPush(data);
+}
+
+/** Initialize progress — sync localStorage with Supabase on app load */
+export async function initProgress(): Promise<void> {
+  if (typeof window === "undefined") return;
+  const local = loadProgress();
+  const saveLocal = (data: ProgressData) => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    } catch { /* ignore */ }
+  };
+  await syncOnLoad(local, saveLocal);
 }
 
 function createEmpty(): ProgressData {
@@ -447,21 +463,60 @@ export function getPreviouslyWrongMCQIds(subject: Subject): Map<string, number> 
   return wrongMap;
 }
 
-// Get top recommended topics to study based on weak areas
-export function getRecommendations(): { topic: string; subject: Subject; accuracy: number; mode: "mcqs" | "flashcards"; reason: string }[] {
+// Build a map of topic → accuracy for a given subject (used by dependency system)
+export function getTopicAccuracies(subject?: Subject): Map<string, number> {
   const data = loadProgress();
-  const recommendations: { topic: string; subject: Subject; accuracy: number; mode: "mcqs" | "flashcards"; reason: string }[] = [];
+  const topicMap = new Map<string, { total: number; correct: number }>();
+
+  for (const attempt of data.mcqAttempts) {
+    if (subject && attempt.subject !== subject) continue;
+    const existing = topicMap.get(attempt.subtopic) || { total: 0, correct: 0 };
+    existing.total += 1;
+    if (attempt.correct) existing.correct += 1;
+    topicMap.set(attempt.subtopic, existing);
+  }
+
+  const accuracies = new Map<string, number>();
+  for (const [topic, val] of topicMap) {
+    if (val.total >= 2) {
+      accuracies.set(topic, Math.round((val.correct / val.total) * 100));
+    }
+  }
+  return accuracies;
+}
+
+export interface Recommendation {
+  topic: string;
+  subject: Subject;
+  accuracy: number;
+  mode: "mcqs" | "flashcards";
+  reason: string;
+  prerequisites?: { topic: string; accuracy: number | null; reason: string }[];
+}
+
+// Get top recommended topics to study based on weak areas
+export function getRecommendations(): Recommendation[] {
+  const data = loadProgress();
+  const recommendations: Recommendation[] = [];
+
+  // Build per-subject accuracy maps for dependency lookups
+  const subjectAccuracies: Record<string, Map<string, number>> = {};
+  for (const s of ["Maths", "Biology", "Chemistry"] as Subject[]) {
+    subjectAccuracies[s] = getTopicAccuracies(s);
+  }
 
   // Find weak MCQ topics (accuracy < 70%, 3+ attempts)
   const weakTopics = getWeakTopics();
   for (const wt of weakTopics.slice(0, 4)) {
     if (wt.accuracy < 70) {
+      const prereqs = getUnmasteredPrereqs(wt.subject, wt.topic, subjectAccuracies[wt.subject]);
       recommendations.push({
         topic: wt.topic,
         subject: wt.subject,
         accuracy: wt.accuracy,
         mode: "mcqs",
         reason: `${wt.accuracy}% accuracy across ${wt.totalAttempts} questions`,
+        prerequisites: prereqs.length > 0 ? prereqs : undefined,
       });
     }
   }
@@ -480,18 +535,29 @@ export function getRecommendations(): { topic: string; subject: Subject; accurac
     if (val.total < 5) continue;
     const retention = Math.round((val.known / val.total) * 100);
     if (retention < 60) {
+      const topic = key.split("::")[1];
+      const prereqs = getUnmasteredPrereqs(val.subject, topic, subjectAccuracies[val.subject]);
       recommendations.push({
-        topic: key.split("::")[1],
+        topic,
         subject: val.subject,
         accuracy: retention,
         mode: "flashcards",
         reason: `${retention}% retention across ${val.total} reviews`,
+        prerequisites: prereqs.length > 0 ? prereqs : undefined,
       });
     }
   }
 
   // Sort by accuracy ascending (worst first), limit to 5
   return recommendations.sort((a, b) => a.accuracy - b.accuracy).slice(0, 5);
+}
+
+function getUnmasteredPrereqs(
+  subject: Subject,
+  topic: string,
+  accuracies: Map<string, number>,
+): { topic: string; accuracy: number | null; reason: string }[] {
+  return getUnmasteredPrerequisites(subject, topic, accuracies, 70);
 }
 
 // Record a paper being viewed (upserts by subject+board+paper+session)

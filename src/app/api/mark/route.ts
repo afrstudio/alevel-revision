@@ -5,7 +5,7 @@ import { join } from "path";
 interface GeminiResponse {
   candidates?: Array<{
     content?: {
-      parts?: Array<{ text?: string }>;
+      parts?: Array<{ text?: string; thought?: boolean }>;
     };
   }>;
   error?: { message?: string };
@@ -110,7 +110,7 @@ async function callGemini(
     contents,
     generationConfig: {
       temperature: config?.temperature ?? 0.1,
-      maxOutputTokens: config?.maxOutputTokens ?? 2000,
+      maxOutputTokens: config?.maxOutputTokens ?? 8192,
     },
   };
 
@@ -131,9 +131,13 @@ async function callGemini(
     throw new Error(`Gemini API error: ${data.error.message || "Unknown error"}`);
   }
 
-  // Gemini 2.5 Flash may return multiple parts (thinking + text)
+  // Gemini 2.5 Flash may return thinking parts — filter them out
   const parts = data.candidates?.[0]?.content?.parts || [];
-  const text = parts.map((p: { text?: string }) => p.text || "").join("\n").trim();
+  const text = parts
+    .filter((p: { text?: string; thought?: boolean }) => !p.thought)
+    .map((p: { text?: string }) => p.text || "")
+    .join("\n")
+    .trim();
   if (!text) throw new Error("Gemini returned an empty response");
   return text;
 }

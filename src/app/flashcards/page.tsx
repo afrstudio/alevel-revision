@@ -8,7 +8,7 @@ import FlashcardPractice from "@/components/FlashcardPractice";
 import SubjectPicker from "@/components/SubjectPicker";
 
 const subjects = [
-  { name: "Maths" as Subject, count: "1,718 cards", color: "text-indigo-600", bg: "bg-indigo-50" },
+  { name: "Maths" as Subject, count: "1,718 cards", color: "text-blue-600", bg: "bg-blue-50" },
   { name: "Biology" as Subject, count: "4,377 cards", color: "text-emerald-600", bg: "bg-emerald-50" },
   { name: "Chemistry" as Subject, count: "2,763 cards", color: "text-teal-600", bg: "bg-teal-50" },
 ];

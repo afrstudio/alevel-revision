@@ -233,7 +233,7 @@ export default function FlashcardPractice({ flashcards, subject, initialTopic }:
       {/* Progress Bar */}
       {activeCards.length > 0 && (
         <div className="w-full h-1.5 bg-zinc-200/50 rounded-full overflow-hidden">
-          <div className="h-full bg-indigo-500 transition-all duration-500 ease-out rounded-full" style={{ width: `${((currentIndex) / activeCards.length) * 100}%` }} />
+          <div className="h-full bg-blue-500 transition-all duration-500 ease-out rounded-full" style={{ width: `${((currentIndex) / activeCards.length) * 100}%` }} />
         </div>
       )}
 
@@ -268,12 +268,12 @@ export default function FlashcardPractice({ flashcards, subject, initialTopic }:
               </div>
 
               {/* Back */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-indigo-50 border border-indigo-200 rounded-2xl p-5 md:p-8 shadow-sm backface-hidden rotate-y-180">
-                <span className="absolute top-3.5 left-4 text-[10px] text-indigo-500 uppercase tracking-widest font-medium bg-white px-3 py-1 rounded-md shadow-sm">Answer</span>
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-blue-50 border border-blue-200 rounded-2xl p-5 md:p-8 shadow-sm backface-hidden rotate-y-180">
+                <span className="absolute top-3.5 left-4 text-[10px] text-blue-500 uppercase tracking-widest font-medium bg-white px-3 py-1 rounded-md shadow-sm">Answer</span>
                 <div className="w-full flex items-center justify-center mt-4 mb-6">
                   <RichText className="text-[15px] md:text-lg text-zinc-900 text-center leading-relaxed overflow-y-auto max-h-[220px] md:max-h-[300px] w-full px-1">{currentCard?.back || ""}</RichText>
                 </div>
-                <p className="absolute bottom-3.5 text-[10px] text-indigo-300 uppercase tracking-widest">Tap to flip</p>
+                <p className="absolute bottom-3.5 text-[10px] text-blue-300 uppercase tracking-widest">Tap to flip</p>
               </div>
             </div>
           </div>
@@ -401,7 +401,7 @@ export default function FlashcardPractice({ flashcards, subject, initialTopic }:
                       {ret < 70 && (
                         <Link
                           href={`/mcqs?subject=${encodeURIComponent(subject)}&topic=${encodeURIComponent(topic)}`}
-                          className="text-[11px] text-indigo-600 font-medium hover:text-indigo-800 shrink-0"
+                          className="text-[11px] text-blue-600 font-medium hover:text-blue-800 shrink-0"
                         >
                           MCQs
                         </Link>

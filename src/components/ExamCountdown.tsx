@@ -4,14 +4,14 @@ import { useState, useEffect } from "react";
 // Maths: Edexcel (9MA0) | Biology: Edexcel (9BN0) | Chemistry: OCR (H432)
 const exams = [
   { subject: "Chemistry", paper: "Paper 1", board: "OCR", date: new Date("2026-06-02T09:00:00"), gradient: "from-teal-500 to-teal-600", dotColor: "bg-teal-400", textColor: "text-teal-600" },
-  { subject: "Maths", paper: "Paper 1", board: "Edexcel", date: new Date("2026-06-03T13:30:00"), gradient: "from-indigo-500 to-indigo-600", dotColor: "bg-indigo-400", textColor: "text-indigo-600" },
+  { subject: "Maths", paper: "Paper 1", board: "Edexcel", date: new Date("2026-06-03T13:30:00"), gradient: "from-blue-500 to-blue-600", dotColor: "bg-blue-400", textColor: "text-blue-600" },
   { subject: "Biology", paper: "Paper 1", board: "Edexcel", date: new Date("2026-06-04T13:30:00"), gradient: "from-emerald-500 to-emerald-600", dotColor: "bg-emerald-400", textColor: "text-emerald-600" },
   { subject: "Chemistry", paper: "Paper 2", board: "OCR", date: new Date("2026-06-09T09:00:00"), gradient: "from-teal-500 to-teal-600", dotColor: "bg-teal-400", textColor: "text-teal-600" },
-  { subject: "Maths", paper: "Paper 2", board: "Edexcel", date: new Date("2026-06-11T13:30:00"), gradient: "from-indigo-500 to-indigo-600", dotColor: "bg-indigo-400", textColor: "text-indigo-600" },
+  { subject: "Maths", paper: "Paper 2", board: "Edexcel", date: new Date("2026-06-11T13:30:00"), gradient: "from-blue-500 to-blue-600", dotColor: "bg-blue-400", textColor: "text-blue-600" },
   { subject: "Biology", paper: "Paper 2", board: "Edexcel", date: new Date("2026-06-12T09:00:00"), gradient: "from-emerald-500 to-emerald-600", dotColor: "bg-emerald-400", textColor: "text-emerald-600" },
   { subject: "Chemistry", paper: "Paper 3", board: "OCR", date: new Date("2026-06-15T09:00:00"), gradient: "from-teal-500 to-teal-600", dotColor: "bg-teal-400", textColor: "text-teal-600" },
   { subject: "Biology", paper: "Paper 3", board: "Edexcel", date: new Date("2026-06-16T09:00:00"), gradient: "from-emerald-500 to-emerald-600", dotColor: "bg-emerald-400", textColor: "text-emerald-600" },
-  { subject: "Maths", paper: "Paper 3", board: "Edexcel", date: new Date("2026-06-18T13:30:00"), gradient: "from-indigo-500 to-indigo-600", dotColor: "bg-indigo-400", textColor: "text-indigo-600" },
+  { subject: "Maths", paper: "Paper 3", board: "Edexcel", date: new Date("2026-06-18T13:30:00"), gradient: "from-blue-500 to-blue-600", dotColor: "bg-blue-400", textColor: "text-blue-600" },
 ];
 
 function getDaysLeft(date: Date, now: Date): number {

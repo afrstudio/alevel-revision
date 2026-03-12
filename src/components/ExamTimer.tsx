@@ -56,7 +56,7 @@ export default function ExamTimer({ duration, onTimeUp, resetKey, enabled }: Exa
         <div className="h-1.5 bg-zinc-200 rounded-full overflow-hidden">
           <div
             className={`h-full rounded-full transition-all duration-1000 ${
-              isUp ? "bg-red-500" : isLow ? "bg-amber-500" : "bg-indigo-500"
+              isUp ? "bg-red-500" : isLow ? "bg-amber-500" : "bg-blue-500"
             }`}
             style={{ width: `${pct}%` }}
           />

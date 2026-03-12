@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import ExamCountdown from "@/components/ExamCountdown";
 import { getStudyTip } from "@/lib/banter";
-import { getRecommendations, getDueCardCount, getNextReviewTime } from "@/lib/progress";
+import { getRecommendations, getDueCardCount, getNextReviewTime, type Recommendation } from "@/lib/progress";
 
 const counts = {
   Maths: { mcqs: 462, questions: 279, flashcards: 1718 },
@@ -13,14 +13,14 @@ const counts = {
 } as const;
 
 const subjectConfig = [
-  { name: "Maths", board: "Edexcel 9MA0", color: "bg-indigo-500", lightBg: "bg-indigo-50", borderColor: "border-l-indigo-500" },
+  { name: "Maths", board: "Edexcel 9MA0", color: "bg-blue-500", lightBg: "bg-blue-50", borderColor: "border-l-blue-500" },
   { name: "Biology", board: "Edexcel 9BN0", color: "bg-emerald-500", lightBg: "bg-emerald-50", borderColor: "border-l-emerald-500" },
   { name: "Chemistry", board: "OCR H432", color: "bg-teal-500", lightBg: "bg-teal-50", borderColor: "border-l-teal-500" },
 ] as const;
 
 const modes = [
-  { name: "MCQs", href: "/mcqs", desc: "1,354 questions", iconD: "M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z", color: "bg-indigo-500", hoverBg: "hover:bg-indigo-50/50" },
-  { name: "Questions", href: "/questions", desc: "872 with mark schemes", iconD: "M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z", color: "bg-violet-500", hoverBg: "hover:bg-violet-50/50" },
+  { name: "MCQs", href: "/mcqs", desc: "1,354 questions", iconD: "M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z", color: "bg-blue-500", hoverBg: "hover:bg-blue-50/50" },
+  { name: "Questions", href: "/questions", desc: "872 with mark schemes", iconD: "M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z", color: "bg-sky-500", hoverBg: "hover:bg-sky-50/50" },
   { name: "Flashcards", href: "/flashcards", desc: "8,858 cards", iconD: "M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0L12 16.5l-5.571-2.25m11.142 0L21.75 16.5 12 21.75 2.25 16.5l4.179-2.25", color: "bg-emerald-500", hoverBg: "hover:bg-emerald-50/50" },
   { name: "Past Papers", href: "/papers", desc: "12,424 real questions", iconD: "M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z", color: "bg-teal-500", hoverBg: "hover:bg-teal-50/50" },
   { name: "Practice Papers", href: "/practice-papers", desc: "30 exam-style packs", iconD: "M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 00-1.883 2.542l.857 6a2.25 2.25 0 002.227 1.932H19.05a2.25 2.25 0 002.227-1.932l.857-6a2.25 2.25 0 00-1.883-2.542m-16.5 0V6A2.25 2.25 0 016 3.75h3.879a1.5 1.5 0 011.06.44l2.122 2.12a1.5 1.5 0 001.06.44H18A2.25 2.25 0 0120.25 9v.776", color: "bg-amber-500", hoverBg: "hover:bg-amber-50/50" },
@@ -51,7 +51,7 @@ function formatTimeUntil(timestamp: number): string {
 export default function Home() {
   const [greeting, setGreeting] = useState("Hi");
   const [tip, setTip] = useState("");
-  const [recommendations, setRecommendations] = useState<ReturnType<typeof getRecommendations>>([]);
+  const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
   const [dueCards, setDueCards] = useState(0);
   const [nextReview, setNextReview] = useState<number | null>(null);
 
@@ -123,25 +123,42 @@ export default function Home() {
                 : `/flashcards?subject=${encodeURIComponent(rec.subject)}&topic=${encodeURIComponent(rec.topic)}`;
               const accentColor = rec.accuracy < 40 ? "border-l-red-500" : rec.accuracy < 60 ? "border-l-amber-500" : "border-l-yellow-400";
               return (
-                <Link key={i} href={href} className="block group">
-                  <div className={`bg-white border border-zinc-200/80 rounded-xl p-3.5 border-l-[3px] ${accentColor} hover:bg-zinc-50/50 transition-colors`}>
-                    <div className="flex items-center justify-between gap-3">
-                      <div className="min-w-0">
-                        <p className="text-[13px] font-semibold text-zinc-900 truncate">{rec.topic}</p>
-                        <p className="text-[11px] text-zinc-400 mt-0.5">{rec.subject} {rec.mode === "mcqs" ? "MCQs" : "Flashcards"} &middot; {rec.reason}</p>
-                      </div>
-                      <div className="flex items-center gap-2 shrink-0">
-                        <div className="w-16 h-1.5 bg-zinc-100 rounded-full overflow-hidden">
-                          <div
-                            className={`h-full rounded-full ${rec.accuracy < 40 ? "bg-red-500" : rec.accuracy < 60 ? "bg-amber-500" : "bg-yellow-400"}`}
-                            style={{ width: `${rec.accuracy}%` }}
-                          />
+                <div key={i}>
+                  <Link href={href} className="block group">
+                    <div className={`bg-white border border-zinc-200/80 rounded-xl p-3.5 border-l-[3px] ${accentColor} hover:bg-zinc-50/50 transition-colors ${rec.prerequisites ? "rounded-b-none border-b-0" : ""}`}>
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="min-w-0">
+                          <p className="text-[13px] font-semibold text-zinc-900 truncate">{rec.topic}</p>
+                          <p className="text-[11px] text-zinc-400 mt-0.5">{rec.subject} {rec.mode === "mcqs" ? "MCQs" : "Flashcards"} &middot; {rec.reason}</p>
                         </div>
-                        <span className="text-[11px] font-medium text-zinc-500 tabular-nums w-8 text-right">{rec.accuracy}%</span>
+                        <div className="flex items-center gap-2 shrink-0">
+                          <div className="w-16 h-1.5 bg-zinc-100 rounded-full overflow-hidden">
+                            <div
+                              className={`h-full rounded-full ${rec.accuracy < 40 ? "bg-red-500" : rec.accuracy < 60 ? "bg-amber-500" : "bg-yellow-400"}`}
+                              style={{ width: `${rec.accuracy}%` }}
+                            />
+                          </div>
+                          <span className="text-[11px] font-medium text-zinc-500 tabular-nums w-8 text-right">{rec.accuracy}%</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
+                  </Link>
+                  {rec.prerequisites && rec.prerequisites.length > 0 && (
+                    <div className="bg-amber-50/50 border border-amber-200/50 border-t-0 rounded-b-xl px-3.5 py-2 space-y-1">
+                      <p className="text-[10px] font-semibold text-amber-700 uppercase tracking-wide">Master first</p>
+                      {rec.prerequisites.slice(0, 2).map((p, j) => (
+                        <Link
+                          key={j}
+                          href={`/mcqs?subject=${encodeURIComponent(rec.subject)}&topic=${encodeURIComponent(p.topic)}`}
+                          className="flex items-center justify-between group"
+                        >
+                          <span className="text-[11px] text-amber-800 group-hover:text-amber-950 transition-colors">{p.topic}</span>
+                          <span className="text-[10px] text-amber-600">{p.reason}</span>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               );
             })}
           </div>
@@ -226,15 +243,15 @@ export default function Home() {
       </section>
 
       {/* Quick tip */}
-      <section className="bg-gradient-to-r from-indigo-50 to-violet-50 border border-indigo-100 rounded-2xl p-4 flex items-start gap-3">
-        <div className="w-8 h-8 rounded-lg bg-indigo-100 flex items-center justify-center shrink-0 mt-0.5">
-          <svg className="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+      <section className="bg-gradient-to-r from-zinc-100/80 to-zinc-50 border border-zinc-200/60 rounded-2xl p-4 flex items-start gap-3">
+        <div className="w-8 h-8 rounded-lg bg-zinc-200/60 flex items-center justify-center shrink-0 mt-0.5">
+          <svg className="w-4 h-4 text-zinc-500" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
           </svg>
         </div>
         <div>
-          <p className="text-[13px] font-semibold text-indigo-900">Study tip</p>
-          <p className="text-[12px] text-indigo-600/80 mt-0.5 leading-relaxed">
+          <p className="text-[13px] font-semibold text-zinc-700">Study tip</p>
+          <p className="text-[12px] text-zinc-500 mt-0.5 leading-relaxed">
             {tip}
           </p>
         </div>

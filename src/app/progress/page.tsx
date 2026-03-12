@@ -5,9 +5,12 @@ import Link from "next/link";
 import {
   getTotalStats, getWeakTopics, getRepeatedMistakes,
   getCameraMistakePatterns, getWeeklyReport, getActivityHistory,
+  getTopicAccuracies,
   type DailyStats, type WeakTopic,
 } from "@/lib/progress";
+import { getUnmasteredPrerequisites } from "@/lib/topic-dependencies";
 import { getProgressGreeting } from "@/lib/banter";
+import type { Subject } from "@/types";
 
 function StatCard({ label, value, sub }: { label: string; value: string | number; sub?: string }) {
   return (
@@ -34,7 +37,7 @@ function ActivityBar({ days }: { days: DailyStats[] }) {
           const label = dayLabels[dayIdx === 0 ? 6 : dayIdx - 1] || "";
           return (
             <div key={i} className="flex-1 flex flex-col items-center gap-1">
-              <div className={`w-full rounded-md transition-all ${total > 0 ? "bg-indigo-500" : "bg-zinc-100"}`} style={{ height: `${height}%` }} title={`${total} activities`} />
+              <div className={`w-full rounded-md transition-all ${total > 0 ? "bg-blue-500" : "bg-zinc-100"}`} style={{ height: `${height}%` }} title={`${total} activities`} />
               <span className="text-[9px] text-zinc-400">{label}</span>
             </div>
           );
@@ -44,49 +47,69 @@ function ActivityBar({ days }: { days: DailyStats[] }) {
   );
 }
 
-function WeakTopicsList({ topics }: { topics: WeakTopic[] }) {
+function WeakTopicsList({ topics, subjectAccuracies }: { topics: WeakTopic[]; subjectAccuracies: Record<string, Map<string, number>> }) {
   if (topics.length === 0) return null;
   return (
     <div className="bg-white border border-zinc-200 rounded-2xl p-4 shadow-sm">
       <h3 className="text-[13px] font-semibold text-zinc-900 mb-2">Weak Topics</h3>
       <p className="text-[11px] text-zinc-400 mb-3">Tap a topic to practise it</p>
       <div className="space-y-3">
-        {topics.slice(0, 8).map((t, i) => (
-          <div key={i} className="space-y-1.5">
-            <div className="flex items-center gap-3">
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-[12px] text-zinc-700 font-medium truncate">{t.topic}</span>
-                  <span className={`text-[11px] font-medium ${t.accuracy < 50 ? "text-red-600" : t.accuracy < 70 ? "text-amber-600" : "text-emerald-600"}`}>{t.accuracy}%</span>
+        {topics.slice(0, 8).map((t, i) => {
+          const prereqs = subjectAccuracies[t.subject]
+            ? getUnmasteredPrerequisites(t.subject as Subject, t.topic, subjectAccuracies[t.subject], 70)
+            : [];
+          return (
+            <div key={i} className="space-y-1.5">
+              <div className="flex items-center gap-3">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-[12px] text-zinc-700 font-medium truncate">{t.topic}</span>
+                    <span className={`text-[11px] font-medium ${t.accuracy < 50 ? "text-red-600" : t.accuracy < 70 ? "text-amber-600" : "text-emerald-600"}`}>{t.accuracy}%</span>
+                  </div>
+                  <div className="h-1.5 bg-zinc-100 rounded-full overflow-hidden">
+                    <div className={`h-full rounded-full transition-all ${t.accuracy < 50 ? "bg-red-500" : t.accuracy < 70 ? "bg-amber-500" : "bg-emerald-500"}`} style={{ width: `${t.accuracy}%` }} />
+                  </div>
                 </div>
-                <div className="h-1.5 bg-zinc-100 rounded-full overflow-hidden">
-                  <div className={`h-full rounded-full transition-all ${t.accuracy < 50 ? "bg-red-500" : t.accuracy < 70 ? "bg-amber-500" : "bg-emerald-500"}`} style={{ width: `${t.accuracy}%` }} />
-                </div>
+                <span className="text-[10px] text-zinc-400 shrink-0">{t.totalAttempts} Qs</span>
               </div>
-              <span className="text-[10px] text-zinc-400 shrink-0">{t.totalAttempts} Qs</span>
+              {prereqs.length > 0 && (
+                <div className="bg-amber-50/60 border border-amber-200/60 rounded-lg px-3 py-2 space-y-1.5">
+                  <p className="text-[10px] font-semibold text-amber-700 uppercase tracking-wide">Master these first</p>
+                  {prereqs.slice(0, 3).map((p, j) => (
+                    <Link
+                      key={j}
+                      href={`/mcqs?subject=${encodeURIComponent(t.subject)}&topic=${encodeURIComponent(p.topic)}`}
+                      className="flex items-center justify-between group"
+                    >
+                      <span className="text-[11px] text-amber-800 group-hover:text-amber-950 transition-colors">{p.topic}</span>
+                      <span className="text-[10px] text-amber-600">{p.reason}</span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+              <div className="flex gap-1.5">
+                <Link
+                  href={`/mcqs?subject=${encodeURIComponent(t.subject)}&topic=${encodeURIComponent(t.topic)}&mode=weak`}
+                  className="flex-1 text-center py-1.5 text-[11px] font-medium text-zinc-600 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 rounded-lg transition-colors"
+                >
+                  MCQs
+                </Link>
+                <Link
+                  href={`/flashcards?subject=${encodeURIComponent(t.subject)}&topic=${encodeURIComponent(t.topic)}`}
+                  className="flex-1 text-center py-1.5 text-[11px] font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors"
+                >
+                  Flashcards
+                </Link>
+                <Link
+                  href={`/questions?subject=${encodeURIComponent(t.subject)}&topic=${encodeURIComponent(t.topic)}`}
+                  className="flex-1 text-center py-1.5 text-[11px] font-medium text-zinc-600 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 rounded-lg transition-colors"
+                >
+                  Questions
+                </Link>
+              </div>
             </div>
-            <div className="flex gap-1.5">
-              <Link
-                href={`/mcqs?subject=${encodeURIComponent(t.subject)}&topic=${encodeURIComponent(t.topic)}&mode=weak`}
-                className="flex-1 text-center py-1.5 text-[11px] font-medium text-zinc-600 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 rounded-lg transition-colors"
-              >
-                MCQs
-              </Link>
-              <Link
-                href={`/flashcards?subject=${encodeURIComponent(t.subject)}&topic=${encodeURIComponent(t.topic)}`}
-                className="flex-1 text-center py-1.5 text-[11px] font-medium text-indigo-600 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 rounded-lg transition-colors"
-              >
-                Flashcards
-              </Link>
-              <Link
-                href={`/questions?subject=${encodeURIComponent(t.subject)}&topic=${encodeURIComponent(t.topic)}`}
-                className="flex-1 text-center py-1.5 text-[11px] font-medium text-zinc-600 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 rounded-lg transition-colors"
-              >
-                Questions
-              </Link>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
@@ -114,6 +137,12 @@ export default function ProgressPage() {
   const weeklyReport = getWeeklyReport();
   const activity = getActivityHistory();
   const totalActivity = stats.totalMCQs + stats.totalFlashcards + stats.totalQuestions + stats.totalCameraMarks;
+
+  // Build per-subject accuracy maps for prerequisite lookups
+  const subjectAccuracies: Record<string, Map<string, number>> = {};
+  for (const s of ["Maths", "Biology", "Chemistry"]) {
+    subjectAccuracies[s] = getTopicAccuracies(s as Subject);
+  }
 
   return (
     <div className="space-y-4 fade-in pt-2">
@@ -153,7 +182,7 @@ export default function ProgressPage() {
                 <StatCard label="Camera Marks" value={stats.totalCameraMarks} />
               </div>
               <ActivityBar days={activity} />
-              <WeakTopicsList topics={weakTopics} />
+              <WeakTopicsList topics={weakTopics} subjectAccuracies={subjectAccuracies} />
 
               {/* Quick action: practise all weak areas */}
               {weakTopics.length > 0 && weakTopics[0].accuracy < 70 && (

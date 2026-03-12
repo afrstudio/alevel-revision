@@ -207,7 +207,7 @@ export default function QuestionPractice({ questions, subject, initialTopic }: Q
           <button
             onClick={handleGenerate}
             disabled={generating}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 text-white rounded-xl text-[12px] font-semibold transition-all active:scale-95 min-h-[36px]"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white rounded-xl text-[12px] font-semibold transition-all active:scale-95 min-h-[36px]"
           >
             {generating ? (
               <>
@@ -241,16 +241,16 @@ export default function QuestionPractice({ questions, subject, initialTopic }: Q
 
       {/* Generated Question Card */}
       {generatedQ && (
-        <div className="bg-white border-2 border-indigo-200 shadow-sm rounded-2xl p-4 md:p-5 space-y-4">
+        <div className="bg-white border-2 border-blue-200 shadow-sm rounded-2xl p-4 md:p-5 space-y-4">
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-indigo-700 bg-indigo-50 rounded-lg px-2 py-0.5 text-[11px] font-semibold flex items-center gap-1">
+            <span className="text-blue-700 bg-blue-50 rounded-lg px-2 py-0.5 text-[11px] font-semibold flex items-center gap-1">
               <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
               </svg>
               AI Generated
             </span>
             <span className={difficultyConfig.hard.pill}>Hard</span>
-            <span className="text-indigo-600 bg-indigo-50 rounded-lg px-2 py-0.5 text-[11px] font-semibold">
+            <span className="text-blue-600 bg-blue-50 rounded-lg px-2 py-0.5 text-[11px] font-semibold">
               {generatedQ.marks} mark{generatedQ.marks !== 1 ? "s" : ""}
             </span>
             <span className="text-[11px] text-zinc-400 ml-auto">{generatedQ.subtopic}</span>
@@ -277,7 +277,7 @@ export default function QuestionPractice({ questions, subject, initialTopic }: Q
               <button
                 onClick={handleGenerate}
                 disabled={generating}
-                className="flex-1 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 text-white rounded-xl text-[14px] font-semibold min-h-[52px] transition-all active:scale-95"
+                className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white rounded-xl text-[14px] font-semibold min-h-[52px] transition-all active:scale-95"
               >
                 {generating ? "Generating..." : "Another Hard One"}
               </button>
@@ -333,7 +333,7 @@ export default function QuestionPractice({ questions, subject, initialTopic }: Q
         <div className="bg-white border border-zinc-200 shadow-sm rounded-2xl p-4 md:p-5 space-y-4">
           <div className="flex items-center gap-2 flex-wrap">
             <span className={difficultyConfig[currentQuestion.difficulty]?.pill}>{difficultyConfig[currentQuestion.difficulty]?.label}</span>
-            <span className="text-indigo-600 bg-indigo-50 rounded-lg px-2 py-0.5 text-[11px] font-semibold">
+            <span className="text-blue-600 bg-blue-50 rounded-lg px-2 py-0.5 text-[11px] font-semibold">
               {currentQuestion.marks} mark{currentQuestion.marks !== 1 ? "s" : ""}
             </span>
             <span className="text-[11px] text-zinc-400 ml-auto">{currentQuestion.subtopic}</span>
@@ -430,7 +430,7 @@ export default function QuestionPractice({ questions, subject, initialTopic }: Q
               <div className="flex gap-2 pt-2">
                 <Link
                   href={`/flashcards?subject=${encodeURIComponent(subject)}&topic=${encodeURIComponent(currentQuestion.subtopic)}`}
-                  className="flex-1 flex items-center justify-center gap-1.5 min-h-[44px] bg-indigo-50 border border-indigo-200 text-indigo-700 rounded-xl text-[13px] font-medium hover:bg-indigo-100 active:scale-95 transition-all"
+                  className="flex-1 flex items-center justify-center gap-1.5 min-h-[44px] bg-blue-50 border border-blue-200 text-blue-700 rounded-xl text-[13px] font-medium hover:bg-blue-100 active:scale-95 transition-all"
                 >
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
                   Revise {currentQuestion.subtopic}
