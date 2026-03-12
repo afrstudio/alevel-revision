@@ -9,6 +9,7 @@ import { gradeCard, createNewCard, getDueCards, type SM2Card } from "@/lib/sm2";
 import RichText from "@/components/RichText";
 import { stripLatex } from "@/lib/strip-latex";
 import { findBestTopicMatch } from "@/lib/topic-normalize";
+import { getSubjectBoard, getExplainButtonText, getExplainHeader, getExplainLoadingText, matchesBoard } from "@/lib/banter";
 
 function useAiExplain(subject: string) {
   const [explanation, setExplanation] = useState<string | null>(null);
@@ -63,7 +64,7 @@ export default function FlashcardPractice({ flashcards, subject, initialTopic }:
     const match = findBestTopicMatch(initialTopic, allTopics);
     return match || "all";
   });
-  const [boardFilter, setBoardFilter] = useState<string>("all");
+  const [boardFilter] = useState<string>(() => getSubjectBoard(subject));
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [known, setKnown] = useState(0);
@@ -75,12 +76,6 @@ export default function FlashcardPractice({ flashcards, subject, initialTopic }:
   const [sessionTopicStats, setSessionTopicStats] = useState<Map<string, { known: number; total: number }>>(new Map());
   const aiExplain = useAiExplain(subject);
 
-  const boards = useMemo(() => {
-    const set = new Set<string>();
-    flashcards.forEach((fc) => fc.boards.forEach((b) => set.add(b)));
-    return Array.from(set).sort();
-  }, [flashcards]);
-
   const topics = useMemo(() => {
     const unique = new Set(flashcards.map((fc) => fc.subtopic));
     return Array.from(unique).sort();
@@ -88,7 +83,7 @@ export default function FlashcardPractice({ flashcards, subject, initialTopic }:
 
   const filtered = useMemo(() => {
     return flashcards.filter((fc) => {
-      if (boardFilter !== "all" && !fc.boards.includes(boardFilter)) return false;
+      if (!matchesBoard(fc.boards, boardFilter)) return false;
       if (difficultyFilter !== "all" && fc.difficulty !== difficultyFilter) return false;
       if (topicFilter !== "all" && fc.subtopic !== topicFilter) return false;
       return true;
@@ -162,17 +157,6 @@ export default function FlashcardPractice({ flashcards, subject, initialTopic }:
       {/* Filters */}
       <div className="flex flex-col gap-3">
         <div className="flex gap-2">
-          <div className="flex flex-col gap-1.5">
-            <label className="text-[11px] text-zinc-500 uppercase tracking-wider font-medium">Board</label>
-            <select
-              value={boardFilter}
-              onChange={(e) => { setBoardFilter(e.target.value); setCurrentIndex(0); setIsFlipped(false); }}
-              className="bg-white border border-zinc-200 rounded-xl px-3 py-2.5 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 focus:border-zinc-400 appearance-none cursor-pointer shadow-sm"
-            >
-              <option value="all">All</option>
-              {boards.map((b) => <option key={b} value={b}>{b}</option>)}
-            </select>
-          </div>
           <div className="flex flex-col gap-1.5 flex-1">
             <label className="text-[11px] text-zinc-500 uppercase tracking-wider font-medium">Difficulty</label>
             <select
@@ -322,12 +306,12 @@ export default function FlashcardPractice({ flashcards, subject, initialTopic }:
                   {aiExplain.loading ? (
                     <>
                       <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      Thinking...
+                      {getExplainLoadingText()}
                     </>
                   ) : (
                     <>
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" /></svg>
-                      Explain this to me
+                      {getExplainButtonText()}
                     </>
                   )}
                 </button>
@@ -336,7 +320,7 @@ export default function FlashcardPractice({ flashcards, subject, initialTopic }:
                 <div className="bg-white border border-zinc-200 rounded-xl p-4 space-y-2 fade-in">
                   <div className="flex items-center gap-1.5 mb-1">
                     <svg className="w-3.5 h-3.5 text-zinc-500" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" /></svg>
-                    <span className="text-[11px] font-semibold text-zinc-500 uppercase tracking-wider">AI Tutor</span>
+                    <span className="text-[11px] font-semibold text-zinc-500 uppercase tracking-wider">{getExplainHeader()}</span>
                   </div>
                   <RichText className="text-[13px] text-zinc-700 leading-relaxed">{aiExplain.explanation}</RichText>
                 </div>

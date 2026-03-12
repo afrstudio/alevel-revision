@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import manifest from "@/data/papers-manifest.json";
 import { recordPaperView, getPaperViewMap, type PaperView } from "@/lib/progress";
+import { getSubjectBoard } from "@/lib/banter";
 
 type Manifest = Record<string, Record<string, Record<string, Record<string, { pages: string[]; pageCount: number }>>>>;
 const papers = manifest as Manifest;
@@ -25,7 +26,7 @@ export default function PastPapersPage() {
   useEffect(() => { setViewedPapers(getPaperViewMap()); }, []);
 
   const subjects = Object.keys(papers);
-  const boards = useMemo(() => { if (!subject || !papers[subject]) return []; return Object.keys(papers[subject]); }, [subject]);
+  const boards = useMemo(() => { if (!subject || !papers[subject]) return []; const target = getSubjectBoard(subject); return Object.keys(papers[subject]).filter(b => b.startsWith(target)); }, [subject]);
   const papersList = useMemo(() => { if (!subject || !board || !papers[subject]?.[board]) return []; return Object.keys(papers[subject][board]); }, [subject, board]);
   const sessions = useMemo(() => {
     if (!subject || !board || !paper || !papers[subject]?.[board]?.[paper]) return [];
@@ -137,7 +138,7 @@ export default function PastPapersPage() {
             let paperCount = 0;
             Object.values(papers[s] || {}).forEach((b) => Object.values(b).forEach((p) => Object.values(p).forEach(() => paperCount++)));
             return (
-              <button key={s} onClick={() => setSubject(s)} className={`w-full flex items-center gap-3.5 bg-white rounded-2xl p-4 border ${colors.border} text-left active:scale-[0.98] transition-all shadow-sm hover:border-zinc-300`}>
+              <button key={s} onClick={() => { setSubject(s); const target = getSubjectBoard(s); const matching = Object.keys(papers[s] || {}).filter(b => b.startsWith(target)); if (matching.length === 1) setBoard(matching[0]); }} className={`w-full flex items-center gap-3.5 bg-white rounded-2xl p-4 border ${colors.border} text-left active:scale-[0.98] transition-all shadow-sm hover:border-zinc-300`}>
                 <div className={`shrink-0 w-12 h-12 rounded-xl ${colors.bg} flex items-center justify-center`}><span className={`text-base font-bold ${colors.text}`}>{s.charAt(0)}</span></div>
                 <div className="flex-1"><h2 className="text-[15px] font-semibold text-zinc-900">{s}</h2><p className="text-[12px] text-zinc-500 mt-0.5">{boardCount} boards, {paperCount} papers</p></div>
                 <svg className="w-4 h-4 text-zinc-300" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>

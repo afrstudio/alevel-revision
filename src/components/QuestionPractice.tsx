@@ -9,6 +9,7 @@ import RichText from "@/components/RichText";
 import { stripLatex } from "@/lib/strip-latex";
 import ExamTimer, { TimerToggle } from "@/components/ExamTimer";
 import { findBestTopicMatch } from "@/lib/topic-normalize";
+import { getSubjectBoard, matchesBoard } from "@/lib/banter";
 
 interface GeneratedQuestion {
   id: string;
@@ -46,7 +47,7 @@ export default function QuestionPractice({ questions, subject, initialTopic }: Q
     const match = findBestTopicMatch(initialTopic, allTopics);
     return match || "all";
   });
-  const [boardFilter, setBoardFilter] = useState<string>("all");
+  const [boardFilter] = useState<string>(() => getSubjectBoard(subject));
   const [currentIndex, setCurrentIndex] = useState(0);
   const [studentAnswer, setStudentAnswer] = useState("");
   const [showMarkScheme, setShowMarkScheme] = useState(false);
@@ -56,12 +57,6 @@ export default function QuestionPractice({ questions, subject, initialTopic }: Q
   const [genError, setGenError] = useState<string | null>(null);
   const [timerEnabled, setTimerEnabled] = useState(false);
 
-  const boards = useMemo(() => {
-    const set = new Set<string>();
-    questions.forEach((q) => q.boards.forEach((b) => set.add(b)));
-    return Array.from(set).sort();
-  }, [questions]);
-
   const topics = useMemo(() => {
     const set = new Set<string>();
     questions.forEach((q) => set.add(q.subtopic));
@@ -70,7 +65,7 @@ export default function QuestionPractice({ questions, subject, initialTopic }: Q
 
   const filteredQuestions = useMemo(() => {
     return questions.filter((q) => {
-      if (boardFilter !== "all" && !q.boards.includes(boardFilter)) return false;
+      if (!matchesBoard(q.boards, boardFilter)) return false;
       if (difficultyFilter !== "all" && q.difficulty !== difficultyFilter) return false;
       if (topicFilter !== "all" && q.subtopic !== topicFilter) return false;
       return true;
@@ -181,14 +176,6 @@ export default function QuestionPractice({ questions, subject, initialTopic }: Q
         </div>
 
         <div className="flex gap-2">
-          <select
-            value={boardFilter}
-            onChange={(e) => { setBoardFilter(e.target.value); handleFilterChange(); }}
-            className="bg-white border border-zinc-200 rounded-xl px-3.5 py-2.5 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 focus:border-zinc-400 appearance-none cursor-pointer min-h-[44px]"
-          >
-            <option value="all">All Boards</option>
-            {boards.map((b) => <option key={b} value={b}>{b}</option>)}
-          </select>
           <select
             value={topicFilter}
             onChange={(e) => { setTopicFilter(e.target.value); handleFilterChange(); }}

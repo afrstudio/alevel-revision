@@ -28,12 +28,12 @@ export default function Navbar() {
     <>
       {/* Desktop Header - Frosted glass */}
       <header className="hidden md:flex sticky top-0 z-40 items-center justify-between w-full px-6 py-3.5 bg-white/80 backdrop-blur-md border-b border-zinc-100">
-        <div className="flex items-center space-x-2">
+        <Link href="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
           <div className="w-8 h-8 bg-zinc-900 rounded-lg flex items-center justify-center">
             <span className="text-white font-bold text-sm">Y</span>
           </div>
           <span className="font-semibold text-zinc-900 tracking-tight">Yabi Revise</span>
-        </div>
+        </Link>
         <div className="flex items-center gap-1">
           {[...navLinks, { ...cameraLink, label: "Camera" }].map((link) => (
             <Link

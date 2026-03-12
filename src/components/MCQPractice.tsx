@@ -8,7 +8,7 @@ import { recordMCQAttempt, getAnsweredMCQIds, getPreviouslyWrongMCQIds, getWeakT
 import RichText from "@/components/RichText";
 import { stripLatex } from "@/lib/strip-latex";
 import ExamTimer, { TimerToggle } from "@/components/ExamTimer";
-import { getCorrectMessage, getWrongMessage } from "@/lib/banter";
+import { getCorrectMessage, getWrongMessage, getExplainButtonText, getExplainHeader, getExplainLoadingText, getSubjectBoard, matchesBoard } from "@/lib/banter";
 import { findBestTopicMatch } from "@/lib/topic-normalize";
 import { getPrerequisites } from "@/lib/topic-dependencies";
 
@@ -66,7 +66,7 @@ export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode 
     const match = findBestTopicMatch(initialTopic, allTopics);
     return match || "all";
   });
-  const [boardFilter, setBoardFilter] = useState<string>("all");
+  const [boardFilter] = useState<string>(() => getSubjectBoard(subject));
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [questionsAnswered, setQuestionsAnswered] = useState<number>(0);
@@ -79,16 +79,13 @@ export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode 
   const [sessionTopicStats, setSessionTopicStats] = useState<Map<string, { correct: number; total: number }>>(new Map());
   const [aiExplanation, setAiExplanation] = useState<string | null>(null);
   const [aiExplainLoading, setAiExplainLoading] = useState(false);
-
-  const boards = useMemo(() => {
-    const set = new Set<string>();
-    mcqs.forEach((m) => m.boards.forEach((b) => set.add(b)));
-    return Array.from(set).sort();
-  }, [mcqs]);
+  const [explainBtnText, setExplainBtnText] = useState(() => getExplainButtonText());
+  const [explainHeaderText, setExplainHeaderText] = useState(() => getExplainHeader());
+  const [explainLoadingText, setExplainLoadingText] = useState(() => getExplainLoadingText());
 
   const filteredMcqs = useMemo(() => {
     let filtered = mcqs;
-    if (boardFilter !== "all") filtered = filtered.filter((m) => m.boards.includes(boardFilter));
+    filtered = filtered.filter((m) => matchesBoard(m.boards, boardFilter));
     if (difficultyFilter !== "all") filtered = filtered.filter((m) => m.difficulty === difficultyFilter);
     if (topicFilter !== "all") filtered = filtered.filter((m) => m.subtopic === topicFilter);
     return filtered;
@@ -175,6 +172,9 @@ export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode 
     setSelectedOption(null);
     setAiExplanation(null);
     setAiExplainLoading(false);
+    setExplainBtnText(getExplainButtonText());
+    setExplainHeaderText(getExplainHeader());
+    setExplainLoadingText(getExplainLoadingText());
   }, [activePool.length, currentIndex, adaptiveMode]);
 
   const handleExplainWhy = useCallback(async () => {
@@ -287,14 +287,6 @@ export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode 
         </div>
 
         <div className="flex gap-2">
-          <select
-            value={boardFilter}
-            onChange={(e) => handleFilterChange(setBoardFilter, e.target.value)}
-            className="bg-white border border-zinc-200 rounded-xl px-3 py-2.5 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 focus:border-zinc-400 transition-all"
-          >
-            <option value="all">All Boards</option>
-            {boards.map((b) => <option key={b} value={b}>{b}</option>)}
-          </select>
           <select
             value={topicFilter}
             onChange={(e) => handleFilterChange(setTopicFilter, e.target.value)}
@@ -502,12 +494,12 @@ export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode 
                       {aiExplainLoading ? (
                         <>
                           <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                          Thinking...
+                          {explainLoadingText}
                         </>
                       ) : (
                         <>
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" /></svg>
-                          Explain this to me
+                          {explainBtnText}
                         </>
                       )}
                     </button>
@@ -516,7 +508,7 @@ export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode 
                     <div className="bg-zinc-50 border border-zinc-200 rounded-xl p-4 space-y-2 fade-in">
                       <div className="flex items-center gap-1.5 mb-1">
                         <svg className="w-3.5 h-3.5 text-zinc-500" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" /></svg>
-                        <span className="text-[11px] font-semibold text-zinc-500 uppercase tracking-wider">AI Tutor</span>
+                        <span className="text-[11px] font-semibold text-zinc-500 uppercase tracking-wider">{explainHeaderText}</span>
                       </div>
                       <RichText className="text-[13px] text-zinc-700 leading-relaxed">{aiExplanation}</RichText>
                     </div>
