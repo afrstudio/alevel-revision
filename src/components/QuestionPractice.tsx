@@ -59,7 +59,7 @@ export default function QuestionPractice({ questions, subject, initialTopic }: Q
 
   const topics = useMemo(() => {
     const set = new Set<string>();
-    questions.forEach((q) => set.add(q.subtopic));
+    questions.filter((q) => matchesBoard(q.boards, boardFilter)).forEach((q) => set.add(q.subtopic));
     return Array.from(set).sort();
   }, [questions]);
 

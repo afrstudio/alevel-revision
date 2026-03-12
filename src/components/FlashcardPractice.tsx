@@ -77,9 +77,9 @@ export default function FlashcardPractice({ flashcards, subject, initialTopic }:
   const aiExplain = useAiExplain(subject);
 
   const topics = useMemo(() => {
-    const unique = new Set(flashcards.map((fc) => fc.subtopic));
+    const unique = new Set(flashcards.filter((fc) => matchesBoard(fc.boards, boardFilter)).map((fc) => fc.subtopic));
     return Array.from(unique).sort();
-  }, [flashcards]);
+  }, [flashcards, boardFilter]);
 
   const filtered = useMemo(() => {
     return flashcards.filter((fc) => {

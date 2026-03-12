@@ -92,11 +92,11 @@ export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode 
   }, [mcqs, difficultyFilter, topicFilter, boardFilter]);
 
   const topics = useMemo(() => {
-    let base = mcqs;
+    let base = mcqs.filter((m) => matchesBoard(m.boards, boardFilter));
     if (difficultyFilter !== "all") base = base.filter((m) => m.difficulty === difficultyFilter);
     const set = new Set(base.map((m) => m.subtopic));
     return Array.from(set).sort();
-  }, [mcqs, difficultyFilter]);
+  }, [mcqs, difficultyFilter, boardFilter]);
 
   const answeredBefore = useMemo(() => getAnsweredMCQIds(subject), [subject]);
   const previouslyWrong = useMemo(() => getPreviouslyWrongMCQIds(subject), [subject]);
