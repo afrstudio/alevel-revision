@@ -48,11 +48,25 @@ function formatTimeUntil(timestamp: number): string {
   return `in ${days} day${days !== 1 ? "s" : ""}`;
 }
 
-const recSubjectColors: Record<string, { accent: string; bg: string; text: string; bar: string }> = {
-  Maths: { accent: "border-l-blue-500", bg: "bg-blue-50/60", text: "text-blue-700", bar: "bg-blue-500" },
-  Biology: { accent: "border-l-emerald-500", bg: "bg-emerald-50/60", text: "text-emerald-700", bar: "bg-emerald-500" },
-  Chemistry: { accent: "border-l-teal-500", bg: "bg-teal-50/60", text: "text-teal-700", bar: "bg-teal-500" },
+const recSubjectColors: Record<string, { gradient: string; ring: string; ringTrack: string; text: string; sub: string; prereqBg: string; prereqText: string; initial: string; initialBg: string }> = {
+  Maths: { gradient: "from-blue-600 to-blue-500", ring: "stroke-white", ringTrack: "stroke-white/20", text: "text-white", sub: "text-blue-100", prereqBg: "bg-white/15", prereqText: "text-blue-100", initial: "text-blue-600", initialBg: "bg-white" },
+  Biology: { gradient: "from-emerald-600 to-emerald-500", ring: "stroke-white", ringTrack: "stroke-white/20", text: "text-white", sub: "text-emerald-100", prereqBg: "bg-white/15", prereqText: "text-emerald-100", initial: "text-emerald-600", initialBg: "bg-white" },
+  Chemistry: { gradient: "from-teal-600 to-teal-500", ring: "stroke-white", ringTrack: "stroke-white/20", text: "text-white", sub: "text-teal-100", prereqBg: "bg-white/15", prereqText: "text-teal-100", initial: "text-teal-600", initialBg: "bg-white" },
 };
+
+function ProgressRing({ percent, size = 44, strokeWidth = 4, className = "" }: { percent: number; size?: number; strokeWidth?: number; className?: string }) {
+  const r = (size - strokeWidth) / 2;
+  const circ = 2 * Math.PI * r;
+  const offset = circ - (Math.max(percent, 2) / 100) * circ;
+  return (
+    <svg width={size} height={size} className={className}>
+      <circle cx={size / 2} cy={size / 2} r={r} fill="none" strokeWidth={strokeWidth} className="stroke-white/20" />
+      <circle cx={size / 2} cy={size / 2} r={r} fill="none" strokeWidth={strokeWidth} className="stroke-white" strokeLinecap="round"
+        strokeDasharray={circ} strokeDashoffset={offset} transform={`rotate(-90 ${size / 2} ${size / 2})`}
+        style={{ transition: "stroke-dashoffset 0.5s ease" }} />
+    </svg>
+  );
+}
 
 export default function Home() {
   const [greeting, setGreeting] = useState("Hi");
@@ -115,11 +129,11 @@ export default function Home() {
         </div>
       )}
 
-      {/* Recommended for you */}
+      {/* Focus Areas */}
       {recommendations.length > 0 ? (
         <section className="space-y-3">
           <h2 className="text-[11px] font-semibold text-zinc-400 uppercase tracking-widest px-0.5">Focus areas</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {recommendations.map((rec, i) => {
               const href = rec.mode === "mcqs"
                 ? `/mcqs?subject=${encodeURIComponent(rec.subject)}&topic=${encodeURIComponent(rec.topic)}`
@@ -127,23 +141,28 @@ export default function Home() {
               const colors = recSubjectColors[rec.subject] || recSubjectColors.Maths;
               return (
                 <Link key={i} href={href} className="block group">
-                  <div className={`bg-white border border-zinc-200/80 rounded-xl p-3.5 border-l-[3px] ${colors.accent} hover:bg-zinc-50/50 transition-all`}>
-                    <div className="flex items-center justify-between gap-2 mb-2">
-                      <p className="text-[13px] font-semibold text-zinc-900 truncate">{rec.topic}</p>
-                      <span className={`text-[13px] font-bold tabular-nums shrink-0 ${rec.accuracy < 40 ? "text-red-500" : rec.accuracy < 70 ? "text-amber-500" : colors.text}`}>{rec.accuracy}%</span>
+                  <div className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${colors.gradient} p-4 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all`}>
+                    {/* Decorative circles */}
+                    <div className="absolute -right-4 -top-4 w-20 h-20 rounded-full bg-white/10" />
+                    <div className="absolute -right-1 top-6 w-8 h-8 rounded-full bg-white/5" />
+
+                    <div className="relative flex items-start gap-3">
+                      {/* Progress ring with percentage */}
+                      <div className="relative shrink-0">
+                        <ProgressRing percent={rec.accuracy} size={48} strokeWidth={4} />
+                        <span className="absolute inset-0 flex items-center justify-center text-[11px] font-bold text-white tabular-nums">{rec.accuracy}%</span>
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-[14px] font-semibold text-white leading-tight truncate">{rec.topic}</p>
+                        <p className={`text-[11px] ${colors.sub} mt-0.5`}>{rec.subject} {rec.mode === "mcqs" ? "MCQs" : "Flashcards"} &middot; {rec.reason}</p>
+                      </div>
                     </div>
-                    <div className="w-full h-1.5 bg-zinc-100 rounded-full overflow-hidden mb-2">
-                      <div
-                        className={`h-full rounded-full transition-all ${rec.accuracy < 40 ? "bg-red-400" : rec.accuracy < 70 ? "bg-amber-400" : colors.bar}`}
-                        style={{ width: `${Math.max(rec.accuracy, 3)}%` }}
-                      />
-                    </div>
-                    <p className="text-[11px] text-zinc-400">{rec.subject} {rec.mode === "mcqs" ? "MCQs" : "Flashcards"} &middot; {rec.reason}</p>
+
                     {rec.prerequisites && rec.prerequisites.length > 0 && (
-                      <div className="mt-2 pt-2 border-t border-zinc-100 space-y-0.5">
-                        <p className="text-[9px] font-semibold text-zinc-400 uppercase tracking-wide">Master first</p>
+                      <div className={`relative mt-3 ${colors.prereqBg} rounded-lg px-3 py-2 space-y-0.5`}>
+                        <p className="text-[9px] font-semibold text-white/60 uppercase tracking-wide">Master first</p>
                         {rec.prerequisites.slice(0, 2).map((p, j) => (
-                          <p key={j} className="text-[11px] text-zinc-500">{p.topic} <span className="text-zinc-300">&middot;</span> <span className="text-zinc-400">{p.reason}</span></p>
+                          <p key={j} className={`text-[11px] ${colors.prereqText}`}>{p.topic} <span className="text-white/30">&middot;</span> <span className="text-white/50">{p.reason}</span></p>
                         ))}
                       </div>
                     )}

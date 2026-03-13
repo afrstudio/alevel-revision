@@ -15,30 +15,9 @@ const exams = [
 ];
 
 const colorStyles = {
-  blue: {
-    bg: "bg-gradient-to-br from-blue-500/10 to-blue-600/5",
-    border: "border-blue-200/60",
-    days: "text-blue-600",
-    dot: "bg-blue-500",
-    label: "text-blue-900",
-    sub: "text-blue-600/70",
-  },
-  emerald: {
-    bg: "bg-gradient-to-br from-emerald-500/10 to-emerald-600/5",
-    border: "border-emerald-200/60",
-    days: "text-emerald-600",
-    dot: "bg-emerald-500",
-    label: "text-emerald-900",
-    sub: "text-emerald-600/70",
-  },
-  teal: {
-    bg: "bg-gradient-to-br from-teal-500/10 to-teal-600/5",
-    border: "border-teal-200/60",
-    days: "text-teal-600",
-    dot: "bg-teal-500",
-    label: "text-teal-900",
-    sub: "text-teal-600/70",
-  },
+  blue: "from-blue-500 to-blue-600",
+  emerald: "from-emerald-500 to-emerald-600",
+  teal: "from-teal-500 to-teal-600",
 };
 
 function getDaysLeft(date: Date, now: Date): number {
@@ -75,21 +54,24 @@ export default function ExamCountdown() {
       <div className="grid grid-cols-3 gap-2">
         {upcoming.map((exam, i) => {
           const days = getDaysLeft(exam.date, now);
-          const s = colorStyles[exam.color];
+          const gradient = colorStyles[exam.color];
           const shortSubject = exam.subject === "Chemistry" ? "Chem" : exam.subject === "Biology" ? "Bio" : "Maths";
           const shortPaper = exam.paper.replace("Paper ", "P");
           return (
             <div
               key={i}
-              className={`${s.bg} border ${s.border} rounded-xl px-3 py-2.5 transition-colors`}
+              className={`relative overflow-hidden rounded-xl bg-gradient-to-br ${gradient} px-3 py-2.5 text-white shadow-sm`}
             >
-              <div className="flex items-center justify-between">
-                <p className={`text-[12px] font-semibold ${s.label}`}>{shortSubject} {shortPaper}</p>
-                <span className={`text-[12px] font-bold tabular-nums ${s.days}`}>{days}d</span>
+              <div className="absolute -right-2 -top-2 w-10 h-10 rounded-full bg-white/10" />
+              <div className="relative flex items-center justify-between">
+                <div className="min-w-0">
+                  <p className="text-[12px] font-semibold leading-tight">{shortSubject} {shortPaper}</p>
+                  <p className="text-[10px] text-white/60 mt-0.5">
+                    {exam.date.toLocaleDateString("en-GB", { day: "numeric", month: "short" })}
+                  </p>
+                </div>
+                <span className="text-[14px] font-bold tabular-nums shrink-0">{days}d</span>
               </div>
-              <p className={`text-[10px] ${s.sub} mt-0.5`}>
-                {exam.date.toLocaleDateString("en-GB", { day: "numeric", month: "short" })}
-              </p>
             </div>
           );
         })}
