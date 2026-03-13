@@ -48,6 +48,12 @@ function formatTimeUntil(timestamp: number): string {
   return `in ${days} day${days !== 1 ? "s" : ""}`;
 }
 
+const recSubjectColors: Record<string, { accent: string; bg: string; text: string; bar: string }> = {
+  Maths: { accent: "border-l-blue-500", bg: "bg-blue-50/60", text: "text-blue-700", bar: "bg-blue-500" },
+  Biology: { accent: "border-l-emerald-500", bg: "bg-emerald-50/60", text: "text-emerald-700", bar: "bg-emerald-500" },
+  Chemistry: { accent: "border-l-teal-500", bg: "bg-teal-50/60", text: "text-teal-700", bar: "bg-teal-500" },
+};
+
 export default function Home() {
   const [greeting, setGreeting] = useState("Hi");
   const [tip, setTip] = useState("");
@@ -79,9 +85,6 @@ export default function Home() {
           {formatNumber(totalItems)} practice items across 3 subjects
         </p>
       </section>
-
-      {/* Exam Countdown */}
-      <ExamCountdown />
 
       {/* Spaced Repetition Due Cards */}
       {dueCards > 0 && (
@@ -115,50 +118,37 @@ export default function Home() {
       {/* Recommended for you */}
       {recommendations.length > 0 ? (
         <section className="space-y-3">
-          <h2 className="text-[11px] font-semibold text-zinc-400 uppercase tracking-widest px-0.5">Recommended for you</h2>
-          <div className="space-y-2">
+          <h2 className="text-[11px] font-semibold text-zinc-400 uppercase tracking-widest px-0.5">Focus areas</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {recommendations.map((rec, i) => {
               const href = rec.mode === "mcqs"
                 ? `/mcqs?subject=${encodeURIComponent(rec.subject)}&topic=${encodeURIComponent(rec.topic)}`
                 : `/flashcards?subject=${encodeURIComponent(rec.subject)}&topic=${encodeURIComponent(rec.topic)}`;
-              const accentColor = rec.accuracy < 40 ? "border-l-red-500" : rec.accuracy < 60 ? "border-l-amber-500" : "border-l-yellow-400";
+              const colors = recSubjectColors[rec.subject] || recSubjectColors.Maths;
               return (
-                <div key={i}>
-                  <Link href={href} className="block group">
-                    <div className={`bg-white border border-zinc-200/80 rounded-xl p-3.5 border-l-[3px] ${accentColor} hover:bg-zinc-50/50 transition-colors ${rec.prerequisites ? "rounded-b-none border-b-0" : ""}`}>
-                      <div className="flex items-center justify-between gap-3">
-                        <div className="min-w-0">
-                          <p className="text-[13px] font-semibold text-zinc-900 truncate">{rec.topic}</p>
-                          <p className="text-[11px] text-zinc-400 mt-0.5">{rec.subject} {rec.mode === "mcqs" ? "MCQs" : "Flashcards"} &middot; {rec.reason}</p>
-                        </div>
-                        <div className="flex items-center gap-2 shrink-0">
-                          <div className="w-16 h-1.5 bg-zinc-100 rounded-full overflow-hidden">
-                            <div
-                              className={`h-full rounded-full ${rec.accuracy < 40 ? "bg-red-500" : rec.accuracy < 60 ? "bg-amber-500" : "bg-yellow-400"}`}
-                              style={{ width: `${rec.accuracy}%` }}
-                            />
-                          </div>
-                          <span className="text-[11px] font-medium text-zinc-500 tabular-nums w-8 text-right">{rec.accuracy}%</span>
-                        </div>
+                <Link key={i} href={href} className="block group">
+                  <div className={`bg-white border border-zinc-200/80 rounded-xl p-3.5 border-l-[3px] ${colors.accent} hover:bg-zinc-50/50 transition-all`}>
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <p className="text-[13px] font-semibold text-zinc-900 truncate">{rec.topic}</p>
+                      <span className={`text-[13px] font-bold tabular-nums shrink-0 ${rec.accuracy < 40 ? "text-red-500" : rec.accuracy < 70 ? "text-amber-500" : colors.text}`}>{rec.accuracy}%</span>
+                    </div>
+                    <div className="w-full h-1.5 bg-zinc-100 rounded-full overflow-hidden mb-2">
+                      <div
+                        className={`h-full rounded-full transition-all ${rec.accuracy < 40 ? "bg-red-400" : rec.accuracy < 70 ? "bg-amber-400" : colors.bar}`}
+                        style={{ width: `${Math.max(rec.accuracy, 3)}%` }}
+                      />
+                    </div>
+                    <p className="text-[11px] text-zinc-400">{rec.subject} {rec.mode === "mcqs" ? "MCQs" : "Flashcards"} &middot; {rec.reason}</p>
+                    {rec.prerequisites && rec.prerequisites.length > 0 && (
+                      <div className="mt-2 pt-2 border-t border-zinc-100 space-y-0.5">
+                        <p className="text-[9px] font-semibold text-zinc-400 uppercase tracking-wide">Master first</p>
+                        {rec.prerequisites.slice(0, 2).map((p, j) => (
+                          <p key={j} className="text-[11px] text-zinc-500">{p.topic} <span className="text-zinc-300">&middot;</span> <span className="text-zinc-400">{p.reason}</span></p>
+                        ))}
                       </div>
-                    </div>
-                  </Link>
-                  {rec.prerequisites && rec.prerequisites.length > 0 && (
-                    <div className="bg-amber-50/50 border border-amber-200/50 border-t-0 rounded-b-xl px-3.5 py-2 space-y-1">
-                      <p className="text-[10px] font-semibold text-amber-700 uppercase tracking-wide">Master first</p>
-                      {rec.prerequisites.slice(0, 2).map((p, j) => (
-                        <Link
-                          key={j}
-                          href={`/mcqs?subject=${encodeURIComponent(rec.subject)}&topic=${encodeURIComponent(p.topic)}`}
-                          className="flex items-center justify-between group"
-                        >
-                          <span className="text-[11px] text-amber-800 group-hover:text-amber-950 transition-colors">{p.topic}</span>
-                          <span className="text-[10px] text-amber-600">{p.reason}</span>
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                    )}
+                  </div>
+                </Link>
               );
             })}
           </div>
@@ -256,6 +246,9 @@ export default function Home() {
           </p>
         </div>
       </section>
+
+      {/* Exam Countdown — at the bottom */}
+      <ExamCountdown />
     </div>
   );
 }
