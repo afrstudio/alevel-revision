@@ -188,5 +188,6 @@ export function getSubjectBoard(subject: string): string {
 
 // Check if a question's boards match the target board (prefix match)
 export function matchesBoard(questionBoards: string[], targetBoard: string): boolean {
+  if (targetBoard === "all") return true;
   return questionBoards.some((b) => b.startsWith(targetBoard));
 }

@@ -11,6 +11,7 @@ import ExamTimer, { TimerToggle } from "@/components/ExamTimer";
 import { getCorrectMessage, getWrongMessage, getExplainButtonText, getExplainHeader, getExplainLoadingText, getSubjectBoard, matchesBoard } from "@/lib/banter";
 import { findBestTopicMatch } from "@/lib/topic-normalize";
 import { getPrerequisites } from "@/lib/topic-dependencies";
+import { getDisplayTopic } from "@/lib/board-topics";
 
 interface MCQPracticeProps {
   mcqs: MCQ[];
@@ -66,7 +67,7 @@ export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode 
     const match = findBestTopicMatch(initialTopic, allTopics);
     return match || "all";
   });
-  const [boardFilter] = useState<string>(() => getSubjectBoard(subject));
+  const [boardFilter, setBoardFilter] = useState<string>(() => getSubjectBoard(subject));
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [questionsAnswered, setQuestionsAnswered] = useState<number>(0);
@@ -87,14 +88,38 @@ export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode 
     let filtered = mcqs;
     filtered = filtered.filter((m) => matchesBoard(m.boards, boardFilter));
     if (difficultyFilter !== "all") filtered = filtered.filter((m) => m.difficulty === difficultyFilter);
-    if (topicFilter !== "all") filtered = filtered.filter((m) => m.subtopic === topicFilter);
+    if (topicFilter !== "all") filtered = filtered.filter((m) => getDisplayTopic(m.board_topics, m.boards, boardFilter, m.subtopic) === topicFilter);
     return filtered;
   }, [mcqs, difficultyFilter, topicFilter, boardFilter]);
+
+  const boardOptions = useMemo(() => {
+    const boardSet = new Set<string>();
+    mcqs.forEach((m) => m.boards.forEach((b) => boardSet.add(b)));
+    const boards = Array.from(boardSet).sort();
+    // Build options: include prefix groups when variants exist (e.g. OCR-A + OCR-B → "All OCR")
+    const options: { value: string; label: string }[] = [];
+    const prefixes = new Map<string, string[]>();
+    boards.forEach((b) => {
+      const dash = b.indexOf("-");
+      const prefix = dash > 0 ? b.substring(0, dash) : b;
+      if (!prefixes.has(prefix)) prefixes.set(prefix, []);
+      prefixes.get(prefix)!.push(b);
+    });
+    prefixes.forEach((variants, prefix) => {
+      if (variants.length > 1) {
+        options.push({ value: prefix, label: `All ${prefix}` });
+        variants.forEach((v) => options.push({ value: v, label: `  ${v}` }));
+      } else {
+        options.push({ value: variants[0], label: variants[0] });
+      }
+    });
+    return options;
+  }, [mcqs]);
 
   const topics = useMemo(() => {
     let base = mcqs.filter((m) => matchesBoard(m.boards, boardFilter));
     if (difficultyFilter !== "all") base = base.filter((m) => m.difficulty === difficultyFilter);
-    const set = new Set(base.map((m) => m.subtopic));
+    const set = new Set(base.map((m) => getDisplayTopic(m.board_topics, m.boards, boardFilter, m.subtopic)));
     return Array.from(set).sort();
   }, [mcqs, difficultyFilter, boardFilter]);
 
@@ -288,6 +313,14 @@ export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode 
 
         <div className="flex gap-2">
           <select
+            value={boardFilter}
+            onChange={(e) => { handleFilterChange(setBoardFilter, e.target.value); setTopicFilter("all"); }}
+            className="bg-white border border-zinc-200 rounded-xl px-3 py-2.5 text-sm text-zinc-900 shrink-0 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 focus:border-zinc-400 transition-all"
+          >
+            <option value="all">All Boards</option>
+            {boardOptions.map((opt) => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
+          </select>
+          <select
             value={topicFilter}
             onChange={(e) => handleFilterChange(setTopicFilter, e.target.value)}
             className="bg-white border border-zinc-200 rounded-xl px-3 py-2.5 text-sm text-zinc-900 w-full focus:outline-none focus:ring-2 focus:ring-zinc-900/10 focus:border-zinc-400 transition-all"
@@ -419,7 +452,7 @@ export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode 
             <span className={`text-[11px] px-2 py-0.5 rounded-lg font-medium ${difficultyConfig[currentQuestion.difficulty]?.classes || "bg-zinc-50 text-zinc-400"}`}>
               {currentQuestion.difficulty.charAt(0).toUpperCase() + currentQuestion.difficulty.slice(1)}
             </span>
-            <span className="bg-zinc-100 text-zinc-500 text-[11px] px-2 py-0.5 rounded-lg">{currentQuestion.subtopic}</span>
+            <span className="bg-zinc-100 text-zinc-500 text-[11px] px-2 py-0.5 rounded-lg">{getDisplayTopic(currentQuestion.board_topics, currentQuestion.boards, boardFilter, currentQuestion.subtopic)}</span>
             {previouslyWrong.has(currentQuestion.id) && (
               <span className="text-[11px] px-2 py-0.5 rounded-lg font-medium bg-amber-50 text-amber-600 border border-amber-200">
                 Wrong before ({previouslyWrong.get(currentQuestion.id)}x)
@@ -534,11 +567,11 @@ export default function MCQPractice({ mcqs, subject, initialTopic, adaptiveMode 
                     );
                   })()}
                   <Link
-                    href={`/flashcards?subject=${encodeURIComponent(subject)}&topic=${encodeURIComponent(currentQuestion.subtopic)}`}
+                    href={`/flashcards?subject=${encodeURIComponent(subject)}&topic=${encodeURIComponent(getDisplayTopic(currentQuestion.board_topics, currentQuestion.boards, boardFilter, currentQuestion.subtopic))}`}
                     className="flex items-center justify-center gap-1.5 min-h-[44px] bg-zinc-100 text-zinc-600 rounded-xl text-[13px] font-medium hover:bg-zinc-200 active:scale-95 transition-all"
                   >
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
-                    Study {currentQuestion.subtopic}
+                    Study {getDisplayTopic(currentQuestion.board_topics, currentQuestion.boards, boardFilter, currentQuestion.subtopic)}
                   </Link>
                 </div>
               )}

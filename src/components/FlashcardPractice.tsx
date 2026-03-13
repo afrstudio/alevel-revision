@@ -10,6 +10,7 @@ import RichText from "@/components/RichText";
 import { stripLatex } from "@/lib/strip-latex";
 import { findBestTopicMatch } from "@/lib/topic-normalize";
 import { getSubjectBoard, getExplainButtonText, getExplainHeader, getExplainLoadingText, matchesBoard } from "@/lib/banter";
+import { getDisplayTopic } from "@/lib/board-topics";
 
 function useAiExplain(subject: string) {
   const [explanation, setExplanation] = useState<string | null>(null);
@@ -64,7 +65,7 @@ export default function FlashcardPractice({ flashcards, subject, initialTopic }:
     const match = findBestTopicMatch(initialTopic, allTopics);
     return match || "all";
   });
-  const [boardFilter] = useState<string>(() => getSubjectBoard(subject));
+  const [boardFilter, setBoardFilter] = useState<string>(() => getSubjectBoard(subject));
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [known, setKnown] = useState(0);
@@ -76,8 +77,31 @@ export default function FlashcardPractice({ flashcards, subject, initialTopic }:
   const [sessionTopicStats, setSessionTopicStats] = useState<Map<string, { known: number; total: number }>>(new Map());
   const aiExplain = useAiExplain(subject);
 
+  const boardOptions = useMemo(() => {
+    const boardSet = new Set<string>();
+    flashcards.forEach((fc) => fc.boards.forEach((b) => boardSet.add(b)));
+    const boards = Array.from(boardSet).sort();
+    const options: { value: string; label: string }[] = [];
+    const prefixes = new Map<string, string[]>();
+    boards.forEach((b) => {
+      const dash = b.indexOf("-");
+      const prefix = dash > 0 ? b.substring(0, dash) : b;
+      if (!prefixes.has(prefix)) prefixes.set(prefix, []);
+      prefixes.get(prefix)!.push(b);
+    });
+    prefixes.forEach((variants, prefix) => {
+      if (variants.length > 1) {
+        options.push({ value: prefix, label: `All ${prefix}` });
+        variants.forEach((v) => options.push({ value: v, label: `  ${v}` }));
+      } else {
+        options.push({ value: variants[0], label: variants[0] });
+      }
+    });
+    return options;
+  }, [flashcards]);
+
   const topics = useMemo(() => {
-    const unique = new Set(flashcards.filter((fc) => matchesBoard(fc.boards, boardFilter)).map((fc) => fc.subtopic));
+    const unique = new Set(flashcards.filter((fc) => matchesBoard(fc.boards, boardFilter)).map((fc) => getDisplayTopic(fc.board_topics, fc.boards, boardFilter, fc.subtopic)));
     return Array.from(unique).sort();
   }, [flashcards, boardFilter]);
 
@@ -85,7 +109,7 @@ export default function FlashcardPractice({ flashcards, subject, initialTopic }:
     return flashcards.filter((fc) => {
       if (!matchesBoard(fc.boards, boardFilter)) return false;
       if (difficultyFilter !== "all" && fc.difficulty !== difficultyFilter) return false;
-      if (topicFilter !== "all" && fc.subtopic !== topicFilter) return false;
+      if (topicFilter !== "all" && getDisplayTopic(fc.board_topics, fc.boards, boardFilter, fc.subtopic) !== topicFilter) return false;
       return true;
     });
   }, [flashcards, difficultyFilter, topicFilter, boardFilter]);
@@ -137,8 +161,9 @@ export default function FlashcardPractice({ flashcards, subject, initialTopic }:
     goNext();
   }, [currentCard, reviewedSet, subject, sm2Data, goNext]);
 
-  const handleFilterChange = (type: "difficulty" | "topic", value: string) => {
+  const handleFilterChange = (type: "difficulty" | "topic" | "board", value: string) => {
     if (type === "difficulty") setDifficultyFilter(value as "all" | "easy" | "medium" | "hard");
+    else if (type === "board") { setBoardFilter(value); setTopicFilter("all"); }
     else setTopicFilter(value);
     setCurrentIndex(0);
     setIsFlipped(false);
@@ -157,6 +182,17 @@ export default function FlashcardPractice({ flashcards, subject, initialTopic }:
       {/* Filters */}
       <div className="flex flex-col gap-3">
         <div className="flex gap-2">
+          <div className="flex flex-col gap-1.5 flex-1">
+            <label className="text-[11px] text-zinc-500 uppercase tracking-wider font-medium">Exam Board</label>
+            <select
+              value={boardFilter}
+              onChange={(e) => handleFilterChange("board", e.target.value)}
+              className="bg-white border border-zinc-200 w-full rounded-xl px-3 py-2.5 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 focus:border-zinc-400 appearance-none cursor-pointer shadow-sm"
+            >
+              <option value="all">All Boards</option>
+              {boardOptions.map((opt) => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
+            </select>
+          </div>
           <div className="flex flex-col gap-1.5 flex-1">
             <label className="text-[11px] text-zinc-500 uppercase tracking-wider font-medium">Difficulty</label>
             <select

@@ -10,6 +10,7 @@ import { stripLatex } from "@/lib/strip-latex";
 import ExamTimer, { TimerToggle } from "@/components/ExamTimer";
 import { findBestTopicMatch } from "@/lib/topic-normalize";
 import { getSubjectBoard, matchesBoard } from "@/lib/banter";
+import { getDisplayTopic } from "@/lib/board-topics";
 
 interface GeneratedQuestion {
   id: string;
@@ -47,7 +48,7 @@ export default function QuestionPractice({ questions, subject, initialTopic }: Q
     const match = findBestTopicMatch(initialTopic, allTopics);
     return match || "all";
   });
-  const [boardFilter] = useState<string>(() => getSubjectBoard(subject));
+  const [boardFilter, setBoardFilter] = useState<string>(() => getSubjectBoard(subject));
   const [currentIndex, setCurrentIndex] = useState(0);
   const [studentAnswer, setStudentAnswer] = useState("");
   const [showMarkScheme, setShowMarkScheme] = useState(false);
@@ -57,17 +58,40 @@ export default function QuestionPractice({ questions, subject, initialTopic }: Q
   const [genError, setGenError] = useState<string | null>(null);
   const [timerEnabled, setTimerEnabled] = useState(false);
 
+  const boardOptions = useMemo(() => {
+    const boardSet = new Set<string>();
+    questions.forEach((q) => q.boards.forEach((b) => boardSet.add(b)));
+    const boards = Array.from(boardSet).sort();
+    const options: { value: string; label: string }[] = [];
+    const prefixes = new Map<string, string[]>();
+    boards.forEach((b) => {
+      const dash = b.indexOf("-");
+      const prefix = dash > 0 ? b.substring(0, dash) : b;
+      if (!prefixes.has(prefix)) prefixes.set(prefix, []);
+      prefixes.get(prefix)!.push(b);
+    });
+    prefixes.forEach((variants, prefix) => {
+      if (variants.length > 1) {
+        options.push({ value: prefix, label: `All ${prefix}` });
+        variants.forEach((v) => options.push({ value: v, label: `  ${v}` }));
+      } else {
+        options.push({ value: variants[0], label: variants[0] });
+      }
+    });
+    return options;
+  }, [questions]);
+
   const topics = useMemo(() => {
     const set = new Set<string>();
-    questions.filter((q) => matchesBoard(q.boards, boardFilter)).forEach((q) => set.add(q.subtopic));
+    questions.filter((q) => matchesBoard(q.boards, boardFilter)).forEach((q) => set.add(getDisplayTopic(q.board_topics, q.boards, boardFilter, q.subtopic)));
     return Array.from(set).sort();
-  }, [questions]);
+  }, [questions, boardFilter]);
 
   const filteredQuestions = useMemo(() => {
     return questions.filter((q) => {
       if (!matchesBoard(q.boards, boardFilter)) return false;
       if (difficultyFilter !== "all" && q.difficulty !== difficultyFilter) return false;
-      if (topicFilter !== "all" && q.subtopic !== topicFilter) return false;
+      if (topicFilter !== "all" && getDisplayTopic(q.board_topics, q.boards, boardFilter, q.subtopic) !== topicFilter) return false;
       return true;
     });
   }, [questions, difficultyFilter, topicFilter, boardFilter]);
@@ -176,6 +200,14 @@ export default function QuestionPractice({ questions, subject, initialTopic }: Q
         </div>
 
         <div className="flex gap-2">
+          <select
+            value={boardFilter}
+            onChange={(e) => { setBoardFilter(e.target.value); setTopicFilter("all"); handleFilterChange(); }}
+            className="bg-white border border-zinc-200 rounded-xl px-3.5 py-2.5 text-sm text-zinc-900 shrink-0 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 focus:border-zinc-400 appearance-none cursor-pointer min-h-[44px]"
+          >
+            <option value="all">All Boards</option>
+            {boardOptions.map((opt) => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
+          </select>
           <select
             value={topicFilter}
             onChange={(e) => { setTopicFilter(e.target.value); handleFilterChange(); }}
@@ -323,7 +355,7 @@ export default function QuestionPractice({ questions, subject, initialTopic }: Q
             <span className="text-blue-600 bg-blue-50 rounded-lg px-2 py-0.5 text-[11px] font-semibold">
               {currentQuestion.marks} mark{currentQuestion.marks !== 1 ? "s" : ""}
             </span>
-            <span className="text-[11px] text-zinc-400 ml-auto">{currentQuestion.subtopic}</span>
+            <span className="text-[11px] text-zinc-400 ml-auto">{getDisplayTopic(currentQuestion.board_topics, currentQuestion.boards, boardFilter, currentQuestion.subtopic)}</span>
           </div>
 
           <RichText className="text-[15px] text-zinc-900 leading-relaxed">{currentQuestion.question_text}</RichText>
@@ -416,14 +448,14 @@ export default function QuestionPractice({ questions, subject, initialTopic }: Q
               {/* Related study links */}
               <div className="flex gap-2 pt-2">
                 <Link
-                  href={`/flashcards?subject=${encodeURIComponent(subject)}&topic=${encodeURIComponent(currentQuestion.subtopic)}`}
+                  href={`/flashcards?subject=${encodeURIComponent(subject)}&topic=${encodeURIComponent(getDisplayTopic(currentQuestion.board_topics, currentQuestion.boards, boardFilter, currentQuestion.subtopic))}`}
                   className="flex-1 flex items-center justify-center gap-1.5 min-h-[44px] bg-blue-50 border border-blue-200 text-blue-700 rounded-xl text-[13px] font-medium hover:bg-blue-100 active:scale-95 transition-all"
                 >
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
-                  Revise {currentQuestion.subtopic}
+                  Revise {getDisplayTopic(currentQuestion.board_topics, currentQuestion.boards, boardFilter, currentQuestion.subtopic)}
                 </Link>
                 <Link
-                  href={`/mcqs?subject=${encodeURIComponent(subject)}&topic=${encodeURIComponent(currentQuestion.subtopic)}`}
+                  href={`/mcqs?subject=${encodeURIComponent(subject)}&topic=${encodeURIComponent(getDisplayTopic(currentQuestion.board_topics, currentQuestion.boards, boardFilter, currentQuestion.subtopic))}`}
                   className="flex-1 flex items-center justify-center gap-1.5 min-h-[44px] bg-zinc-50 border border-zinc-200 text-zinc-700 rounded-xl text-[13px] font-medium hover:bg-zinc-100 active:scale-95 transition-all"
                 >
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" /></svg>
